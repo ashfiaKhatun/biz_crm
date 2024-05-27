@@ -46,6 +46,7 @@
         <div class="content-body">
 
             <div class="w-75 mx-auto my-5 p-5 border rounded bg-white shadow-lg">
+            <h4 class="mb-3">Refill Ad Account Balance</h4>
                 <form class="space-y-2">
                     @csrf
                     <div>

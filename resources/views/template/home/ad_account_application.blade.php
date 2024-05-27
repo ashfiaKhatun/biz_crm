@@ -46,6 +46,7 @@
         <div class="content-body">
 
             <div class="w-75 mx-auto my-5 p-5 border rounded bg-white shadow-lg">
+            <h4 class="mb-3">New Ad Account Application</h4>
                 <form method="post" action="" class="space-y-2">
                     @csrf
                     <div>

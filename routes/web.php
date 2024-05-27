@@ -29,9 +29,6 @@ Route::get('refill-application', [HomeController::class, 'refill_application'])-
 
 Route::get('add-agency', [HomeController::class, 'add_agency'])->middleware(['auth', 'verified'])->name('add-agency');
 
-Route::get('add-admin', [HomeController::class, 'add_admin'])->middleware(['auth', 'verified'])->name('add-admin');
-
-Route::get('add-manager', [HomeController::class, 'add_manager'])->middleware(['auth', 'verified'])->name('add-manager');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

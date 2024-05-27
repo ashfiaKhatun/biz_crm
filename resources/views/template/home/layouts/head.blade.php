@@ -8,13 +8,13 @@
   
     <title>BizMappers</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="template/image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="../template/image/png" sizes="16x16" href="images/favicon.png">
     <!-- Pignose Calender -->
-    <link href="template/plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <link href="../template/plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <!-- Chartist -->
-    <link rel="stylesheet" href="template/plugins/chartist/css/chartist.min.css">
-    <link rel="stylesheet" href="template/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+    <link rel="stylesheet" href="../template/plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="../template/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
     <!-- Custom Stylesheet -->
-    <link href="template/css/style.css" rel="stylesheet">
+    <link href="../template/css/style.css" rel="stylesheet">
 
 </head>

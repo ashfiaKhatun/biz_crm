@@ -46,7 +46,10 @@
         <div class="content-body">
 
             <div class="w-75 mx-auto my-5 p-5 border rounded bg-white shadow-lg">
-                <form method="POST" action="{{ route('register.admin') }}" class="mt-5 mb-5 login-input">
+                <h4 class="mb-3">Add New Admin</h4>
+                
+                <form method="POST" action="{{ route('register.admin') }}" class="my-3 login-input">
+
 
                     @csrf
 

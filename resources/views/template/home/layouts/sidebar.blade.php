@@ -63,7 +63,7 @@
                 <i class="icon-notebook menu-icon"></i><span class="nav-text">Admins</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="{{ route('add-admin') }}" aria-expanded="false">
+                    <li><a href="{{ route('register.admin') }}" aria-expanded="false">
                             New
                         </a></li>
                     <li><a >All</a></li>
@@ -76,7 +76,7 @@
                 <i class="icon-notebook menu-icon"></i><span class="nav-text">Managers</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="{{ route('add-manager') }}" aria-expanded="false">
+                    <li><a href="{{ route('register.manager') }}" aria-expanded="false">
                             New
                         </a></li>
                     <li><a >All</a></li>

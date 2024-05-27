@@ -21,14 +21,4 @@ class HomeController extends Controller
     {
         return view('template.home.add_agency');
     }
-    
-    public function add_admin()
-    {
-        return view('template.auth.register_admin');
-    }
-    
-    public function add_manager()
-    {
-        return view('template.auth.register_manager');
-    }
 }
