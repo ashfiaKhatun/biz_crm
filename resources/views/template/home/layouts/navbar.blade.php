@@ -4,7 +4,10 @@
 <div class="nav-header position-fixed">
     <div class="brand-logo h-100 d-flex justify-content-center align-items-center bg-white">
 
-        <img src="template/images/logo-text.png" height="52" alt="">
+        <a href="{{ route('dashboard') }}">
+            <img src="template/images/logo-text.png" height="52" alt="">
+
+        </a>
     </div>
 </div>
 <!--**********************************
