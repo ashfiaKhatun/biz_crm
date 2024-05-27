@@ -60,6 +60,32 @@
 
             <li class="mega-menu mega-menu-sm">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                <i class="icon-notebook menu-icon"></i><span class="nav-text">Admins</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('add-admin') }}" aria-expanded="false">
+                            New
+                        </a></li>
+                    <li><a >All</a></li>
+
+                </ul>
+            </li>
+
+            <li class="mega-menu mega-menu-sm">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                <i class="icon-notebook menu-icon"></i><span class="nav-text">Managers</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('add-manager') }}" aria-expanded="false">
+                            New
+                        </a></li>
+                    <li><a >All</a></li>
+
+                </ul>
+            </li>
+
+            <li class="mega-menu mega-menu-sm">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                 <i class="icon-notebook menu-icon"></i><span class="nav-text">Clients</span>
                 </a>
                 <ul aria-expanded="false">
