@@ -27,7 +27,7 @@
             
             <li class="mega-menu mega-menu-sm">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                <i class="icon-menu menu-icon"></i><span class="nav-text">Accounts</span>
+                <i class="icon-notebook menu-icon"></i><span class="nav-text">Accounts</span>
                 </a>
                 <ul aria-expanded="false">
                     
@@ -53,7 +53,7 @@
 
             <li class="mega-menu mega-menu-sm">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                <i class="icon-notebook menu-icon"></i><span class="nav-text">Agencies</span>
+                <i class="fa-regular fa-building"></i><span class="nav-text">Agencies</span>
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{ route('add-agency') }}" aria-expanded="false">
@@ -108,9 +108,13 @@
                 <i class="fa-solid fa-gear"></i><span class="nav-text">Settings</span>
                 </a>
             </li>
+            
+            <li>
+                <a aria-expanded="false">
+                <i class="fa-solid fa-chart-simple"></i><span class="nav-text">Report</span>
+                </a>
+            </li>
 
-            
-            
         </ul>
     </div>
 </div>
