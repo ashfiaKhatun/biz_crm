@@ -3,9 +3,9 @@
         ***********************************-->
         <div class="nav-header">
             <div class="brand-logo">
-                <a href="index.html">
-                    <b class="logo-abbr"><img src="template/images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="template/images/logo-compact.png" alt=""></span>
+                <a href="#">
+                    <b class="logo-abbr"><img src="template/images/logo-text.png" alt=""> </b>
+                    <span class="logo-compact"><img src="template/images/logo-text.png" alt=""></span>
                     <span class="brand-title">
                         <img src="template/images/logo-text.png" alt="">
                     </span>

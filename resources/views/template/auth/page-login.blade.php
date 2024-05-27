@@ -48,7 +48,7 @@
                                     @csrf
 
                                     <div class="form-group">
-                                        <x-text-input id="email" class="form-control pl-2" type="email" name="email" :value="old('email')" placeholder="Username/ Email" required autofocus autocomplete="username" />
+                                        <x-text-input id="login" class="form-control pl-2" type="text" name="login" :value="old('login')" placeholder="Username/ Email" required autofocus autocomplete="username" />
                                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                     </div>
 
