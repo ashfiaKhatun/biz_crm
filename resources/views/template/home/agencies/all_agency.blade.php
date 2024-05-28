@@ -63,7 +63,7 @@
                                     <tr>
                                         <td>{{ $agency->agency_name }}</td>
 
-                                        <td>{{ $agency->ad_account_type }}</td>
+                                        <td>{{ ucfirst(str_replace('_', ' ', $agency->ad_account_type)) }}</td>
 
                                         <td>
                                             <span>
