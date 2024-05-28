@@ -39,6 +39,10 @@ Route::get('all-agency', [AgencyController::class, 'index'])->middleware(['auth'
 
 Route::get('/agencies/{agency}/details', [AgencyController::class, 'details'])->middleware(['auth', 'verified'])->name('agency.details');
 
+Route::get('/agencies/{agency}/update', [AgencyController::class, 'update'])->middleware(['auth', 'verified'])->name('agency.update');
+
+Route::put('/agencies/{agency}/update', [AgencyController::class, 'storeUpdate'])->middleware(['auth', 'verified'])->name('agency.storeUpdate');
+
 Route::delete('agencies/{id}', [AgencyController::class, 'destroy'])->name('agency.destroy');
 
 // agency related end

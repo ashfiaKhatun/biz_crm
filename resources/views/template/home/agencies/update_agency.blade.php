@@ -46,23 +46,24 @@
         <div class="content-body">
 
             <div class="w-75 mx-auto my-5 p-5 border rounded bg-white shadow-lg">
-                <h4 class="mb-3">Add New Ad Account Agency</h4>
-                <form method="post" action="{{ route('agency.store') }}" class="space-y-2">
+                <h4 class="mb-3">Update Ad Account Agency ({{ $agency->agency_name }})</h4>
+                <form method="post" action="{{ route('agency.storeUpdate', $agency->id) }}" class="space-y-2">
                     @csrf
+                    @method('PUT')
                     <div>
                         <label class="col-form-label">Agency Name:</label>
-                        <input name="agency_name" type="text" placeholder="Agency Name" class="form-control rounded">
+                        <input name="agency_name" value="{{ $agency->agency_name }}" type="text" placeholder="Agency Name" class="form-control rounded">
                     </div>
 
                     <div>
                         <label class="col-form-label">Location:</label>
-                        <input name="location" type="text" placeholder="Location" class="form-control rounded">
+                        <input name="location" value="{{ $agency->location }}" type="text" placeholder="Location" class="form-control rounded">
                     </div>
 
                     <div>
                         <label class="col-form-label">Commission Type:</label>
                         <select name="commission_type" id="commission_type" class="form-control rounded">
-                            <option value="">Select</option>
+                            <option value="">{{$agency->commission_type}}</option>
                             <option value="dollar">Dollar Rate</option>
                             <option value="percentage">Percentage</option>
                         </select>
@@ -70,20 +71,18 @@
 
                     <div id="dollar_rate" class="d-none">
                         <label class="col-form-label">Dollar Rate:</label>
-                        <input id="dollar_input" name="dollar_rate" type="text" placeholder="Dollar Rate" class="form-control rounded">
+                        <input id="dollar_input" name="dollar_rate" value="{{ $agency->dollar_rate }}" type="text" placeholder="Dollar Rate" class="form-control rounded">
                     </div>
 
                     <div id="percentage_rate" class="d-none">
                         <label class="col-form-label">Percentage Rate:</label>
-                        <input id="percentage_input" name="percentage_rate" type="text" placeholder="Percentage Rate" class="form-control rounded">
+                        <input id="percentage_input" name="percentage_rate" value="{{ $agency->percentage_rate }}" type="text" placeholder="Percentage Rate" class="form-control rounded">
                     </div>
-
-                    
 
                     <div>
                         <label class="col-form-label">Ad Account Type:</label>
                         <select name="ad_account_type" class="form-control rounded">
-                            <option>Select</option>
+                            <option>{{$agency->ad_account_type}}</option>
                             <option value="credit_line">Credit Line</option>
                             <option value="card_line">Card Line</option>
                             <option value="both">Both</option>
@@ -92,7 +91,7 @@
                     </div>
 
                     <div class="d-flex justify-content-end mt-4">
-                        <input type="submit" name="submit" value="Add Agency" class="btn btn-primary">
+                        <input type="submit" name="submit" value="Update Agency" class="btn btn-primary">
                     </div>
                 </form>
             </div>
@@ -143,7 +142,6 @@
                 // Hide both inputs if "Select" is chosen
                 dollar.classList.add("d-none");
                 percentage.classList.add("d-none");
-                
             }
         };
 

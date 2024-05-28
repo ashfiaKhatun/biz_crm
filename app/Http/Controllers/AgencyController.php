@@ -67,13 +67,37 @@ class AgencyController extends Controller
 
     public function details($id)
     {
-        // Fetch additional details for the agency (optional)
-        // $detailedAgency = $agency->load(/* relations */);
 
         $agency = Agencies::findOrFail($id);
 
         return view('template.home.agencies.agency_details', compact('agency')); // Pass agency data to view
     }
+
+    public function update($id)
+    {
+        $agency = Agencies::findOrFail($id);
+
+        return view('template.home.agencies.update_agency', compact('agency')); // Pass agency data to view
+    }
+
+    public function storeUpdate(Request $request, $id)
+    {
+        $agency = Agencies::find($id);
+
+        $agency->agency_name = $request->agency_name;
+        $agency->location = $request->location;
+        $agency->commission_type = $request->commission_type;
+        $agency->dollar_rate = $request->dollar_rate;
+        $agency->percentage_rate = $request->percentage_rate;
+        $agency->ad_account_type = $request->ad_account_type;
+
+
+        $agency->save();
+
+        // Redirect to success page or perform other actions
+        return redirect()->route('all-agency')->with('success', 'Ad Account Agency updated successfully.');
+    }
+
 
     public function destroy($id)
     {
