@@ -19,6 +19,6 @@ class HomeController extends Controller
     
     public function add_agency()
     {
-        return view('template.home.add_agency.add_agency');
+        return view('template.home.agencies.add_agency');
     }
 }

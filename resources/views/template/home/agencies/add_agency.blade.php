@@ -47,20 +47,21 @@
 
             <div class="w-75 mx-auto my-5 p-5 border rounded bg-white shadow-lg">
                 <h4 class="mb-3">Add New Ad Account Agency</h4>
-                <form class="space-y-2">
+                <form method="post" action="{{ route('agency.store') }}" class="space-y-2">
+                    @csrf
                     <div>
                         <label class="col-form-label">Agency Name:</label>
-                        <input type="text" placeholder="Agency Name" class="form-control rounded">
+                        <input name="agency_name" type="text" placeholder="Agency Name" class="form-control rounded">
                     </div>
 
                     <div>
                         <label class="col-form-label">Location:</label>
-                        <input type="text" placeholder="Location" class="form-control rounded">
+                        <input name="location" type="text" placeholder="Location" class="form-control rounded">
                     </div>
 
                     <div>
                         <label class="col-form-label">Commission Type:</label>
-                        <select id="commission_type" class="form-control rounded">
+                        <select name="commission_type" id="commission_type" class="form-control rounded">
                             <option value="">Select</option>
                             <option value="dollar">Dollar Rate</option>
                             <option value="percentage">Percentage</option>
@@ -69,19 +70,19 @@
 
                     <div id="dollar_rate" class="d-none">
                         <label class="col-form-label">Dollar Rate:</label>
-                        <input type="text" placeholder="Dollar Rate" class="form-control rounded">
+                        <input name="dollar_rate" type="text" placeholder="Dollar Rate" class="form-control rounded">
                     </div>
 
                     <div id="percentage_rate" class="d-none">
                         <label class="col-form-label">Percentage Rate:</label>
-                        <input type="text" placeholder="Percentage Rate" class="form-control rounded">
+                        <input name="percentage_rate" type="text" placeholder="Percentage Rate" class="form-control rounded">
                     </div>
 
                     
 
                     <div>
                         <label class="col-form-label">Ad Account Type:</label>
-                        <select class="form-control rounded">
+                        <select name="ad_account_type" class="form-control rounded">
                             <option>Select</option>
                             <option>Credit Line</option>
                             <option>Card Line</option>

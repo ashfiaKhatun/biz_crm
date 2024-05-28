@@ -59,7 +59,7 @@
                     <li><a href="{{ route('add-agency') }}" aria-expanded="false">
                             New
                         </a></li>
-                    <li><a >All</a></li>
+                    <li><a href="{{ route('all-agency') }}" >All</a></li>
 
                 </ul>
             </li>
