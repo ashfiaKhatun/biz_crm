@@ -39,7 +39,6 @@
         ***********************************-->
 
 
-
         <!--**********************************
             Content body start
         ***********************************-->
@@ -48,49 +47,32 @@
             <div class="p-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">All Agencies</h4>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped verticle-middle">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Agency Name</th>
-                                        <th scope="col">Ad Account Type</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @foreach ($agencies as $agency)
-                                    <tr>
-                                        <td>{{ $agency->agency_name }}</td>
-
-                                        <td>{{ $agency->ad_account_type }}</td>
-
-                                        <td>
-                                            <span>
-                                                <a href="{{ route('agency.details', $agency->id) }}" data-toggle="tooltip" data-placement="top" title="View">
-                                                    <i class="fa fa-eye color-muted m-r-5"></i>
-                                                </a>
-                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                    <i class="fa fa-pencil color-muted m-r-5"></i>
-                                                </a>
-                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                    <i class="fa fa-close color-danger"></i>
-                                                </a>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-
-                                </tbody>
-                            </table>
+                        <h4 class="card-title mb-5">Details of {{ $agency->agency_name }}</h4>
+                        <div class="row">
+                            <h5 class="col-3">Location</h5>
+                            <p class="col-9 fs-4">{{ $agency->location }}</p>
+                        </div>
+                        <div class="row">
+                            <h5 class="col-3">Commission Type</h5>
+                            <p class="col-9 fs-4">{{ $agency->commission_type }}</p>
+                        </div>
+                        <div class="row">
+                            <h5 class="col-3">Dollar Rate</h5>
+                            <p class="col-9 fs-4">{{ $agency->dollar_rate }}</p>
+                        </div>
+                        
+                        <div class="row">
+                            <h5 class="col-3">Percentage Rate</h5>
+                            <p class="col-9 fs-4">{{ $agency->percentage_rate }}</p>
+                        </div>
+                        <div class="row">
+                            <h5 class="col-3">Ad Account Type</h5>
+                            <p class="col-9 fs-4">{{ $agency->ad_account_type }}</p>
                         </div>
                     </div>
                 </div>
+
             </div>
-
-
-
-            
 
             <!-- #/ container -->
         </div>

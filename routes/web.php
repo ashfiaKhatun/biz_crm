@@ -28,11 +28,17 @@ Route::get('ad-account-application', [HomeController::class, 'ad_account_applica
 
 Route::get('refill-application', [HomeController::class, 'refill_application'])->middleware(['auth', 'verified'])->name('refill-application');
 
-Route::get('add-agency', [HomeController::class, 'add_agency'])->middleware(['auth', 'verified'])->name('add-agency');
+
+// agency related start
+Route::get('add-agency', [AgencyController::class, 'add_agency'])->middleware(['auth', 'verified'])->name('add-agency');
 
 Route::post('add-agency', [AgencyController::class, 'store'])->middleware(['auth', 'verified'])->name('agency.store');
 
 Route::get('all-agency', [AgencyController::class, 'index'])->middleware(['auth', 'verified'])->name('all-agency');
+
+Route::get('/agencies/{agency}/details', [AgencyController::class, 'details'])->middleware(['auth', 'verified'])->name('agency.details');
+
+// agency related end
 
 
 Route::middleware('auth')->group(function () {

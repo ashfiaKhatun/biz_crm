@@ -20,20 +20,58 @@ class AgencyController extends Controller
         return view('template.home.agencies.all_agency', compact('agencies')); // Pass data to view
     }
 
+    public function add_agency()
+    {
+        return view('template.home.agencies.add_agency');
+    }
+
     public function store(Request $request)
     {
 
-        $product = Agencies::create(
-            [
-                'agency_name' => $request['agency_name'],
-                'location' => $request['location'],
-                'commission_type' => $request['commission_type'],
-                'dollar_rate' => $request['dollar_rate'],
-                'percentage_rate' => $request['percentage_rate'],
-                'ad_account_type' => $request['ad_account_type'],
-            ]
-        );
+        if ($request['ad_account_type'] === 'both') {
+            Agencies::create(
+                [
+                    'agency_name' => $request['agency_name'],
+                    'location' => $request['location'],
+                    'commission_type' => $request['commission_type'],
+                    'dollar_rate' => $request['dollar_rate'],
+                    'percentage_rate' => $request['percentage_rate'],
+                    'ad_account_type' => 'Credit Line',
+                ]
+            );
+            Agencies::create(
+                [
+                    'agency_name' => $request['agency_name'],
+                    'location' => $request['location'],
+                    'commission_type' => $request['commission_type'],
+                    'dollar_rate' => $request['dollar_rate'],
+                    'percentage_rate' => $request['percentage_rate'],
+                    'ad_account_type' => 'Card Line',
+                ]
+            );
+        } else {
+            Agencies::create(
+                [
+                    'agency_name' => $request['agency_name'],
+                    'location' => $request['location'],
+                    'commission_type' => $request['commission_type'],
+                    'dollar_rate' => $request['dollar_rate'],
+                    'percentage_rate' => $request['percentage_rate'],
+                    'ad_account_type' => $request['ad_account_type'],
+                ]
+            );
+        }
 
-        return redirect()->route('all-agency'); // Redirect after creation
+        return redirect()->route('all-agency')->with('success', 'Ad Account Agency added successfully.'); // Redirect after creation
+    }
+
+    public function details($id)
+    {
+        // Fetch additional details for the agency (optional)
+        // $detailedAgency = $agency->load(/* relations */);
+
+        $agency = Agencies::findOrFail($id);
+
+        return view('template.home.agencies.agency_details', compact('agency')); // Pass agency data to view
     }
 }
