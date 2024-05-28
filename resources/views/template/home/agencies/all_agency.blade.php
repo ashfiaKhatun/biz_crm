@@ -59,7 +59,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($agencies as $agency)
+                                    @foreach ($agencies as $agency)
                                     <tr>
                                         <td>{{ $agency->agency_name }}</td>
 
@@ -70,12 +70,16 @@
                                                 <a href="{{ route('agency.details', $agency->id) }}" data-toggle="tooltip" data-placement="top" title="View">
                                                     <i class="fa fa-eye color-muted m-r-5"></i>
                                                 </a>
+
                                                 <a href="#" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                    <i class="fa fa-pencil color-muted m-r-5"></i>
+                                                    <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
                                                 </a>
-                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                    <i class="fa fa-close color-danger"></i>
-                                                </a>
+                                                
+                                                <form action="{{ route('agency.destroy', $agency->id) }}" method="POST" style="display:inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="border-0 bg-transparent ml-3" onclick="return confirm('Are you sure you want to delete this agency?')"><i class="fa fa-close color-danger"></i></button>
+                                                </form>
                                             </span>
                                         </td>
                                     </tr>
@@ -90,7 +94,7 @@
 
 
 
-            
+
 
             <!-- #/ container -->
         </div>

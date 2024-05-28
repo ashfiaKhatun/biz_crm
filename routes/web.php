@@ -39,6 +39,8 @@ Route::get('all-agency', [AgencyController::class, 'index'])->middleware(['auth'
 
 Route::get('/agencies/{agency}/details', [AgencyController::class, 'details'])->middleware(['auth', 'verified'])->name('agency.details');
 
+Route::delete('agencies/{id}', [AgencyController::class, 'destroy'])->name('agency.destroy');
+
 // agency related end
 
 

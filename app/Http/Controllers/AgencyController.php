@@ -74,4 +74,12 @@ class AgencyController extends Controller
 
         return view('template.home.agencies.agency_details', compact('agency')); // Pass agency data to view
     }
+
+    public function destroy($id)
+    {
+        $agency = Agencies::findOrFail($id);
+        $agency->delete();
+
+        return redirect()->route('all-agency')->with('success', 'Ad Account Agency deleted successfully.');
+    }
 }
