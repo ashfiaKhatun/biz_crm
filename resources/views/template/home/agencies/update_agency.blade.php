@@ -64,8 +64,8 @@
                         <label class="col-form-label">Commission Type:</label>
                         <select name="commission_type" id="commission_type" class="form-control rounded">
                             <option value="">{{$agency->commission_type}}</option>
-                            <option value="dollar">Dollar Rate</option>
-                            <option value="percentage">Percentage</option>
+                            <option value="Dollar Rate">Dollar Rate</option>
+                            <option value="Percentage">Percentage</option>
                         </select>
                     </div>
 
@@ -130,11 +130,11 @@
 
         const handleSelection = () => {
             const selectedValue = commissionType.value;
-            if (selectedValue === "dollar") {
+            if (selectedValue === "Dollar Rate") {
                 dollar.classList.remove("d-none");
                 percentage.classList.add("d-none");
                 percentageInput.value="";
-            } else if (selectedValue === "percentage") {
+            } else if (selectedValue === "Percentage") {
                 percentage.classList.remove("d-none");
                 dollar.classList.add("d-none");
                 dollarInput.value="";

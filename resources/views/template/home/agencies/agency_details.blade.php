@@ -52,26 +52,26 @@
                             <h5 class="col-3">Location</h5>
                             <p class="col-9 fs-4">{{ $agency->location }}</p>
                         </div>
-                        
-                            <div class="row">
-                                <h5 class="col-3">Commission Type</h5>
-                                <p class="col-9 fs-4">{{ucfirst($agency->commission_type)  }}</p>
-                            </div> 
-                       
+
+                        <div class="row">
+                            <h5 class="col-3">Commission Type</h5>
+                            <p class="col-9 fs-4">{{ucfirst($agency->commission_type) }}</p>
+                        </div>
+
                         @if($agency->dollar_rate)
-                            <div class="row">
-                                <h5 class="col-3">Dollar Rate</h5>
-                                <p class="col-9 fs-4">{{ $agency->dollar_rate }}</p>
-                            </div>  
+                        <div class="row">
+                            <h5 class="col-3">Dollar Rate</h5>
+                            <p class="col-9 fs-4">{{ $agency->dollar_rate }}</p>
+                        </div>
                         @endif
-                        
+
                         @if ($agency->percentage_rate )
                         <div class="row">
                             <h5 class="col-3">Percentage Rate</h5>
                             <p class="col-9 fs-4">{{ $agency->percentage_rate }}</p>
-                        </div>  
+                        </div>
                         @endif
-                        
+
                         <div class="row">
                             <h5 class="col-3">Ad Account Type</h5>
                             <p class="col-9 fs-4">{{ ucfirst(str_replace('_', ' ', $agency->ad_account_type)) }}</p>
