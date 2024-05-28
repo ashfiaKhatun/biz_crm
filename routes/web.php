@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdAccountController;
 use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -24,7 +25,7 @@ Route::get('/dashboard', function () {
     return view('template.home.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('ad-account-application', [HomeController::class, 'ad_account_application'])->middleware(['auth', 'verified'])->name('ad-account-application');
+Route::get('ad-account-application', [AdAccountController::class, 'create'])->middleware(['auth', 'verified'])->name('ad-account-application');
 
 Route::get('refill-application', [HomeController::class, 'refill_application'])->middleware(['auth', 'verified'])->name('refill-application');
 

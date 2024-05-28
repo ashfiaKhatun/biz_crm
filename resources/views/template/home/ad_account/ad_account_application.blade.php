@@ -53,8 +53,9 @@
                         <label class="col-form-label">Client Name:</label>
                         <select name="client_name" class="form-control rounded">
                             <option>Select</option>
-                            <option value="Client 1">Client 1</option>
-                            <option value="Client 2">Client 2</option>
+                            @foreach ($customers as $customer)
+                                <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                            @endforeach
 
                         </select>
                     </div>
@@ -137,9 +138,9 @@
                             <label class="col-form-label">Select Agency:</label>
                             <select name="agency" class="form-control rounded">
                                 <option>Select</option>
-                                <option value="Agency 1">Agency 1</option>
-                                <option value="Agency 2">Agency 2</option>
-                                <option value="Agency 3">Agency 3</option>
+                                @foreach ($agencies as $agency)
+                                    <option value="{{ $agency->id }}">{{ $agency->agency_name }}</option>
+                                @endforeach
 
                             </select>
                         </div>
