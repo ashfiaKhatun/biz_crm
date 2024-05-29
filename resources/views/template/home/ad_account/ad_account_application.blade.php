@@ -70,20 +70,22 @@
 
                     <div>
                         <label class="col-form-label">Facebook Page Link:</label>
-                        <div>
+                        <div class="d-flex">
                             <input type="text" placeholder="Facebook Page Link (You can add maximum 5)" class="form-control rounded">
 
-                            <p onclick="handlePlus1()" id="plus-1" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another fb link">+</p>
+                            <p onclick="handlePlus1()" id="plus-1" class="btn btn-primary border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another fb link">+</p>
                         </div>
 
                         <div id="fb-link-2" class="d-none my-2">
                             <div>
                                 <div class="d-flex">
                                     <input id="fb-input-2" type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
-                                    <p onclick="handleMinus2()" id="minus-2" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">-</p>
+
+                                    <p onclick="handleMinus2()" id="minus-2" class="btn btn-danger border mt-1 fs-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">X</p>
+
+                                    <p onclick="handlePlus2()" id="plus-2" class="btn btn-primary border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another fb link">+</p>
                                 </div>
 
-                                <p onclick="handlePlus2()" id="plus-2" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another fb link">+</p>
                             </div>
                         </div>
 
@@ -91,10 +93,12 @@
                             <div>
                                 <div class="d-flex">
                                     <input id="fb-input-3" type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
-                                    <p onclick="handleMinus3()" id="minus-3" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">-</p>
+
+                                    <p onclick="handleMinus3()" id="minus-3" class="btn btn-danger border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">X</p>
+
+                                    <p onclick="handlePlus3()" id="plus-3" class="btn btn-primary border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another fb link">+</p>
                                 </div>
 
-                                <p onclick="handlePlus3()" id="plus-3" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another fb link">+</p>
                             </div>
                         </div>
 
@@ -102,17 +106,19 @@
                             <div>
                                 <div class="d-flex">
                                     <input id="fb-input-4" type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
-                                    <p onclick="handleMinus4()" id="minus-4" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">-</p>
+
+                                    <p onclick="handleMinus4()" id="minus-4" class="btn btn-danger border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">X</p>
+
+                                    <p onclick="handlePlus4()" id="plus-4" class="btn btn-primary border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another fb link">+</p>
                                 </div>
 
-                                <p onclick="handlePlus4()" id="plus-4" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another fb link">+</p>
                             </div>
                         </div>
 
                         <div id="fb-link-5" class="d-none">
                             <div class="d-flex">
                                 <input id="fb-input-5" type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
-                                <p onclick="handleMinus5()" id="minus-5" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">-</p>
+                                <p onclick="handleMinus5()" id="minus-5" class="btn btn-danger border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">X</p>
                             </div>
                         </div>
                     </div>
@@ -120,10 +126,10 @@
 
                     <div>
                         <label class="col-form-label">Domain:</label>
-                        <div class="">
+                        <div class="d-flex">
                             <input type="text" placeholder="Domain (You can add maximum 3)" class="form-control rounded">
 
-                            <p onclick="handleAdd1()" id="add-1" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another domain">+</p>
+                            <p onclick="handleAdd1()" id="add-1" class="btn btn-primary border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another domain">+</p>
                         </div>
 
                         <div id="domain-2" class="d-none my-2">
@@ -131,10 +137,11 @@
                                 <div class="d-flex">
                                     <input id="domain-input-2" type="text" placeholder="Another Domain" class="form-control rounded">
 
-                                    <p onclick="handleRemove2()" id="remove-2" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove Domain">-</p>
+                                    <p onclick="handleRemove2()" id="remove-2" class="btn btn-danger border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove Domain">X</p>
+
+                                    <p onclick="handleAdd2()" id="add-2" class="btn btn-primary border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another domain">+</p>
                                 </div>
                                 
-                                <p onclick="handleAdd2()" id="add-2" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another domain">+</p>
                             </div>
                         </div>
 
@@ -142,7 +149,7 @@
                             <div class="d-flex">
                                 <input id="domain-input-3" type="text" placeholder="Another Domain" class="form-control rounded">
 
-                                <p onclick="handleRemove3()" id="remove-3" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove Domain">-</p>
+                                <p onclick="handleRemove3()" id="remove-3" class="btn btn-danger border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove Domain">X</p>
 
                             </div>
                         </div>

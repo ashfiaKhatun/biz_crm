@@ -1,7 +1,23 @@
 <!--**********************************
             Nav header start
         ***********************************-->
+
+
 <div class="nav-header position-fixed">
+    <div class="brand-logo bg-white  h-100 d-flex justify-content-center align-items-center">
+        <a href="{{ route('dashboard') }}">
+            <b class="logo-abbr"><img src="../../template/images/favicon.png" alt=""> </b>
+            <span class="logo-compact"><img src="../../template/images/logo-compact.png" alt=""></span>
+            <span class="brand-title">
+                <img src="../../template/images/logo-text.png" height="52" alt="">
+            </span>
+        </a>
+    </div>
+</div>
+
+
+
+<!-- <div class="nav-header position-fixed">
     <div class="brand-logo h-100 d-flex justify-content-center align-items-center bg-white">
 
         <a href="{{ route('dashboard') }}">
@@ -9,7 +25,7 @@
 
         </a>
     </div>
-</div>
+</div> -->
 <!--**********************************
             Nav header end
         ***********************************-->
