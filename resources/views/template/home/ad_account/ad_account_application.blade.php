@@ -120,13 +120,13 @@
 
                     <div>
                         <label class="col-form-label">Domain:</label>
-                        <div class="d-flex mb-2">
+                        <div class="">
                             <input type="text" placeholder="Domain (You can add maximum 3)" class="form-control rounded">
 
                             <p onclick="handleAdd1()" id="add-1" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another domain">+</p>
                         </div>
 
-                        <div id="domain-2" class="d-none mb-2">
+                        <div id="domain-2" class="d-none my-2">
                             <div>
                                 <div class="d-flex">
                                     <input id="domain-input-2" type="text" placeholder="Another Domain" class="form-control rounded">
