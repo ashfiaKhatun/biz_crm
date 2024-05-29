@@ -199,7 +199,7 @@
     ***********************************-->
     @include('template.home.layouts.scripts')
     
-    @include('template.home.ad_account.ad_account_application_script')
+    @include('template.home.custom_scripts.ad_account_application_script')
 
 </body>
 

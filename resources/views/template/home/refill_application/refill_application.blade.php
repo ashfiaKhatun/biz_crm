@@ -46,7 +46,7 @@
         <div class="content-body">
 
             <div class="w-75 mx-auto my-5 p-5 border rounded bg-white shadow-lg">
-            <h4 class="mb-3">Refill Ad Account Balance</h4>
+                <h4 class="mb-3">Refill Ad Account Balance</h4>
                 <form class="space-y-2">
                     @csrf
                     <div>
@@ -63,11 +63,11 @@
 
                         <div class="d-flex justify-content-between">
                             <div class="w-50 mr-2">
-                                <input type="text" placeholder="Taka" class="form-control rounded">
+                                <input id="taka-input" type="text" placeholder="Taka" class="form-control rounded">
 
                             </div>
                             <div class="w-50">
-                                <input type="text" placeholder="Dollar" class="form-control rounded">
+                                <input id="dollar-input" type="text" placeholder="Dollar" class="form-control rounded">
 
                             </div>
                         </div>
@@ -89,10 +89,19 @@
                         <input type="text" placeholder="Transaction Id" class="form-control rounded">
                     </div>
 
-                    <div>
+                    <div class="mt-2">
+
+                        <label class="col-form-label">Screenshot:</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input ">
+                            <label class="custom-file-label">Choose file</label>
+                        </div>
+                    </div>
+
+                    <!-- <div>
                         <label class="col-form-label">Screenshot:</label>
                         <input type="file" class="form-control rounded">
-                    </div>
+                    </div> -->
 
                     <div class="d-flex justify-content-end mt-4">
                         <input type="submit" name="submit" value="Refill" class="btn btn-primary">
@@ -123,6 +132,37 @@
         Scripts
     ***********************************-->
     @include('template.home.layouts.scripts')
+
+    <script>
+        const takaInput = document.getElementById('taka-input');
+        const dollarInput = document.getElementById('dollar-input');
+
+        const conversionRate = 115; // Adjust this value as needed
+
+        function updateDollar(takaValue) {
+            if (isNaN(takaValue)) {
+                dollarInput.value = ''; // Clear dollar input if taka is not a number
+            } else {
+                dollarInput.value = (takaValue / conversionRate).toFixed(2);
+            }
+        }
+
+        function updateTaka(dollarValue) {
+            if (isNaN(dollarValue)) {
+                takaInput.value = ''; // Clear taka input if dollar is not a number
+            } else {
+                takaInput.value = (dollarValue * conversionRate).toFixed(2);
+            }
+        }
+
+        takaInput.addEventListener('input', () => {
+            updateDollar(takaInput.value);
+        });
+
+        dollarInput.addEventListener('input', () => {
+            updateTaka(dollarInput.value);
+        });
+    </script>
 
 </body>
 
