@@ -65,9 +65,7 @@
                         <select name="commission_type" id="commission_type" class="form-control rounded">
                             <option value="Dollar Rate" {{ $agency->commission_type === 'Dollar Rate' ? 'selected' : '' }}>Dollar Rate</option>
                             <option value="Percentage" {{ $agency->commission_type === 'Percentage' ? 'selected' : '' }}>Percentage</option>
-                            <!-- <option value="">{{$agency->commission_type}}</option>
-                            <option value="Dollar Rate">Dollar Rate</option>
-                            <option value="Percentage">Percentage</option> -->
+                            
                         </select>
                     </div>
 
@@ -84,10 +82,9 @@
                     <div>
                         <label class="col-form-label">Ad Account Type:</label>
                         <select name="ad_account_type" class="form-control rounded">
-                            <option>{{$agency->ad_account_type}}</option>
-                            <option value="credit_line">Credit Line</option>
-                            <option value="card_line">Card Line</option>
-                            <option value="both">Both</option>
+                            <option value="Credit Line" {{ $agency->ad_account_type === 'Credit Line' ? 'selected' : '' }}>Credit Line</option>
+                            <option value="Card Line" {{ $agency->ad_account_type === 'Card Line' ? 'selected' : '' }}>Card Line</option>
+                            <option value="Both" {{ $agency->ad_account_type === 'Both' ? 'selected' : '' }}>Both</option>
 
                         </select>
                     </div>

@@ -11,6 +11,7 @@
     const domain_input_2 = document.getElementById('domain-input-2');
     const domain_input_3 = document.getElementById('domain-input-3');
 
+    
 
     const plus_1 = document.getElementById('plus-1');
     const plus_2 = document.getElementById('plus-2');

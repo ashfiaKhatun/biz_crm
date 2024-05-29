@@ -84,9 +84,9 @@
                         <label class="col-form-label">Ad Account Type:</label>
                         <select name="ad_account_type" class="form-control rounded">
                             <option>Select</option>
-                            <option value="credit_line">Credit Line</option>
-                            <option value="card_line">Card Line</option>
-                            <option value="both">Both</option>
+                            <option value="Credit Line">Credit Line</option>
+                            <option value="Card Line">Card Line</option>
+                            <option value="Both">Both</option>
 
                         </select>
                     </div>

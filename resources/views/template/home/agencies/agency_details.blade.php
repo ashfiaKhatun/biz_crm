@@ -47,7 +47,13 @@
             <div class="p-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-5">Details of {{ $agency->agency_name }}</h4>
+                        <div class="d-flex">
+                            <h4 class="card-title mb-5">Details of {{ $agency->agency_name }}</h4>
+                            <a href="{{ route('agency.update', $agency->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
+                                <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
+                            </a>
+
+                        </div>
                         <div class="row">
                             <h5 class="col-3">Location</h5>
                             <p class="col-9 fs-4">{{ $agency->location }}</p>
