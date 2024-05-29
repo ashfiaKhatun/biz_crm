@@ -19,7 +19,6 @@
         Preloader end
     ********************-->
 
-
     <!--**********************************
         Main wrapper start
     ***********************************-->
@@ -38,8 +37,6 @@
             Sidebar end
         ***********************************-->
 
-
-
         <!--**********************************
             Content body start
         ***********************************-->
@@ -54,7 +51,7 @@
                         <select name="client_name" class="form-control rounded">
                             <option>Select</option>
                             @foreach ($customers as $customer)
-                                <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                            <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                             @endforeach
 
                         </select>
@@ -70,67 +67,85 @@
                         <input type="text" name="bm_id" placeholder="Business Manager Id" class="form-control rounded">
                     </div>
 
-                    <!-- <div>
-                        <label class="col-form-label">Facebook Page Link:</label>
-                        <input type="text" name="fb_link" placeholder="Facebook Page Link" class="form-control rounded">
-                    </div> -->
 
                     <div>
                         <label class="col-form-label">Facebook Page Link:</label>
-                        <div class="d-flex mb-2">
+                        <div>
                             <input type="text" placeholder="Facebook Page Link (You can add maximum 5)" class="form-control rounded">
-                            <p onclick="handlePlus1()" id="plus-1" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another fb link">+</p>
 
+                            <p onclick="handlePlus1()" id="plus-1" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another fb link">+</p>
                         </div>
 
-                        <div id="fb-link-2" class="d-none mb-2">
-                            <div class="d-flex">
-                                <input type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
+                        <div id="fb-link-2" class="d-none my-2">
+                            <div>
+                                <div class="d-flex">
+                                    <input id="fb-input-2" type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
+                                    <p onclick="handleMinus2()" id="minus-2" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">-</p>
+                                </div>
+
                                 <p onclick="handlePlus2()" id="plus-2" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another fb link">+</p>
                             </div>
                         </div>
 
                         <div id="fb-link-3" class="d-none mb-2">
-                            <div class="d-flex">
-                                <input type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
+                            <div>
+                                <div class="d-flex">
+                                    <input id="fb-input-3" type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
+                                    <p onclick="handleMinus3()" id="minus-3" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">-</p>
+                                </div>
+
                                 <p onclick="handlePlus3()" id="plus-3" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another fb link">+</p>
                             </div>
                         </div>
 
                         <div id="fb-link-4" class="d-none mb-2">
-                            <div class="d-flex">
-                                <input type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
+                            <div>
+                                <div class="d-flex">
+                                    <input id="fb-input-4" type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
+                                    <p onclick="handleMinus4()" id="minus-4" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">-</p>
+                                </div>
+
                                 <p onclick="handlePlus4()" id="plus-4" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another fb link">+</p>
                             </div>
                         </div>
 
                         <div id="fb-link-5" class="d-none">
-                            <input type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
+                            <div class="d-flex">
+                                <input id="fb-input-5" type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
+                                <p onclick="handleMinus5()" id="minus-5" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">-</p>
+                            </div>
                         </div>
-
-
                     </div>
+
 
                     <div>
                         <label class="col-form-label">Domain:</label>
                         <div class="d-flex mb-2">
                             <input type="text" placeholder="Domain (You can add maximum 3)" class="form-control rounded">
-                            <p onclick="handleAdd1()" id="add-1" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another domain">+</p>
 
+                            <p onclick="handleAdd1()" id="add-1" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another domain">+</p>
                         </div>
 
                         <div id="domain-2" class="d-none mb-2">
-                            <div class="d-flex">
-                                <input type="text" placeholder="Another Domain" class="form-control rounded">
+                            <div>
+                                <div class="d-flex">
+                                    <input id="domain-input-2" type="text" placeholder="Another Domain" class="form-control rounded">
+
+                                    <p onclick="handleRemove2()" id="remove-2" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove Domain">-</p>
+                                </div>
+                                
                                 <p onclick="handleAdd2()" id="add-2" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another domain">+</p>
                             </div>
                         </div>
 
                         <div id="domain-3" class="d-none">
-                            <input type="text" placeholder="Another Domain" class="form-control rounded">
+                            <div class="d-flex">
+                                <input id="domain-input-3" type="text" placeholder="Another Domain" class="form-control rounded">
+
+                                <p onclick="handleRemove3()" id="remove-3" class="btn border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove Domain">-</p>
+
+                            </div>
                         </div>
-
-
                     </div>
 
                     <div class="d-flex justify-content-between">
@@ -139,9 +154,8 @@
                             <select name="agency" class="form-control rounded">
                                 <option>Select</option>
                                 @foreach ($agencies as $agency)
-                                    <option value="{{ $agency->id }}">{{ $agency->agency_name }}</option>
+                                <option value="{{ $agency->id }}">{{ $agency->agency_name }}</option>
                                 @endforeach
-
                             </select>
                         </div>
 
@@ -149,8 +163,6 @@
                             <label class="col-form-label">Ad Account Type:</label>
                             <input type="text" name="ad_acc_type" class="form-control rounded">
                         </div>
-
-
                     </div>
 
                     <div>
@@ -162,7 +174,6 @@
                         <input type="submit" name="submit" value="Apply" class="btn btn-primary">
                     </div>
 
-
                 </form>
             </div>
             <!-- #/ container -->
@@ -170,7 +181,6 @@
         <!--**********************************
             Content body end
         ***********************************-->
-
 
         <!--**********************************
             Footer start
@@ -188,50 +198,8 @@
         Scripts
     ***********************************-->
     @include('template.home.layouts.scripts')
-
-    <script>
-        const add_1 = document.getElementById('add-1');
-        const add_2 = document.getElementById('add-2');
-        
-        const plus_1 = document.getElementById('plus-1');
-        const plus_2 = document.getElementById('plus-2');
-        const plus_3 = document.getElementById('plus-3');
-        const plus_4 = document.getElementById('plus-4');
-
-        const domain_2 = document.getElementById('domain-2');
-        const domain_3 = document.getElementById('domain-3');
-        
-        const fb_link_2 = document.getElementById('fb-link-2');
-        const fb_link_3 = document.getElementById('fb-link-3');
-        const fb_link_4 = document.getElementById('fb-link-4');
-        const fb_link_5 = document.getElementById('fb-link-5');
-
-        const handleAdd1 = () => {
-            domain_2.classList.remove("d-none");
-            add_1.classList.add("d-none");
-        }
-        const handleAdd2 = () => {
-            domain_3.classList.remove("d-none");
-            add_2.classList.add("d-none");
-        }
-        
-        const handlePlus1 = () => {
-            fb_link_2.classList.remove("d-none");
-            plus_1.classList.add("d-none");
-        }
-        const handlePlus2 = () => {
-            fb_link_3.classList.remove("d-none");
-            plus_2.classList.add("d-none");
-        }
-        const handlePlus3 = () => {
-            fb_link_4.classList.remove("d-none");
-            plus_3.classList.add("d-none");
-        }
-        const handlePlus4 = () => {
-            fb_link_5.classList.remove("d-none");
-            plus_4.classList.add("d-none");
-        }
-    </script>
+    
+    @include('template.home.ad_account.ad_account_application_script')
 
 </body>
 

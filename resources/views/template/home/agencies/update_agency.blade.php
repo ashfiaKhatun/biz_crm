@@ -63,9 +63,11 @@
                     <div>
                         <label class="col-form-label">Commission Type:</label>
                         <select name="commission_type" id="commission_type" class="form-control rounded">
-                            <option value="">{{$agency->commission_type}}</option>
+                            <option value="Dollar Rate" {{ $agency->commission_type === 'Dollar Rate' ? 'selected' : '' }}>Dollar Rate</option>
+                            <option value="Percentage" {{ $agency->commission_type === 'Percentage' ? 'selected' : '' }}>Percentage</option>
+                            <!-- <option value="">{{$agency->commission_type}}</option>
                             <option value="Dollar Rate">Dollar Rate</option>
-                            <option value="Percentage">Percentage</option>
+                            <option value="Percentage">Percentage</option> -->
                         </select>
                     </div>
 
@@ -133,11 +135,11 @@
             if (selectedValue === "Dollar Rate") {
                 dollar.classList.remove("d-none");
                 percentage.classList.add("d-none");
-                percentageInput.value="";
+                percentageInput.value = "";
             } else if (selectedValue === "Percentage") {
                 percentage.classList.remove("d-none");
                 dollar.classList.add("d-none");
-                dollarInput.value="";
+                dollarInput.value = "";
             } else {
                 // Hide both inputs if "Select" is chosen
                 dollar.classList.add("d-none");
