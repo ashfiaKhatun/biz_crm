@@ -16,6 +16,7 @@
                     <li><a href="{{ route('ad-account-application') }}" aria-expanded="false">
                             New
                         </a></li>
+                        <li><a href="{{ route('ad-account.index') }}">All Applications</a></li>
                     <li><a >Pending</a></li>
                     <li><a >Approved</a></li>
 

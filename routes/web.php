@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RefillController;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +27,7 @@ Route::get('/dashboard', function () {
     return view('template.home.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('ad-account-application', [AdAccountController::class, 'create'])->middleware(['auth', 'verified'])->name('ad-account-application');
+
 
 
 // refill related start
@@ -54,6 +55,21 @@ Route::put('/agencies/{agency}/update', [AgencyController::class, 'storeUpdate']
 Route::delete('agencies/{id}', [AgencyController::class, 'destroy'])->name('agency.destroy');
 
 // agency related end
+
+
+//ad account start
+
+Route::get('ad-account-application', [AdAccountController::class, 'create'])->middleware(['auth', 'verified'])->name('ad-account-application');
+Route::post('ad-account-application', [AdAccountController::class, 'store'])->middleware(['auth', 'verified'])->name('adaccount.store');
+Route::get('ad-account', [AdAccountController::class, 'index'])->middleware(['auth', 'verified'])->name('ad-account.index');
+Route::get('ad-account/{id}', [AdAccountController::class, 'show'])->middleware(['auth', 'verified'])->name('ad-account.show');
+Route::get('ad-account/{id}/edit', [AdAccountController::class, 'edit'])->middleware(['auth', 'verified'])->name('ad-account.edit');
+Route::put('ad-account/{id}', [AdAccountController::class, 'update'])->middleware(['auth', 'verified'])->name('ad-account.update');
+Route::delete('ad-account/{id}', [AdAccountController::class, 'destroy'])->middleware(['auth', 'verified'])->name('ad-account.destroy');
+Route::patch('ad-account/{id}/status', [AdAccountController::class, 'updateStatus'])->middleware(['auth', 'verified'])->name('ad-account.updateStatus');
+
+//ad account end
+
 
 
 Route::middleware('auth')->group(function () {

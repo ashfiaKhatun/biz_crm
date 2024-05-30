@@ -17,4 +17,9 @@ class Agencies extends Model
         'percentage_rate',
         'ad_account_type'
     ];
+
+    public function adAccounts()
+    {
+        return $this->hasMany(AdAccount::class, 'agency_id');
+    }
 }
