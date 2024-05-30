@@ -12,10 +12,7 @@ class HomeController extends Controller
         return view('template.home.ad_account.ad_account_application');
     }
     
-    public function refill_application()
-    {
-        return view('template.home.refill_application.refill_application');
-    }
+    
     
     public function add_agency()
     {

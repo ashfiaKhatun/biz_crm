@@ -4,6 +4,7 @@ use App\Http\Controllers\AdAccountController;
 use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RefillController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +28,14 @@ Route::get('/dashboard', function () {
 
 Route::get('ad-account-application', [AdAccountController::class, 'create'])->middleware(['auth', 'verified'])->name('ad-account-application');
 
-Route::get('refill-application', [HomeController::class, 'refill_application'])->middleware(['auth', 'verified'])->name('refill-application');
+
+// refill related start
+Route::get('refill-application', [RefillController::class, 'refill_application'])->middleware(['auth', 'verified'])->name('refill-application');
+
+Route::get('/refills/refills-name/update', [RefillController::class, 'update'])->middleware(['auth', 'verified']);
+
+// refill related end
+
 
 
 // agency related start
