@@ -1,30 +1,74 @@
 <script>
-        const takaInput = document.getElementById('taka-input');
-        const dollarInput = document.getElementById('dollar-input');
+    // ad account load
 
-        const conversionRate = 115; // Adjust this value as needed
+    document.getElementById('client-select').addEventListener('change', function() {
+        const clientId = this.value;
+        const adAccountSelect = document.getElementById('ad-account-select');
 
-        function updateDollar(takaValue) {
-            if (isNaN(takaValue)) {
-                dollarInput.value = ''; // Clear dollar input if taka is not a number
-            } else {
-                dollarInput.value = (takaValue / conversionRate).toFixed(2);
-            }
+        // Clear existing options
+        adAccountSelect.innerHTML = '<option>Select</option>';
+
+        if (clientId) {
+            fetch(`/ad-account/${clientId}/accounts`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(account => {
+                        const option = document.createElement('option');
+                        option.value = account.id;
+                        option.textContent = account.ad_acc_name;
+                        adAccountSelect.appendChild(option);
+                    });
+                });
         }
+    });
 
-        function updateTaka(dollarValue) {
-            if (isNaN(dollarValue)) {
-                takaInput.value = ''; // Clear taka input if dollar is not a number
-            } else {
-                takaInput.value = (dollarValue * conversionRate).toFixed(2);
-            }
+    // Second part: Handling taka to dollar conversion and vice versa
+    const takaInput = document.getElementById('taka-input');
+    const dollarInput = document.getElementById('dollar-input');
+
+    let conversionRate = 115; // Default value
+
+    function updateDollar(takaValue) {
+        if (isNaN(takaValue)) {
+            dollarInput.value = ''; // Clear dollar input if taka is not a number
+        } else {
+            dollarInput.value = (takaValue / conversionRate).toFixed(2);
         }
+    }
 
-        takaInput.addEventListener('input', () => {
-            updateDollar(takaInput.value);
-        });
+    function updateTaka(dollarValue) {
+        if (isNaN(dollarValue)) {
+            takaInput.value = ''; // Clear taka input if dollar is not a number
+        } else {
+            takaInput.value = (dollarValue * conversionRate).toFixed(2);
+        }
+    }
 
-        dollarInput.addEventListener('input', () => {
-            updateTaka(dollarInput.value);
-        });
-    </script>
+    // First part: Handling ad account selection and fetching dollar rate
+    document.getElementById('ad-account-select').addEventListener('change', function() {
+        const accountId = this.value;
+        const dollarRateInput = document.getElementById('dollar-rate-input');
+
+        // Clear existing value
+        dollarRateInput.value = '';
+        takaInput.value = '';
+        dollarInput.value = '';
+
+        if (accountId) {
+            fetch(`/ad-account/${accountId}/details`)
+                .then(response => response.json())
+                .then(data => {
+                    dollarRateInput.value = data.dollar_rate;
+                    conversionRate = parseFloat(data.dollar_rate); // Update conversion rate
+                });
+        }
+    });
+
+    takaInput.addEventListener('input', () => {
+        updateDollar(takaInput.value);
+    });
+
+    dollarInput.addEventListener('input', () => {
+        updateTaka(dollarInput.value);
+    });
+</script>

@@ -107,4 +107,7 @@ class AdAccountController extends Controller
 
         return redirect()->route('ad-account.index')->with('success', 'Status updated successfully.');
     }
+
+    
+
 }

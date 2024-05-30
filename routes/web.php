@@ -30,12 +30,7 @@ Route::get('/dashboard', function () {
 
 
 
-// refill related start
-Route::get('refill-application', [RefillController::class, 'refill_application'])->middleware(['auth', 'verified'])->name('refill-application');
 
-Route::get('/refills/refills-name/update', [RefillController::class, 'update'])->middleware(['auth', 'verified']);
-
-// refill related end
 
 
 
@@ -69,6 +64,25 @@ Route::delete('ad-account/{id}', [AdAccountController::class, 'destroy'])->middl
 Route::patch('ad-account/{id}/status', [AdAccountController::class, 'updateStatus'])->middleware(['auth', 'verified'])->name('ad-account.updateStatus');
 
 //ad account end
+
+
+// refill related start
+
+Route::get('ad-account/{client_id}/accounts', [RefillController::class, 'getClientAdAccounts'])->name('ad-account.client.accounts');
+Route::get('ad-account/{id}/details', [RefillController::class, 'getAdAccountDetails'])->name('ad-account.details');
+Route::get('refill-application', [RefillController::class, 'refill_application'])->middleware(['auth', 'verified'])->name('refill-application');
+Route::post('refill', [RefillController::class, 'store'])->middleware(['auth', 'verified'])->name('refill.store');
+
+Route::get('refills', [RefillController::class, 'index'])->middleware(['auth', 'verified'])->name('refills.index');
+Route::get('refills/{id}', [RefillController::class, 'show'])->middleware(['auth', 'verified'])->name('refills.show');
+Route::get('refills/{id}/edit', [RefillController::class, 'edit'])->middleware(['auth', 'verified'])->name('refills.edit');
+Route::put('refills/{id}', [RefillController::class, 'update'])->middleware(['auth', 'verified'])->name('refills.update');
+Route::delete('refills/{id}', [RefillController::class, 'destroy'])->middleware(['auth', 'verified'])->name('refills.destroy');
+Route::patch('refills/{id}/status', [RefillController::class, 'updateStatus'])->name('refills.updateStatus');
+
+Route::get('/refills/refills-name/update', [RefillController::class, 'update'])->middleware(['auth', 'verified']);
+
+// refill related end
 
 
 

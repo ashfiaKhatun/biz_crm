@@ -36,4 +36,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(AdAccount::class, 'client_id');
     }
+    public function refills()
+    {
+        return $this->hasMany(Refill::class, 'client_id');
+    }
 }

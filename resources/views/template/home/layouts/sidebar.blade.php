@@ -43,7 +43,7 @@
                     <li><a href="{{ route('refill-application') }}" aria-expanded="false">
                             New
                         </a></li>
-                    <li><a >All</a></li>
+                    <li><a href="{{ route('refills.index') }}">All</a></li>
                     <li><a >Pending</a></li>
 
                 </ul>
