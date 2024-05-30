@@ -27,7 +27,6 @@ class AdAccountController extends Controller
     public function store(Request $request)
     {
 
-
         AdAccount::create([
             'client_id' => $request->client_name,
             'ad_acc_name' => $request->ad_acc_name,

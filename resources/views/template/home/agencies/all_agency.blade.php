@@ -55,7 +55,7 @@
                                     <tr>
                                         <th scope="col">Agency Name</th>
                                         <th scope="col">Ad Account Type</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>

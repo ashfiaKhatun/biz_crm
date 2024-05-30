@@ -42,9 +42,8 @@
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
+        <div class="content-body p-4">
 
-            <div class="p-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex">
@@ -55,37 +54,36 @@
 
                         </div>
                         <div class="row">
-                            <h5 class="col-3">Location</h5>
+                            <strong class="col-3">Location</strong>
                             <p class="col-9 fs-4">{{ $agency->location }}</p>
                         </div>
 
                         <div class="row">
-                            <h5 class="col-3">Commission Type</h5>
+                            <strong class="col-3">Commission Type</strong>
                             <p class="col-9 fs-4">{{ucfirst($agency->commission_type) }}</p>
                         </div>
 
                         @if($agency->dollar_rate)
                         <div class="row">
-                            <h5 class="col-3">Dollar Rate</h5>
+                            <strong class="col-3">Dollar Rate</strong>
                             <p class="col-9 fs-4">{{ $agency->dollar_rate }}</p>
                         </div>
                         @endif
 
                         @if ($agency->percentage_rate )
                         <div class="row">
-                            <h5 class="col-3">Percentage Rate</h5>
+                            <strong class="col-3">Percentage Rate</strong>
                             <p class="col-9 fs-4">{{ $agency->percentage_rate }}</p>
                         </div>
                         @endif
 
                         <div class="row">
-                            <h5 class="col-3">Ad Account Type</h5>
+                            <strong class="col-3">Ad Account Type</strong>
                             <p class="col-9 fs-4">{{ ucfirst(str_replace('_', ' ', $agency->ad_account_type)) }}</p>
                         </div>
                     </div>
                 </div>
 
-            </div>
 
             <!-- #/ container -->
         </div>
