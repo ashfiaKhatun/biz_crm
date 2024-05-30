@@ -89,7 +89,7 @@
                         <p class="col-9 fs-4">{{ $adAccount->domain3 }}</p>
                     </div>
                     @endif
-                    
+                  
                     <div class="row">
                         <strong class="col-3">Agency:</strong>
                         <p class="col-9 fs-4">{{ $adAccount->agency->agency_name }}</p>

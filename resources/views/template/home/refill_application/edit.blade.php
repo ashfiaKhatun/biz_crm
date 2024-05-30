@@ -9,8 +9,8 @@
 @include('template.home.layouts.sidebar')
 
 <div class="content-body">
-    <div class="container my-5">
-        <h2>Edit Refill Application</h2>
+    <div class="w-75 mx-auto my-5 p-5 border rounded bg-white shadow-lg">
+    <h4 class="mb-3">Edit Refill Application</h4>
 
         <form action="{{ route('refills.update', $refill->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -94,6 +94,7 @@
 
 @include('template.home.layouts.footer')
 
+@include('template.home.layouts.scripts')
 
 @include('template.home.custom_scripts.refill_application_script')
 </body>

@@ -10,7 +10,7 @@
 
     <div class="content-body">
         <div class="w-75 mx-auto my-5 p-5 border rounded bg-white shadow-lg">
-            <h4 class="mb-3">Edit Ad Account Application</h4>
+            <h4 class="mb-3">Edit Ad Account Application ({{ $adAccount->ad_acc_name }})</h4>
 
             <form method="post" action="{{ route('ad-account.update', $adAccount->id) }}">
                 @csrf
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                 </div>
-
+ 
 
                 <div class="d-flex justify-content-between">
                     <div class="w-50 mr-2">
