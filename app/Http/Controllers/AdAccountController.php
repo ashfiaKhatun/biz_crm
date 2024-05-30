@@ -10,6 +10,13 @@ use App\Models\AdAccount;
 
 class AdAccountController extends Controller
 {
+
+
+    public function index()
+    {
+        $adAccounts = AdAccount::all();
+        return view('template.home.ad_account.index', compact('adAccounts'));
+    }
     public function create()
     {
         $agencies = Agencies::all(); // Fetch all ad account agencies
@@ -19,22 +26,7 @@ class AdAccountController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'client_name' => 'required|exists:users,id',
-            'ad_acc_name' => 'required|string|max:255',
-            'bm_id' => 'required|string|max:255',
-            'fb_link1' => 'nullable|string|max:255',
-            'fb_link2' => 'nullable|string|max:255',
-            'fb_link3' => 'nullable|string|max:255',
-            'fb_link4' => 'nullable|string|max:255',
-            'fb_link5' => 'nullable|string|max:255',
-            'domain1' => 'nullable|string|max:255',
-            'domain2' => 'nullable|string|max:255',
-            'domain3' => 'nullable|string|max:255',
-            'agency' => 'required|exists:ad_account_agencies,id',
-            'ad_acc_type' => 'required|string|max:255',
-            'dollar_rate' => 'required|numeric',
-        ]);
+
 
         AdAccount::create([
             'client_id' => $request->client_name,
@@ -54,6 +46,65 @@ class AdAccountController extends Controller
             'status' => 'pending', // Default status
         ]);
 
-        return redirect()->route('ad-account.create')->with('success', 'Ad Account Application submitted successfully.');
+        return redirect()->route('ad-account.index')->with('success', 'Ad Account Application submitted successfully');
+    }
+
+    public function show($id)
+    {
+        $adAccount = AdAccount::findOrFail($id);
+        return view('template.home.ad_account.show', compact('adAccount'));
+    }
+
+    public function edit($id)
+    {
+        $adAccount = AdAccount::findOrFail($id);
+        $agencies = Agencies::all();
+        $customers = User::where('role', 'customer')->get();
+        return view('template.home.ad_account.edit', compact('adAccount', 'agencies', 'customers'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        
+        $adAccount = AdAccount::findOrFail($id);
+        $adAccount->update([
+            'client_id' => $request->client_name,
+            'ad_acc_name' => $request->ad_acc_name,
+            'bm_id' => $request->bm_id,
+            'fb_links1' => $request->fb_links1,
+            'fb_links2' => $request->fb_links2,
+            'fb_links3' => $request->fb_links3,
+            'fb_links4' => $request->fb_links4,
+            'fb_links5' => $request->fb_links5,
+            'domains1' => $request->domains1,
+            'domains2' => $request->domains2,
+            'domains3' => $request->domains3,
+            'agency_id' => $request->agency,
+            'ad_acc_type' => $request->ad_acc_type,
+            'dollar_rate' => $request->dollar_rate,
+            'status' => $request->status ?? 'pending',
+        ]);
+
+        return redirect()->route('ad-account.index')->with('success', 'Ad Account Application updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $adAccount = AdAccount::findOrFail($id);
+        $adAccount->delete();
+
+        return redirect()->route('ad-account.index')->with('success', 'Ad Account Application deleted successfully.');
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|string|in:pending,approved,rejected',
+        ]);
+
+        $adAccount = AdAccount::findOrFail($id);
+        $adAccount->update(['status' => $request->status]);
+
+        return redirect()->route('ad-account.index')->with('success', 'Status updated successfully.');
     }
 }

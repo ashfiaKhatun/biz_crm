@@ -44,7 +44,7 @@
 
             <div class="w-75 mx-auto my-5 p-5 border rounded bg-white shadow-lg">
                 <h4 class="mb-3">New Ad Account Application</h4>
-                <form method="post" action="" class="space-y-2">
+                <form method="post" action="{{ route('adaccount.store') }}" class="space-y-2">
                     @csrf
                     <div>
                         <label class="col-form-label">Client Name:</label>
@@ -71,7 +71,7 @@
                     <div>
                         <label class="col-form-label">Facebook Page Link:</label>
                         <div class="d-flex">
-                            <input type="text" placeholder="Facebook Page Link (You can add maximum 5)" class="form-control rounded">
+                            <input type="text" name="fb_link1" placeholder="Facebook Page Link (You can add maximum 5)" class="form-control rounded">
 
                             <p onclick="handlePlus1()" id="plus-1" class="btn btn-primary border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another fb link">+</p>
                         </div>
@@ -79,7 +79,7 @@
                         <div id="fb-link-2" class="d-none my-2">
                             <div>
                                 <div class="d-flex">
-                                    <input id="fb-input-2" type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
+                                    <input id="fb-input-2" name="fb_link2" type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
 
                                     <p onclick="handleMinus2()" id="minus-2" class="btn btn-danger border mt-1 fs-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">X</p>
 
@@ -92,7 +92,7 @@
                         <div id="fb-link-3" class="d-none mb-2">
                             <div>
                                 <div class="d-flex">
-                                    <input id="fb-input-3" type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
+                                    <input id="fb-input-3" type="text" name="fb_link3" placeholder="Another Facebook Page Link" class="form-control rounded">
 
                                     <p onclick="handleMinus3()" id="minus-3" class="btn btn-danger border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">X</p>
 
@@ -105,7 +105,7 @@
                         <div id="fb-link-4" class="d-none mb-2">
                             <div>
                                 <div class="d-flex">
-                                    <input id="fb-input-4" type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
+                                    <input id="fb-input-4" type="text" name="fb_link4" placeholder="Another Facebook Page Link" class="form-control rounded">
 
                                     <p onclick="handleMinus4()" id="minus-4" class="btn btn-danger border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">X</p>
 
@@ -117,7 +117,7 @@
 
                         <div id="fb-link-5" class="d-none">
                             <div class="d-flex">
-                                <input id="fb-input-5" type="text" placeholder="Another Facebook Page Link" class="form-control rounded">
+                                <input id="fb-input-5" type="text" name="fb_link5" placeholder="Another Facebook Page Link" class="form-control rounded">
                                 <p onclick="handleMinus5()" id="minus-5" class="btn btn-danger border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove fb link">X</p>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                     <div>
                         <label class="col-form-label">Domain:</label>
                         <div class="d-flex">
-                            <input type="text" placeholder="Domain (You can add maximum 3)" class="form-control rounded">
+                            <input type="text" name="domain1" placeholder="Domain (You can add maximum 3)" class="form-control rounded">
 
                             <p onclick="handleAdd1()" id="add-1" class="btn btn-primary border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another domain">+</p>
                         </div>
@@ -135,7 +135,7 @@
                         <div id="domain-2" class="d-none my-2">
                             <div>
                                 <div class="d-flex">
-                                    <input id="domain-input-2" type="text" placeholder="Another Domain" class="form-control rounded">
+                                    <input id="domain-input-2" name="domain2" type="text" placeholder="Another Domain" class="form-control rounded">
 
                                     <p onclick="handleRemove2()" id="remove-2" class="btn btn-danger border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove Domain">X</p>
 
@@ -147,7 +147,7 @@
 
                         <div id="domain-3" class="d-none">
                             <div class="d-flex">
-                                <input id="domain-input-3" type="text" placeholder="Another Domain" class="form-control rounded">
+                                <input id="domain-input-3" name="domain3" type="text" placeholder="Another Domain" class="form-control rounded">
 
                                 <p onclick="handleRemove3()" id="remove-3" class="btn btn-danger border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove Domain">X</p>
 
@@ -158,17 +158,24 @@
                     <div class="d-flex justify-content-between">
                         <div class="w-50 mr-2">
                             <label class="col-form-label">Select Agency:</label>
-                            <select name="agency" class="form-control rounded">
+                            <select name="agency" class="form-control rounded" id="agency-select">
                                 <option>Select</option>
                                 @foreach ($agencies as $agency)
-                                <option value="{{ $agency->id }}">{{ $agency->agency_name }}</option>
+                                    <option value="{{ $agency->id }}" data-ad-account-type="{{ $agency->ad_account_type }}">
+                                        {{ $agency->agency_name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="w-50">
                             <label class="col-form-label">Ad Account Type:</label>
-                            <input type="text" name="ad_acc_type" class="form-control rounded">
+                            <input type="text" name="ad_acc_type" class="form-control rounded d-none" id="ad-account-type" readonly>
+                            <select name="ad_acc_type_select" class="form-control rounded d-none" id="ad-account-type-select">
+                                <option value="Credit Line">Credit Line</option>
+                                <option value="Card Line">Card Line</option>
+                                <option value="Both">Both</option>
+                            </select>
                         </div>
                     </div>
 

@@ -26,4 +26,14 @@ class AdAccount extends Model
         'dollar_rate',
         'status',
     ];
+
+    public function client()
+    {
+        return $this->belongsTo(User::class, 'client_id');
+    }
+
+    public function agency()
+    {
+        return $this->belongsTo(Agencies::class, 'agency_id');
+    }
 }

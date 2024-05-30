@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,7 +52,7 @@ Route::delete('agencies/{id}', [AgencyController::class, 'destroy'])->name('agen
 //ad account start
 
 Route::get('ad-account-application', [AdAccountController::class, 'create'])->middleware(['auth', 'verified'])->name('ad-account-application');
-Route::post('add-agency', [AdAccountController::class, 'store'])->middleware(['auth', 'verified'])->name('adaccount.store');
+Route::post('ad-account-application', [AdAccountController::class, 'store'])->middleware(['auth', 'verified'])->name('adaccount.store');
 Route::get('ad-account', [AdAccountController::class, 'index'])->middleware(['auth', 'verified'])->name('ad-account.index');
 Route::get('ad-account/{id}', [AdAccountController::class, 'show'])->middleware(['auth', 'verified'])->name('ad-account.show');
 Route::get('ad-account/{id}/edit', [AdAccountController::class, 'edit'])->middleware(['auth', 'verified'])->name('ad-account.edit');
@@ -60,6 +61,8 @@ Route::delete('ad-account/{id}', [AdAccountController::class, 'destroy'])->middl
 Route::patch('ad-account/{id}/status', [AdAccountController::class, 'updateStatus'])->middleware(['auth', 'verified'])->name('ad-account.updateStatus');
 
 //ad account end
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

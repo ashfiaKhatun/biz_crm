@@ -1,4 +1,21 @@
 <script>
+    const agencySelect = document.getElementById('agency-select');
+    const adAccountTypeInput = document.getElementById('ad-account-type');
+    const adAccountTypeSelect = document.getElementById('ad-account-type-select');
+
+    agencySelect.addEventListener('change', function() {
+        const selectedOption = agencySelect.options[agencySelect.selectedIndex];
+        const adAccountType = selectedOption.getAttribute('data-ad-account-type');
+
+        if (adAccountType === 'Both') {
+            adAccountTypeInput.classList.add('d-none');
+            adAccountTypeSelect.classList.remove('d-none');
+        } else {
+            adAccountTypeSelect.classList.add('d-none');
+            adAccountTypeInput.classList.remove('d-none');
+            adAccountTypeInput.value = adAccountType;
+        }
+    });
     const add_1 = document.getElementById('add-1');
     const add_2 = document.getElementById('add-2');
 
@@ -11,7 +28,7 @@
     const domain_input_2 = document.getElementById('domain-input-2');
     const domain_input_3 = document.getElementById('domain-input-3');
 
-    
+
 
     const plus_1 = document.getElementById('plus-1');
     const plus_2 = document.getElementById('plus-2');
