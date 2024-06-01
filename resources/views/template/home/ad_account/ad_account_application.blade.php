@@ -167,7 +167,7 @@
                                 @endforeach
                             </select>
                         </div>
-
+ 
                         <div class="w-50">
                             <label class="col-form-label">Ad Account Type:</label>
                             <input type="text" name="ad_acc_type" class="form-control rounded" id="ad-account-type" readonly>
