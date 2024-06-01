@@ -108,9 +108,58 @@
                 </div>
             </div>
 
+            <div class="card-body">
+                <h2 class="card-title">Refills History</h2>
+
+                @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+                @endif
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped verticle-middle">
+                        <thead>
+                            <tr>
+
+                                <th>Date</th>
+                                <th>Amount (Taka)</th>
+                                <th>Amount (USD)</th>
+                                <th>Payment Method</th>
+                                <th>Status</th>
+                                
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($refills as $Refill)
+                            <tr>
+
+                                <td>{{ $Refill->created_at }}</td>
+                                <td>{{ $Refill->amount_taka }}</td>
+                                <td>{{ $Refill->amount_dollar }}</td>
+                                <td>{{ $Refill->payment_method }}</td>
+                                <td>{{ $Refill->status }}</td>
+                                
+
+                                
+
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
             <a href="{{ route('my-account.index') }}" class="btn btn-secondary mt-3">Back</a>
         </div>
     </div>
+
+
+    
+
+    
 
     @include('template.home.layouts.footer')
 

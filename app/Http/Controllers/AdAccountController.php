@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Refill;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Agencies;
@@ -69,7 +70,8 @@ class AdAccountController extends Controller
     public function myaccountshow($id)
     {
         $adAccount = AdAccount::findOrFail($id);
-        return view('template.home.ad_account.myaccountshow', compact('adAccount'));
+        $refills = Refill::where('ad_account_id', $id)->get();
+        return view('template.home.ad_account.myaccountshow', compact('adAccount','refills'));
     }
 
     public function edit($id)
