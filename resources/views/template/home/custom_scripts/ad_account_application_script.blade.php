@@ -1,4 +1,12 @@
 <script>
+    const agencySelect = document.getElementById('agency-select');
+    const adAccountTypeInput = document.getElementById('ad-account-type');
+
+    agencySelect.addEventListener('change', function() {
+        const selectedOption = agencySelect.options[agencySelect.selectedIndex];
+        const adAccountType = selectedOption.getAttribute('data-ad-account-type');
+        adAccountTypeInput.value = adAccountType;
+    });
 
     const add_1 = document.getElementById('add-1');
     const add_2 = document.getElementById('add-2');
@@ -102,4 +110,4 @@
         plus_4.classList.remove("d-none");
         fb_input_5.value = "";
     }
-</script> 
+</script>
