@@ -14,7 +14,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex">
-                        <h4 class="card-title mb-5">Details of {{ $refill->adAccount->ad_acc_name }}</h4>
+                        <h4 class="card-title mb-5">Detailed refill information of {{ $refill->adAccount->ad_acc_name }}</h4>
                         <a href="{{ route('refills.edit', $refill->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                             <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
                         </a>
@@ -56,9 +56,9 @@
                     
                     @if($refill->screenshot)
                     <div class="row">
-                        <strong class="col-3">Screenshot:</strong>
-                        <img src="{{ asset('storage/' . $refill->screenshot) }}" alt="Screenshot" class="img-fluid">
+                        <strong class="col-3">Screenshot:</strong><br>
                     </div>
+                    <img src="{{ asset('storage/' . $refill->screenshot) }}" height="1050px" width="350px" alt="Screenshot" class="img-fluid">
                     @endif
                     
                 </div>
