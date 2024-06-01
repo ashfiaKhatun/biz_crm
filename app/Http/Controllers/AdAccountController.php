@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Agencies;
 use App\Models\AdAccount;
+use Illuminate\Support\Facades\Auth;
 
 
 class AdAccountController extends Controller
@@ -17,6 +18,17 @@ class AdAccountController extends Controller
         $adAccounts = AdAccount::all();
         return view('template.home.ad_account.index', compact('adAccounts'));
     }
+
+    public function account()
+{
+    $userId = Auth::id(); // Get the ID of the current authenticated user
+    $adAccounts = AdAccount::where('status', 'approved')
+                           ->where('client_id', $userId)
+                           ->get();
+    return view('template.home.ad_account.myaccount', compact('adAccounts'));
+}
+
+
     public function create()
     {
         $agencies = Agencies::all(); // Fetch all ad account agencies
@@ -52,6 +64,12 @@ class AdAccountController extends Controller
     {
         $adAccount = AdAccount::findOrFail($id);
         return view('template.home.ad_account.show', compact('adAccount'));
+    }
+
+    public function myaccountshow($id)
+    {
+        $adAccount = AdAccount::findOrFail($id);
+        return view('template.home.ad_account.myaccountshow', compact('adAccount'));
     }
 
     public function edit($id)

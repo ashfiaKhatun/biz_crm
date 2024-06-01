@@ -29,7 +29,7 @@
                 </a>
                 <ul aria-expanded="false">
                     
-                    <li><a >My Account</a></li>
+                    <li><a href="{{ route('my-account.index') }}">My Account</a></li>
                     <li><a >All Account</a></li>
 
                 </ul>

@@ -57,6 +57,8 @@ Route::delete('agencies/{id}', [AgencyController::class, 'destroy'])->name('agen
 Route::get('ad-account-application', [AdAccountController::class, 'create'])->middleware(['auth', 'verified'])->name('ad-account-application');
 Route::post('ad-account-application', [AdAccountController::class, 'store'])->middleware(['auth', 'verified'])->name('adaccount.store');
 Route::get('ad-account', [AdAccountController::class, 'index'])->middleware(['auth', 'verified'])->name('ad-account.index');
+Route::get('my-account', [AdAccountController::class, 'account'])->middleware(['auth', 'verified'])->name('my-account.index');
+Route::get('my-account/{id}', [AdAccountController::class, 'myaccountshow'])->middleware(['auth', 'verified'])->name('my-account.show');
 Route::get('ad-account/{id}', [AdAccountController::class, 'show'])->middleware(['auth', 'verified'])->name('ad-account.show');
 Route::get('ad-account/{id}/edit', [AdAccountController::class, 'edit'])->middleware(['auth', 'verified'])->name('ad-account.edit');
 Route::put('ad-account/{id}', [AdAccountController::class, 'update'])->middleware(['auth', 'verified'])->name('ad-account.update');
