@@ -71,7 +71,7 @@
                     <div>
                         <label class="col-form-label">Facebook Page Link:</label>
                         <div class="d-flex">
-                            <input type="text" name="fb_link1" placeholder="Facebook Page Link (You can add maximum 5)" class="form-control rounded">
+                            <input id="fb-input-1" type="text" name="fb_link1" placeholder="Facebook Page Link (You can add maximum 5)" class="form-control rounded">
 
                             <p onclick="handlePlus1()" id="plus-1" class="btn btn-primary border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another fb link">+</p>
                         </div>
@@ -127,7 +127,7 @@
                     <div>
                         <label class="col-form-label">Domain:</label>
                         <div class="d-flex">
-                            <input type="text" name="domain1" placeholder="Domain (You can add maximum 3)" class="form-control rounded">
+                            <input id="domain-input-1" type="text" name="domain1" placeholder="Domain (You can add maximum 3)" class="form-control rounded">
 
                             <p onclick="handleAdd1()" id="add-1" class="btn btn-primary border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another domain">+</p>
                         </div>
