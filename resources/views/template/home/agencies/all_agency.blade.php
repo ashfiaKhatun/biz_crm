@@ -5,20 +5,6 @@
 
 <body>
 
-    <!--*******************
-        Preloader start
-    ********************-->
-    <div id="preloader">
-        <div class="loader">
-            <svg class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
-            </svg>
-        </div>
-    </div>
-    <!--*******************
-        Preloader end
-    ********************-->
-
 
     <!--**********************************
         Main wrapper start
@@ -37,8 +23,6 @@
         <!--**********************************
             Sidebar end
         ***********************************-->
-
-
 
         <!--**********************************
             Content body start
@@ -74,7 +58,7 @@
                                                 <a href="{{ route('agency.update', $agency->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
                                                 </a>
-                                                
+
                                                 <form action="{{ route('agency.destroy', $agency->id) }}" method="POST" style="display:inline-block;">
                                                     @csrf
                                                     @method('DELETE')
@@ -91,9 +75,6 @@
                     </div>
                 </div>
             </div>
-
-
-
 
 
             <!-- #/ container -->
@@ -121,7 +102,6 @@
         Scripts
     ***********************************-->
     @include('template.home.layouts.scripts')
-
 
 
 </body>

@@ -73,7 +73,6 @@
                                         </form>
                                     </span>
                                 </td>
-
                                 
                             </tr>
                         @endforeach

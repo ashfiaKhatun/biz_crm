@@ -5,20 +5,6 @@
 
 <body>
 
-    <!--*******************
-        Preloader start
-    ********************-->
-    <div id="preloader">
-        <div class="loader">
-            <svg class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
-            </svg>
-        </div>
-    </div>
-    <!--*******************
-        Preloader end
-    ********************-->
-
     <!--**********************************
         Main wrapper start
     ***********************************-->
@@ -123,7 +109,6 @@
                         </div>
                     </div>
 
-
                     <div>
                         <label class="col-form-label">Domain:</label>
                         <div class="d-flex">
@@ -141,7 +126,7 @@
 
                                     <p onclick="handleAdd2()" id="add-2" class="btn btn-primary border mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add another domain">+</p>
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -161,13 +146,13 @@
                             <select name="agency" class="form-control rounded" id="agency-select">
                                 <option>Select</option>
                                 @foreach ($agencies as $agency)
-                                    <option value="{{ $agency->id }}" data-ad-account-type="{{ $agency->ad_account_type }}">
-                                        {{ $agency->agency_name }}
-                                    </option>
+                                <option value="{{ $agency->id }}" data-ad-account-type="{{ $agency->ad_account_type }}">
+                                    {{ $agency->agency_name }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
- 
+
                         <div class="w-50">
                             <label class="col-form-label">Ad Account Type:</label>
                             <input type="text" name="ad_acc_type" class="form-control rounded" id="ad-account-type" readonly>
@@ -212,7 +197,7 @@
         Scripts
     ***********************************-->
     @include('template.home.layouts.scripts')
-    
+
     @include('template.home.custom_scripts.ad_account_application_script')
 
 </body>

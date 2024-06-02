@@ -16,7 +16,6 @@
                     <div class="d-flex">
                         <h4 class="card-title mb-5">Details of {{ $adAccount->ad_acc_name }}</h4>
                         
-
                     </div>
 
                     <div class="row">
@@ -121,29 +120,21 @@
                     <table class="table table-bordered table-striped verticle-middle">
                         <thead>
                             <tr>
-
                                 <th>Date</th>
                                 <th>Amount (Taka)</th>
                                 <th>Amount (USD)</th>
                                 <th>Payment Method</th>
-                                <th>Status</th>
-                                
-                                
+                                <th>Status</th>                  
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($refills as $Refill)
                             <tr>
-
                                 <td>{{ $Refill->created_at }}</td>
                                 <td>{{ $Refill->amount_taka }}</td>
                                 <td>{{ $Refill->amount_dollar }}</td>
                                 <td>{{ $Refill->payment_method }}</td>
-                                <td>{{ $Refill->status }}</td>
-                                
-
-                                
-
+                                <td>{{ $Refill->status }}</td>                    
                             </tr>
                             @endforeach
                         </tbody>
@@ -155,11 +146,6 @@
             <a href="{{ route('my-account.index') }}" class="btn btn-secondary mt-3">Back</a>
         </div>
     </div>
-
-
-    
-
-    
 
     @include('template.home.layouts.footer')
 

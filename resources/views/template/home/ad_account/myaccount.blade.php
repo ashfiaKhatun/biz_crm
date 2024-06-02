@@ -35,14 +35,11 @@
                         <tbody>
                             @foreach($adAccounts as $adAccount)
                             <tr>
-
                                 <td>{{ $adAccount->client->name }}</td>
                                 <td>{{ $adAccount->ad_acc_name }}</td>
                                 <td>{{ $adAccount->agency->agency_name }}</td>
                                 <td>{{ $adAccount->dollar_rate }}৳</td>
                                 <td>{{ $adAccount->status}}</td>
-                                
-
                                 <td>
                                     <span>
                                         <a href="{{ route('my-account.show', $adAccount->id) }}" data-toggle="tooltip" data-placement="top" title="View">
@@ -50,7 +47,7 @@
                                         </a>
 
                                         {{-- <a href="{{ route('ad-account.edit', $adAccount->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
-                                            <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
+                                        <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
                                         </a>
 
                                         <form action="{{ route('ad-account.destroy', $adAccount->id) }}" method="POST" style="display:inline-block;">
