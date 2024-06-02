@@ -170,7 +170,7 @@
  
                         <div class="w-50">
                             <label class="col-form-label">Ad Account Type:</label>
-                            <input type="text" name="ad_acc_type" class="form-control rounded d-none" id="ad-account-type" readonly>
+                            <input type="text" name="ad_acc_type" class="form-control rounded" id="ad-account-type" readonly>
                             <select name="ad_acc_type_select" class="form-control rounded d-none" id="ad-account-type-select">
                                 <option value="Credit Line">Credit Line</option>
                                 <option value="Card Line">Card Line</option>
