@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AdAccountController extends Controller
 {
-
-
     public function index()
     {
         $adAccounts = AdAccount::all();
@@ -58,60 +56,23 @@ class AdAccountController extends Controller
                 'status' => 'pending', // Default status
             ]);
         } else {
-            if ($request->ad_acc_type_select == 'Both') {
-                AdAccount::create([
-                    'client_id' => $request->client_name,
-                    'ad_acc_name' => $request->ad_acc_name,
-                    'bm_id' => $request->bm_id,
-                    'fb_link1' => $request->fb_link1,
-                    'fb_link2' => $request->fb_link2,
-                    'fb_link3' => $request->fb_link3,
-                    'fb_link4' => $request->fb_link4,
-                    'fb_link5' => $request->fb_link5,
-                    'domain1' => $request->domain1,
-                    'domain2' => $request->domain2,
-                    'domain3' => $request->domain3,
-                    'agency_id' => $request->agency,
-                    'ad_acc_type' => 'Credit Line',
-                    'dollar_rate' => $request->dollar_rate,
-                    'status' => 'pending', // Default status
-                ]);
-                AdAccount::create([
-                    'client_id' => $request->client_name,
-                    'ad_acc_name' => $request->ad_acc_name,
-                    'bm_id' => $request->bm_id,
-                    'fb_link1' => $request->fb_link1,
-                    'fb_link2' => $request->fb_link2,
-                    'fb_link3' => $request->fb_link3,
-                    'fb_link4' => $request->fb_link4,
-                    'fb_link5' => $request->fb_link5,
-                    'domain1' => $request->domain1,
-                    'domain2' => $request->domain2,
-                    'domain3' => $request->domain3,
-                    'agency_id' => $request->agency,
-                    'ad_acc_type' => 'Card Line',
-                    'dollar_rate' => $request->dollar_rate,
-                    'status' => 'pending', // Default status
-                ]);
-            } else {
-                AdAccount::create([
-                    'client_id' => $request->client_name,
-                    'ad_acc_name' => $request->ad_acc_name,
-                    'bm_id' => $request->bm_id,
-                    'fb_link1' => $request->fb_link1,
-                    'fb_link2' => $request->fb_link2,
-                    'fb_link3' => $request->fb_link3,
-                    'fb_link4' => $request->fb_link4,
-                    'fb_link5' => $request->fb_link5,
-                    'domain1' => $request->domain1,
-                    'domain2' => $request->domain2,
-                    'domain3' => $request->domain3,
-                    'agency_id' => $request->agency,
-                    'ad_acc_type' => $request->ad_acc_type_select,
-                    'dollar_rate' => $request->dollar_rate,
-                    'status' => 'pending', // Default status
-                ]);
-            }
+            AdAccount::create([
+                'client_id' => $request->client_name,
+                'ad_acc_name' => $request->ad_acc_name,
+                'bm_id' => $request->bm_id,
+                'fb_link1' => $request->fb_link1,
+                'fb_link2' => $request->fb_link2,
+                'fb_link3' => $request->fb_link3,
+                'fb_link4' => $request->fb_link4,
+                'fb_link5' => $request->fb_link5,
+                'domain1' => $request->domain1,
+                'domain2' => $request->domain2,
+                'domain3' => $request->domain3,
+                'agency_id' => $request->agency,
+                'ad_acc_type' => $request->ad_acc_type_select,
+                'dollar_rate' => $request->dollar_rate,
+                'status' => 'pending', // Default status
+            ]);
         }
 
 
@@ -182,5 +143,16 @@ class AdAccountController extends Controller
         $adAccount->update(['status' => $request->status]);
 
         return redirect()->route('ad-account.index')->with('success', 'Status updated successfully.');
+    }
+
+    public function showPendingAdAccounts()
+    {
+        $adAccounts = AdAccount::where('status', 'pending')->get();
+        return view('template.home.ad_account.index', compact('adAccounts'));
+    }
+    public function showApprovedAdAccounts()
+    {
+        $adAccounts = AdAccount::where('status', 'approved')->get();
+        return view('template.home.ad_account.index', compact('adAccounts'));
     }
 }

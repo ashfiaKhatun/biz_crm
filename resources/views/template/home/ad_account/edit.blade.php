@@ -149,8 +149,6 @@
                             <option value="Credit Line" {{ $adAccount->ad_acc_type == 'Credit Line' ? 'selected' : '' }}>Credit Line</option>
                             <option value="Card Line" {{ $adAccount->ad_acc_type == 'Card Line' ? 'selected' : '' }}>
                                 Card Line</option>
-                            <option value="Both" {{ $adAccount->ad_acc_type == 'Both' ? 'selected' : '' }}>Both
-                            </option>
                         </select>
                     </div>
                 </div>

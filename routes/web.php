@@ -29,11 +29,6 @@ Route::get('/dashboard', function () {
 
 
 
-
-
-
-
-
 // agency related start
 Route::get('add-agency', [AgencyController::class, 'add_agency'])->middleware(['auth', 'verified'])->name('add-agency');
 
@@ -55,6 +50,8 @@ Route::delete('agencies/{id}', [AgencyController::class, 'destroy'])->name('agen
 //ad account start
 
 Route::get('ad-account-application', [AdAccountController::class, 'create'])->middleware(['auth', 'verified'])->name('ad-account-application');
+Route::get('pending-ad-account-application', [AdAccountController::class, 'showPendingAdAccounts'])->middleware(['auth', 'verified'])->name('pending-ad-account-application');
+Route::get('approved-ad-account-application', [AdAccountController::class, 'showApprovedAdAccounts'])->middleware(['auth', 'verified'])->name('approved-ad-account-application');
 Route::post('ad-account-application', [AdAccountController::class, 'store'])->middleware(['auth', 'verified'])->name('adaccount.store');
 Route::get('ad-account', [AdAccountController::class, 'index'])->middleware(['auth', 'verified'])->name('ad-account.index');
 Route::get('my-account', [AdAccountController::class, 'account'])->middleware(['auth', 'verified'])->name('my-account.index');

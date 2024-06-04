@@ -159,7 +159,7 @@
                             <select name="ad_acc_type_select" class="form-control rounded d-none" id="ad-account-type-select">
                                 <option value="Credit Line">Credit Line</option>
                                 <option value="Card Line">Card Line</option>
-                                <option value="Both">Both</option>
+                                
                             </select>
                         </div>
                     </div>

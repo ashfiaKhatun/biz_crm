@@ -7,14 +7,8 @@
         const selectedOption = agencySelect.options[agencySelect.selectedIndex];
         const adAccountType = selectedOption.getAttribute('data-ad-account-type');
 
-        if (adAccountType === 'Both') {
-            adAccountTypeInput.classList.add('d-none');
-            adAccountTypeSelect.classList.remove('d-none');
-        } else {
-            adAccountTypeSelect.classList.add('d-none');
-            adAccountTypeInput.classList.remove('d-none');
-            adAccountTypeInput.value = adAccountType;
-        }
+        adAccountTypeInput.value = adAccountType;
+
     });
 
     const add_1 = document.getElementById('add-1');
