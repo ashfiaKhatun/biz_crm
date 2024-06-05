@@ -47,30 +47,34 @@
 
             <div class="w-75 mx-auto my-5 p-5 border rounded bg-white shadow-lg">
                 <h4 class="mb-3">Add New Admin</h4>
-                
+
                 <form method="POST" action="{{ route('register.admin') }}" class="my-3 login-input">
 
 
                     @csrf
 
-                    <div class="form-group">
-                        <x-text-input id="name" class="form-control border rounded px-2" type="text" name="name" :value="old('name')" placeholder="Name" required autofocus autocomplete="name" />
+                    <div class="">
+                        <label class="col-form-label">Admin Name:</label>
+                        <input id="name" class="form-control rounded" type="text" name="name" :value="old('name')" placeholder="Admin Name" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
-                    <div class="form-group">
-                        <x-text-input id="email" class="form-control border rounded px-2" type="email" name="email" :value="old('email')" placeholder="Email" required autocomplete="username" />
+                    <div class="">
+                        <label class="col-form-label">Admin Email:</label>
+                        <input id="email" class="form-control rounded" type="email" name="email" :value="old('email')" placeholder="Admin Email" required autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
-                    <div class="form-group">
-                        <x-text-input id="password" class="form-control border rounded px-2" type="password" name="password" placeholder="Password" required autocomplete="new-password" />
+                    <div class="">
+                        <label class="col-form-label">Password:</label>
+                        <input id="password" class="form-control rounded" type="password" name="password" placeholder="Password" required autocomplete="new-password" />
 
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
-                    <div class="form-group">
-                        <x-text-input id="password_confirmation" class="form-control border rounded px-2" type="password" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password" />
+                    <div class="">
+                    <label class="col-form-label">Confirm Password:</label>
+                        <input id="password_confirmation" class="form-control rounded" type="password" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password" />
 
                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>

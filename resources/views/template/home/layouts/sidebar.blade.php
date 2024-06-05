@@ -93,7 +93,7 @@
                 <i class="fa-solid fa-users"></i></i><span class="nav-text">Clients</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a aria-expanded="false">
+                    <li><a href="{{ route('register') }}" aria-expanded="false">
                             New
                         </a></li>
                     <li><a >All</a></li>

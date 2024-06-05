@@ -20,28 +20,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('template.auth.page-login');
+})->middleware(['guest']);
 
 Route::get('/dashboard', function () {
     return view('template.home.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-
 // agency related start
 Route::get('add-agency', [AgencyController::class, 'add_agency'])->middleware(['auth', 'verified'])->name('add-agency');
-
 Route::post('add-agency', [AgencyController::class, 'store'])->middleware(['auth', 'verified'])->name('agency.store');
-
 Route::get('all-agency', [AgencyController::class, 'index'])->middleware(['auth', 'verified'])->name('all-agency');
-
 Route::get('/agencies/{agency}/details', [AgencyController::class, 'details'])->middleware(['auth', 'verified'])->name('agency.details');
-
 Route::get('/agencies/{agency}/update', [AgencyController::class, 'update'])->middleware(['auth', 'verified'])->name('agency.update');
-
 Route::put('/agencies/{agency}/update', [AgencyController::class, 'storeUpdate'])->middleware(['auth', 'verified'])->name('agency.storeUpdate');
-
 Route::delete('agencies/{id}', [AgencyController::class, 'destroy'])->name('agency.destroy');
 
 // agency related end
