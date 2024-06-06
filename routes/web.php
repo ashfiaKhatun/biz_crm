@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RefillController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DepositController;
 
 
 /*
@@ -75,6 +76,15 @@ Route::patch('refills/{id}/status', [RefillController::class, 'updateStatus'])->
 Route::get('/refills/refills-name/update', [RefillController::class, 'update'])->middleware(['auth', 'verified']);
 
 // refill related end
+
+
+//deposit
+
+Route::get('deposit/create', [DepositController::class, 'create'])->name('deposit.create');
+Route::post('deposit', [DepositController::class, 'store'])->name('deposit.store');
+
+
+//deposit end
 
 
 

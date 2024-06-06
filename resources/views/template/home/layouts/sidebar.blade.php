@@ -100,6 +100,21 @@
 
                 </ul>
             </li>
+
+            <li class="mega-menu mega-menu-sm">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                <i class="fa-solid fa-users"></i></i><span class="nav-text">Deposit</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('deposit.create') }}" aria-expanded="false">
+                            New
+                        </a></li>
+                    <li><a >All</a></li>
+                    <li><a >Monthly Avarage</a></li>
+
+                </ul>
+            </li>
+
             
             <li>
                 <a aria-expanded="false">
