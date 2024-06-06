@@ -64,7 +64,7 @@ class DepositController extends Controller
         $deposit = Deposit::findOrFail($id);
         $deposit->update($request->all());
 
-        return redirect()->route('template.home.deposit.index')->with('success', 'Deposit updated successfully.');
+        return redirect()->route('deposits.index')->with('success', 'Deposit updated successfully.');
     }
 
     public function updateStatus(Request $request, $id)
@@ -84,6 +84,6 @@ class DepositController extends Controller
         $deposit = Deposit::findOrFail($id);
         $deposit->delete();
 
-        return redirect()->route('template.home.deposit.index')->with('success', 'Deposit deleted successfully.');
+        return redirect()->route('deposits.index')->with('success', 'Deposit deleted successfully.');
     }
 }
