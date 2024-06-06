@@ -44,9 +44,11 @@
                                     <form action="{{ route('ad-account.updateStatus', $adAccount->id) }}" method="post">
                                         @csrf
                                         @method('PATCH')
-                                        <select name="status" class="form-control" onchange="this.form.submit()">
+                                        <select name="status" class="form-control rounded" onchange="this.form.submit()">
                                             <option value="pending" {{ $adAccount->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                            <option value="in-review" {{ $adAccount->status == 'in-review' ? 'selected' : '' }}>In Review</option>
                                             <option value="approved" {{ $adAccount->status == 'approved' ? 'selected' : '' }}>Approved</option>
+                                            <option value="canceled" {{ $adAccount->status == 'canceled' ? 'selected' : '' }}>Canceled</option>
                                             <option value="rejected" {{ $adAccount->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
                                         </select>
                                     </form>

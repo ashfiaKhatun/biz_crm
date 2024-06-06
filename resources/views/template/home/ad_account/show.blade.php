@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="row">
-                        <strong class="col-3">Client Name:</strong>
+                        <b class="col-3 text-black">Client Name:</b>
                         <p class="col-9 fs-4">{{ $adAccount->client->name }}</p>
                     </div>
                     <div class="row">

@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
-// Registration route for Admins
+// Registration route for Customer
 Route::get('register', [RegisteredUserController::class, 'createCustomer'])->middleware(['auth', 'verified'])->name('register');
 Route::post('register', [RegisteredUserController::class, 'storeCustomer']);
 

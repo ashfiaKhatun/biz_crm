@@ -136,7 +136,7 @@ class AdAccountController extends Controller
     public function updateStatus(Request $request, $id)
     {
         $request->validate([
-            'status' => 'required|string|in:pending,approved,rejected',
+            'status' => 'required|string|in:pending,in-review,approved,canceled,rejected',
         ]);
 
         $adAccount = AdAccount::findOrFail($id);
