@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
 @include('template.home.layouts.head')
+</head>
 
 <body>
 

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-@include('template.home.layouts.head')
+<head>
+    @include('template.home.layouts.head')
+</head>
 
 <body>
 
@@ -159,7 +161,7 @@
                             <select name="ad_acc_type_select" class="form-control rounded d-none" id="ad-account-type-select">
                                 <option value="Credit Line">Credit Line</option>
                                 <option value="Card Line">Card Line</option>
-                                
+
                             </select>
                         </div>
                     </div>

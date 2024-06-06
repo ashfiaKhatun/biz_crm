@@ -1,68 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 
-@include('template.home.layouts.head')
+<head>
+    @include('template.home.layouts.head')
+
+    <style>
+        .text-black {
+            color: black;
+        }
+
+        .font-sm {
+            font-size: 13px;
+        }
+    </style>
+</head>
 
 <body>
 
     @include('template.home.layouts.navbar')
     @include('template.home.layouts.sidebar')
 
-    <div class="content-body p-5">
-        <div class="container">
+    <div class="content-body">
+        <div class="container-fluid">
 
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <h4 class="card-title mb-5">Detailed refill information of {{ $refill->adAccount->ad_acc_name }}</h4>
-                        <a href="{{ route('refills.edit', $refill->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
-                            <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
-                        </a>
+            <div class="row text-black">
+                <div class="col-7">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-5">
+                                <h4 class="card-title mr-4 mt-2">Detailed refill information of {{ $refill->adAccount->ad_acc_name }}</h4>
+                                <a href="{{ route('refills.edit', $refill->id) }}">
+                                    <button class="btn btn-secondary">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
+                                </a>
+                            </div>
 
-                    </div>
+                            <div class="row">
+                                <b class="col-4">Amount (Taka):</b>
+                                <p class="col-8">{{ $refill->amount_taka }}</p>
+                            </div>
+                            <div class="row">
+                                <b class="col-4">Amount (Dollar):</b>
+                                <p class="col-8">{{ $refill->amount_dollar }}</p>
+                            </div>
+                            <div class="row">
+                                <b class="col-4">Payment Method:</b>
+                                <p class="col-8">{{ $refill->payment_method }}</p>
+                            </div>
+                            <div class="row">
+                                <b class="col-4">Transaction ID:</b>
+                                <p class="col-8">{{ $refill->transaction_id }}</p>
+                            </div>
+                            <div class="row">
+                                <b class="col-4">Status:</b>
+                                <p class="col-8">{{ $refill->status }}</p>
+                            </div>
 
-                    <div class="row">
-                        <strong class="col-3">ID:</strong>
-                        <p class="col-9 fs-4">{{ $refill->id }}</p>
+                            @if($refill->screenshot)
+                            <div class="row">
+                                <b class="col-4">Screenshot:</b><br>
+                            </div>
+                            <img src="{{ asset('storage/' . $refill->screenshot) }}" height="1050px" width="350px" alt="Screenshot" class="img-fluid">
+                            @endif
+
+                        </div>
                     </div>
-                    <div class="row">
-                        <strong class="col-3">Client Name:</strong>
-                        <p class="col-9 fs-4">{{ $refill->client->name }}</p>
-                    </div>
-                    <div class="row">
-                        <strong class="col-3">Ad Account Name:</strong>
-                        <p class="col-9 fs-4">{{ $refill->adAccount->ad_acc_name }}</p>
-                    </div>
-                    <div class="row">
-                        <strong class="col-3">Amount (Taka):</strong>
-                        <p class="col-9 fs-4">{{ $refill->amount_taka }}</p>
-                    </div>
-                    <div class="row">
-                        <strong class="col-3">Amount (Dollar):</strong>
-                        <p class="col-9 fs-4">{{ $refill->amount_dollar }}</p>
-                    </div>
-                    <div class="row">
-                        <strong class="col-3">Payment Method:</strong>
-                        <p class="col-9 fs-4">{{ $refill->payment_method }}</p>
-                    </div>
-                    <div class="row">
-                        <strong class="col-3">Transaction ID:</strong>
-                        <p class="col-9 fs-4">{{ $refill->transaction_id }}</p>
-                    </div>
-                    <div class="row">
-                        <strong class="col-3">Status:</strong>
-                        <p class="col-9 fs-4">{{ $refill->status }}</p>
-                    </div>
-                    
-                    @if($refill->screenshot)
-                    <div class="row">
-                        <strong class="col-3">Screenshot:</strong><br>
-                    </div>
-                    <img src="{{ asset('storage/' . $refill->screenshot) }}" height="1050px" width="350px" alt="Screenshot" class="img-fluid">
-                    @endif
-                    
                 </div>
+
+                <div class="col-5 font-sm">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-5">Ad Account Information</h4>
+
+                            <div class="row">
+                                <b class="col-5">Client Name:</b>
+                                <p class="col-7 fs-4">{{ $refill->client->name }}</p>
+                            </div>
+                            <div class="row">
+                                <b class="col-5">Ad Account Name:</b>
+                                <p class="col-7 fs-4">{{ $refill->adAccount->ad_acc_name }}</p>
+                            </div>
+                            <div class="row">
+                                <b class="col-5">Business Name:</b>
+                                <p class="col-7 fs-4">{{ $refill->client->business_name }}</p>
+                            </div>
+                            <div class="row">
+                                <b class="col-5">BM Id:</b>
+                                <p class="col-7 fs-4">{{ $refill->adAccount->bm_id }}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
 
             <a href="{{ route('refills.index') }}" class="btn btn-secondary mt-3">Back</a>
         </div>

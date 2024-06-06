@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
 @include('template.home.layouts.head')
+</head>
 
 <body>
 
@@ -163,7 +165,11 @@
                     <select name="status" class="form-control rounded">
                         <option value="pending" {{ $adAccount->status == 'pending' ? 'selected' : '' }}>Pending
                         </option>
+                        <option value="in-review" {{ $adAccount->status == 'in-review' ? 'selected' : '' }}>In Review
+                        </option>
                         <option value="approved" {{ $adAccount->status == 'approved' ? 'selected' : '' }}>Approved
+                        </option>
+                        <option value="canceled" {{ $adAccount->status == 'canceled' ? 'selected' : '' }}>Canceled
                         </option>
                         <option value="rejected" {{ $adAccount->status == 'rejected' ? 'selected' : '' }}>Rejected
                         </option>
