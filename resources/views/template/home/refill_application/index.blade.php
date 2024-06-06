@@ -26,12 +26,12 @@
                     <thead>
                         <tr>
                             
-                            <th>Client Name</th>
                             <th>Ad Account Name</th>
+                            <th>Dollar Rate</th>
+                            <th>Amount (Dollar)</th>
                             <th>Amount (Taka)</th>
-                            
                             <th>Payment Method</th>
-                            <th>Transaction ID</th>
+                            <th>Date</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -39,13 +39,13 @@
                     <tbody>
                         @foreach($refills as $refill)
                             <tr>
-                                
-                                <td>{{ $refill->client->name }}</td>
                                 <td>{{ $refill->adAccount->ad_acc_name }}</td>
+                                <td>{{ $refill->adAccount->dollar_rate }}</td>
+                                <td>{{ $refill->amount_dollar }}</td>
                                 <td>{{ $refill->amount_taka }}</td>
                                 
                                 <td>{{ $refill->payment_method }}</td>
-                                <td>{{ $refill->transaction_id }}</td>
+                                <td>{{ $refill->created_at }}</td>
                                 <td>
                                     <form action="{{ route('refills.updateStatus', $refill->id) }}" method="post">
                                         @csrf

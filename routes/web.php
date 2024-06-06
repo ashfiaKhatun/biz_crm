@@ -67,6 +67,7 @@ Route::get('refill-application', [RefillController::class, 'refill_application']
 Route::post('refill', [RefillController::class, 'store'])->middleware(['auth', 'verified'])->name('refill.store');
 
 Route::get('refills', [RefillController::class, 'index'])->middleware(['auth', 'verified'])->name('refills.index');
+Route::get('pending-refills', [RefillController::class, 'pending'])->middleware(['auth', 'verified'])->name('refills.pending');
 Route::get('refills/{id}', [RefillController::class, 'show'])->middleware(['auth', 'verified'])->name('refills.show');
 Route::get('refills/{id}/edit', [RefillController::class, 'edit'])->middleware(['auth', 'verified'])->name('refills.edit');
 Route::put('refills/{id}', [RefillController::class, 'update'])->middleware(['auth', 'verified'])->name('refills.update');

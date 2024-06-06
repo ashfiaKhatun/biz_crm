@@ -2,7 +2,12 @@
 <html lang="en">
 
 <head>
-@include('template.home.layouts.head')
+    @include('template.home.layouts.head')
+    <style>
+        .text-black {
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,12 +18,10 @@
     <div class="content-body p-4">
         <div class="container">
 
-            <div class="card">
+            <div class="card text-black">
                 <div class="card-body">
-                    <div class="d-flex">
-                        <h4 class="card-title mb-5">Details of {{ $adAccount->ad_acc_name }}</h4>
-                        
-                    </div>
+                    <h4 class="card-title mb-5">Details of {{ $adAccount->ad_acc_name }}</h4>
+
 
                     <div class="row">
                         <strong class="col-3">Client Name:</strong>
@@ -67,7 +70,7 @@
                         <p class="col-9 fs-4">{{ $adAccount->fb_link5 }}</p>
                     </div>
                     @endif
-                    
+
                     @if(isset($adAccount->domain1) && $adAccount->domain1 !== '')
                     <div class="row">
                         <strong class="col-3">Domain 1:</strong>
@@ -88,7 +91,7 @@
                         <p class="col-9 fs-4">{{ $adAccount->domain3 }}</p>
                     </div>
                     @endif
-                  
+
                     <div class="row">
                         <strong class="col-3">Agency:</strong>
                         <p class="col-9 fs-4">{{ $adAccount->agency->agency_name }}</p>
@@ -109,39 +112,41 @@
                 </div>
             </div>
 
-            <div class="card-body">
-                <h2 class="card-title">Refills History</h2>
-
-                @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-                @endif
-
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped verticle-middle">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Amount (Taka)</th>
-                                <th>Amount (USD)</th>
-                                <th>Payment Method</th>
-                                <th>Status</th>                  
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($refills as $Refill)
-                            <tr>
-                                <td>{{ $Refill->created_at }}</td>
-                                <td>{{ $Refill->amount_taka }}</td>
-                                <td>{{ $Refill->amount_dollar }}</td>
-                                <td>{{ $Refill->payment_method }}</td>
-                                <td>{{ $Refill->status }}</td>                    
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Refills History</h2>
+    
+                    @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+    
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped verticle-middle">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Amount (Taka)</th>
+                                    <th>Amount (USD)</th>
+                                    <th>Payment Method</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($refills as $Refill)
+                                <tr>
+                                    <td>{{ $Refill->created_at }}</td>
+                                    <td>{{ $Refill->amount_taka }}</td>
+                                    <td>{{ $Refill->amount_dollar }}</td>
+                                    <td>{{ $Refill->payment_method }}</td>
+                                    <td>{{ $Refill->status }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+    
+                    </div>
                 </div>
             </div>
 

@@ -44,7 +44,7 @@
                             New
                         </a></li>
                     <li><a href="{{ route('refills.index') }}">All</a></li>
-                    <li><a >Pending</a></li>
+                    <li><a href="{{ route('refills.pending') }}">Pending</a></li>
 
                 </ul>
             </li>

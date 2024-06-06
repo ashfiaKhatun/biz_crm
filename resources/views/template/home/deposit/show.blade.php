@@ -3,6 +3,11 @@
 
 <head>
     @include('template.home.layouts.head')
+    <style>
+        .text-black {
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -11,7 +16,7 @@
     @include('template.home.layouts.sidebar')
 
     <div class="content-body p-5">
-        <div class="card">
+        <div class="card text-black">
             <div class="card-body">
                 <div class="d-flex align-items-center mb-5">
                     <h4 class="card-title mr-4 mt-2">Deposit Details</h4>

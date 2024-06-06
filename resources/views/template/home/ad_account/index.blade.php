@@ -30,6 +30,7 @@
                                 <th>Ad Account Name</th>
                                 <th>Agency</th>
                                 <th>Doller Rate</th>
+                                <th>Date</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -42,6 +43,7 @@
                                 <td>{{ $adAccount->ad_acc_name }}</td>
                                 <td>{{ $adAccount->agency->agency_name }}</td>
                                 <td>{{ $adAccount->dollar_rate }}৳</td>
+                                <td>{{ $adAccount->created_at }}</td>
                                 <td>
                                     <form action="{{ route('ad-account.updateStatus', $adAccount->id) }}" method="post">
                                         @csrf

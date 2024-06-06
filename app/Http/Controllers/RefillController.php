@@ -16,6 +16,11 @@ class RefillController extends Controller
         $refills = Refill::with('client', 'adAccount')->get();
         return view('template.home.refill_application.index', compact('refills'));
     }
+    public function pending()
+    {
+        $refills = Refill::where('status', 'pending')->get();
+        return view('template.home.refill_application.index', compact('refills'));
+    }
     public function refill_application()
     {
         $customers = User::where('role', 'customer')->get();
