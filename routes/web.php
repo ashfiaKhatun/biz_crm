@@ -88,6 +88,7 @@ Route::get('deposit/{id}/edit', [DepositController::class, 'edit'])->middleware(
 Route::put('deposit/{id}', [DepositController::class, 'update'])->middleware(['auth', 'verified'])->name('deposit.update');
 Route::delete('deposit/{id}', [DepositController::class, 'destroy'])->middleware(['auth', 'verified'])->name('deposit.destroy');
 Route::patch('deposit/{id}/status', [DepositController::class, 'updateStatus'])->middleware(['auth', 'verified'])->name('deposit.updateStatus');
+Route::get('average-usd-rate', [DepositController::class, 'averageUsdRate'])->middleware(['auth', 'verified'])->name('averageUsdRate');
 
 
 //deposit end

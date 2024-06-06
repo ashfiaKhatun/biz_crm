@@ -110,7 +110,7 @@
                             New
                         </a></li>
                     <li><a href="{{ route('deposits.index') }}">All</a></li>
-                    <li><a >Monthly Avarage</a></li>
+                    <li><a href="{{ route('averageUsdRate') }}">Monthly Avarage USD Rate</a></li>
 
                 </ul>
             </li>
