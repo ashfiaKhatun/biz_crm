@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    
+
     <!-- theme meta -->
     <meta name="theme-name" content="quixlab" />
-  
+
     <title>BizMappers</title>
     <!-- Favicon icon -->
     <link rel="icon" type="../../template/image/png" sizes="16x16" href="../../template/images/favicon.png">
@@ -22,10 +22,11 @@
     <link href="../../template/css/style.css" rel="stylesheet">
 
     <style>
-        .text-black{
+        .text-black {
             color: black;
         }
-        .font-sm{
+
+        .font-sm {
             font-size: 13px;
         }
     </style>
@@ -134,7 +135,16 @@
                             </div>
                             <div class="row">
                                 <b class="col-4">Status:</b>
-                                <p class="col-8 ">{{ $adAccount->status }}</p>
+                                <select name="status" class="form-control rounded col-3">
+                                    <option value="pending" {{ $adAccount->status == 'pending' ? 'selected' : '' }}>Pending
+                                    </option>
+                                    <option value="in-review" {{ $adAccount->status == 'in-review' ? 'selected' : '' }}>In Review
+                                    </option>
+                                    </option>
+                                    </option>
+                                    <option value="rejected" {{ $adAccount->status == 'rejected' ? 'selected' : '' }}>Rejected
+                                    </option>
+                                </select>
                             </div>
 
                         </div>
