@@ -36,7 +36,7 @@ class DepositController extends Controller
             'status' => 'pending',
         ]);
 
-        return redirect()->route('template.home.deposit.index')->with('success', 'Deposit created successfully.');
+        return redirect()->route('deposits.index')->with('success', 'Deposit created successfully.');
     }
 
     public function show($id)
