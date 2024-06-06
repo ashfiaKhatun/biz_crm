@@ -23,7 +23,7 @@
                     <table class="table table-bordered table-striped verticle-middle">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                
                                 <th>Name</th>
                                 <th>Amount (USD)</th>
                                 <th>Rate (BDT)</th>
@@ -35,7 +35,7 @@
                         <tbody>
                             @foreach($deposits as $deposit)
                             <tr>
-                                <td>{{ $deposit->id }}</td>
+                                
                                 <td>{{ $deposit->name }}</td>
                                 <td>{{ $deposit->amount_usd }}</td>
                                 <td>{{ $deposit->rate_bdt }}</td>

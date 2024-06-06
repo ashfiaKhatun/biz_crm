@@ -40,10 +40,7 @@
                     <input type="number" step="0.01" name="rate_bdt" placeholder="Rate (BDT)" class="form-control rounded" value="{{ $deposit->rate_bdt }}" required>
                 </div>
 
-                <div>
-                    <label class="col-form-label">Amount (BDT):</label>
-                    <input type="number" step="0.01" name="amount_bdt" placeholder="Amount (BDT)" class="form-control rounded" value="{{ $deposit->amount_bdt }}" required>
-                </div>
+                
 
                 <div>
                     <label class="col-form-label">Status:</label>

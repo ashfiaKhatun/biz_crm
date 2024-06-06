@@ -43,10 +43,7 @@
                         <p class="col-10"> {{ $deposit->rate_bdt }}</p>
                     </div>
 
-                    <div class="row">
-                        <b class="col-2">Amount (BDT):</b>
-                        <p class="col-10"> {{ $deposit->amount_bdt }}</p>
-                    </div>
+                    
 
                     <div class="row">
                         <b class="col-2">Status:</b>
