@@ -52,7 +52,15 @@
                             </div>
                             <div class="row">
                                 <b class="col-4">Status:</b>
-                                <p class="col-8">{{ $refill->status }}</p>
+                                <form action="{{ route('refills.updateStatus', $refill->id) }}" method="post">
+                                        @csrf
+                                        @method('PATCH')
+                                        <select name="status" class="form-control" onchange="this.form.submit()">
+                                            <option class="{{ $refill->status == 'approved' || $refill->status == 'rejected' ? 'd-none' : '' }}" value="pending" {{ $refill->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                            <option class="{{ $refill->status == 'rejected' ? 'd-none' : '' }}" value="approved" {{ $refill->status == 'approved' ? 'selected' : '' }}>Approved</option>
+                                            <option class="{{ $refill->status == 'approved' ? 'd-none' : '' }}" value="rejected" {{ $refill->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                                        </select>
+                                    </form>
                             </div>
 
                             @if($refill->screenshot)
