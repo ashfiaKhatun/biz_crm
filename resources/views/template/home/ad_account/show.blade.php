@@ -48,11 +48,16 @@
                 <div class="col-8">
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-flex align-items-center mb-5">
+                            <div class="d-flex justify-content-between align-items-center mb-5">
                                 <h4 class="card-title mr-4 mt-2">Details of {{ $adAccount->ad_acc_name }}</h4>
-                                <a href="{{ route('ad-account.edit', $adAccount->id) }}">
-                                    <button class="btn btn-secondary">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-3"></i></button>
-                                </a>
+                                <div>
+                                    <a href="{{ route('ad-account.edit', $adAccount->id) }}">
+                                        <button class="btn btn-secondary">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
+                                    </a>
+                                    <a href="{{ route('ad-account.edit', $adAccount->id) }}">
+                                        <button class="btn btn-primary">Refill<i class="fa-solid fa-fill m-r-5 ml-2"></i></button>
+                                    </a>
+                                </div>
 
                             </div>
 
@@ -135,16 +140,22 @@
                             </div>
                             <div class="row">
                                 <b class="col-4">Status:</b>
-                                <select name="status" class="form-control rounded col-3">
-                                    <option value="pending" {{ $adAccount->status == 'pending' ? 'selected' : '' }}>Pending
-                                    </option>
-                                    <option value="in-review" {{ $adAccount->status == 'in-review' ? 'selected' : '' }}>In Review
-                                    </option>
-                                    </option>
-                                    </option>
-                                    <option value="rejected" {{ $adAccount->status == 'rejected' ? 'selected' : '' }}>Rejected
-                                    </option>
-                                </select>
+                                <form action="{{ route('ad-account.updateStatus', $adAccount->id) }}" method="post">
+                                    @csrf
+                                    @method('PATCH')
+                                    <select name="status" class="form-control rounded" onchange="this.form.submit()">
+                                        <option class="{{ $adAccount->status == 'in-review'  || $adAccount->status == 'canceled' || $adAccount->status == 'approved' || $adAccount->status == 'rejected' ? 'd-none' : '' }}" value="pending" {{ $adAccount->status == 'pending' ? 'selected' : '' }}>Pending
+                                        </option>
+                                        <option class="{{ $adAccount->status == 'approved' || $adAccount->status == 'rejected' || $adAccount->status == 'canceled' ? 'd-none' : '' }}" value="in-review" {{ $adAccount->status == 'in-review' ? 'selected' : '' }}>In Review
+                                        </option>
+                                        <option class="{{ $adAccount->status == 'canceled' || $adAccount->status == 'rejected' ? 'd-none' : '' }}" value="approved" {{ $adAccount->status == 'approved' ? 'selected' : '' }}>Approved
+                                        </option>
+                                        <option class="{{ $adAccount->status == 'approved' || $adAccount->status == 'rejected' ? 'd-none' : '' }}" value="canceled" {{ $adAccount->status == 'canceled' ? 'selected' : '' }}>Canceled
+                                        </option>
+                                        <option class="{{ $adAccount->status == 'approved' || $adAccount->status == 'canceled' ? 'd-none' : '' }}" value="rejected" {{ $adAccount->status == 'rejected' ? 'selected' : '' }}>Rejected
+                                        </option>
+                                    </select>
+                                </form>
                             </div>
 
                         </div>
