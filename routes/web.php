@@ -80,8 +80,14 @@ Route::get('/refills/refills-name/update', [RefillController::class, 'update'])-
 
 //deposit
 
-Route::get('deposit/create', [DepositController::class, 'create'])->name('deposit.create');
-Route::post('deposit', [DepositController::class, 'store'])->name('deposit.store');
+Route::get('deposits', [DepositController::class, 'index'])->middleware(['auth', 'verified'])->name('deposits.index');
+Route::get('deposit/create', [DepositController::class, 'create'])->middleware(['auth', 'verified'])->name('deposit.create');
+Route::post('deposit', [DepositController::class, 'store'])->middleware(['auth', 'verified'])->name('deposit.store');
+Route::get('deposit/{id}', [DepositController::class, 'show'])->middleware(['auth', 'verified'])->name('deposit.show');
+Route::get('deposit/{id}/edit', [DepositController::class, 'edit'])->middleware(['auth', 'verified'])->name('deposit.edit');
+Route::put('deposit/{id}', [DepositController::class, 'update'])->middleware(['auth', 'verified'])->name('deposit.update');
+Route::delete('deposit/{id}', [DepositController::class, 'destroy'])->middleware(['auth', 'verified'])->name('deposit.destroy');
+Route::patch('deposit/{id}/status', [DepositController::class, 'updateStatus'])->middleware(['auth', 'verified'])->name('deposit.updateStatus');
 
 
 //deposit end
