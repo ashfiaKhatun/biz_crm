@@ -39,31 +39,31 @@
 
                     </div>
                     <div class="row">
-                        <strong class="col-3">Location</strong>
+                        <b class="col-3">Location</b>
                         <p class="col-9 fs-4">{{ $agency->location }}</p>
                     </div>
 
                     <div class="row">
-                        <strong class="col-3">Commission Type</strong>
+                        <b class="col-3">Commission Type</b>
                         <p class="col-9 fs-4">{{ucfirst($agency->commission_type) }}</p>
                     </div>
 
                     @if($agency->dollar_rate)
                     <div class="row">
-                        <strong class="col-3">Dollar Rate</strong>
+                        <b class="col-3">Dollar Rate</b>
                         <p class="col-9 fs-4">{{ $agency->dollar_rate }}</p>
                     </div>
                     @endif
 
                     @if ($agency->percentage_rate )
                     <div class="row">
-                        <strong class="col-3">Percentage Rate</strong>
+                        <b class="col-3">Percentage Rate</b>
                         <p class="col-9 fs-4">{{ $agency->percentage_rate }}</p>
                     </div>
                     @endif
 
                     <div class="row">
-                        <strong class="col-3">Ad Account Type</strong>
+                        <b class="col-3">Ad Account Type</b>
                         <p class="col-9 fs-4">{{ ucfirst(str_replace('_', ' ', $agency->ad_account_type)) }}</p>
                     </div>
                 </div>

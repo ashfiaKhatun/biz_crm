@@ -9,15 +9,14 @@
 @include('template.home.layouts.sidebar')
 
 <div class="content-body">
-    <div class="container my-5">
-        <h2>Create Deposit</h2>
-
+    <div class="w-75 mx-auto my-5 p-5 border rounded bg-white shadow-lg"> 
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
         @endif
 
+        <h4 class="mb-3">Create Deposit</h4>
         <form action="{{ route('deposit.store') }}" method="POST">
             @csrf
             <div>
