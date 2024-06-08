@@ -3,6 +3,11 @@
 
 <head>
     @include('template.home.layouts.head')
+    <style>
+        .font-sm{
+            font-size: 12px;
+        }
+    </style>
 </head>
 
 <body>
@@ -36,7 +41,7 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="font-sm">
                             @foreach ($refills as $refill)
                                 <tr>
                                     <td>{{ $refill->created_at }}</td>
@@ -74,14 +79,14 @@
 
                                             <a href="{{ route('refills.edit', $refill->id) }}" data-toggle="tooltip"
                                                 data-placement="top" title="Edit">
-                                                <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
+                                                <i class="fa fa-pencil color-muted m-r-5 ml-1"></i>
                                             </a>
 
                                             <form action="{{ route('refills.destroy', $refill->id) }}" method="POST"
                                                 style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="border-0 bg-transparent ml-3"
+                                                <button type="submit" class="border-0 bg-transparent ml-1"
                                                     onclick="return confirm('Are you sure you want to delete this refill application?')"
                                                     data-toggle="tooltip" data-placement="top" title="Delete"><i
                                                         class="fa fa-close color-danger"></i></button>
