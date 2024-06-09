@@ -17,7 +17,8 @@ class Refill extends Model
         'payment_method',
         'transaction_id',
         'screenshot',
-        'status', // Add status to fillable fields
+        'status',
+        'sent_to_agency'
     ];
 
     public function client()

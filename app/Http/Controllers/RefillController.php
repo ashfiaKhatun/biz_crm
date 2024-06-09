@@ -130,4 +130,16 @@ class RefillController extends Controller
 
         return redirect()->route('refills.index')->with('success', 'Status updated successfully.');
     }
+
+    public function sendToAgency($id)
+    {
+        $refill = Refill::findOrFail($id);
+        // Your logic to send the refill application to the agency goes here.
+        // For example, you might update the status, notify the agency, etc.
+
+        // Example: Update the status to 'sent_to_agency' (if you have such a status)
+        $refill->update(['sent_to_agency' => 1]);
+
+        return redirect()->route('refills.index')->with('success', 'Refill application sent to agency successfully.');
+    }
 }

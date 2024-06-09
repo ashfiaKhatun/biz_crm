@@ -55,6 +55,7 @@ Route::get('ad-account/{id}/edit', [AdAccountController::class, 'edit'])->middle
 Route::put('ad-account/{id}', [AdAccountController::class, 'update'])->middleware(['auth', 'verified'])->name('ad-account.update');
 Route::delete('ad-account/{id}', [AdAccountController::class, 'destroy'])->middleware(['auth', 'verified'])->name('ad-account.destroy');
 Route::patch('ad-account/{id}/status', [AdAccountController::class, 'updateStatus'])->middleware(['auth', 'verified'])->name('ad-account.updateStatus');
+Route::post('/refills/{id}/send-to-agency', [RefillController::class, 'sendToAgency'])->middleware(['auth', 'verified'])->name('refills.sendToAgency');
 
 //ad account end
 
