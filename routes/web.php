@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RefillController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepositController;
+use App\Http\Controllers\AgencyTransactionController;
 
 
 /*
@@ -56,6 +57,7 @@ Route::put('ad-account/{id}', [AdAccountController::class, 'update'])->middlewar
 Route::delete('ad-account/{id}', [AdAccountController::class, 'destroy'])->middleware(['auth', 'verified'])->name('ad-account.destroy');
 Route::patch('ad-account/{id}/status', [AdAccountController::class, 'updateStatus'])->middleware(['auth', 'verified'])->name('ad-account.updateStatus');
 
+
 //ad account end
 
 
@@ -76,6 +78,7 @@ Route::delete('refills/{id}', [RefillController::class, 'destroy'])->middleware(
 Route::patch('refills/{id}/status', [RefillController::class, 'updateStatus'])->name('refills.updateStatus');
 
 Route::get('/refills/refills-name/update', [RefillController::class, 'update'])->middleware(['auth', 'verified']);
+Route::post('refill/{id}/send-to-agency', [AgencyTransactionController::class, 'sendToAgency'])->middleware(['auth', 'verified'])->name('refill.sendToAgency');
 
 // refill related end
 

@@ -91,6 +91,15 @@
                                                     data-toggle="tooltip" data-placement="top" title="Delete"><i
                                                         class="fa fa-close color-danger"></i></button>
                                             </form>
+
+                                            @if ($refill->sent_to_agency == 0)
+                                            <form action="{{ route('refill.sendToAgency', $refill->id) }}" method="post" style="display:inline-block;">
+                                                @csrf
+                                                <button type="submit" class="border-0 bg-transparent ml-1" onclick="return confirm('Are you sure you want to send this refill application to the agency?')" data-toggle="tooltip" data-placement="top" title="Send to Agency">
+                                                    <i class="fa fa-send color-primary"></i>
+                                                </button>
+                                            </form>
+                                            @endif
                                         </span>
                                     </td>
 

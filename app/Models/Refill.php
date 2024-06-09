@@ -17,7 +17,8 @@ class Refill extends Model
         'payment_method',
         'transaction_id',
         'screenshot',
-        'status', // Add status to fillable fields
+        'status',
+        'sent_to_agency'
     ];
 
     public function client()
@@ -28,5 +29,10 @@ class Refill extends Model
     public function adAccount()
     {
         return $this->belongsTo(AdAccount::class, 'ad_account_id');
+    }
+
+    public function agencyTransactions()
+    {
+        return $this->hasMany(AgencyTransaction::class, 'refills_id');
     }
 }

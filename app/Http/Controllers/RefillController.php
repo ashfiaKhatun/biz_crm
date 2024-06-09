@@ -130,4 +130,6 @@ class RefillController extends Controller
 
         return redirect()->route('refills.index')->with('success', 'Status updated successfully.');
     }
+
+    
 }
