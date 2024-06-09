@@ -36,8 +36,6 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Business Name</th>
-                                <th>Phone</th>
                                 <th>Email</th>
 
                                 <th>Actions</th>
@@ -47,18 +45,12 @@
                             @foreach ($users as $user)
                             <tr>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->business_name }}</td>
-                                <td>{{ $user->phone }}</td>
                                 <td>{{ $user->email }}</td>
 
 
                                 <td>
                                     <span>
-                                        <a href="" data-toggle="tooltip" data-placement="top" title="View">
-                                            <i class="fa fa-eye color-muted m-r-5"></i>
-                                        </a>
-
-                                        <a href="" data-toggle="tooltip" data-placement="top" title="Edit">
+                                        <a href="{{ route('manager.edit', $user->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                             <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
                                         </a>
 

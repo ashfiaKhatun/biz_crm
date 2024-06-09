@@ -64,8 +64,12 @@ Route::post('register', [RegisteredUserController::class, 'storeCustomer']);
 Route::get('admins', [UserController::class, 'indexAdmins'])->middleware(['auth', 'verified'])->name('user.admin');
 Route::get('register/admin', [RegisteredUserController::class, 'createAdmin'])->middleware(['auth', 'verified'])->name('register.admin');
 Route::post('register/admin', [RegisteredUserController::class, 'storeAdmin']);
+Route::get('admins/{id}/edit', [UserController::class, 'editAdmin'])->middleware(['auth', 'verified'])->name('admin.edit');
+Route::put('admins/{id}', [UserController::class, 'updateAdmin'])->middleware(['auth', 'verified'])->name('admin.update');
 
 // Registration route for Managers
 Route::get('managers', [UserController::class, 'indexManagers'])->middleware(['auth', 'verified'])->name('user.manager');
 Route::get('register/manager', [RegisteredUserController::class, 'createManager'])->middleware(['auth', 'verified'])->name('register.manager');
 Route::post('register/manager', [RegisteredUserController::class, 'storeManager']);
+Route::get('managers/{id}/edit', [UserController::class, 'editManager'])->middleware(['auth', 'verified'])->name('manager.edit');
+Route::put('managers/{id}', [UserController::class, 'updateManager'])->middleware(['auth', 'verified'])->name('manager.update');
