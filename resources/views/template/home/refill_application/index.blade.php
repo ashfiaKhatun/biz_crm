@@ -93,7 +93,7 @@
                                             </form>
 
                                             @if ($refill->sent_to_agency == 0)
-                                            <form action="{{ route('refills.sendToAgency', $refill->id) }}" method="post" style="display:inline-block;">
+                                            <form action="{{ route('refill.sendToAgency', $refill->id) }}" method="post" style="display:inline-block;">
                                                 @csrf
                                                 <button type="submit" class="border-0 bg-transparent ml-1" onclick="return confirm('Are you sure you want to send this refill application to the agency?')" data-toggle="tooltip" data-placement="top" title="Send to Agency">
                                                     <i class="fa fa-send color-primary"></i>

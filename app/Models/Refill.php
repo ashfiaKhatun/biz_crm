@@ -30,4 +30,9 @@ class Refill extends Model
     {
         return $this->belongsTo(AdAccount::class, 'ad_account_id');
     }
+
+    public function agencyTransactions()
+    {
+        return $this->hasMany(AgencyTransaction::class, 'refills_id');
+    }
 }
