@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h4 class="card-title mr-4 mt-2">All CLients</h4>
+                    <h4 class="card-title mr-4 mt-2">All Clients</h4>
                     <a href="{{ route('register') }}">
                         <button class="btn btn-secondary">Add New Client<i class="fa fa-plus color-muted m-r-5 ml-2"></i></button>
                     </a>
@@ -54,18 +54,15 @@
 
                                 <td>
                                     <span>
-                                        <a href="" data-toggle="tooltip" data-placement="top" title="View">
-                                            <i class="fa fa-eye color-muted m-r-5"></i>
-                                        </a>
 
-                                        <a href="" data-toggle="tooltip" data-placement="top" title="Edit">
+                                        <a href="{{ route('client.edit', $user->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                             <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
                                         </a>
 
-                                        <form action="" method="POST" style="display:inline-block;">
+                                        <form action="{{ route('client.destroy', $user->id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="border-0 bg-transparent ml-3" onclick="return confirm('Are you sure you want to delete this refill application?')" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close color-danger"></i></button>
+                                            <button type="submit" class="border-0 bg-transparent ml-3" onclick="return confirm('Are you sure you want to delete this Client?')" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close color-danger"></i></button>
                                         </form>
                                     </span>
                                 </td>

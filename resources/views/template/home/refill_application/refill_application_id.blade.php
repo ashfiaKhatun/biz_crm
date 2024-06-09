@@ -46,7 +46,7 @@
 
                     <div>
                         <label class="col-form-label">Ad Account Name:</label>
-                        <select name="ad_account_id" class="form-control rounded">
+                        <select name="ad_account_id" class="form-control rounded" readonly>
                             <option value="{{ $adAccount->id }}">{{ $adAccount->ad_acc_name }}</option>
                         </select>
                         

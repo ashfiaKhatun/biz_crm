@@ -59,6 +59,10 @@ Route::middleware('auth')->group(function () {
 Route::get('clients', [UserController::class, 'indexClients'])->middleware(['auth', 'verified'])->name('user.client');
 Route::get('register', [RegisteredUserController::class, 'createCustomer'])->middleware(['auth', 'verified'])->name('register');
 Route::post('register', [RegisteredUserController::class, 'storeCustomer']);
+Route::get('clients/{id}/edit', [UserController::class, 'editClient'])->middleware(['auth', 'verified'])->name('client.edit');
+Route::put('clients/{id}', [UserController::class, 'updateClient'])->middleware(['auth', 'verified'])->name('client.update');
+Route::delete('clients/{id}', [UserController::class, 'destroyClient'])->middleware(['auth', 'verified'])->name('client.destroy');
+
 
 // Registration route for Admins
 Route::get('admins', [UserController::class, 'indexAdmins'])->middleware(['auth', 'verified'])->name('user.admin');
@@ -66,6 +70,7 @@ Route::get('register/admin', [RegisteredUserController::class, 'createAdmin'])->
 Route::post('register/admin', [RegisteredUserController::class, 'storeAdmin']);
 Route::get('admins/{id}/edit', [UserController::class, 'editAdmin'])->middleware(['auth', 'verified'])->name('admin.edit');
 Route::put('admins/{id}', [UserController::class, 'updateAdmin'])->middleware(['auth', 'verified'])->name('admin.update');
+Route::delete('admins/{id}', [UserController::class, 'destroyAdmin'])->middleware(['auth', 'verified'])->name('admin.destroy');
 
 // Registration route for Managers
 Route::get('managers', [UserController::class, 'indexManagers'])->middleware(['auth', 'verified'])->name('user.manager');
@@ -73,3 +78,4 @@ Route::get('register/manager', [RegisteredUserController::class, 'createManager'
 Route::post('register/manager', [RegisteredUserController::class, 'storeManager']);
 Route::get('managers/{id}/edit', [UserController::class, 'editManager'])->middleware(['auth', 'verified'])->name('manager.edit');
 Route::put('managers/{id}', [UserController::class, 'updateManager'])->middleware(['auth', 'verified'])->name('manager.update');
+Route::delete('managers/{id}', [UserController::class, 'destroyManager'])->middleware(['auth', 'verified'])->name('manager.destroy');

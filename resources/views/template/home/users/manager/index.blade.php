@@ -54,10 +54,10 @@
                                             <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
                                         </a>
 
-                                        <form action="" method="POST" style="display:inline-block;">
+                                        <form action="{{ route('client.destroy', $user->id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="border-0 bg-transparent ml-3" onclick="return confirm('Are you sure you want to delete this refill application?')" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close color-danger"></i></button>
+                                            <button type="submit" class="border-0 bg-transparent ml-3" onclick="return confirm('Are you sure you want to delete this Manager?')" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close color-danger"></i></button>
                                         </form>
                                     </span>
                                 </td>
