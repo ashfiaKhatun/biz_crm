@@ -23,6 +23,7 @@ class DepositController extends Controller
             DB::raw('MONTH(created_at) as month'),
             DB::raw('SUM(amount_bdt) / SUM(amount_usd) as average_rate')
         )
+        ->where('status', 'received')
         ->where('created_at', '>=', $threeMonthsAgo)
         ->groupBy('year', 'month')
         ->orderBy('year', 'desc')
@@ -118,6 +119,7 @@ class DepositController extends Controller
             DB::raw('MONTH(created_at) as month'),
             DB::raw('SUM(amount_bdt) / SUM(amount_usd) as average_rate')
         )
+        ->where('status', 'received')
         ->groupBy('year', 'month')
         ->get();
 
