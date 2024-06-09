@@ -20,7 +20,12 @@
 
             <div class="card text-black">
                 <div class="card-body">
-                    <h4 class="card-title mb-5">Details of {{ $adAccount->ad_acc_name }}</h4>
+                    <div class="d-flex align-items-center mb-5">
+                        <h4 class="card-title mr-4 mt-2">Details of {{ $adAccount->ad_acc_name }}</h4>
+                        <a href="{{ route('refill.refill', $adAccount->id) }}">
+                            <button class="btn btn-primary">Refill<i class="fa-solid fa-fill m-r-5 ml-2"></i></button>
+                        </a>
+                    </div>
 
 
                     <div class="row">
@@ -115,13 +120,13 @@
             <div class="card">
                 <div class="card-body">
                     <h2 class="card-title">Refills History</h2>
-    
+
                     @if(session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
                     </div>
                     @endif
-    
+
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped verticle-middle">
                             <thead>
@@ -145,7 +150,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-    
+
                     </div>
                 </div>
             </div>

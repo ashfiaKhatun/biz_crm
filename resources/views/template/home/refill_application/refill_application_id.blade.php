@@ -38,17 +38,23 @@
                     @csrf
                     <div>
                         <label class="col-form-label">Client Name:</label>
-                        <input value="{{ $adAccount->client->name }}" type="text" class="form-control rounded" readonly>
+                        <select name="client_id" class="form-control rounded" readonly>
+                            <option value="{{ $adAccount->client->id }}">{{ $adAccount->client->name }}</option>
+                        </select>
+                        
                     </div>
 
                     <div>
                         <label class="col-form-label">Ad Account Name:</label>
-                        <input value="{{ $adAccount->ad_acc_name }}" type="text" class="form-control rounded" readonly>
+                        <select name="ad_account_id" class="form-control rounded">
+                            <option value="{{ $adAccount->id }}">{{ $adAccount->ad_acc_name }}</option>
+                        </select>
+                        
                     </div>
 
                     <div>
                         <label class="col-form-label">Dollar Rate:</label>
-                        <input value="{{ $adAccount->dollar_rate }}" type="text" placeholder="Dollar Rate" class="form-control rounded" readonly>
+                        <input id="dollar-rate-input" value="{{ $adAccount->dollar_rate }}" type="text" placeholder="Dollar Rate" class="form-control rounded" readonly>
                     </div>
 
                     <div>
@@ -116,8 +122,7 @@
     ***********************************-->
     @include('template.home.layouts.scripts')
 
-
-    @include('template.home.custom_scripts.refill_application_script')
+    @include('template.home.custom_scripts.refill_application_id_script')
 </body>
 
 </html>

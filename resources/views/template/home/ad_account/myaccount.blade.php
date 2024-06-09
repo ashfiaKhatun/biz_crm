@@ -47,6 +47,11 @@
                                         <a href="{{ route('my-account.show', $adAccount->id) }}" data-toggle="tooltip" data-placement="top" title="View">
                                             <i class="fa fa-eye color-muted m-r-5  ml-3"></i>
                                         </a>
+                                        
+                                        <a href="{{ route('refill.refill', $adAccount->id) }}" data-toggle="tooltip" data-placement="top" title="Refill">
+                                        <i class="fa-solid fa-fill m-r-5 ml-2"></i>
+                                        </a>
+
 
                                         {{-- <a href="{{ route('ad-account.edit', $adAccount->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                         <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>

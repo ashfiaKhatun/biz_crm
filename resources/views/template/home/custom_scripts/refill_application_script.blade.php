@@ -25,8 +25,9 @@
     // Second part: Handling taka to dollar conversion and vice versa
     const takaInput = document.getElementById('taka-input');
     const dollarInput = document.getElementById('dollar-input');
+    const dollarRateInput = document.getElementById('dollar-rate-input');
 
-    let conversionRate = 115; // Default value
+    let conversionRate = dollarRateInput.value; // Default value
 
     function updateDollar(takaValue) {
         if (isNaN(takaValue)) {
