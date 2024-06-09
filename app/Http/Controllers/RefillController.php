@@ -26,6 +26,13 @@ class RefillController extends Controller
         $customers = User::where('role', 'customer')->get();
         return view('template.home.refill_application.refill_application', compact('customers'));
     }
+    public function refill_application_id(AdAccount $adAccount)
+    {
+        // Access the ad account details using $adAccount
+        // ... your logic for displaying the refill page here ...
+
+        return view('template.home.refill_application.refill_application_id', compact('adAccount')); // Pass the ad account to the refill view
+    }
 
     public function store(Request $request)
     {

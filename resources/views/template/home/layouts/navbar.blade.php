@@ -7,7 +7,7 @@
     <div class="brand-logo bg-white  h-100 d-flex justify-content-center align-items-center">
         <a href="{{ route('dashboard') }}">
             <b class="logo-abbr"><img src="../../template/images/favicon.png" alt=""> </b>
-            <span class="logo-compact"><img src="../../template/images/logo-compact.png" alt=""></span>
+            <span class="logo-compact"><img src="../../template/images/logo-text.png" alt=""></span>
             <span class="brand-title">
                 <img src="../../template/images/logo-text.png" height="52" alt="">
             </span>
@@ -180,9 +180,9 @@
                         <div class="dropdown-content-body">
                             <ul>
                                 <li>
-                                <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
+                                    <x-dropdown-link :href="route('profile.edit')">
+                                        {{ __('Profile') }}
+                                    </x-dropdown-link>
                                 </li>
                                 <li>
                                     <a href="javascript:void()">

@@ -34,7 +34,7 @@
                                     <a href="{{ route('ad-account.edit', $adAccount->id) }}">
                                         <button class="btn btn-secondary">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
                                     </a>
-                                    <a href="{{ route('ad-account.edit', $adAccount->id) }}">
+                                    <a href="{{ route('refill.refill', $adAccount->id) }}">
                                         <button class="btn btn-primary">Refill<i class="fa-solid fa-fill m-r-5 ml-2"></i></button>
                                     </a>
                                 </div>

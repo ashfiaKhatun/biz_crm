@@ -35,7 +35,7 @@
                                 <th>Dollar Rate</th>
                                 <th>Amount (Dollar)</th>
                                 <th>Amount (Taka)</th>
-                                <th>Payment Method</th>
+                                <th>Method</th>
 
                                 <th>Status</th>
                                 <th>Actions</th>
