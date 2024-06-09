@@ -26,7 +26,7 @@
                     </div>
                 @endif
 
-                <div class="table-responsive">
+                <div class="table-responsive text-nowrap">
                     <table class="table table-bordered table-striped verticle-middle">
                         <thead>
                             <tr>
@@ -41,7 +41,7 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="font-sm">
+                        <tbody>
                             @foreach ($refills as $refill)
                                 <tr>
                                     <td>{{ $refill->created_at }}</td>
@@ -79,14 +79,14 @@
 
                                             <a href="{{ route('refills.edit', $refill->id) }}" data-toggle="tooltip"
                                                 data-placement="top" title="Edit">
-                                                <i class="fa fa-pencil color-muted m-r-5 ml-1"></i>
+                                                <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
                                             </a>
 
                                             <form action="{{ route('refills.destroy', $refill->id) }}" method="POST"
                                                 style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="border-0 bg-transparent ml-1"
+                                                <button type="submit" class="border-0 bg-transparent ml-3"
                                                     onclick="return confirm('Are you sure you want to delete this refill application?')"
                                                     data-toggle="tooltip" data-placement="top" title="Delete"><i
                                                         class="fa fa-close color-danger"></i></button>

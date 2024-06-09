@@ -70,7 +70,7 @@
                     <li><a href="{{ route('register.admin') }}" aria-expanded="false">
                             New
                         </a></li>
-                    <li><a >All</a></li>
+                    <li><a href="{{ route('user.admin') }}">All</a></li>
 
                 </ul>
             </li>
@@ -83,7 +83,7 @@
                     <li><a href="{{ route('register.manager') }}" aria-expanded="false">
                             New
                         </a></li>
-                    <li><a >All</a></li>
+                    <li><a href="{{ route('user.manager') }}">All</a></li>
 
                 </ul>
             </li>
@@ -96,7 +96,7 @@
                     <li><a href="{{ route('register') }}" aria-expanded="false">
                             New
                         </a></li>
-                    <li><a >All</a></li>
+                    <li><a href="{{ route('user.client') }}">All</a></li>
 
                 </ul>
             </li>

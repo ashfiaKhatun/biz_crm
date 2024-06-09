@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -55,13 +56,16 @@ Route::middleware('auth')->group(function () {
 });
 
 // Registration route for Customer
+Route::get('clients', [UserController::class, 'indexClients'])->middleware(['auth', 'verified'])->name('user.client');
 Route::get('register', [RegisteredUserController::class, 'createCustomer'])->middleware(['auth', 'verified'])->name('register');
 Route::post('register', [RegisteredUserController::class, 'storeCustomer']);
 
 // Registration route for Admins
+Route::get('admins', [UserController::class, 'indexAdmins'])->middleware(['auth', 'verified'])->name('user.admin');
 Route::get('register/admin', [RegisteredUserController::class, 'createAdmin'])->middleware(['auth', 'verified'])->name('register.admin');
 Route::post('register/admin', [RegisteredUserController::class, 'storeAdmin']);
 
 // Registration route for Managers
+Route::get('managers', [UserController::class, 'indexManagers'])->middleware(['auth', 'verified'])->name('user.manager');
 Route::get('register/manager', [RegisteredUserController::class, 'createManager'])->middleware(['auth', 'verified'])->name('register.manager');
 Route::post('register/manager', [RegisteredUserController::class, 'storeManager']);
