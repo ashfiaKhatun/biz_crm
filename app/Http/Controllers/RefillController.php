@@ -13,12 +13,12 @@ class RefillController extends Controller
 
     public function index()
     {
-        $refills = Refill::with('client', 'adAccount')->get();
+        $refills = Refill::with('client', 'adAccount')->orderBy('created_at', 'desc')->get();
         return view('template.home.refill_application.index', compact('refills'));
     }
     public function pending()
     {
-        $refills = Refill::where('status', 'pending')->get();
+        $refills = Refill::where('status', 'pending')->orderBy('created_at', 'desc')->get();
         return view('template.home.refill_application.index', compact('refills'));
     }
     public function refill_application()
@@ -42,7 +42,7 @@ class RefillController extends Controller
             'amount_taka' => 'nullable|numeric',
             'amount_dollar' => 'nullable|numeric',
             'payment_method' => 'required|string|max:255',
-            'transaction_id' => 'required|string|max:255',
+            
             'screenshot' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 

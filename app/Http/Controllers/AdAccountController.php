@@ -14,7 +14,7 @@ class AdAccountController extends Controller
 {
     public function index()
     {
-        $adAccounts = AdAccount::all();
+        $adAccounts = AdAccount::orderBy('created_at', 'desc')->get();
         return view('template.home.ad_account.index', compact('adAccounts'));
     }
 
@@ -23,6 +23,7 @@ class AdAccountController extends Controller
         $userId = Auth::id(); // Get the ID of the current authenticated user
         $adAccounts = AdAccount::where('status', 'approved')
             ->where('client_id', $userId)
+           ->orderBy('created_at', 'desc')
             ->get();
         return view('template.home.ad_account.myaccount', compact('adAccounts'));
     }
@@ -147,12 +148,12 @@ class AdAccountController extends Controller
 
     public function showPendingAdAccounts()
     {
-        $adAccounts = AdAccount::where('status', 'pending')->get();
+        $adAccounts = AdAccount::where('status', 'pending')->orderBy('created_at', 'desc')->get();
         return view('template.home.ad_account.index', compact('adAccounts'));
     }
     public function showApprovedAdAccounts()
     {
-        $adAccounts = AdAccount::where('status', 'approved')->get();
+        $adAccounts = AdAccount::where('status', 'approved')->orderBy('created_at', 'desc')->get();
         return view('template.home.ad_account.index', compact('adAccounts'));
     }
 }

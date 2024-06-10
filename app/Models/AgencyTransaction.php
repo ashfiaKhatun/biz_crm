@@ -18,6 +18,7 @@ class AgencyTransaction extends Model
         'refill_act_tk',
         'agency_charge_type',
         'agency_charge',
+        'agency_rate',
     ];
 
     public function refill()

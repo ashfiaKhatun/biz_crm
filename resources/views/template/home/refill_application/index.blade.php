@@ -30,7 +30,7 @@
                     <table class="table table-bordered table-striped verticle-middle">
                         <thead>
                             <tr>
-                                <th>Date</th>
+                                <th>Date || Time</th>
                                 <th>Ad Account Name</th>
                                 <th>Dollar Rate</th>
                                 <th>Amount (Dollar)</th>
@@ -44,7 +44,7 @@
                         <tbody>
                             @foreach ($refills as $refill)
                                 <tr>
-                                    <td>{{ $refill->created_at }}</td>
+                                    <td>{{ $refill->created_at->format('j F Y || g:i a') }}</td>
                                     <td>{{ $refill->adAccount->ad_acc_name }}</td>
                                     <td>{{ $refill->adAccount->dollar_rate }}</td>
                                     <td>{{ $refill->amount_dollar }}</td>

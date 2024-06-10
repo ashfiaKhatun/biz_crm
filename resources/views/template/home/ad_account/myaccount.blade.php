@@ -41,7 +41,28 @@
                                 <td>{{ $adAccount->ad_acc_name }}</td>
                                 <td>{{ $adAccount->agency->agency_name }}</td>
                                 <td>{{ $adAccount->dollar_rate }}৳</td>
-                                <td>{{ $adAccount->status}}</td>
+                                <td>
+                                    @if ($adAccount->status == 'pending')
+                                        <span class="badge badge-primary">Pending</span>
+                                    @endif
+
+                                    @if ($adAccount->status == 'in-review')
+                                        <span class="badge badge-info">In Review</span>
+                                    @endif
+
+                                    @if ($adAccount->status == 'approved')
+                                        <span class="badge badge-success">Approved</span>
+                                    @endif
+
+                                    @if ($adAccount->status == 'rejected')
+                                        <span class="badge badge-danger">Rejected</span>
+                                    @endif
+
+                                    @if ($adAccount->status == 'canceled')
+                                        <span class="badge badge-warning">Canceled</span>
+                                    @endif
+
+                                </td>
                                 <td>
                                     <span>
                                         <a href="{{ route('my-account.show', $adAccount->id) }}" data-toggle="tooltip" data-placement="top" title="View">

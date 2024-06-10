@@ -14,7 +14,7 @@ class DepositController extends Controller
 
     public function index()
     {
-        $deposits = Deposit::all();
+        $deposits = Deposit::orderBy('created_at', 'desc')->get();
 
         $threeMonthsAgo = Carbon::now()->subMonths(3);
 
@@ -52,7 +52,7 @@ class DepositController extends Controller
             'amount_usd' => $request->amount_usd,
             'rate_bdt' => $request->rate_bdt,
             'amount_bdt' => $bdt,
-            'status' => 'pending',
+            'status' => 'received',
         ]);
 
         return redirect()->route('deposits.index')->with('success', 'Deposit created successfully.');

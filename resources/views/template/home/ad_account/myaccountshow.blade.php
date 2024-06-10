@@ -111,7 +111,27 @@
                     </div>
                     <div class="row">
                         <strong class="col-3">Status:</strong>
-                        <p class="col-9 fs-4">{{ $adAccount->status }}</p>
+                        <p class="col-9 fs-4">
+                            @if ($adAccount->status == 'pending')
+                                        <span class="badge badge-primary">Pending</span>
+                                    @endif
+
+                                    @if ($adAccount->status == 'in-review')
+                                        <span class="badge badge-info">In Review</span>
+                                    @endif
+
+                                    @if ($adAccount->status == 'approved')
+                                        <span class="badge badge-success">Approved</span>
+                                    @endif
+
+                                    @if ($adAccount->status == 'rejected')
+                                        <span class="badge badge-danger">Rejected</span>
+                                    @endif
+
+                                    @if ($adAccount->status == 'canceled')
+                                        <span class="badge badge-warning">Canceled</span>
+                                    @endif
+                        </p>
                     </div>
 
                 </div>
