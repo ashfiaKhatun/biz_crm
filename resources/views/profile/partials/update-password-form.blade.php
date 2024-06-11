@@ -14,34 +14,34 @@
         @method('put')
 
         <div>
-            <x-input-label for="update_password_current_password" :value="__('Current Password')" />
-            <x-text-input id="update_password_current_password" name="current_password" type="password" class="mt-1 block w-full" autocomplete="current-password" />
-            <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
+            <label for="update_password_current_password" class="col-form-label">Current Password:</label>
+            <input id="update_password_current_password" type="password" name="current_password" autocomplete="current-password" class="form-control rounded">
+            <div class="mt-2">
+                <?php echo $errors->updatePassword->first('current_password'); ?>
+            </div>
         </div>
 
         <div>
-            <x-input-label for="update_password_password" :value="__('New Password')" />
-            <x-text-input id="update_password_password" name="password" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-            <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
+            <label for="update_password_password" class="col-form-label">New Password:</label>
+            <input id="update_password_password" type="password" name="password" autocomplete="current-password" class="form-control rounded">
+            <div class="error-message">
+                <?php echo $errors->updatePassword->first('new_password'); ?>
+            </div>
         </div>
 
         <div>
-            <x-input-label for="update_password_password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input id="update_password_password_confirmation" name="password_confirmation" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-            <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
+            <label for="update_password_password_confirmation" class="col-form-label">Confirm Password:</label>
+            <input id="update_password_password_confirmation" type="password" name="password_confirmation" autocomplete="new-password" class="form-control rounded">
+            <div class="error-message">
+                <?php echo $errors->updatePassword->first('new_password_confirmation'); ?>
+            </div>
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <input type="submit" name="submit" value="Save" class="btn btn-primary my-3">
 
             @if (session('status') === 'password-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
+            <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600">{{ __('Saved.') }}</p>
             @endif
         </div>
     </form>
