@@ -270,7 +270,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="active-member">
-                                    <div class="table-responsive">
+                                    <div class="table-responsive text-nowrap">
                                         <table class="table table-xs mb-0">
                                             <thead>
                                                 <tr>

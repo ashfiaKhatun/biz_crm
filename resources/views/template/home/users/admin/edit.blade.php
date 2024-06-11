@@ -66,11 +66,6 @@
                         <input value="{{ $admin->email }}" id="email" class="form-control rounded" type="email" name="email" placeholder="Admin Email" required />
                     </div>
 
-                    <div class="">
-                        <label class="col-form-label">Update Password:</label>
-                        <input value="{{ $admin->password }}" id="password" class="form-control rounded" type="password" name="password" placeholder="Password" />
-                    </div>
-
                     <div class="d-flex justify-content-end mt-4">
                         <input type="submit" name="submit" value="Update Admin" class="btn btn-primary">
                     </div>

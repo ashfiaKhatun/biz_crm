@@ -63,7 +63,7 @@
 
                     <div class="">
                         <label class="col-form-label">User Name:</label>
-                        <input value="{{ $client->name }}" class="form-control rounded" type="text" name="username" placeholder="Username" required />
+                        <input value="{{ $client->username }}" class="form-control rounded" type="text" name="username" placeholder="Username" required />
                     </div>
 
                     <div class="">
@@ -89,11 +89,6 @@
                     <div class="">
                         <label class="col-form-label">Business Name:</label>
                         <input value="{{ $client->business_name }}" class="form-control rounded" type="text" name="business_name" placeholder="Business Name" required />
-                    </div>
-
-                    <div class="">
-                        <label class="col-form-label">Update Password:</label>
-                        <input value="{{ $client->password }}" class="form-control rounded" type="password" name="password" placeholder="Update Password" required />
                     </div>
 
 

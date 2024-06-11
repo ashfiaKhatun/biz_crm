@@ -18,7 +18,12 @@
     <div class="content-body p-4">
         <div class="card">
             <div class="card-body">
-                <h2 class="card-title">Refill Applications</h2>
+            <div class="d-flex justify-content-between align-items-center mb-5">
+                    <h4 class="card-title mr-4 mt-2">Refill Applications</h4>
+                    <a href="{{ route('refill-application') }}">
+                        <button class="btn btn-secondary">New Refill<i class="fa fa-plus color-muted m-r-5 ml-2"></i></button>
+                    </a>
+                </div>
 
                 @if (session('success'))
                     <div class="alert alert-success">

@@ -45,7 +45,7 @@ class RegisteredUserController extends Controller
 
         
 
-        return redirect()->route('login');
+        return redirect()->route('user.admin');
     }
 
     // Display Manager registration form
@@ -76,7 +76,7 @@ class RegisteredUserController extends Controller
 
         
 
-        return redirect()->route('login');
+        return redirect()->route('user.manager');
     }
 
     // Display Customer registration form
@@ -113,6 +113,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('user.client');
     }
 }

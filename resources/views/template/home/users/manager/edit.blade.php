@@ -66,11 +66,6 @@
                         <input value="{{ $manager->email }}" id="email" class="form-control rounded" type="email" name="email" placeholder="manager Email" required />
                     </div>
 
-                    <div class="">
-                        <label class="col-form-label">Update Password:</label>
-                        <input value="{{ $manager->password }}" id="password" class="form-control rounded" type="password" name="password" placeholder="Password" />
-                    </div>
-
                     <div class="d-flex justify-content-end mt-4">
                         <input type="submit" name="submit" value="Update Manager" class="btn btn-primary">
                     </div>

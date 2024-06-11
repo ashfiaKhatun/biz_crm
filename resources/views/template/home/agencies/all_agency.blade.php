@@ -35,7 +35,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">All Agencies</h4>
-                        <div class="table-responsive">
+                        <div class="table-responsive text-nowrap">
                             <table class="table table-bordered table-striped verticle-middle">
                                 <thead>
                                     <tr>
