@@ -14,7 +14,7 @@
         <div class="card-body">
             <h2 class="card-title">Average USD Rate per Month</h2>
     
-            <div class="table-responsive text-nowrap">
+            <div class="table-responsive">
                 <table class="table table-bordered table-striped verticle-middle">
                     <thead>
                         <tr>

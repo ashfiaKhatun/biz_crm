@@ -30,6 +30,9 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
+
+    Route::get('client-register-default-form', [RegisteredUserController::class, 'clientRegister']);
+    Route::post('client-register-default-form', [RegisteredUserController::class, 'storeClient'])->name('registerClient');
 });
 
 Route::middleware('auth')->group(function () {
@@ -56,6 +59,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Registration route for Customer
+
 Route::get('clients', [UserController::class, 'indexClients'])->middleware(['auth', 'verified'])->name('user.client');
 Route::get('register', [RegisteredUserController::class, 'createCustomer'])->middleware(['auth', 'verified'])->name('register');
 Route::post('register', [RegisteredUserController::class, 'storeCustomer']);

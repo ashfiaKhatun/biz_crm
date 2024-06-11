@@ -84,6 +84,11 @@ class RegisteredUserController extends Controller
     {
         return view('template.auth.register_customer');
     }
+    
+    public function clientRegister()
+    {
+        return view('template.auth.page-register');
+    }
 
     // Handle storage of Customer
     public function storeCustomer(Request $request)
@@ -114,5 +119,34 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect()->route('user.client');
+    }
+    public function storeClient(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'phone' => ['required', 'string', 'max:15'],
+            'business_type' => ['required', 'string', 'max:255'],
+            'business_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'confirmed', 'min:8'],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'phone' => $request->phone,
+            'business_type' => $request->business_type,
+            'business_name' => $request->business_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'customer',
+        ]);
+
+        event(new Registered($user));
+
+        Auth::login($user);
+
+        return redirect()->route('login');
     }
 }

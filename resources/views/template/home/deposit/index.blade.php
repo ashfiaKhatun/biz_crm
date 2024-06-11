@@ -24,7 +24,7 @@
                             </div>
                             @endif
 
-                            <div class="table-responsive text-nowrap">
+                            <div class="table-responsive">
 
                                 <table class="table table-bordered table-striped verticle-middle">
                                     <thead>
