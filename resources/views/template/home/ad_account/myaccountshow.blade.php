@@ -113,24 +113,24 @@
                         <strong class="col-3">Status:</strong>
                         <p class="col-9 fs-4">
                             @if ($adAccount->status == 'pending')
-                                        <span class="badge badge-primary">Pending</span>
-                                    @endif
+                            <span class="badge badge-primary">Pending</span>
+                            @endif
 
-                                    @if ($adAccount->status == 'in-review')
-                                        <span class="badge badge-info">In Review</span>
-                                    @endif
+                            @if ($adAccount->status == 'in-review')
+                            <span class="badge badge-info">In Review</span>
+                            @endif
 
-                                    @if ($adAccount->status == 'approved')
-                                        <span class="badge badge-success">Approved</span>
-                                    @endif
+                            @if ($adAccount->status == 'approved')
+                            <span class="badge badge-success">Approved</span>
+                            @endif
 
-                                    @if ($adAccount->status == 'rejected')
-                                        <span class="badge badge-danger">Rejected</span>
-                                    @endif
+                            @if ($adAccount->status == 'rejected')
+                            <span class="badge badge-danger">Rejected</span>
+                            @endif
 
-                                    @if ($adAccount->status == 'canceled')
-                                        <span class="badge badge-warning">Canceled</span>
-                                    @endif
+                            @if ($adAccount->status == 'canceled')
+                            <span class="badge badge-warning">Canceled</span>
+                            @endif
                         </p>
                     </div>
 
@@ -158,9 +158,9 @@
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="tableData">
                                 @foreach($refills as $Refill)
-                                <tr>
+                                <tr class="data-row">
                                     <td>{{ $Refill->created_at }}</td>
                                     <td>{{ $Refill->amount_taka }}</td>
                                     <td>{{ $Refill->amount_dollar }}</td>
@@ -170,6 +170,10 @@
                                 @endforeach
                             </tbody>
                         </table>
+
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-primary" id="seeAllBtn">See All</button>
 
                     </div>
                 </div>
@@ -182,6 +186,7 @@
     @include('template.home.layouts.footer')
 
     @include('template.home.layouts.scripts')
+    @include('template.home.custom_scripts.myaccountshow_script')
 
 </body>
 

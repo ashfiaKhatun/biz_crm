@@ -64,12 +64,12 @@
                                     @if ($refill->sent_to_agency == 0)
                                     <form action="{{ route('refill.sendToAgency', $refill->id) }}" method="post" style="display:inline-block;">
                                         @csrf
-                                        <button type="submit" class="border-0 bg-transparent" onclick="return confirm('Are you sure you want to send this refill application to the agency?')">
-                                            <span class="badge badge-primary">Send to Agency</span>
+                                        <button type="submit" class="btn-sm btn-primary" onclick="return confirm('Are you sure you want to send this refill application to the agency?')">
+                                            Send to Agency
                                         </button>
                                     </form>
                                     @else
-                                    <span class="badge badge-warning" id="buttonText">Sent</span>
+                                    <span class="badge badge-success" id="buttonText">Sent</span>
                                     @endif
                                 </td>
                                 <td>
@@ -109,30 +109,8 @@
 
     @include('template.home.layouts.footer')
     @include('template.home.layouts.scripts')
+    @include('template.home.custom_scripts.search_script')
 
-    <script>
-        document.getElementById('searchInput').addEventListener('keyup', function() {
-            var input = document.getElementById('searchInput').value.toLowerCase();
-            var rows = document.querySelectorAll('#refillTable tbody tr');
-
-            rows.forEach(function(row) {
-                var cells = row.querySelectorAll('td');
-                var match = false;
-
-                cells.forEach(function(cell) {
-                    if (cell.innerText.toLowerCase().includes(input)) {
-                        match = true;
-                    }
-                });
-
-                if (match) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        });
-    </script>
 
 </body>
 

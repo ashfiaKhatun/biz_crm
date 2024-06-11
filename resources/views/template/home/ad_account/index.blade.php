@@ -21,8 +21,11 @@
                 </div>
                 @endif
 
+                <div class="mb-3">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+                </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped verticle-middle">
+                    <table class="table table-bordered table-striped verticle-middle" id="refillTable">
                         <thead>
                             <tr>
                                 <th>Date</th>
@@ -118,6 +121,8 @@
     @include('template.home.layouts.footer')
 
     @include('template.home.layouts.scripts')
+
+    @include('template.home.custom_scripts.search_script')
 
 </body>
 
