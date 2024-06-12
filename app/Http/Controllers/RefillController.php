@@ -13,7 +13,10 @@ class RefillController extends Controller
 
     public function index()
     {
-        $refills = Refill::with('client', 'adAccount')->orderBy('created_at', 'desc')->get();
+        $refills = Refill::with('client', 'adAccount')
+            ->where('payment_method','!=','Transferred')
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('template.home.refill_application.index', compact('refills'));
     }
     public function pending()
@@ -42,7 +45,7 @@ class RefillController extends Controller
             'amount_taka' => 'nullable|numeric',
             'amount_dollar' => 'nullable|numeric',
             'payment_method' => 'required|string|max:255',
-            
+
             'screenshot' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -131,5 +134,5 @@ class RefillController extends Controller
         return redirect()->route('refills.index')->with('success', 'Status updated successfully.');
     }
 
-    
+
 }

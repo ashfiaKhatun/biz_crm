@@ -62,7 +62,7 @@
                                 <td>{{ $refill->amount_taka }}</td>
                                 <td>{{ $refill->payment_method }}</td>
                                 <td class="text-center">
-                                    @if ($refill->sent_to_agency == 0)
+                                    @if ($refill->sent_to_agency == 0 && $refill->payment_method != 'Transferred')
                                     <form action="{{ route('refill.sendToAgency', $refill->id) }}" method="post" style="display:inline-block;">
                                         @csrf
                                         <button type="submit" class="btn btn-sm btn-primary" onclick="return confirm('Are you sure you want to send this refill application to the agency?')">
