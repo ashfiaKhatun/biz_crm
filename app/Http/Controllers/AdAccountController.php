@@ -178,17 +178,7 @@ class AdAccountController extends Controller
     }
 
 
-    public function transferForm($id)
-    {
 
-        $adAccount = AdAccount::findOrFail($id);
-        $otherAdAccounts = AdAccount::where('id', '!=', $id)
-            ->where('client_id', $adAccount->client_id)
-            ->where('status', 'approved')
-            ->get();
-
-        return view('template.home.ad_account.transfer', compact('adAccount', 'otherAdAccounts'));
-    }
 
 
     public function transfer(Request $request, $id)
@@ -225,9 +215,6 @@ class AdAccountController extends Controller
 
 
 
-
-
-
-        return redirect()->route('ad-account.show', $adAccount->id)->with('success', 'Amount transferred successfully.');
+        return redirect()->route('my-account.show', $adAccount->id)->with('success', 'Amount transferred successfully.');
     }
 }
