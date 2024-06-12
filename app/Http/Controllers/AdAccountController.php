@@ -99,7 +99,10 @@ class AdAccountController extends Controller
     {
         $adAccount = AdAccount::findOrFail($id);
         $refills = Refill::where('ad_account_id', $id)->get();
-        return view('template.home.ad_account.myaccountshow', compact('adAccount', 'refills'));
+        $totalAmountUsd = Refill::where('ad_account_id', $id)
+                            ->where('status', 'approved')
+                            ->sum('amount_dollar');
+        return view('template.home.ad_account.myaccountshow', compact('adAccount', 'refills','totalAmountUsd'));
     }
 
     public function edit($id)

@@ -107,7 +107,11 @@
                     </div>
                     <div class="row">
                         <strong class="col-3">Dollar Rate:</strong>
-                        <p class="col-9 fs-4">{{ $adAccount->dollar_rate }}</p>
+                        <p class="col-9 fs-4">৳{{ $adAccount->dollar_rate }}</p>
+                    </div>
+                    <div class="row">
+                        <strong class="col-3">Total Refill Amount:</strong>
+                        <p class="col-9 fs-4">${{ $totalAmountUsd }}</p>
                     </div>
                     <div class="row">
                         <strong class="col-3">Status:</strong>
