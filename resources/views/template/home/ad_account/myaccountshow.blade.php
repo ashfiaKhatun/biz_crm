@@ -13,129 +13,137 @@
 
     <div class="content-body p-4">
         <div class="container">
-
             <div class="card text-black">
                 <div class="card-body">
-                    <div class="d-flex align-items-center mb-5">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
                         <h4 class="card-title mr-4 mt-2">Details of {{ $adAccount->ad_acc_name }}</h4>
-                        <a href="{{ route('refill.refill', $adAccount->id) }}">
-                            <button class="btn btn-primary">Refill<i class="fa-solid fa-fill m-r-5 ml-2"></i></button>
-                        </a>
-                        <!-- Transfer Button -->
-                    <button class="btn btn-secondary ml-2" data-toggle="modal" data-target="#transferModal">Transfer<i class="fa-solid fa-exchange-alt m-r-5 ml-2"></i></button>
+                        <div>
+                            <a href="{{ route('refill.refill', $adAccount->id) }}">
+                                <button class="btn btn-sm btn-primary">Refill<i class="fa-solid fa-fill m-r-5 ml-2"></i></button>
+                            </a>
+                            <!-- Transfer Button -->
+                            <button class="btn btn-sm btn-secondary text-white ml-2" data-toggle="modal" data-target="#transferModal">Transfer<i class="fa-solid fa-exchange-alt m-r-5 ml-2"></i></button>
+                        </div>
                     </div>
 
+                    <div class="d-flex">
+                        <div class="w-50 mr-5">
+                            <div class="row">
+                                <b class="col-4">Client Name:</b>
+                                <p class="col-8">{{ $adAccount->client->name }}</p>
+                            </div>
+                            <div class="row">
+                                <b class="col-4">Ad Account Name:</b>
+                                <p class="col-8">{{ $adAccount->ad_acc_name }}</p>
+                            </div>
+                            <div class="row">
+                                <b class="col-4">Business Manager ID:</b>
+                                <p class="col-8">{{ $adAccount->bm_id }}</p>
+                            </div>
 
-                    <div class="row">
-                        <strong class="col-3">Client Name:</strong>
-                        <p class="col-9 fs-4">{{ $adAccount->client->name }}</p>
-                    </div>
-                    <div class="row">
-                        <strong class="col-3">Ad Account Name:</strong>
-                        <p class="col-9 fs-4">{{ $adAccount->ad_acc_name }}</p>
-                    </div>
-                    <div class="row">
-                        <strong class="col-3">Business Manager ID:</strong>
-                        <p class="col-9 fs-4">{{ $adAccount->bm_id }}</p>
-                    </div>
 
-                    @if(isset($adAccount->fb_link1) && $adAccount->fb_link1 !== '')
-                    <div class="row">
-                        <strong class="col-3">Facebook Link 1:</strong>
-                        <p class="col-9 fs-4">{{ $adAccount->fb_link1 }}</p>
-                    </div>
-                    @endif
+                            <div class="row">
+                                <b class="col-4">Dollar Rate:</b>
+                                <p class="col-8">৳{{ $adAccount->dollar_rate }}</p>
+                            </div>
+                            <div class="row">
+                                <b class="col-4">Total Refill Amount:</b>
+                                <p class="col-8">${{ $totalAmountUsd }}</p>
+                            </div>
+                            <div class="row">
+                                <b class="col-4">Status:</b>
+                                <p class="col-8">
+                                    @if ($adAccount->status == 'pending')
+                                    <span class="badge badge-primary">Pending</span>
+                                    @endif
 
-                    @if(isset($adAccount->fb_link2) && $adAccount->fb_link2 !== '')
-                    <div class="row">
-                        <strong class="col-3">Facebook Link 2:</strong>
-                        <p class="col-9 fs-4">{{ $adAccount->fb_link2 }}</p>
-                    </div>
-                    @endif
+                                    @if ($adAccount->status == 'in-review')
+                                    <span class="badge badge-info">In Review</span>
+                                    @endif
 
-                    @if(isset($adAccount->fb_link3) && $adAccount->fb_link3 !== '')
-                    <div class="row">
-                        <strong class="col-3">Facebook Link 3:</strong>
-                        <p class="col-9 fs-4">{{ $adAccount->fb_link3 }}</p>
-                    </div>
-                    @endif
+                                    @if ($adAccount->status == 'approved')
+                                    <span class="badge custom-badge-success">Approved</span>
+                                    @endif
 
-                    @if(isset($adAccount->fb_link4) && $adAccount->fb_link4 !== '')
-                    <div class="row">
-                        <strong class="col-3">Facebook Link 4:</strong>
-                        <p class="col-9 fs-4">{{ $adAccount->fb_link4 }}</p>
-                    </div>
-                    @endif
+                                    @if ($adAccount->status == 'rejected')
+                                    <span class="badge badge-danger">Rejected</span>
+                                    @endif
 
-                    @if(isset($adAccount->fb_link5) && $adAccount->fb_link5 !== '')
-                    <div class="row">
-                        <strong class="col-3">Facebook Link 5:</strong>
-                        <p class="col-9 fs-4">{{ $adAccount->fb_link5 }}</p>
-                    </div>
-                    @endif
+                                    @if ($adAccount->status == 'canceled')
+                                    <span class="badge badge-warning">Canceled</span>
+                                    @endif
+                                </p>
+                            </div>
+                        </div>
 
-                    @if(isset($adAccount->domain1) && $adAccount->domain1 !== '')
-                    <div class="row">
-                        <strong class="col-3">Domain 1:</strong>
-                        <p class="col-9 fs-4">{{ $adAccount->domain1 }}</p>
-                    </div>
-                    @endif
-
-                    @if(isset($adAccount->domain2) && $adAccount->domain2 !== '')
-                    <div class="row">
-                        <strong class="col-3">Domain 2:</strong>
-                        <p class="col-9 fs-4">{{ $adAccount->domain2 }}</p>
-                    </div>
-                    @endif
-
-                    @if(isset($adAccount->domain3) && $adAccount->domain3 !== '')
-                    <div class="row">
-                        <strong class="col-3">Domain 3:</strong>
-                        <p class="col-9 fs-4">{{ $adAccount->domain3 }}</p>
-                    </div>
-                    @endif
-
-                    <div class="row">
-                        <strong class="col-3">Agency:</strong>
-                        <p class="col-9 fs-4">{{ $adAccount->agency->agency_name }}</p>
-                    </div>
-                    <div class="row">
-                        <strong class="col-3">Ad Account Type:</strong>
-                        <p class="col-9 fs-4">{{ $adAccount->ad_acc_type }}</p>
-                    </div>
-                    <div class="row">
-                        <strong class="col-3">Dollar Rate:</strong>
-                        <p class="col-9 fs-4">৳{{ $adAccount->dollar_rate }}</p>
-                    </div>
-                    <div class="row">
-                        <strong class="col-3">Total Refill Amount:</strong>
-                        <p class="col-9 fs-4">${{ $totalAmountUsd }}</p>
-                    </div>
-                    <div class="row">
-                        <strong class="col-3">Status:</strong>
-                        <p class="col-9 fs-4">
-                            @if ($adAccount->status == 'pending')
-                            <span class="badge badge-primary">Pending</span>
+                        <div class="w-50">
+                            @if(isset($adAccount->fb_link1) && $adAccount->fb_link1 !== '')
+                            <div class="row">
+                                <b class="col-4">Facebook Link 1:</b>
+                                <p class="col-8">{{ $adAccount->fb_link1 }}</p>
+                            </div>
                             @endif
 
-                            @if ($adAccount->status == 'in-review')
-                            <span class="badge badge-info">In Review</span>
+                            @if(isset($adAccount->fb_link2) && $adAccount->fb_link2 !== '')
+                            <div class="row">
+                                <b class="col-4">Facebook Link 2:</b>
+                                <p class="col-8">{{ $adAccount->fb_link2 }}</p>
+                            </div>
                             @endif
 
-                            @if ($adAccount->status == 'approved')
-                            <span class="badge custom-badge-success">Approved</span>
+                            @if(isset($adAccount->fb_link3) && $adAccount->fb_link3 !== '')
+                            <div class="row">
+                                <b class="col-4">Facebook Link 3:</b>
+                                <p class="col-8">{{ $adAccount->fb_link3 }}</p>
+                            </div>
                             @endif
 
-                            @if ($adAccount->status == 'rejected')
-                            <span class="badge badge-danger">Rejected</span>
+                            @if(isset($adAccount->fb_link4) && $adAccount->fb_link4 !== '')
+                            <div class="row">
+                                <b class="col-4">Facebook Link 4:</b>
+                                <p class="col-8">{{ $adAccount->fb_link4 }}</p>
+                            </div>
                             @endif
 
-                            @if ($adAccount->status == 'canceled')
-                            <span class="badge badge-warning">Canceled</span>
+                            @if(isset($adAccount->fb_link5) && $adAccount->fb_link5 !== '')
+                            <div class="row">
+                                <b class="col-4">Facebook Link 5:</b>
+                                <p class="col-8">{{ $adAccount->fb_link5 }}</p>
+                            </div>
                             @endif
-                        </p>
+
+                            @if(isset($adAccount->domain1) && $adAccount->domain1 !== '')
+                            <div class="row">
+                                <b class="col-4">Domain 1:</b>
+                                <p class="col-8">{{ $adAccount->domain1 }}</p>
+                            </div>
+                            @endif
+
+                            @if(isset($adAccount->domain2) && $adAccount->domain2 !== '')
+                            <div class="row">
+                                <b class="col-4">Domain 2:</b>
+                                <p class="col-8">{{ $adAccount->domain2 }}</p>
+                            </div>
+                            @endif
+
+                            @if(isset($adAccount->domain3) && $adAccount->domain3 !== '')
+                            <div class="row">
+                                <b class="col-4">Domain 3:</b>
+                                <p class="col-8">{{ $adAccount->domain3 }}</p>
+                            </div>
+                            @endif
+
+                            <div class="row">
+                                <b class="col-4">Agency:</b>
+                                <p class="col-8">{{ $adAccount->agency->agency_name }}</p>
+                            </div>
+                            <div class="row">
+                                <b class="col-4">Ad Account Type:</b>
+                                <p class="col-8">{{ $adAccount->ad_acc_type }}</p>
+                            </div>
+                        </div>
+
                     </div>
-
                 </div>
             </div>
 
@@ -196,7 +204,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                
+
 
                 <form method="POST" action="{{ route('ad_account.transfer', $adAccount->id) }}">
                     @csrf
@@ -209,7 +217,7 @@
                             <label for="recipient_account">Recipient Account</label>
                             <select class="form-control" id="recipient_account" name="recipient_account" required>
                                 @foreach($otherAdAccounts as $otherAdAccount)
-                                    <option value="{{ $otherAdAccount->id }}">{{ $otherAdAccount->ad_acc_name }}</option>
+                                <option value="{{ $otherAdAccount->id }}">{{ $otherAdAccount->ad_acc_name }}</option>
                                 @endforeach
                             </select>
                         </div>

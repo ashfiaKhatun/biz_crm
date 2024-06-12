@@ -25,13 +25,8 @@
 
                                 <div>
                                     <a href="{{ route('ad-account.edit', $adAccount->id) }}">
-                                        <button class="btn btn-secondary text-white">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
+                                        <button class="btn btn-sm btn-secondary text-white">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
                                     </a>
-                                    @if (isset($adAccount->status) && $adAccount->status == 'approved')
-                                    <a href="{{ route('refill.refill', $adAccount->id) }}">
-                                        <button class="btn btn-primary">Refill<i class="fa-solid fa-fill m-r-5 ml-2"></i></button>
-                                    </a>
-                                    @endif
                                 </div>
 
                             </div>
@@ -141,18 +136,10 @@
                                     </select>
                                 </form>
                             </div>
-                            <div class="d-flex justify-content-end">
-                                @if (isset($adAccount->status) && $adAccount->status == 'approved')
-                                <!-- Transfer Button -->
-                                <a href="{{ route('ad_account.transferForm', $adAccount->id) }}">
-                                    <button class="btn btn-sm btn-secondary text-white mt-2">Transfer<i class="fa-solid fa-exchange-alt m-r-5 ml-2"></i></button>
-                                </a>
-                                @endif
-                            </div>
                         </div>
                     </div>
-
                 </div>
+                
                 <div class="col-4">
                     <div class="card">
                         <div class="card-body font-sm">
