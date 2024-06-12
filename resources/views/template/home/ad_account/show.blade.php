@@ -4,16 +4,7 @@
 <head>
     @include('template.home.layouts.head')
 
-    <style>
-        .text-black {
-            color: black;
-        }
-
-        .font-sm {
-            font-size: 13px;
-        }
-    </style>
-
+    @include('template.home.custom_styles.custom')
 </head>
 
 <body>

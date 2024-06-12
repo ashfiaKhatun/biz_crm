@@ -59,6 +59,9 @@
 
                                 <td>
                                     <span>
+                                        <a href="{{ route('adaccount.adaccount', $user->id) }}" data-toggle="tooltip" data-placement="top" title="Add New Ad Account">
+                                            <i class="fa fa-plus color-muted m-r-5 ml-2"></i>
+                                        </a>
 
                                         <a href="{{ route('client.edit', $user->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                             <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>

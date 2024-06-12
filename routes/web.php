@@ -57,6 +57,8 @@ Route::put('ad-account/{id}', [AdAccountController::class, 'update'])->middlewar
 Route::delete('ad-account/{id}', [AdAccountController::class, 'destroy'])->middleware(['auth', 'verified'])->name('ad-account.destroy');
 Route::patch('ad-account/{id}/status', [AdAccountController::class, 'updateStatus'])->middleware(['auth', 'verified'])->name('ad-account.updateStatus');
 
+Route::get('/clients/{user}/ad-account', [AdAccountController::class, 'ad_account_id'])->middleware(['auth', 'verified'])->name('adaccount.adaccount');
+
 
 //ad account end
 

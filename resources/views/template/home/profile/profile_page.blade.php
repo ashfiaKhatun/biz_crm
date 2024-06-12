@@ -75,8 +75,6 @@
     ***********************************-->
     @include('template.home.layouts.scripts')
 
-    @include('template.home.custom_scripts.add_agency_script')
-
 </body>
 
 </html>

@@ -35,6 +35,15 @@ class AdAccountController extends Controller
         $customers = User::where('role', 'customer')->get(); // Fetch all users with role 'customer'
         return view('template.home.ad_account.ad_account_application', compact('agencies', 'customers')); // Pass the data to the view
     }
+    
+    public function ad_account_id(User $user)
+    {
+        $agencies = Agencies::all(); // Fetch all ad account agencies
+        $customers = User::where('role', 'customer')->get(); // Fetch all users with role 'customer'
+        return view('template.home.ad_account.ad_account_application_id', compact('user', 'agencies', 'customers')); // Pass the data to the view
+    }
+
+    
 
     public function store(Request $request)
     {
