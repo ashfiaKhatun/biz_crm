@@ -59,8 +59,8 @@ Route::patch('ad-account/{id}/status', [AdAccountController::class, 'updateStatu
 
 Route::get('/clients/{user}/ad-account', [AdAccountController::class, 'ad_account_id'])->middleware(['auth', 'verified'])->name('adaccount.adaccount');
 
-Route::get('ad_account/{id}/show', [AdAccountController::class, 'myaccountshow'])->middleware(['auth', 'verified'])->name('ad_account.myaccountshow');
-Route::get('ad_account/{id}/transfer', [AdAccountController::class, 'transferForm'])->middleware(['auth', 'verified'])->name('ad_account.transferForm');
+
+
 Route::post('ad_account/{id}/transfer', [AdAccountController::class, 'transfer'])->middleware(['auth', 'verified'])->name('ad_account.transfer');
 
 
