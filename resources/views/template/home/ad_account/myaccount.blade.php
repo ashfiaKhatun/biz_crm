@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-@include('template.home.layouts.head')
+    @include('template.home.layouts.head')
 </head>
 
 <body>
@@ -13,7 +13,12 @@
     <div class="content-body p-4">
         <div class="card">
             <div class="card-body">
-                <h2 class="card-title">My Ad Accounts</h2>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="card-title mr-4 mt-2">My Ad Accounts</h4>
+                    <a href="{{ route('ad-account-application') }}">
+                        <button class="btn btn-secondary">New Application<i class="fa fa-plus color-muted m-r-5 ml-2"></i></button>
+                    </a>
+                </div>
 
                 @if(session('success'))
                 <div class="alert alert-success">
@@ -43,23 +48,23 @@
                                 <td>{{ $adAccount->dollar_rate }}৳</td>
                                 <td>
                                     @if ($adAccount->status == 'pending')
-                                        <span class="badge badge-primary">Pending</span>
+                                    <span class="badge badge-primary">Pending</span>
                                     @endif
 
                                     @if ($adAccount->status == 'in-review')
-                                        <span class="badge badge-info">In Review</span>
+                                    <span class="badge badge-info">In Review</span>
                                     @endif
 
                                     @if ($adAccount->status == 'approved')
-                                        <span class="badge badge-success">Approved</span>
+                                    <span class="badge badge-success">Approved</span>
                                     @endif
 
                                     @if ($adAccount->status == 'rejected')
-                                        <span class="badge badge-danger">Rejected</span>
+                                    <span class="badge badge-danger">Rejected</span>
                                     @endif
 
                                     @if ($adAccount->status == 'canceled')
-                                        <span class="badge badge-warning">Canceled</span>
+                                    <span class="badge badge-warning">Canceled</span>
                                     @endif
 
                                 </td>
@@ -68,9 +73,9 @@
                                         <a href="{{ route('my-account.show', $adAccount->id) }}" data-toggle="tooltip" data-placement="top" title="View">
                                             <i class="fa fa-eye color-muted m-r-5  ml-3"></i>
                                         </a>
-                                        
+
                                         <a href="{{ route('refill.refill', $adAccount->id) }}" data-toggle="tooltip" data-placement="top" title="Refill">
-                                        <i class="fa-solid fa-fill m-r-5 ml-2"></i>
+                                            <i class="fa-solid fa-fill m-r-5 ml-2"></i>
                                         </a>
 
 

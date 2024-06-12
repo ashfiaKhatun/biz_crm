@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-@include('template.home.layouts.head')
+    @include('template.home.layouts.head')
 </head>
 
 <body>
@@ -34,9 +34,20 @@
             <div class="p-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">All Agencies</h4>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="card-title mr-4 mt-2">All Agencies</h4>
+                    <a href="{{ route('add-agency') }}">
+                        <button class="btn btn-secondary">New Agency<i class="fa fa-plus color-muted m-r-5 ml-2"></i></button>
+                    </a>
+                </div>
+
+                        <!-- Search Field -->
+                        <div class="mb-3 w-25">
+                            <input type="text" id="searchInput" class="form-control rounded" placeholder="Search...">
+                        </div>
+                        
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped verticle-middle">
+                            <table class="table table-bordered table-striped verticle-middle" id="refillTable">
                                 <thead>
                                     <tr>
                                         <th scope="col">Agency Name</th>
@@ -104,6 +115,8 @@
         Scripts
     ***********************************-->
     @include('template.home.layouts.scripts')
+
+    @include('template.home.custom_scripts.search_script')
 
 
 </body>

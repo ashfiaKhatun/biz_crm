@@ -28,7 +28,7 @@
                 <div class="col-8">
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-5">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
                                 <h4 class="card-title mr-4 mt-2">Details of {{ $adAccount->ad_acc_name }}</h4>
                                 <div>
                                     <a href="{{ route('ad-account.edit', $adAccount->id) }}">

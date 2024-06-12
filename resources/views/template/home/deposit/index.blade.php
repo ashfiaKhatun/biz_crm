@@ -18,6 +18,11 @@
                         <div class="card-body">
                             <h2 class="card-title">All Deposits</h2>
 
+                            <!-- Search Field -->
+                            <div class="mb-3 w-25">
+                                <input type="text" id="searchInput" class="form-control rounded" placeholder="Search...">
+                            </div>
+
                             @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
@@ -26,7 +31,7 @@
 
                             <div class="table-responsive">
 
-                                <table class="table table-bordered table-striped verticle-middle">
+                                <table class="table table-bordered table-striped verticle-middle" id="refillTable">
                                     <thead>
                                         <tr>
 
@@ -92,7 +97,7 @@
                 <div class="col-4">
                     <div class="card">
                         <div class="card-body">
-                        <h5 class="mb-3">Last three months average USD rate</h5>
+                            <h5 class="mb-3">Last three months average USD rate</h5>
                             @foreach ($averageRates as $rate)
                             <div class="row">
                                 <b class="col-5">{{ \Carbon\Carbon::create()->month($rate->month)->format('F') }}
@@ -115,6 +120,7 @@
 
     @include('template.home.layouts.footer')
     @include('template.home.layouts.scripts')
+    @include('template.home.custom_scripts.search_script')
 
 </body>
 

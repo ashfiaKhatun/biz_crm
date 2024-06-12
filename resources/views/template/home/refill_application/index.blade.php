@@ -18,23 +18,24 @@
     <div class="content-body p-4">
         <div class="card">
             <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-5">
+                <div class="d-flex justify-content-between align-items-center mb-2">
                     <h4 class="card-title mr-4 mt-2">Refill Applications</h4>
                     <a href="{{ route('refill-application') }}">
                         <button class="btn btn-secondary">New Refill<i class="fa fa-plus color-muted m-r-5 ml-2"></i></button>
                     </a>
                 </div>
 
+                <!-- Search Field -->
+                <div class="mb-3 w-25">
+                    <input type="text" id="searchInput" class="form-control rounded" placeholder="Search...">
+                </div>
+                
                 @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
                 @endif
 
-                <!-- Search Field -->
-                <div class="mb-3">
-                    <input type="text" id="searchInput" class="form-control" placeholder="Search...">
-                </div>
 
                 <div class="table-responsive text-nowrap">
                     <table class="table table-bordered table-striped verticle-middle" id="refillTable">
@@ -64,7 +65,7 @@
                                     @if ($refill->sent_to_agency == 0)
                                     <form action="{{ route('refill.sendToAgency', $refill->id) }}" method="post" style="display:inline-block;">
                                         @csrf
-                                        <button type="submit" class="btn-sm btn-primary" onclick="return confirm('Are you sure you want to send this refill application to the agency?')">
+                                        <button type="submit" class="btn btn-sm btn-primary" onclick="return confirm('Are you sure you want to send this refill application to the agency?')">
                                             Send to Agency
                                         </button>
                                     </form>

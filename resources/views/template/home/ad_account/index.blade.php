@@ -13,7 +13,19 @@
     <div class="content-body p-4">
         <div class="card">
             <div class="card-body">
-                <h2 class="card-title">Ad Account Applications</h2>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="card-title mr-4 mt-2">Ad Account Applications</h4>
+                    <a href="{{ route('ad-account-application') }}">
+                        <button class="btn btn-secondary">New Application<i class="fa fa-plus color-muted m-r-5 ml-2"></i></button>
+                    </a>
+                </div>
+
+                <!-- <h2 class="card-title">Ad Account Applications</h2> -->
+
+                <!-- Search Field -->
+                <div class="mb-3 w-25">
+                    <input type="text" id="searchInput" class="form-control rounded" placeholder="Search...">
+                </div>
 
                 @if (session('success'))
                 <div class="alert alert-success">
@@ -21,9 +33,7 @@
                 </div>
                 @endif
 
-                <div class="mb-3">
-                    <input type="text" id="searchInput" class="form-control" placeholder="Search...">
-                </div>
+
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped verticle-middle" id="refillTable">
                         <thead>
