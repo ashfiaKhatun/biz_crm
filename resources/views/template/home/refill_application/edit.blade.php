@@ -80,7 +80,7 @@
 
                 <div>
                     <label class="col-form-label">Status</label>
-                    <select name="status" class="form-control rounded">
+                    <select name="status" class="form-select-sm rounded" style="width: 90px;">
                         <option value="pending" {{ $refill->status == 'pending' ? 'selected' : '' }}>Pending</option>
                         <option value="approved" {{ $refill->status == 'approved' ? 'selected' : '' }}>Approved</option>
                         <option value="rejected" {{ $refill->status == 'rejected' ? 'selected' : '' }}>Rejected</option>

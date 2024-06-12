@@ -3,11 +3,7 @@
 
 <head>
     @include('template.home.layouts.head')
-    <style>
-        .font-sm {
-            font-size: 12px;
-        }
-    </style>
+    @include('template.home.custom_styles.custom_style')
 </head>
 
 <body>
@@ -70,14 +66,14 @@
                                         </button>
                                     </form>
                                     @else
-                                    <span class="badge badge-success" id="buttonText">Sent</span>
+                                    <span class="badge custom-badge-success" id="buttonText">Sent</span>
                                     @endif
                                 </td>
                                 <td>
                                     <form action="{{ route('refills.updateStatus', $refill->id) }}" method="post">
                                         @csrf
                                         @method('PATCH')
-                                        <select name="status" class="form-control" style="width: 100px;" onchange="this.form.submit()">
+                                        <select name="status" class="form-select-sm rounded" style="width: 90px;" onchange="this.form.submit()">
                                             <option value="pending" {{ $refill->status == 'pending' ? 'selected' : '' }}>Pending</option>
                                             <option value="approved" {{ $refill->status == 'approved' ? 'selected' : '' }}>Approved</option>
                                             <option value="rejected" {{ $refill->status == 'rejected' ? 'selected' : '' }}>Rejected</option>

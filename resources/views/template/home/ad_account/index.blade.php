@@ -3,7 +3,7 @@
 
 <head>
     @include('template.home.layouts.head')
-@include('template.home.custom_styles.custom_style')
+    @include('template.home.custom_styles.custom_style')
 </head>
 
 <body>
@@ -59,25 +59,25 @@
                                 <td>{{ $adAccount->agency->agency_name }}</td>
                                 <td>{{ $adAccount->dollar_rate }}৳</td>
 
-                                <td>
+                                <td class="text-center">
                                     @if ($adAccount->status == 'pending')
-                                    <span class="badge badge-primary">Pending</span>
+                                    <span class="badge custom-badge-info">Pending</span>
                                     @endif
 
                                     @if ($adAccount->status == 'in-review')
-                                    <span class="badge badge-info">In Review</span>
+                                    <span class="badge custom-badge-primary">In Review</span>
                                     @endif
 
                                     @if ($adAccount->status == 'approved')
-                                    <span class="badge badge-success">Approved</span>
+                                    <span class="badge custom-badge-success">Approved</span>
                                     @endif
 
                                     @if ($adAccount->status == 'rejected')
-                                    <span class="badge badge-danger">Rejected</span>
+                                    <span class="badge badge-danger px-3 py-1">Rejected</span>
                                     @endif
 
                                     @if ($adAccount->status == 'canceled')
-                                    <span class="badge badge-warning">Canceled</span>
+                                    <span class="badge badge-warning px-3 py-1 text-white">Canceled</span>
                                     @endif
 
                                 </td>
@@ -85,7 +85,7 @@
                                     <form action="{{ route('ad-account.updateStatus', $adAccount->id) }}" method="post">
                                         @csrf
                                         @method('PATCH')
-                                        <select name="status" class="form-control rounded" style="width: 120px;" onchange="this.form.submit()">
+                                        <select name="status" class="form-select-sm rounded" style="width: 90px;" onchange="this.form.submit()">
                                             <option value="pending" {{ $adAccount->status == 'pending' ? 'selected' : '' }}>Pending
                                             </option>
                                             <option value="in-review" {{ $adAccount->status == 'in-review' ? 'selected' : '' }}>In Review

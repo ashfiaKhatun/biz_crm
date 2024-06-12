@@ -162,7 +162,7 @@
 
                 <div>
                     <label class="col-form-label">Status:</label>
-                    <select name="status" class="form-control rounded">
+                    <select name="status" class="form-select-sm rounded" style="width: 90px;">
                         <option value="pending" {{ $adAccount->status == 'pending' ? 'selected' : '' }}>Pending
                         </option>
                         <option value="in-review" {{ $adAccount->status == 'in-review' ? 'selected' : '' }}>In Review
