@@ -21,6 +21,8 @@
                         <a href="{{ route('refill.refill', $adAccount->id) }}">
                             <button class="btn btn-primary">Refill<i class="fa-solid fa-fill m-r-5 ml-2"></i></button>
                         </a>
+                        <!-- Transfer Button -->
+                    <button class="btn btn-secondary ml-2" data-toggle="modal" data-target="#transferModal">Transfer<i class="fa-solid fa-exchange-alt m-r-5 ml-2"></i></button>
                     </div>
 
 
@@ -182,6 +184,42 @@
             </div>
 
             <a href="{{ route('my-account.index') }}" class="btn btn-secondary text-white mt-3">Back</a>
+        </div>
+    </div>
+    <!-- Transfer Modal -->
+    <div class="modal fade" id="transferModal" tabindex="-1" role="dialog" aria-labelledby="transferModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="transferModalLabel">Transfer USD</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+
+                <form method="POST" action="{{ route('ad_account.transfer', $adAccount->id) }}">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="transfer_amount">Amount (USD)</label>
+                            <input type="number" class="form-control" id="transfer_amount" name="transfer_amount" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient_account">Recipient Account</label>
+                            <select class="form-control" id="recipient_account" name="recipient_account" required>
+                                @foreach($otherAdAccounts as $otherAdAccount)
+                                    <option value="{{ $otherAdAccount->id }}">{{ $otherAdAccount->ad_acc_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Transfer</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

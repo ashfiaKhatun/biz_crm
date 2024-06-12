@@ -95,7 +95,7 @@ class AdAccountController extends Controller
         $totalAmountUsd = Refill::where('ad_account_id', $id)
             ->where('status', 'approved')
             ->sum('amount_dollar');
-        return view('template.home.ad_account.show', compact('adAccount','totalAmountUsd'));
+        return view('template.home.ad_account.show', compact('adAccount', 'totalAmountUsd'));
     }
 
     public function myaccountshow($id)
@@ -105,7 +105,12 @@ class AdAccountController extends Controller
         $totalAmountUsd = Refill::where('ad_account_id', $id)
             ->where('status', 'approved')
             ->sum('amount_dollar');
-        return view('template.home.ad_account.myaccountshow', compact('adAccount', 'refills', 'totalAmountUsd'));
+
+        $otherAdAccounts = AdAccount::where('id', '!=', $id)
+            ->where('client_id', $adAccount->client_id)
+            ->where('status', 'approved')
+            ->get();
+        return view('template.home.ad_account.myaccountshow', compact('adAccount', 'refills', 'totalAmountUsd','otherAdAccounts'));
     }
 
     public function edit($id)
@@ -217,11 +222,11 @@ class AdAccountController extends Controller
                 'status' => 'approved',
             ]
         );
-        
 
-        
 
-        
+
+
+
 
         return redirect()->route('ad-account.show', $adAccount->id)->with('success', 'Amount transferred successfully.');
     }
