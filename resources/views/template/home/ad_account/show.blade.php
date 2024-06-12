@@ -21,14 +21,24 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <h4 class="card-title mr-4 mt-2">Details of {{ $adAccount->ad_acc_name }}</h4>
+                                </a>
+                                @if (isset($adAccount->status) && $adAccount->status == 'approved')
+                                <!-- Transfer Button -->
+                                <a href="{{ route('ad_account.transferForm', $adAccount->id) }}">
+                                    <button class="btn btn-secondary ml-2">Transfer<i
+                                            class="fa-solid fa-exchange-alt m-r-5 ml-2"></i></button>
+                                </a>
+                                @endif
                                 <div>
                                     <a href="{{ route('ad-account.edit', $adAccount->id) }}">
-                                        <button class="btn btn-secondary text-white">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
+                                        <button class="btn btn-secondary text-white">Edit Info<i
+                                                class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
                                     </a>
-                                    @if(isset($adAccount->status) && $adAccount->status == 'approved')
-                                    <a href="{{ route('refill.refill', $adAccount->id) }}">
-                                        <button class="btn btn-primary">Refill<i class="fa-solid fa-fill m-r-5 ml-2"></i></button>
-                                    </a>
+                                    @if (isset($adAccount->status) && $adAccount->status == 'approved')
+                                        <a href="{{ route('refill.refill', $adAccount->id) }}">
+                                            <button class="btn btn-primary">Refill<i
+                                                    class="fa-solid fa-fill m-r-5 ml-2"></i></button>
+                                        </a>
                                     @endif
                                 </div>
 
@@ -43,60 +53,60 @@
                                 <p class="col-8 ">{{ $adAccount->bm_id }}</p>
                             </div>
 
-                            @if(isset($adAccount->fb_link1) && $adAccount->fb_link1 !== '')
-                            <div class="row">
-                                <b class="col-4">Facebook Link 1:</b>
-                                <p class="col-8 ">{{ $adAccount->fb_link1 }}</p>
-                            </div>
+                            @if (isset($adAccount->fb_link1) && $adAccount->fb_link1 !== '')
+                                <div class="row">
+                                    <b class="col-4">Facebook Link 1:</b>
+                                    <p class="col-8 ">{{ $adAccount->fb_link1 }}</p>
+                                </div>
                             @endif
 
-                            @if(isset($adAccount->fb_link2) && $adAccount->fb_link2 !== '')
-                            <div class="row">
-                                <b class="col-4">Facebook Link 2:</b>
-                                <p class="col-8 ">{{ $adAccount->fb_link2 }}</p>
-                            </div>
+                            @if (isset($adAccount->fb_link2) && $adAccount->fb_link2 !== '')
+                                <div class="row">
+                                    <b class="col-4">Facebook Link 2:</b>
+                                    <p class="col-8 ">{{ $adAccount->fb_link2 }}</p>
+                                </div>
                             @endif
 
-                            @if(isset($adAccount->fb_link3) && $adAccount->fb_link3 !== '')
-                            <div class="row">
-                                <b class="col-4">Facebook Link 3:</b>
-                                <p class="col-8 ">{{ $adAccount->fb_link3 }}</p>
-                            </div>
+                            @if (isset($adAccount->fb_link3) && $adAccount->fb_link3 !== '')
+                                <div class="row">
+                                    <b class="col-4">Facebook Link 3:</b>
+                                    <p class="col-8 ">{{ $adAccount->fb_link3 }}</p>
+                                </div>
                             @endif
 
-                            @if(isset($adAccount->fb_link4) && $adAccount->fb_link4 !== '')
-                            <div class="row">
-                                <b class="col-4">Facebook Link 4:</b>
-                                <p class="col-8 ">{{ $adAccount->fb_link4 }}</p>
-                            </div>
+                            @if (isset($adAccount->fb_link4) && $adAccount->fb_link4 !== '')
+                                <div class="row">
+                                    <b class="col-4">Facebook Link 4:</b>
+                                    <p class="col-8 ">{{ $adAccount->fb_link4 }}</p>
+                                </div>
                             @endif
 
-                            @if(isset($adAccount->fb_link5) && $adAccount->fb_link5 !== '')
-                            <div class="row">
-                                <b class="col-4">Facebook Link 5:</b>
-                                <p class="col-8 ">{{ $adAccount->fb_link5 }}</p>
-                            </div>
+                            @if (isset($adAccount->fb_link5) && $adAccount->fb_link5 !== '')
+                                <div class="row">
+                                    <b class="col-4">Facebook Link 5:</b>
+                                    <p class="col-8 ">{{ $adAccount->fb_link5 }}</p>
+                                </div>
                             @endif
 
-                            @if(isset($adAccount->domain1) && $adAccount->domain1 !== '')
-                            <div class="row">
-                                <b class="col-4">Domain 1:</b>
-                                <p class="col-8 ">{{ $adAccount->domain1 }}</p>
-                            </div>
+                            @if (isset($adAccount->domain1) && $adAccount->domain1 !== '')
+                                <div class="row">
+                                    <b class="col-4">Domain 1:</b>
+                                    <p class="col-8 ">{{ $adAccount->domain1 }}</p>
+                                </div>
                             @endif
 
-                            @if(isset($adAccount->domain2) && $adAccount->domain2 !== '')
-                            <div class="row">
-                                <b class="col-4">Domain 2:</b>
-                                <p class="col-8 ">{{ $adAccount->domain2 }}</p>
-                            </div>
+                            @if (isset($adAccount->domain2) && $adAccount->domain2 !== '')
+                                <div class="row">
+                                    <b class="col-4">Domain 2:</b>
+                                    <p class="col-8 ">{{ $adAccount->domain2 }}</p>
+                                </div>
                             @endif
 
-                            @if(isset($adAccount->domain3) && $adAccount->domain3 !== '')
-                            <div class="row">
-                                <b class="col-4">Domain 3:</b>
-                                <p class="col-8 ">{{ $adAccount->domain3 }}</p>
-                            </div>
+                            @if (isset($adAccount->domain3) && $adAccount->domain3 !== '')
+                                <div class="row">
+                                    <b class="col-4">Domain 3:</b>
+                                    <p class="col-8 ">{{ $adAccount->domain3 }}</p>
+                                </div>
                             @endif
 
                             <div class="row">
@@ -111,21 +121,41 @@
                                 <b class="col-4">Dollar Rate:</b>
                                 <p class="col-8 ">{{ $adAccount->dollar_rate }}</p>
                             </div>
+                            
+                            <div class="row">
+                                <strong class="col-4">Total Refill Amount:</strong>
+                                <p class="col-8">${{ $totalAmountUsd }}</p>
+                            </div>
                             <div class="row">
                                 <b class="col-4">Status:</b>
                                 <form action="{{ route('ad-account.updateStatus', $adAccount->id) }}" method="post">
                                     @csrf
                                     @method('PATCH')
                                     <select name="status" class="form-control rounded" onchange="this.form.submit()">
-                                        <option class="{{ $adAccount->status == 'in-review'  || $adAccount->status == 'canceled' || $adAccount->status == 'approved' || $adAccount->status == 'rejected' ? 'd-none' : '' }}" value="pending" {{ $adAccount->status == 'pending' ? 'selected' : '' }}>Pending
+                                        <option
+                                            class="{{ $adAccount->status == 'in-review' || $adAccount->status == 'canceled' || $adAccount->status == 'approved' || $adAccount->status == 'rejected' ? 'd-none' : '' }}"
+                                            value="pending" {{ $adAccount->status == 'pending' ? 'selected' : '' }}>
+                                            Pending
                                         </option>
-                                        <option class="{{ $adAccount->status == 'approved' || $adAccount->status == 'rejected' || $adAccount->status == 'canceled' ? 'd-none' : '' }}" value="in-review" {{ $adAccount->status == 'in-review' ? 'selected' : '' }}>In Review
+                                        <option
+                                            class="{{ $adAccount->status == 'approved' || $adAccount->status == 'rejected' || $adAccount->status == 'canceled' ? 'd-none' : '' }}"
+                                            value="in-review"
+                                            {{ $adAccount->status == 'in-review' ? 'selected' : '' }}>In Review
                                         </option>
-                                        <option class="{{ $adAccount->status == 'canceled' || $adAccount->status == 'rejected' ? 'd-none' : '' }}" value="approved" {{ $adAccount->status == 'approved' ? 'selected' : '' }}>Approved
+                                        <option
+                                            class="{{ $adAccount->status == 'canceled' || $adAccount->status == 'rejected' ? 'd-none' : '' }}"
+                                            value="approved" {{ $adAccount->status == 'approved' ? 'selected' : '' }}>
+                                            Approved
                                         </option>
-                                        <option class="{{ $adAccount->status == 'approved' || $adAccount->status == 'rejected' ? 'd-none' : '' }}" value="canceled" {{ $adAccount->status == 'canceled' ? 'selected' : '' }}>Canceled
+                                        <option
+                                            class="{{ $adAccount->status == 'approved' || $adAccount->status == 'rejected' ? 'd-none' : '' }}"
+                                            value="canceled" {{ $adAccount->status == 'canceled' ? 'selected' : '' }}>
+                                            Canceled
                                         </option>
-                                        <option class="{{ $adAccount->status == 'approved' || $adAccount->status == 'canceled' ? 'd-none' : '' }}" value="rejected" {{ $adAccount->status == 'rejected' ? 'selected' : '' }}>Rejected
+                                        <option
+                                            class="{{ $adAccount->status == 'approved' || $adAccount->status == 'canceled' ? 'd-none' : '' }}"
+                                            value="rejected" {{ $adAccount->status == 'rejected' ? 'selected' : '' }}>
+                                            Rejected
                                         </option>
                                     </select>
                                 </form>

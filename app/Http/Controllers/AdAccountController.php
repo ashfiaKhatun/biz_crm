@@ -23,7 +23,7 @@ class AdAccountController extends Controller
         $userId = Auth::id(); // Get the ID of the current authenticated user
         $adAccounts = AdAccount::where('status', 'approved')
             ->where('client_id', $userId)
-           ->orderBy('created_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
         return view('template.home.ad_account.myaccount', compact('adAccounts'));
     }
@@ -35,7 +35,7 @@ class AdAccountController extends Controller
         $customers = User::where('role', 'customer')->get(); // Fetch all users with role 'customer'
         return view('template.home.ad_account.ad_account_application', compact('agencies', 'customers')); // Pass the data to the view
     }
-    
+
     public function ad_account_id(User $user)
     {
         $agencies = Agencies::all(); // Fetch all ad account agencies
@@ -43,7 +43,7 @@ class AdAccountController extends Controller
         return view('template.home.ad_account.ad_account_application_id', compact('user', 'agencies', 'customers')); // Pass the data to the view
     }
 
-    
+
 
     public function store(Request $request)
     {
@@ -92,7 +92,10 @@ class AdAccountController extends Controller
     public function show($id)
     {
         $adAccount = AdAccount::findOrFail($id);
-        return view('template.home.ad_account.show', compact('adAccount'));
+        $totalAmountUsd = Refill::where('ad_account_id', $id)
+            ->where('status', 'approved')
+            ->sum('amount_dollar');
+        return view('template.home.ad_account.show', compact('adAccount','totalAmountUsd'));
     }
 
     public function myaccountshow($id)
@@ -100,9 +103,9 @@ class AdAccountController extends Controller
         $adAccount = AdAccount::findOrFail($id);
         $refills = Refill::where('ad_account_id', $id)->get();
         $totalAmountUsd = Refill::where('ad_account_id', $id)
-                            ->where('status', 'approved')
-                            ->sum('amount_dollar');
-        return view('template.home.ad_account.myaccountshow', compact('adAccount', 'refills','totalAmountUsd'));
+            ->where('status', 'approved')
+            ->sum('amount_dollar');
+        return view('template.home.ad_account.myaccountshow', compact('adAccount', 'refills', 'totalAmountUsd'));
     }
 
     public function edit($id)
@@ -167,5 +170,59 @@ class AdAccountController extends Controller
     {
         $adAccounts = AdAccount::where('status', 'approved')->orderBy('created_at', 'desc')->get();
         return view('template.home.ad_account.index', compact('adAccounts'));
+    }
+
+
+    public function transferForm($id)
+    {
+
+        $adAccount = AdAccount::findOrFail($id);
+        $otherAdAccounts = AdAccount::where('id', '!=', $id)
+            ->where('client_id', $adAccount->client_id)
+            ->where('status', 'approved')
+            ->get();
+
+        return view('template.home.ad_account.transfer', compact('adAccount', 'otherAdAccounts'));
+    }
+
+
+    public function transfer(Request $request, $id)
+    {
+        $request->validate([
+            'transfer_amount' => 'required|numeric|min:0.01',
+            'recipient_account' => 'required|exists:ad_accounts,id',
+        ]);
+
+        $adAccount = AdAccount::findOrFail($id);
+        $recipientAccount = AdAccount::findOrFail($request->recipient_account);
+
+        Refill::create(
+            [
+                'client_id' => $adAccount->client_id,
+                'ad_account_id' => $adAccount->id,
+                'amount_dollar' => -($request['transfer_amount']),
+                'amount_taka' => -($adAccount->dollar_rate * $request['transfer_amount']),
+                'payment_method' => 'Transferred',
+                'status' => 'approved',
+            ]
+        );
+
+        Refill::create(
+            [
+                'client_id' => $recipientAccount->client_id,
+                'ad_account_id' => $recipientAccount->id,
+                'amount_dollar' => $request['transfer_amount'],
+                'amount_taka' => ($adAccount->dollar_rate * $request['transfer_amount']),
+                'payment_method' => 'Transferred',
+                'status' => 'approved',
+            ]
+        );
+        
+
+        
+
+        
+
+        return redirect()->route('ad-account.show', $adAccount->id)->with('success', 'Amount transferred successfully.');
     }
 }
