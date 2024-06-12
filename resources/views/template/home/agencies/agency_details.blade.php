@@ -41,7 +41,7 @@
                     <div class="d-flex align-items-center mb-5">
                         <h4 class="card-title mr-4 mt-2">Details of {{ $agency->agency_name }}</h4>
                         <a href="{{ route('agency.update', $agency->id) }}">
-                        <button class="btn btn-secondary">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
+                        <button class="btn btn-secondary text-white">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
                         </a>
 
                     </div>

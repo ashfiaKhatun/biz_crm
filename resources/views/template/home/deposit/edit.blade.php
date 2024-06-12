@@ -3,6 +3,7 @@
 
 <head>
     @include('template.home.layouts.head')
+@include('template.home.custom_styles.custom_style')
 </head>
 
 <body>

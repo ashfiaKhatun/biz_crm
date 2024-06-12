@@ -4,7 +4,7 @@
 <head>
     @include('template.home.layouts.head')
 
-    @include('template.home.custom_styles.custom')
+    @include('template.home.custom_styles.custom_style')
 </head>
 
 <body>
@@ -23,7 +23,7 @@
                                 <h4 class="card-title mr-4 mt-2">Details of {{ $adAccount->ad_acc_name }}</h4>
                                 <div>
                                     <a href="{{ route('ad-account.edit', $adAccount->id) }}">
-                                        <button class="btn btn-secondary">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
+                                        <button class="btn btn-secondary text-white">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
                                     </a>
                                     @if(isset($adAccount->status) && $adAccount->status == 'approved')
                                     <a href="{{ route('refill.refill', $adAccount->id) }}">
@@ -168,7 +168,7 @@
 
             </div>
 
-            <a href="{{ route('ad-account.index') }}" class="btn btn-secondary mt-3">Back</a>
+            <a href="{{ route('ad-account.index') }}" class="btn btn-secondary text-white mt-3">Back</a>
         </div>
     </div>
 

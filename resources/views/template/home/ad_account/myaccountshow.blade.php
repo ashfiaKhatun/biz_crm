@@ -164,6 +164,7 @@
                             </thead>
                             <tbody id="tableData">
                                 @foreach($refills as $Refill)
+                                @if( $Refill->status == 'approved')
                                 <tr class="data-row">
                                     <td>{{ $Refill->created_at }}</td>
                                     <td>{{ $Refill->amount_taka }}</td>
@@ -171,6 +172,7 @@
                                     <td>{{ $Refill->payment_method }}</td>
                                     <td>{{ $Refill->status }}</td>
                                 </tr>
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -183,7 +185,7 @@
                 </div>
             </div>
 
-            <a href="{{ route('my-account.index') }}" class="btn btn-secondary mt-3">Back</a>
+            <a href="{{ route('my-account.index') }}" class="btn btn-secondary text-white mt-3">Back</a>
         </div>
     </div>
 

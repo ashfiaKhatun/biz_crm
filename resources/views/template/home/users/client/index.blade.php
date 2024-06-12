@@ -21,7 +21,7 @@
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h4 class="card-title mr-4 mt-2">All Clients</h4>
                     <a href="{{ route('register') }}">
-                        <button class="btn btn-secondary">Add New Client<i class="fa fa-plus color-muted m-r-5 ml-2"></i></button>
+                        <button class="btn btn-secondary text-white">Add New Client<i class="fa fa-plus color-muted m-r-5 ml-2"></i></button>
                     </a>
                 </div>
 

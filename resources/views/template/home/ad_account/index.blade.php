@@ -3,6 +3,7 @@
 
 <head>
     @include('template.home.layouts.head')
+@include('template.home.custom_styles.custom_style')
 </head>
 
 <body>
@@ -16,7 +17,7 @@
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h4 class="card-title mr-4 mt-2">Ad Account Applications</h4>
                     <a href="{{ route('ad-account-application') }}">
-                        <button class="btn btn-secondary">New Application<i class="fa fa-plus color-muted m-r-5 ml-2"></i></button>
+                        <button class="btn btn-secondary text-white">New Application<i class="fa fa-plus color-muted m-r-5 ml-2"></i></button>
                     </a>
                 </div>
 

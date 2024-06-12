@@ -3,6 +3,7 @@
 
 <head>
     @include('template.home.layouts.head')
+@include('template.home.custom_styles.custom_style')
 </head>
 
 <body>
@@ -37,16 +38,16 @@
                 <form action="{{ route('refill.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div>
-                        <label class="col-form-label">Client Name:</label>
-                        <select name="client_id" class="form-control rounded" readonly>
+                        <label class="col-form-label"><span class="text-black font-bold">Client Name:</span> {{ $adAccount->client->name }}</label>
+                        <select name="client_id" class="form-control rounded" readonly hidden>
                             <option value="{{ $adAccount->client->id }}">{{ $adAccount->client->name }}</option>
                         </select>
                         
                     </div>
 
                     <div>
-                        <label class="col-form-label">Ad Account Name:</label>
-                        <select name="ad_account_id" class="form-control rounded" readonly>
+                        <label class="col-form-label"><span class="text-black font-bold">Ad Account Name:</span> {{ $adAccount->ad_acc_name }}</label>
+                        <select name="ad_account_id" class="form-control rounded" readonly hidden>
                             <option value="{{ $adAccount->id }}">{{ $adAccount->ad_acc_name }}</option>
                         </select>
                         

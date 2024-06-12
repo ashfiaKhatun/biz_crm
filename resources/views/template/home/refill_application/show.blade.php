@@ -30,7 +30,7 @@
                             <div class="d-flex align-items-center mb-5">
                                 <h4 class="card-title mr-4 mt-2">Detailed refill information of {{ $refill->adAccount->ad_acc_name }}</h4>
                                 <a href="{{ route('refills.edit', $refill->id) }}">
-                                    <button class="btn btn-secondary">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
+                                    <button class="btn btn-secondary text-white">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
                                 </a>
                             </div>
 
@@ -103,7 +103,7 @@
             </div>
 
 
-            <a href="{{ route('refills.index') }}" class="btn btn-secondary mt-3">Back</a>
+            <a href="{{ route('refills.index') }}" class="btn btn-secondary text-white mt-3">Back</a>
         </div>
     </div>
 

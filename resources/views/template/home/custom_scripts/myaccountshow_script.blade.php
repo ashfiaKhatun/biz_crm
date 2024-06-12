@@ -3,8 +3,12 @@
         const dataRows = tableData.querySelectorAll('.data-row');
         const seeAllBtn = document.getElementById('seeAllBtn');
 
+        if(dataRows.length <= 10){
+            seeAllBtn.style.display = 'none';
+        }
+
         // Initially show only the first 2 rows
-        for (let i = 2; i < dataRows.length; i++) {
+        for (let i = 10; i < dataRows.length; i++) {
             dataRows[i].style.display = 'none';
         }
 

@@ -3,6 +3,7 @@
 
 <head>
     @include('template.home.layouts.head')
+    @include('template.home.custom_styles.custom_style')
 </head>
 
 <body>
@@ -35,8 +36,8 @@
                 <form method="post" action="{{ route('adaccount.store') }}" class="space-y-2">
                     @csrf
                     <div>
-                        <label class="col-form-label">Client Name:</label>
-                        <select name="client_name" class="form-control rounded" readonly>                            
+                        <label class="col-form-label"><span class="text-black font-bold">Client Name:</span> {{ $user->name }}</label>
+                        <select name="client_name" class="form-control rounded" readonly hidden>
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                         </select>
                     </div>
@@ -196,7 +197,7 @@
     ***********************************-->
     @include('template.home.layouts.scripts')
 
-    @include('template.home..layouts.custom_scripts..ad_account_application_script')
+    @include('template.home.custom_scripts.ad_account_application_script')
 
 </body>
 
