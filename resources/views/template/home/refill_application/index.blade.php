@@ -73,7 +73,7 @@
                                     <form action="{{ route('refills.updateStatus', $refill->id) }}" method="post">
                                         @csrf
                                         @method('PATCH')
-                                        <select name="status" class="form-select-sm rounded" style="width: 90px;" onchange="this.form.submit()">
+                                        <select name="status" class="form-select-sm custom-status" style="width: 90px;" onchange="this.form.submit()">
                                             <option value="pending" {{ $refill->status == 'pending' ? 'selected' : '' }}>Pending</option>
                                             <option value="approved" {{ $refill->status == 'approved' ? 'selected' : '' }}>Approved</option>
                                             <option value="rejected" {{ $refill->status == 'rejected' ? 'selected' : '' }}>Rejected</option>

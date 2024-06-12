@@ -27,7 +27,7 @@
                 <div class="col-7">
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-flex align-items-center mb-5">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
                                 <h4 class="card-title mr-4 mt-2">Detailed refill information of {{ $refill->adAccount->ad_acc_name }}</h4>
                                 <a href="{{ route('refills.edit', $refill->id) }}">
                                     <button class="btn btn-secondary text-white">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
@@ -55,7 +55,7 @@
                                 <form action="{{ route('refills.updateStatus', $refill->id) }}" method="post">
                                         @csrf
                                         @method('PATCH')
-                                        <select name="status" class="form-control" onchange="this.form.submit()">
+                                        <select name="status" class="form-select-sm" onchange="this.form.submit()">
                                             <option class="{{ $refill->status == 'approved' || $refill->status == 'rejected' ? 'd-none' : '' }}" value="pending" {{ $refill->status == 'pending' ? 'selected' : '' }}>Pending</option>
                                             <option class="{{ $refill->status == 'rejected' ? 'd-none' : '' }}" value="approved" {{ $refill->status == 'approved' ? 'selected' : '' }}>Approved</option>
                                             <option class="{{ $refill->status == 'approved' ? 'd-none' : '' }}" value="rejected" {{ $refill->status == 'rejected' ? 'selected' : '' }}>Rejected</option>

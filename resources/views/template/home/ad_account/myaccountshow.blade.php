@@ -3,11 +3,7 @@
 
 <head>
     @include('template.home.layouts.head')
-    <style>
-        .text-black {
-            color: black;
-        }
-    </style>
+    @include('template.home.custom_styles.custom_style')
 </head>
 
 <body>
@@ -125,7 +121,7 @@
                             @endif
 
                             @if ($adAccount->status == 'approved')
-                            <span class="badge badge-success">Approved</span>
+                            <span class="badge custom-badge-success">Approved</span>
                             @endif
 
                             @if ($adAccount->status == 'rejected')

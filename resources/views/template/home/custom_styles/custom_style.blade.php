@@ -28,8 +28,15 @@
     }
 
     .custom-badge-info{
-        background-color: #F1F5A8;
-        color: #FB6D48;
+        background-color: #FAF47C;
+        /* background-color: #D2A61E; */
+        color: #F70000;
         padding: 5px 20px;
+    }
+
+    .custom-status{
+        color: #76838F;
+        border-color: #76838F;
+        border-radius: 5px;
     }
 </style>

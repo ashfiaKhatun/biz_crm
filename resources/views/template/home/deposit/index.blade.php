@@ -56,7 +56,7 @@
                                                 <form action="{{ route('deposit.updateStatus', $deposit->id) }}" method="post">
                                                     @csrf
                                                     @method('PATCH')
-                                                    <select name="status" class="form-control" onchange="this.form.submit()">
+                                                    <select name="status" class="form-select-sm custom-status" style="width: 90px;" onchange="this.form.submit()">
                                                         <option value="pending" {{ $deposit->status == 'pending' ? 'selected' : '' }}>Pending
                                                         </option>
                                                         <option value="received" {{ $deposit->status == 'received' ? 'selected' : '' }}>Received

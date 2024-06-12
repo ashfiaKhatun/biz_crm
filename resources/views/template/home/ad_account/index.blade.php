@@ -85,7 +85,7 @@
                                     <form action="{{ route('ad-account.updateStatus', $adAccount->id) }}" method="post">
                                         @csrf
                                         @method('PATCH')
-                                        <select name="status" class="form-select-sm rounded" style="width: 90px;" onchange="this.form.submit()">
+                                        <select name="status" class="form-select-sm custom-status" style="width: 90px;" onchange="this.form.submit()">
                                             <option value="pending" {{ $adAccount->status == 'pending' ? 'selected' : '' }}>Pending
                                             </option>
                                             <option value="in-review" {{ $adAccount->status == 'in-review' ? 'selected' : '' }}>In Review

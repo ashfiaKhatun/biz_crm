@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-@include('template.home.layouts.head')
+    @include('template.home.layouts.head')
+    @include('template.home.custom_styles.custom_style')
 </head>
 
 <body>
@@ -43,23 +44,23 @@
                                 <td>{{ $adAccount->dollar_rate }}৳</td>
                                 <td>
                                     @if ($adAccount->status == 'pending')
-                                        <span class="badge badge-primary">Pending</span>
+                                    <span class="badge badge-primary">Pending</span>
                                     @endif
 
                                     @if ($adAccount->status == 'in-review')
-                                        <span class="badge badge-info">In Review</span>
+                                    <span class="badge badge-info">In Review</span>
                                     @endif
 
                                     @if ($adAccount->status == 'approved')
-                                        <span class="badge badge-success">Approved</span>
+                                    <span class="badge custom-badge-success">Approved</span>
                                     @endif
 
                                     @if ($adAccount->status == 'rejected')
-                                        <span class="badge badge-danger">Rejected</span>
+                                    <span class="badge badge-danger">Rejected</span>
                                     @endif
 
                                     @if ($adAccount->status == 'canceled')
-                                        <span class="badge badge-warning">Canceled</span>
+                                    <span class="badge badge-warning">Canceled</span>
                                     @endif
 
                                 </td>
@@ -68,9 +69,9 @@
                                         <a href="{{ route('my-account.show', $adAccount->id) }}" data-toggle="tooltip" data-placement="top" title="View">
                                             <i class="fa fa-eye color-muted m-r-5  ml-3"></i>
                                         </a>
-                                        
+
                                         <a href="{{ route('refill.refill', $adAccount->id) }}" data-toggle="tooltip" data-placement="top" title="Refill">
-                                        <i class="fa-solid fa-fill m-r-5 ml-2"></i>
+                                            <i class="fa-solid fa-fill m-r-5 ml-2"></i>
                                         </a>
 
 
