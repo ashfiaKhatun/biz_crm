@@ -101,7 +101,7 @@ class AdAccountController extends Controller
     public function myaccountshow($id)
     {
         $adAccount = AdAccount::findOrFail($id);
-        $refills = Refill::where('ad_account_id', $id)->get();
+        $refills = Refill::where('ad_account_id', $id)->orderBy('created_at', 'desc')->get();
         $totalAmountUsd = Refill::where('ad_account_id', $id)
             ->where('status', 'approved')
             ->sum('amount_dollar');
@@ -110,7 +110,7 @@ class AdAccountController extends Controller
             ->where('client_id', $adAccount->client_id)
             ->where('status', 'approved')
             ->get();
-        return view('template.home.ad_account.myaccountshow', compact('adAccount', 'refills', 'totalAmountUsd','otherAdAccounts'));
+        return view('template.home.ad_account.myaccountshow', compact('adAccount', 'refills', 'totalAmountUsd', 'otherAdAccounts'));
     }
 
     public function edit($id)
@@ -199,6 +199,7 @@ class AdAccountController extends Controller
                 'amount_taka' => -($adAccount->dollar_rate * $request['transfer_amount']),
                 'payment_method' => 'Transferred',
                 'status' => 'approved',
+                'sent_to_agency' => '1',
             ]
         );
 
@@ -210,6 +211,7 @@ class AdAccountController extends Controller
                 'amount_taka' => ($adAccount->dollar_rate * $request['transfer_amount']),
                 'payment_method' => 'Transferred',
                 'status' => 'approved',
+                'sent_to_agency' => '1',
             ]
         );
 

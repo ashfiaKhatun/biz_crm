@@ -37,7 +37,7 @@
                                 <p class="col-8">{{ $adAccount->ad_acc_name }}</p>
                             </div>
                             <div class="row">
-                                <b class="col-4">Business Manager ID:</b>
+                                <b class="col-4">BM ID:</b>
                                 <p class="col-8">{{ $adAccount->bm_id }}</p>
                             </div>
 
