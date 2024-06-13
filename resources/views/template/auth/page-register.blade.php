@@ -2,7 +2,7 @@
 <html class="h-100" lang="en">
 
 <head>
-@include('template.home.layouts.head')
+    @include('template.home.layouts.head')
 
 </head>
 
@@ -30,9 +30,10 @@
                     <div class="form-input-content">
                         <div class="card login-form my-5    ">
                             <div class="card-body pt-5">
-                                <a class="text-center" href="index.html">
-                                    <h4>BizMappers</h4>
-                                </a>
+                            <div class="text-center">
+                                    <img src="template/images/favicon.png" width="48">
+                                    <h4 class="mt-3">BizMappers</h4>
+                                </div>
 
                                 <form method="POST" action="{{ route('registerClient') }}" class="my-3 login-input">
 
@@ -94,7 +95,7 @@
                                     </div>
 
                                     <div class="d-flex justify-content-end mt-4">
-                                        <input type="submit" name="submit" value="Add Client" class="btn btn-primary">
+                                        <input type="submit" name="submit" value="Register" class="btn btn-primary">
                                     </div>
 
                                 </form>

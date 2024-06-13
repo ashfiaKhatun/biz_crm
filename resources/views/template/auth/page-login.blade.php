@@ -39,9 +39,10 @@
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
-                                <a class="text-center" href="index.html">
-                                    <h4>BizMappers</h4>
-                                </a>
+                                <div class="text-center">
+                                    <img src="template/images/favicon.png" width="48">
+                                    <h4 class="mt-3">BizMappers</h4>
+                                </div>
 
                                 <form method="POST" action="{{ route('login') }}" class="mt-5 mb-5 login-input">
 

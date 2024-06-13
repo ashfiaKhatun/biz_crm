@@ -44,18 +44,18 @@ Route::delete('agencies/{id}', [AgencyController::class, 'destroy'])->name('agen
 
 //ad account start
 
-Route::get('ad-account-application', [AdAccountController::class, 'create'])->middleware(['auth', 'verified'])->name('ad-account-application');
-Route::get('pending-ad-account-application', [AdAccountController::class, 'showPendingAdAccounts'])->middleware(['auth', 'verified'])->name('pending-ad-account-application');
-Route::get('approved-ad-account-application', [AdAccountController::class, 'showApprovedAdAccounts'])->middleware(['auth', 'verified'])->name('approved-ad-account-application');
-Route::post('ad-account-application', [AdAccountController::class, 'store'])->middleware(['auth', 'verified'])->name('adaccount.store');
-Route::get('ad-account', [AdAccountController::class, 'index'])->middleware(['auth', 'verified'])->name('ad-account.index');
-Route::get('my-account', [AdAccountController::class, 'account'])->middleware(['auth', 'verified'])->name('my-account.index');
-Route::get('my-account/{id}', [AdAccountController::class, 'myaccountshow'])->middleware(['auth', 'verified'])->name('my-account.show');
-Route::get('ad-account/{id}', [AdAccountController::class, 'show'])->middleware(['auth', 'verified'])->name('ad-account.show');
-Route::get('ad-account/{id}/edit', [AdAccountController::class, 'edit'])->middleware(['auth', 'verified'])->name('ad-account.edit');
-Route::put('ad-account/{id}', [AdAccountController::class, 'update'])->middleware(['auth', 'verified'])->name('ad-account.update');
-Route::delete('ad-account/{id}', [AdAccountController::class, 'destroy'])->middleware(['auth', 'verified'])->name('ad-account.destroy');
-Route::patch('ad-account/{id}/status', [AdAccountController::class, 'updateStatus'])->middleware(['auth', 'verified'])->name('ad-account.updateStatus');
+Route::get('ad-account-application/new', [AdAccountController::class, 'create'])->middleware(['auth', 'verified'])->name('ad-account-application');
+Route::get('ad-account-application/pending', [AdAccountController::class, 'showPendingAdAccounts'])->middleware(['auth', 'verified'])->name('pending-ad-account-application');
+Route::get('ad-account-application/approved', [AdAccountController::class, 'showApprovedAdAccounts'])->middleware(['auth', 'verified'])->name('approved-ad-account-application');
+Route::post('ad-account-application/new', [AdAccountController::class, 'store'])->middleware(['auth', 'verified'])->name('adaccount.store');
+Route::get('ad-account-application/all', [AdAccountController::class, 'index'])->middleware(['auth', 'verified'])->name('ad-account.index');
+Route::get('my-ad-account/all', [AdAccountController::class, 'account'])->middleware(['auth', 'verified'])->name('my-account.index');
+Route::get('my-ad-account/{id}/details', [AdAccountController::class, 'myaccountshow'])->middleware(['auth', 'verified'])->name('my-account.show');
+Route::get('ad-account-application/{id}/details', [AdAccountController::class, 'show'])->middleware(['auth', 'verified'])->name('ad-account.show');
+Route::get('ad-account-application/{id}/edit', [AdAccountController::class, 'edit'])->middleware(['auth', 'verified'])->name('ad-account.edit');
+Route::put('ad-account-application/{id}/edit', [AdAccountController::class, 'update'])->middleware(['auth', 'verified'])->name('ad-account.update');
+Route::delete('ad-account-application/{id}/delete', [AdAccountController::class, 'destroy'])->middleware(['auth', 'verified'])->name('ad-account.destroy');
+Route::patch('ad-account-application/{id}/status', [AdAccountController::class, 'updateStatus'])->middleware(['auth', 'verified'])->name('ad-account.updateStatus');
 
 Route::get('/clients/{user}/ad-account', [AdAccountController::class, 'ad_account_id'])->middleware(['auth', 'verified'])->name('adaccount.adaccount');
 
@@ -72,7 +72,7 @@ Route::post('ad_account/{id}/transfer', [AdAccountController::class, 'transfer']
 Route::get('ad-account/{client_id}/accounts', [RefillController::class, 'getClientAdAccounts'])->name('ad-account.client.accounts');
 Route::get('ad-account/{id}/details', [RefillController::class, 'getAdAccountDetails'])->name('ad-account.details');
 Route::get('refill-application', [RefillController::class, 'refill_application'])->middleware(['auth', 'verified'])->name('refill-application');
-Route::get('/ad-accounts/{adAccount}/refill', [RefillController::class, 'refill_application_id'])->middleware(['auth', 'verified'])->name('refill.refill');
+Route::get('ad-accounts/{adAccount}/refill', [RefillController::class, 'refill_application_id'])->middleware(['auth', 'verified'])->name('refill.refill');
 Route::post('refill', [RefillController::class, 'store'])->middleware(['auth', 'verified'])->name('refill.store');
 
 Route::get('refills', [RefillController::class, 'index'])->middleware(['auth', 'verified'])->name('refills.index');
