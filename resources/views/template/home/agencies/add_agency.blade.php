@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-@include('template.home.layouts.head')
+    @include('template.home.layouts.head')
 </head>
 
 <body>
@@ -45,7 +45,12 @@
                         <input name="location" type="text" placeholder="Location" class="form-control rounded">
                     </div>
 
-                    <div>
+                    <div class="form-check my-3">
+                        <label class="form-check-label">
+                            <input type="checkbox" name="own_commission_type" class="form-check-input" id="own-account-checkbox" value="Own Account">Own Account</label>
+                    </div>
+
+                    <div id="commission-type-sect">
                         <label class="col-form-label">Commission Type:</label>
                         <select name="commission_type" id="commission_type" class="form-control rounded">
                             <option value="">Select</option>

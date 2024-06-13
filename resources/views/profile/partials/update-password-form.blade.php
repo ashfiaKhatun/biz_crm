@@ -25,7 +25,7 @@
             <label for="update_password_password" class="col-form-label">New Password:</label>
             <input id="update_password_password" type="password" name="password" autocomplete="current-password" class="form-control rounded">
             <div class="error-message">
-                <?php echo $errors->updatePassword->first('new_password'); ?>
+                <?php echo $errors->updatePassword->first('password'); ?>
             </div>
         </div>
 
@@ -33,7 +33,7 @@
             <label for="update_password_password_confirmation" class="col-form-label">Confirm Password:</label>
             <input id="update_password_password_confirmation" type="password" name="password_confirmation" autocomplete="new-password" class="form-control rounded">
             <div class="error-message">
-                <?php echo $errors->updatePassword->first('new_password_confirmation'); ?>
+                <?php echo $errors->updatePassword->first('password_confirmation'); ?>
             </div>
         </div>
 

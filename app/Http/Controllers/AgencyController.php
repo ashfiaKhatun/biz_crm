@@ -28,37 +28,73 @@ class AgencyController extends Controller
     public function store(Request $request)
     {
         if ($request['ad_account_type'] == 'Both') {
-            Agencies::create(
-                [
-                    'agency_name' => $request['agency_name'],
-                    'location' => $request['location'],
-                    'commission_type' => $request['commission_type'],
-                    'dollar_rate' => $request['dollar_rate'],
-                    'percentage_rate' => $request['percentage_rate'],
-                    'ad_account_type' => 'Card Line',
-                ]
-            );
-            Agencies::create(
-                [
-                    'agency_name' => $request['agency_name'],
-                    'location' => $request['location'],
-                    'commission_type' => $request['commission_type'],
-                    'dollar_rate' => $request['dollar_rate'],
-                    'percentage_rate' => $request['percentage_rate'],
-                    'ad_account_type' => 'Credit Line',
-                ]
-            );
+            if ($request->has('own_commission_type')) {
+                Agencies::create(
+                    [
+                        'agency_name' => $request['agency_name'],
+                        'location' => $request['location'],
+                        'commission_type' => $request['own_commission_type'],
+                        'dollar_rate' => $request['dollar_rate'],
+                        'percentage_rate' => $request['percentage_rate'],
+                        'ad_account_type' => 'Card Line',
+                    ]
+                );
+                Agencies::create(
+                    [
+                        'agency_name' => $request['agency_name'],
+                        'location' => $request['location'],
+                        'commission_type' => $request['own_commission_type'],
+                        'dollar_rate' => $request['dollar_rate'],
+                        'percentage_rate' => $request['percentage_rate'],
+                        'ad_account_type' => 'Credit Line',
+                    ]
+                );
+            } else {
+                Agencies::create(
+                    [
+                        'agency_name' => $request['agency_name'],
+                        'location' => $request['location'],
+                        'commission_type' => $request['commission_type'],
+                        'dollar_rate' => $request['dollar_rate'],
+                        'percentage_rate' => $request['percentage_rate'],
+                        'ad_account_type' => 'Card Line',
+                    ]
+                );
+                Agencies::create(
+                    [
+                        'agency_name' => $request['agency_name'],
+                        'location' => $request['location'],
+                        'commission_type' => $request['commission_type'],
+                        'dollar_rate' => $request['dollar_rate'],
+                        'percentage_rate' => $request['percentage_rate'],
+                        'ad_account_type' => 'Credit Line',
+                    ]
+                );
+            }
         } else {
-            Agencies::create(
-                [
-                    'agency_name' => $request['agency_name'],
-                    'location' => $request['location'],
-                    'commission_type' => $request['commission_type'],
-                    'dollar_rate' => $request['dollar_rate'],
-                    'percentage_rate' => $request['percentage_rate'],
-                    'ad_account_type' => $request['ad_account_type'],
-                ]
-            );
+            if ($request->has('own_commission_type')) {
+                Agencies::create(
+                    [
+                        'agency_name' => $request['agency_name'],
+                        'location' => $request['location'],
+                        'commission_type' => $request['own_commission_type'],
+                        'dollar_rate' => $request['dollar_rate'],
+                        'percentage_rate' => $request['percentage_rate'],
+                        'ad_account_type' => $request['ad_account_type'],
+                    ]
+                );
+            } else {
+                Agencies::create(
+                    [
+                        'agency_name' => $request['agency_name'],
+                        'location' => $request['location'],
+                        'commission_type' => $request['own_commission_type'],
+                        'dollar_rate' => $request['dollar_rate'],
+                        'percentage_rate' => $request['percentage_rate'],
+                        'ad_account_type' => $request['ad_account_type'],
+                    ]
+                );
+            }
         }
 
 
