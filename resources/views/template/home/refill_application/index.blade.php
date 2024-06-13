@@ -17,7 +17,7 @@
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h4 class="card-title mr-4 mt-2">Refill Applications</h4>
                     <a href="{{ route('refill-application') }}">
-                        <button class="btn btn-secondary text-white">New Refill<i class="fa fa-plus color-muted m-r-5 ml-2"></i></button>
+                        <button class="btn btn-sm btn-secondary text-white">New Refill<i class="fa fa-plus color-muted m-r-5 ml-2"></i></button>
                     </a>
                 </div>
 
@@ -81,18 +81,30 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <span>
+                                    <span class="d-flex align-items-center">
                                         <a href="{{ route('refills.show', $refill->id) }}" data-toggle="tooltip" data-placement="top" title="View">
                                             <i class="fa fa-eye color-muted m-r-5"></i>
                                         </a>
                                         <a href="{{ route('refills.edit', $refill->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                             <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
                                         </a>
-                                        <form action="{{ route('refills.destroy', $refill->id) }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="border-0 bg-transparent ml-3" onclick="return confirm('Are you sure you want to delete this refill application?')" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close color-danger"></i></button>
-                                        </form>
+
+                                        <div class="basic-dropdown ml-2">
+                                            <div class="dropdown">
+                                                <i class="fa-solid fa-ellipsis btn btn-sm" data-toggle="dropdown"></i>
+
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item">
+                                                        <form action="{{ route('refills.destroy', $refill->id) }}" method="POST" style="display:inline-block;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="border-0 bg-transparent" onclick="return confirm('Are you sure you want to delete this Refill Application?')">Delete</button>
+                                                        </form>
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </span>
                                 </td>
                             </tr>

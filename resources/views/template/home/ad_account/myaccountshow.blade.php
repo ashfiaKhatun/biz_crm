@@ -29,30 +29,30 @@
                     <div class="d-flex">
                         <div class="w-50 mr-5">
                             <div class="row">
-                                <b class="col-4">Client Name:</b>
-                                <p class="col-8">{{ $adAccount->client->name }}</p>
+                                <b class="col-5">Client Name:</b>
+                                <p class="col-7">{{ $adAccount->client->name }}</p>
                             </div>
                             <div class="row">
-                                <b class="col-4">Ad Account Name:</b>
-                                <p class="col-8">{{ $adAccount->ad_acc_name }}</p>
+                                <b class="col-5">Ad Account Name:</b>
+                                <p class="col-7">{{ $adAccount->ad_acc_name }}</p>
                             </div>
                             <div class="row">
-                                <b class="col-4">Business Manager ID:</b>
-                                <p class="col-8">{{ $adAccount->bm_id }}</p>
+                                <b class="col-5">Business Manager ID:</b>
+                                <p class="col-7">{{ $adAccount->bm_id }}</p>
                             </div>
 
 
                             <div class="row">
-                                <b class="col-4">Dollar Rate:</b>
-                                <p class="col-8">৳{{ $adAccount->dollar_rate }}</p>
+                                <b class="col-5">Dollar Rate:</b>
+                                <p class="col-7">৳{{ $adAccount->dollar_rate }}</p>
                             </div>
                             <div class="row">
-                                <b class="col-4">Total Refill Amount:</b>
-                                <p class="col-8">${{ $totalAmountUsd }}</p>
+                                <b class="col-5">Total Refill Amount:</b>
+                                <p class="col-7">${{ $totalAmountUsd }}</p>
                             </div>
                             <div class="row">
-                                <b class="col-4">Status:</b>
-                                <p class="col-8">
+                                <b class="col-5">Status:</b>
+                                <p class="col-7">
                                     @if ($adAccount->status == 'pending')
                                     <span class="badge badge-primary">Pending</span>
                                     @endif
@@ -191,7 +191,7 @@
                 </div>
             </div>
 
-            <a href="{{ route('my-account.index') }}" class="btn btn-secondary text-white mt-3">Back</a>
+            <a href="{{ route('my-account.index') }}" class="btn btn-sm btn-secondary text-white mt-3">Back</a>
         </div>
     </div>
     <!-- Transfer Modal -->
@@ -223,7 +223,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Transfer</button>
                     </div>
                 </form>

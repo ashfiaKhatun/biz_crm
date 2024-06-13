@@ -173,7 +173,7 @@
 
             </div>
 
-            <a href="{{ route('ad-account.index') }}" class="btn btn-secondary text-white mt-3">Back</a>
+            <a href="{{ route('ad-account.index') }}" class="btn btn-sm btn-secondary text-white mt-3">Back</a>
         </div>
     </div>
 

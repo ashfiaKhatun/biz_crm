@@ -22,7 +22,7 @@
                     <h4 class="card-title mr-4 mt-2">Deposit Details</h4>
                     <div>
                         <a href="{{ route('deposit.edit', $deposit->id) }}">
-                            <button class="btn btn-secondary text-white">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
+                            <button class="btn btn-sm btn-secondary text-white">Edit Info<i class="fa fa-pencil color-muted m-r-5 ml-2"></i></button>
                         </a>
                         </a>
                     </div>
@@ -62,7 +62,7 @@
             </div>
         </div>
 
-        <a href="{{ route('deposits.index') }}" class="btn btn-secondary text-white mt-3">Back</a>
+        <a href="{{ route('deposits.index') }}" class="btn btn-sm btn-secondary text-white mt-3">Back</a>
     </div>
 
     @include('template.home.layouts.footer')
