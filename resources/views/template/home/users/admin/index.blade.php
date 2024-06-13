@@ -68,7 +68,7 @@
                                                         <form action="{{ route('admin.destroy', $user->id) }}" method="POST" style="display:inline-block;">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="border-0 bg-transparent" onclick="return confirm('Are you sure you want to delete this Admin?')">Delete</button>
+                                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this Admin?')">Delete</button>
                                                         </form>
                                                     </a>
 

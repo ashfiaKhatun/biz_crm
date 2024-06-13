@@ -116,7 +116,7 @@
                                                         <form action="{{ route('ad-account.destroy', $adAccount->id) }}" method="POST" style="display:inline-block;">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="border-0 bg-transparent" onclick="return confirm('Are you sure you want to delete this Ad Account Application?')">Delete</button>
+                                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this Ad Account Application?')">Delete</button>
                                                         </form>
                                                     </a>
 
