@@ -41,7 +41,6 @@
                                 <p class="col-7">{{ $adAccount->bm_id }}</p>
                             </div>
 
-
                             <div class="row">
                                 <b class="col-5">Dollar Rate:</b>
                                 <p class="col-7">৳{{ $adAccount->dollar_rate }}</p>

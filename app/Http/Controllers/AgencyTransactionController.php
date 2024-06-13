@@ -52,6 +52,27 @@ class AgencyTransactionController extends Controller
             $refill->update(['sent_to_agency' => 1]);
         }
 
+        elseif($refill->adAccount->agency->commission_type =='Own Account')
+        {
+            
+
+            
+
+
+            AgencyTransaction::create([
+                'refills_id' => $refill->id,
+                'cl_rate' => $refill->adAccount->dollar_rate,
+                'refill_usd' => $refill->amount_dollar,
+                'refill_tk' => $refill->amount_taka,
+                
+                 
+                'agency_charge_type' => $refill->adAccount->agency->commission_type,
+                
+            ]);
+
+            $refill->update(['sent_to_agency' => 1]);
+        }
+
 
 
         return redirect()->route('refills.index')->with('success', 'Deposit sent to agency successfully.');
