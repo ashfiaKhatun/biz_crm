@@ -72,4 +72,13 @@
     dollarInput.addEventListener('input', () => {
         updateTaka(dollarInput.value);
     });
+
+
+    const screenshotInput = document.getElementById('screenshot');
+    const screenshotLabel = document.querySelector('.custom-file-label');
+
+    screenshotInput.addEventListener('change', (event) => {
+        const fileName = event.target.files[0].name;
+        screenshotLabel.textContent = fileName;
+    });
 </script>

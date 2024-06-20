@@ -81,6 +81,12 @@ class DepositController extends Controller
         ]);
         $bdt = $request->amount_usd * $request->rate_bdt;
         $deposit = Deposit::findOrFail($id);
+        if ($request->has('new_date')) {
+            $newDate = Carbon::parse($request->new_date);
+            // Preserve original time from existing 'created_at'
+            $newDateTime = $newDate->format('Y-m-d') . ' ' . $deposit->created_at->format('H:i:s');
+            $deposit->created_at = $newDateTime;
+        }
         $deposit->update([
             'name' => $request->name,
             'amount_usd' => $request->amount_usd,

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-@include('template.home.layouts.head')
+    @include('template.home.layouts.head')
 </head>
 
 <body>
@@ -89,7 +89,7 @@
                     <div class="mt-2">
                         <label class="col-form-label">Screenshot:</label>
                         <div class="custom-file">
-                            <input type="file" name="screenshot" class="custom-file-input">
+                            <input type="file" id="screenshot" name="screenshot" class="custom-file-input">
                             <label class="custom-file-label">Choose file</label>
                         </div>
                     </div>
@@ -123,8 +123,8 @@
     ***********************************-->
     @include('template.home.layouts.scripts')
 
-    
-@include('template.home.custom_scripts.refill_application_script')
+
+    @include('template.home.custom_scripts.refill_application_script')
 </body>
 
 </html>

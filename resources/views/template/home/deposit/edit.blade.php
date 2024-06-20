@@ -3,7 +3,7 @@
 
 <head>
     @include('template.home.layouts.head')
-@include('template.home.custom_styles.custom_style')
+    @include('template.home.custom_styles.custom_style')
 </head>
 
 <body>
@@ -43,7 +43,12 @@
                     <input type="number" step="0.01" name="rate_bdt" placeholder="Rate (BDT)" class="form-control rounded" value="{{ $deposit->rate_bdt }}" required>
                 </div>
 
-                
+                <div>
+                    <label class="col-form-label">Date</label>
+                    <input type="date" name="new_date" class="form-control rounded w-25">
+                </div>
+
+
 
                 <div>
                     <label class="col-form-label">Status:</label>
