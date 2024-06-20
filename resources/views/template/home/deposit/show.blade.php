@@ -3,11 +3,7 @@
 
 <head>
     @include('template.home.layouts.head')
-    <style>
-        .text-black {
-            color: black;
-        }
-    </style>
+    @include('template.home.custom_styles.custom_style')
 </head>
 
 <body>
@@ -50,11 +46,23 @@
                         <p class="col-10"> {{ $deposit->rate_bdt }}</p>
                     </div>
 
-                    
+
 
                     <div class="row">
                         <b class="col-2">Status:</b>
-                        <p class="col-10"> {{ $deposit->status }}</p>
+
+                        @if ($deposit->status == 'pending')
+                        <span class="badge custom-badge-info">Pending</span>
+                        @endif
+
+                        @if ($deposit->status == 'received')
+                        <span class="badge custom-badge-success">Received</span>
+                        @endif
+                       
+                        @if ($deposit->status == 'canceled')
+                        <span class="badge badge-danger">Canceled</span>
+                        @endif
+                        
                     </div>
 
                 </div>

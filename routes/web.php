@@ -8,7 +8,7 @@ use App\Http\Controllers\RefillController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\AgencyTransactionController;
-
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,6 +103,16 @@ Route::get('average-usd-rate', [DepositController::class, 'averageUsdRate'])->mi
 
 
 //deposit end
+
+
+// settings start
+
+Route::get('settings', [SettingController::class, 'show'])->middleware(['auth', 'verified'])->name('settings');
+Route::post('settingDollar', [SettingController::class, 'storeDollar'])->middleware(['auth', 'verified'])->name('setting.storeDollar');
+Route::post('settingPaymentMethod', [SettingController::class, 'storePaymentMethod'])->middleware(['auth', 'verified'])->name('setting.storePaymentMethod');
+Route::post('settingVendor', [SettingController::class, 'storeVendor'])->middleware(['auth', 'verified'])->name('setting.storeVendor');
+
+// settings end
 
 
 

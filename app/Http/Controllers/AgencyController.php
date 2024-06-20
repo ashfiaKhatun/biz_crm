@@ -14,9 +14,6 @@ class AgencyController extends Controller
         // Fetch all products
         $agencies = Agencies::all();
 
-        // You can also filter or sort data using Eloquent methods
-        // $products = Product::where('name', 'like', '%search term%')->get();
-
         return view('template.home.agencies.all_agency', compact('agencies')); // Pass data to view
     }
 

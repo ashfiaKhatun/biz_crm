@@ -131,7 +131,7 @@
 
 
             <li>
-                <a aria-expanded="false">
+                <a href="{{ route('settings') }}" aria-expanded="false">
                     <i class="fa-solid fa-gear"></i><span class="nav-text">Settings</span>
                 </a>
             </li>
