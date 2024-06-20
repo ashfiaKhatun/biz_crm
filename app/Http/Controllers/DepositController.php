@@ -76,8 +76,9 @@ class DepositController extends Controller
             'name' => 'required|string|max:255',
             'amount_usd' => 'required|numeric',
             'rate_bdt' => 'required|numeric',
+            'new_date' => 'nullable|date',
 
-            'status' => 'required|string|in:pending,approved,rejected',
+            'status' => 'required|string|in:pending,received,canceled',
         ]);
         $bdt = $request->amount_usd * $request->rate_bdt;
         $deposit = Deposit::findOrFail($id);
@@ -92,7 +93,7 @@ class DepositController extends Controller
             'amount_usd' => $request->amount_usd,
             'rate_bdt' => $request->rate_bdt,
             'amount_bdt' => $bdt,
-            'status' => 'pending',
+            'status' => $request->status,
         ]);
 
         return redirect()->route('deposits.index')->with('success', 'Deposit updated successfully.');

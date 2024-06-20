@@ -54,8 +54,8 @@
                     <label class="col-form-label">Status:</label>
                     <select name="status" class="form-select-sm rounded" style="width: 90px;">
                         <option value="pending" {{ $deposit->status == 'pending' ? 'selected' : '' }}>Pending</option>
-                        <option value="approved" {{ $deposit->status == 'approved' ? 'selected' : '' }}>Approved</option>
-                        <option value="rejected" {{ $deposit->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                        <option value="received" {{ $deposit->status == 'received' ? 'selected' : '' }}>Received</option>
+                        <option value="canceled" {{ $deposit->status == 'canceled' ? 'selected' : '' }}>Canceled</option>
                     </select>
                 </div>
 
