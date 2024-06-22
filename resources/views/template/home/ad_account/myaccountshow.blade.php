@@ -21,8 +21,10 @@
                             <a href="{{ route('refill.refill', $adAccount->id) }}">
                                 <button class="btn btn-sm btn-primary">Refill<i class="fa-solid fa-fill m-r-5 ml-2"></i></button>
                             </a>
+                            @if(auth()->user()->role == 'admin')
                             <!-- Transfer Button -->
                             <button class="btn btn-sm btn-secondary text-white ml-2" data-toggle="modal" data-target="#transferModal">Transfer<i class="fa-solid fa-exchange-alt m-r-5 ml-2"></i></button>
+                            @endif
                         </div>
                     </div>
 
@@ -193,6 +195,7 @@
             <a href="{{ route('my-account.index') }}" class="btn btn-sm btn-secondary text-white mt-3">Back</a>
         </div>
     </div>
+    @if(auth()->user()->role == 'admin')
     <!-- Transfer Modal -->
     <div class="modal fade" id="transferModal" tabindex="-1" role="dialog" aria-labelledby="transferModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -229,7 +232,7 @@
             </div>
         </div>
     </div>
-
+    @endif
     @include('template.home.layouts.footer')
 
     @include('template.home.layouts.scripts')

@@ -36,10 +36,11 @@
                     <i class="icon-notebook menu-icon"></i><span class="nav-text">Accounts</span>
                 </a>
                 <ul aria-expanded="false">
-
+                    @if(auth()->user()->role == 'customer')
                     <li><a href="{{ route('my-account.index') }}">My Account</a></li>
-                    <li><a>All Account</a></li>
-
+                    @elseif (auth()->user()->role == 'admin')
+                    <li><a href="{{ route('my-account.index') }}">All Account</a></li>
+                    @endif
                 </ul>
             </li>
 

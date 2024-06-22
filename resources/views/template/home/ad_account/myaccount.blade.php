@@ -14,20 +14,26 @@
     <div class="content-body p-4">
         <div class="card">
             <div class="card-body">
+                @if (auth()->user()->role == 'admin')
+                    <h2 class="card-title">All Ad Accounts</h2>
+                @elseif (auth()->user()->role == 'customer')
                 <h2 class="card-title">My Ad Accounts</h2>
+                @endif
 
-                @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
                 @endif
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped verticle-middle">
                         <thead>
                             <tr>
-
-                                <th>Client Name</th>
+                                @if(auth()->user()->role == 'admin')
+                                   <th>Client Name</th> 
+                                @endif
+                                
                                 <th>Ad Account Name</th>
                                 <th>Agency</th>
                                 <th>Doller Rate</th>
@@ -36,58 +42,54 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($adAccounts as $adAccount)
-                            <tr>
-                                <td>{{ $adAccount->client->name }}</td>
-                                <td>{{ $adAccount->ad_acc_name }}</td>
-                                <td>{{ $adAccount->agency->agency_name }}</td>
-                                <td>{{ $adAccount->dollar_rate }}৳</td>
-                                <td>
-                                    @if ($adAccount->status == 'pending')
-                                    <span class="badge badge-primary">Pending</span>
+                            @foreach ($adAccounts as $adAccount)
+                                <tr>
+                                    @if(auth()->user()->role == 'admin')
+                                    <td>{{ $adAccount->client->name }}</td>
                                     @endif
+                                    <td>{{ $adAccount->ad_acc_name }}</td>
+                                    <td>{{ $adAccount->agency->agency_name }}</td>
+                                    <td>{{ $adAccount->dollar_rate }}৳</td>
+                                    <td>
+                                        @if ($adAccount->status == 'pending')
+                                            <span class="badge badge-primary">Pending</span>
+                                        @endif
 
-                                    @if ($adAccount->status == 'in-review')
-                                    <span class="badge badge-info">In Review</span>
-                                    @endif
+                                        @if ($adAccount->status == 'in-review')
+                                            <span class="badge badge-info">In Review</span>
+                                        @endif
 
-                                    @if ($adAccount->status == 'approved')
-                                    <span class="badge custom-badge-success">Approved</span>
-                                    @endif
+                                        @if ($adAccount->status == 'approved')
+                                            <span class="badge custom-badge-success">Approved</span>
+                                        @endif
 
-                                    @if ($adAccount->status == 'rejected')
-                                    <span class="badge badge-danger">Rejected</span>
-                                    @endif
+                                        @if ($adAccount->status == 'rejected')
+                                            <span class="badge badge-danger">Rejected</span>
+                                        @endif
 
-                                    @if ($adAccount->status == 'canceled')
-                                    <span class="badge badge-warning">Canceled</span>
-                                    @endif
+                                        @if ($adAccount->status == 'canceled')
+                                            <span class="badge badge-warning">Canceled</span>
+                                        @endif
 
-                                </td>
-                                <td>
-                                    <span>
-                                        <a href="{{ route('my-account.show', $adAccount->id) }}" data-toggle="tooltip" data-placement="top" title="View">
-                                            <i class="fa fa-eye color-muted m-r-5  ml-3"></i>
-                                        </a>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <a href="{{ route('my-account.show', $adAccount->id) }}"
+                                                data-toggle="tooltip" data-placement="top" title="View">
+                                                <i class="fa fa-eye color-muted m-r-5  ml-3"></i>
+                                            </a>
 
-                                        <a href="{{ route('refill.refill', $adAccount->id) }}" data-toggle="tooltip" data-placement="top" title="Refill">
-                                            <i class="fa-solid fa-fill m-r-5 ml-2"></i>
-                                        </a>
+                                            <a href="{{ route('refill.refill', $adAccount->id) }}" data-toggle="tooltip"
+                                                data-placement="top" title="Refill">
+                                                <i class="fa-solid fa-fill m-r-5 ml-2"></i>
+                                            </a>
 
 
-                                        {{-- <a href="{{ route('ad-account.edit', $adAccount->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
-                                        <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
-                                        </a>
 
-                                        <form action="{{ route('ad-account.destroy', $adAccount->id) }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="border-0 bg-transparent ml-3" onclick="return confirm('Are you sure you want to delete this agency?')" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close color-danger"></i></button>
-                                        </form> --}}
-                                    </span>
-                                </td>
+                                        </span>
+                                    </td>
 
-                            </tr>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

@@ -27,12 +27,21 @@ class AdAccountController extends Controller
 
     public function account()
     {
+        if (auth()->user()->role == 'customer') {
         $userId = Auth::id(); // Get the ID of the current authenticated user
         $adAccounts = AdAccount::where('status', 'approved')
             ->where('client_id', $userId)
             ->orderBy('created_at', 'desc')
             ->get();
         return view('template.home.ad_account.myaccount', compact('adAccounts'));
+        }
+        elseif(auth()->user()->role == 'admin')
+        {
+            $adAccounts = AdAccount::where('status', 'approved')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return view('template.home.ad_account.myaccount', compact('adAccounts'));
+        }
     }
 
 
