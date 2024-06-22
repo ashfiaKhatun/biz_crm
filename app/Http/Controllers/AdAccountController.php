@@ -124,6 +124,9 @@ class AdAccountController extends Controller
 
     public function edit($id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $adAccount = AdAccount::findOrFail($id);
         $agencies = Agencies::all();
         $customers = User::where('role', 'customer')->get();
@@ -157,6 +160,9 @@ class AdAccountController extends Controller
 
     public function destroy($id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $adAccount = AdAccount::findOrFail($id);
         $adAccount->delete();
 
@@ -165,6 +171,9 @@ class AdAccountController extends Controller
 
     public function updateStatus(Request $request, $id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $request->validate([
             'status' => 'required|string|in:pending,in-review,approved,canceled,rejected',
         ]);
@@ -210,6 +219,9 @@ class AdAccountController extends Controller
 
     public function transfer(Request $request, $id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $request->validate([
             'transfer_amount' => 'required|numeric|min:0.01',
             'recipient_account' => 'required|exists:ad_accounts,id',
