@@ -107,35 +107,37 @@
                             </div>
 
                             <div class="tab-pane fade" id="vendor">
-                                <b class="text-black">Vendors: </b>
+                                <b class="text-black">Vendors:</b>
                                 <div class="basic-list-group">
                                     <ul class="list-group w-25 my-3">
                                         @foreach ($values as $value)
-                                        @if($value->setting_name == 'Vendor')
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            {{ $value->value }}
-                                            <form action="{{ route('setting.destroyVendor', $value->id) }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm bg-transparent" onclick="return confirm('Are you sure you want to delete this Vendor?')"><i class="fa-solid fa-xmark"></i></button>
-                                        </li>
-                                        @endif
+                                            @if($value->setting_name == 'Vendor')
+                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                    {{ $value->value }}
+                                                    <form action="{{ route('setting.destroyVendor', $value->id) }}" method="POST" style="display:inline-block;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm bg-transparent" onclick="return confirm('Are you sure you want to delete this Vendor?')">
+                                                            <i class="fa-solid fa-xmark"></i>
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                            @endif
                                         @endforeach
-
                                     </ul>
-
                                 </div>
                                 <form action="{{ route('setting.storeVendor') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="p-t-15">
                                         <label class="col-form-label">Vendor:</label>
-                                        <input type="text" name="vendor" placeholder="Vendor" class="form-control rounded w-25">
+                                        <input type="text" name="vendor" placeholder="Vendor" class="form-control rounded w-25" required>
                                     </div>
                                     <div class="mt-4">
                                         <input type="submit" name="submit" value="Add" class="btn btn-primary">
                                     </div>
                                 </form>
                             </div>
+                            
 
                         </div>
                     </div>

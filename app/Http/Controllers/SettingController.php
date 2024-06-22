@@ -63,18 +63,22 @@ class SettingController extends Controller
 
     public function storeVendor(Request $request)
     {
+        // Validate input
+        $request->validate([
+            'vendor' => 'required|string|max:255',
+        ]);
 
-        Settings::create(
-            [
-                'setting_name' => 'Vendor',
-                'value' => $request->vendor,
-            ]
-        ); // Use model for creation
+        // Create a new vendor setting
+        Settings::create([
+            'setting_name' => 'Vendor',
+            'value' => $request->vendor,
+        ]);
 
-        return redirect()->route('settings')->with('success', 'Data saved successfully!');
+        // Redirect back to the settings page with success message
+        return redirect()->route('settings')->with('success', 'Vendor saved successfully!');
     }
 
-    
+
     public function destroyVendor($id)
     {
         $vendor = Settings::findOrFail($id);
