@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Agencies;
 use App\Models\AdAccount;
+use App\Models\Settings;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -39,7 +40,8 @@ class AdAccountController extends Controller
     {
         $agencies = Agencies::all(); // Fetch all ad account agencies
         $customers = User::where('role', 'customer')->get(); // Fetch all users with role 'customer'
-        return view('template.home.ad_account.ad_account_application', compact('agencies', 'customers')); // Pass the data to the view
+        $dollarRates = Settings::where('setting_name', 'Default Dollar Rate')->get();
+        return view('template.home.ad_account.ad_account_application', compact('agencies', 'customers', 'dollarRates')); // Pass the data to the view
     }
 
     public function ad_account_id(User $user)

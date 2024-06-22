@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Deposit;
+use App\Models\Settings;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -35,7 +36,8 @@ class DepositController extends Controller
     }
     public function create()
     {
-        return view('template.home.deposit.create');
+        $vendors = Settings::where('setting_name', 'Vendor')->get();
+        return view('template.home.deposit.create', compact('vendors'));
     }
 
     public function store(Request $request)
