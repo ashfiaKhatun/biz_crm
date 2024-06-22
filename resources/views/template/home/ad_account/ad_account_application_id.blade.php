@@ -165,7 +165,9 @@
 
                     <div>
                         <label class="col-form-label">Dollar Rate:</label>
-                        <input type="text" name="dollar_rate" placeholder="Dollar Rate" class="form-control rounded">
+                        @foreach ($dollarRates as $dollarRate)
+                        <input value="{{$dollarRate->value}}" type="text" name="dollar_rate" placeholder="Dollar Rate" class="form-control rounded">
+                        @endforeach
                     </div>
 
                     <div class="d-flex justify-content-end mt-4">
