@@ -14,7 +14,13 @@ class AdAccountController extends Controller
 {
     public function index()
     {
-        $adAccounts = AdAccount::orderBy('created_at', 'desc')->get();
+        if (auth()->user()->role == 'customer') {
+            $adAccounts = AdAccount::where('client_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->get();
+            return view('template.home.ad_account.index', compact('adAccounts'));
+        } else
+            $adAccounts = AdAccount::orderBy('created_at', 'desc')->get();
         return view('template.home.ad_account.index', compact('adAccounts'));
     }
 
@@ -168,11 +174,29 @@ class AdAccountController extends Controller
 
     public function showPendingAdAccounts()
     {
-        $adAccounts = AdAccount::where('status', 'pending')->orderBy('created_at', 'desc')->get();
+        if (auth()->user()->role == 'customer') {
+
+            $adAccounts = AdAccount::where('client_id', auth()->user()->id)
+                ->where('status', 'pending')
+                ->orderBy('created_at', 'desc')
+                ->get();
+            return view('template.home.ad_account.index', compact('adAccounts'));
+
+        } else
+            $adAccounts = AdAccount::where('status', 'pending')->orderBy('created_at', 'desc')->get();
         return view('template.home.ad_account.index', compact('adAccounts'));
     }
     public function showApprovedAdAccounts()
     {
+        if (auth()->user()->role == 'customer') {
+
+            $adAccounts = AdAccount::where('client_id', auth()->user()->id)
+                ->where('status', 'approved')
+                ->orderBy('created_at', 'desc')
+                ->get();
+            return view('template.home.ad_account.index', compact('adAccounts'));
+
+        } else
         $adAccounts = AdAccount::where('status', 'approved')->orderBy('created_at', 'desc')->get();
         return view('template.home.ad_account.index', compact('adAccounts'));
     }
@@ -195,8 +219,8 @@ class AdAccountController extends Controller
             [
                 'client_id' => $adAccount->client_id,
                 'ad_account_id' => $adAccount->id,
-                'amount_dollar' => - ($request['transfer_amount']),
-                'amount_taka' => - ($adAccount->dollar_rate * $request['transfer_amount']),
+                'amount_dollar' => -($request['transfer_amount']),
+                'amount_taka' => -($adAccount->dollar_rate * $request['transfer_amount']),
                 'payment_method' => 'Transferred',
                 'status' => 'approved',
                 'sent_to_agency' => '1',

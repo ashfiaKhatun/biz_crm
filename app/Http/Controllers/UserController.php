@@ -12,16 +12,26 @@ class UserController extends Controller
 
     public function indexClients()
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
+
         $users = User::where('role', 'customer')->get();
         return view('template.home.users.client.index', compact('users'));
     }
     public function editClient($id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $client = User::findOrFail($id);
         return view('template.home.users.client.edit', compact('client'));
     }
     public function updateClient(Request $request, $id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
 
         $client = User::findOrFail($id);
         $client->update([
@@ -38,6 +48,9 @@ class UserController extends Controller
     }
     public function destroyClient($id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $client = User::findOrFail($id);
         $client->delete();
 
@@ -48,16 +61,25 @@ class UserController extends Controller
 
     public function indexManagers()
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $users = User::where('role', 'manager')->get();
         return view('template.home.users.manager.index', compact('users'));
     }
     public function editManager($id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $manager = User::findOrFail($id);
         return view('template.home.users.manager.edit', compact('manager'));
     }
     public function updateManager(Request $request, $id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
 
         $manager = User::findOrFail($id);
         $manager->update([
@@ -70,6 +92,9 @@ class UserController extends Controller
     }
     public function destroyManager($id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $manager = User::findOrFail($id);
         $manager->delete();
 
@@ -81,16 +106,25 @@ class UserController extends Controller
 
     public function indexAdmins()
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $users = User::where('role', 'admin')->get();
         return view('template.home.users.admin.index', compact('users'));
     }
     public function editAdmin($id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $admin = User::findOrFail($id);
         return view('template.home.users.admin.edit', compact('admin'));
     }
     public function updateAdmin(Request $request, $id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
 
         $admin = User::findOrFail($id);
         $admin->update([
@@ -103,6 +137,9 @@ class UserController extends Controller
     }
     public function destroyAdmin($id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $admin = User::findOrFail($id);
         $admin->delete();
 
