@@ -32,6 +32,17 @@ class RefillController extends Controller
         $paymentMethods = Settings::where('setting_name', 'Refill Payment Method')->get();
         return view('template.home.refill_application.refill_application', compact('customers', 'paymentMethods'));
     }
+    
+
+    // new refill for customer
+    public function newRefill()
+    {
+        $customers = User::where('role', 'customer')->get();
+        $paymentMethods = Settings::where('setting_name', 'Refill Payment Method')->get();
+        return view('template.home.refill_application.refill_application_new', compact('customers', 'paymentMethods'));
+    }
+    // *************
+    
     public function refill_application_id(AdAccount $adAccount)
     {
         $paymentMethods = Settings::where('setting_name', 'Refill Payment Method')->get();

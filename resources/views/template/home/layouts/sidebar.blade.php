@@ -15,15 +15,15 @@
                 <ul aria-expanded="false">
                     @if(auth()->user()->role == 'admin')
                     <li><a href="{{ route('ad-account-application') }}" aria-expanded="false">
-                        New
-                    </a></li> 
-                    @endif
-                    
-                    @if(auth()->user()->role == 'customer')
-                        <li><a href="{{ route('adaccount.adaccount', auth()->user()->id) }}" aria-expanded="false">
                             New
                         </a></li>
-                        @endif
+                    @endif
+
+                    @if(auth()->user()->role == 'customer')
+                    <li><a href="{{ route('adaccount.adaccount', auth()->user()->id) }}" aria-expanded="false">
+                            New
+                        </a></li>
+                    @endif
                     <li><a href="{{ route('ad-account.index') }}">All Applications</a></li>
                     <li><a href="{{ route('pending-ad-account-application') }}">Pending</a></li>
                     <li><a href="{{ route('approved-ad-account-application') }}">Approved</a></li>
@@ -48,109 +48,121 @@
                     <i class="fa-solid fa-fill"></i><span class="nav-text">Refill</span>
                 </a>
                 <ul aria-expanded="false">
+                    @if(auth()->user()->role == 'admin')
                     <li><a href="{{ route('refill-application') }}" aria-expanded="false">
                             New
                         </a></li>
+                    @endif
+                    
+
+                    <!-- new refill for customer -->
+                    @if(auth()->user()->role == 'customer')
+                    <li><a href="{{ route('refills.newRefill', auth()->user()->id) }}" aria-expanded="false">
+                            New
+                        </a></li>
+                    @endif
+                    <!-- *********** -->
+
                     <li><a href="{{ route('refills.index') }}">All</a></li>
                     <li><a href="{{ route('refills.pending') }}">Pending</a></li>
 
                 </ul>
             </li>
             @if (auth()->user()->role == 'admin')
-                <li class="mega-menu mega-menu-sm">
-                    <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                        <i class="fa-regular fa-building"></i><span class="nav-text">Agencies</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('add-agency') }}" aria-expanded="false">
-                                New
-                            </a></li>
-                        <li><a href="{{ route('all-agency') }}">All</a></li>
+            <li class="mega-menu mega-menu-sm">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa-regular fa-building"></i><span class="nav-text">Agencies</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('add-agency') }}" aria-expanded="false">
+                            New
+                        </a></li>
+                    <li><a href="{{ route('all-agency') }}">All</a></li>
 
-                    </ul>
-                </li>
+                </ul>
+            </li>
             @endif
 
             @if (auth()->user()->role == 'admin')
-                <li class="mega-menu mega-menu-sm">
-                    <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                        <i class="fa-solid fa-user-tie"></i><span class="nav-text">Admins</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('register.admin') }}" aria-expanded="false">
-                                New
-                            </a></li>
-                        <li><a href="{{ route('user.admin') }}">All</a></li>
+            <li class="mega-menu mega-menu-sm">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa-solid fa-user-tie"></i><span class="nav-text">Admins</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('register.admin') }}" aria-expanded="false">
+                            New
+                        </a></li>
+                    <li><a href="{{ route('user.admin') }}">All</a></li>
 
-                    </ul>
-                </li>
+                </ul>
+            </li>
             @endif
 
             @if (auth()->user()->role == 'admin')
-                <li class="mega-menu mega-menu-sm">
-                    <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                        <i class="fa-regular fa-user"></i><span class="nav-text">Managers</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('register.manager') }}" aria-expanded="false">
-                                New
-                            </a></li>
-                        <li><a href="{{ route('user.manager') }}">All</a></li>
+            <li class="mega-menu mega-menu-sm">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa-regular fa-user"></i><span class="nav-text">Managers</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('register.manager') }}" aria-expanded="false">
+                            New
+                        </a></li>
+                    <li><a href="{{ route('user.manager') }}">All</a></li>
 
-                    </ul>
-                </li>
-            @endif
-
-
-
-            @if (auth()->user()->role == 'admin')
-                <li class="mega-menu mega-menu-sm">
-                    <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                        <i class="fa-solid fa-users"></i></i><span class="nav-text">Clients</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('register') }}" aria-expanded="false">
-                                New
-                            </a></li>
-                        <li><a href="{{ route('user.client') }}">All</a></li>
-
-                    </ul>
-                </li>
+                </ul>
+            </li>
             @endif
 
 
 
+            @if (auth()->user()->role == 'admin')
+            <li class="mega-menu mega-menu-sm">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa-solid fa-users"></i></i><span class="nav-text">Clients</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('register') }}" aria-expanded="false">
+                            New
+                        </a></li>
+                    <li><a href="{{ route('user.client') }}">All</a></li>
+
+                </ul>
+            </li>
+            @endif
+
+
+
 
             @if (auth()->user()->role == 'admin')
-                <li class="mega-menu mega-menu-sm">
-                    <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                        <i class="fa fa-money"></i></i><span class="nav-text">Deposit</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('deposit.create') }}" aria-expanded="false">
-                                New
-                            </a></li>
-                        <li><a href="{{ route('deposits.index') }}">All</a></li>
-                        <li><a href="{{ route('averageUsdRate') }}">Monthly Avarage USD Rate</a></li>
+            <li class="mega-menu mega-menu-sm">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-money"></i></i><span class="nav-text">Deposit</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('deposit.create') }}" aria-expanded="false">
+                            New
+                        </a></li>
+                    <li><a href="{{ route('deposits.index') }}">All</a></li>
+                    <li><a href="{{ route('averageUsdRate') }}">Monthly Avarage USD Rate</a></li>
 
-                    </ul>
-                </li>
+                </ul>
+            </li>
             @endif
 
 
             @if (auth()->user()->role == 'admin')
-                <li class="mega-menu mega-menu-sm">
-                    <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                        <i class="fa-solid fa-chart-simple"></i><span class="nav-text">Report</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a aria-expanded="false">
-                                Monthly Report
-                            </a>
-                        </li>
+            <li class="mega-menu mega-menu-sm">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa-solid fa-chart-simple"></i><span class="nav-text">Report</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a aria-expanded="false">
+                            Monthly Report
+                        </a>
+                    </li>
 
-                    </ul>
-                </li>
+                </ul>
+            </li>
             @endif
 
             @if (auth()->user()->role == 'admin')
