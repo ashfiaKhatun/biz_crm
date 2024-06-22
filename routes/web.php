@@ -108,9 +108,13 @@ Route::get('average-usd-rate', [DepositController::class, 'averageUsdRate'])->mi
 // settings start
 
 Route::get('settings', [SettingController::class, 'show'])->middleware(['auth', 'verified'])->name('settings');
-Route::post('settingDollar', [SettingController::class, 'storeDollar'])->middleware(['auth', 'verified'])->name('setting.storeDollar');
-Route::post('settingPaymentMethod', [SettingController::class, 'storePaymentMethod'])->middleware(['auth', 'verified'])->name('setting.storePaymentMethod');
-Route::post('settingVendor', [SettingController::class, 'storeVendor'])->middleware(['auth', 'verified'])->name('setting.storeVendor');
+Route::post('settings/settingDollar', [SettingController::class, 'storeDollar'])->middleware(['auth', 'verified'])->name('setting.storeDollar');
+Route::post('settings/settingPaymentMethod', [SettingController::class, 'storePaymentMethod'])->middleware(['auth', 'verified'])->name('setting.storePaymentMethod');
+Route::post('settings/settingVendor', [SettingController::class, 'storeVendor'])->middleware(['auth', 'verified'])->name('setting.storeVendor');
+Route::put('settings/updateDollar/{id}', [SettingController::class, 'updateDollar'])->middleware(['auth', 'verified'])->name('setting.updateDollar');
+Route::delete('settings/destroyPaymentMethod/{id}', [SettingController::class, 'destroyPaymentMethod'])->middleware(['auth', 'verified'])->name('setting.destroyPaymentMethod');
+Route::delete('settings/destroyVendor/{id}', [SettingController::class, 'destroyVendor'])->middleware(['auth', 'verified'])->name('setting.destroyVendor');
+
 
 // settings end
 

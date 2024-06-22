@@ -75,9 +75,9 @@
                         <label class="col-form-label">Payment Method</label>
                         <select name="payment_method" class="form-control rounded">
                             <option>Select</option>
-                            <option value="Bank">Bank</option>
-                            <option value="BKash">BKash</option>
-                            <option value="Nagad">Nagad</option>
+                            @foreach ($paymentMethods as $paymentMethod)
+                            <option value="{{ $paymentMethod->value }}">{{ $paymentMethod->value }}</option>
+                            @endforeach
                         </select>
                     </div>
 

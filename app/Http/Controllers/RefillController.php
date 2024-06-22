@@ -8,6 +8,7 @@ use App\Models\Agencies;
 use App\Models\AdAccount;
 use App\Models\Refill;
 use App\Models\AgencyTransaction;
+use App\Models\Settings;
 
 class RefillController extends Controller
 {
@@ -28,14 +29,14 @@ class RefillController extends Controller
     public function refill_application()
     {
         $customers = User::where('role', 'customer')->get();
-        return view('template.home.refill_application.refill_application', compact('customers'));
+        $paymentMethods = Settings::where('setting_name', 'Refill Payment Method')->get();
+        return view('template.home.refill_application.refill_application', compact('customers', 'paymentMethods'));
     }
     public function refill_application_id(AdAccount $adAccount)
     {
-        // Access the ad account details using $adAccount
-        // ... your logic for displaying the refill page here ...
+        $paymentMethods = Settings::where('setting_name', 'Refill Payment Method')->get();
 
-        return view('template.home.refill_application.refill_application_id', compact('adAccount')); // Pass the ad account to the refill view
+        return view('template.home.refill_application.refill_application_id', compact('adAccount', 'paymentMethods')); // Pass the ad account to the refill view
     }
 
     public function store(Request $request)
@@ -149,9 +150,6 @@ class RefillController extends Controller
                     'agency_charge' => (($agencyRate / 100) * $refill->amount_dollar),
                     'agency_rate' => $refill->adAccount->agency->percentage_rate
                 ]);
-
-
-
             } elseif ($refill->adAccount->agency->commission_type == 'Dollar Rate') {
 
 
@@ -168,8 +166,6 @@ class RefillController extends Controller
                     'agency_charge_type' => $refill->adAccount->agency->commission_type,
                     'agency_rate' => $refill->adAccount->agency->dollar_rate
                 ]);
-
-
             } elseif ($refill->adAccount->agency->commission_type == 'Own Account') {
 
 
@@ -186,13 +182,9 @@ class RefillController extends Controller
                     'agency_charge_type' => $refill->adAccount->agency->commission_type,
 
                 ]);
-
-
             }
 
             $refill->update(['status' => $request->status]);
-
-
         } else
             $refill = Refill::findOrFail($id);
         $refill->update(['status' => $request->status]);
@@ -200,6 +192,5 @@ class RefillController extends Controller
 
         return redirect()->route('refills.index')->with('success', 'Status updated successfully.');
     }
-
 
 }

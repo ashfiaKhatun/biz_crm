@@ -49,22 +49,26 @@
 
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="dollar" role="tabpanel">
-                                @foreach ($values as $value)
-                                @if($value->setting_name == 'Default Dollar Rate')
+                                @if (isset($defaultRate))
                                 <div class="text-black row">
                                     <b class="col-2">Default Dollar Rate: </b>
-                                    <p class="col-10">{{ $value->value }} Taka</p>
+                                    <p class="col-10">{{ $defaultRate->value }} Taka</p>
                                 </div>
                                 @endif
-                                @endforeach
-                                <form action="{{ route('setting.storeDollar') }}" method="POST" enctype="multipart/form-data">
+
+                                <form action="{{ isset($defaultRate) ? route('setting.updateDollar', $defaultRate->id) : route('setting.storeDollar') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
+
+                                    @if(isset($defaultRate))
+                                    @method('PUT')
+                                    @endif
+
                                     <div class="p-t-15">
                                         <label class="col-form-label">Default Dollar Rate:</label>
-                                        <input type="text" name="dollar_rate" placeholder="Default Dollar Rate" class="form-control rounded w-25">
+                                        <input value="{{ isset($defaultRate) ? $defaultRate->value : '' }}" type="text" name="dollar_rate" placeholder="Default Dollar Rate" class="form-control rounded w-25">
                                     </div>
                                     <div class="mt-4">
-                                        <input type="submit" name="submit" value="Save" class="btn btn-primary">
+                                        <input type="submit" name="submit" value="{{ isset($defaultRate) ? 'Update' : 'Save' }}" class="btn btn-primary">
                                     </div>
                                 </form>
                             </div>
@@ -75,7 +79,15 @@
                                     <ul class="list-group w-25 my-3">
                                         @foreach ($values as $value)
                                         @if($value->setting_name == 'Refill Payment Method')
-                                        <li class="list-group-item">{{ $value->value }}</li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            {{ $value->value }}
+                                            <form action="{{ route('setting.destroyPaymentMethod', $value->id) }}" method="POST" style="display:inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm bg-transparent" onclick="return confirm('Are you sure you want to delete this Payment Method?')"><i class="fa-solid fa-xmark"></i></button>
+                                        </form>
+                                        </li>
+                                        
                                         @endif
                                         @endforeach
 
@@ -100,7 +112,13 @@
                                     <ul class="list-group w-25 my-3">
                                         @foreach ($values as $value)
                                         @if($value->setting_name == 'Vendor')
-                                        <li class="list-group-item">{{ $value->value }}</li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            {{ $value->value }}
+                                            <form action="{{ route('setting.destroyVendor', $value->id) }}" method="POST" style="display:inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm bg-transparent" onclick="return confirm('Are you sure you want to delete this Vendor?')"><i class="fa-solid fa-xmark"></i></button>
+                                        </li>
                                         @endif
                                         @endforeach
 
