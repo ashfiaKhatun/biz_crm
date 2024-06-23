@@ -18,7 +18,8 @@ class Refill extends Model
         'transaction_id',
         'screenshot',
         'status',
-        'sent_to_agency'
+        'sent_to_agency',
+        'assign',
     ];
 
     public function client()

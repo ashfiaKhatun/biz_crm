@@ -52,6 +52,11 @@
                         <input type="text" name="bm_id" placeholder="Business Manager Id" class="form-control rounded">
                     </div>
 
+                    <div>
+                        <label class="col-form-label">Ad Account Id:</label>
+                        <input type="text" name="ad_acc_id" placeholder="Business Manager Id" class="form-control rounded">
+                    </div>
+
 
                     <div>
                         <label class="col-form-label">Facebook Page Link:</label>

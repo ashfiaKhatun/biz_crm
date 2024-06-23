@@ -57,6 +57,7 @@
                                 @endif
                                 <th>Status</th>
                                 <th>Actions</th>
+                                <th>Responsable</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -155,6 +156,7 @@
                                             @endif
                                         </span>
                                     </td>
+                                    <td>{{ $refill->assign }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

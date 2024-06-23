@@ -38,6 +38,13 @@
                 </div>
 
                 <div>
+                    <label class="col-form-label">Ad Account Id:</label>
+                    <input type="text" name="ad_acc_id" value="{{ $adAccount->ad_acc_id }}" class="form-control rounded">
+                </div>
+
+                
+
+                <div>
                     <label class="col-form-label">Facebook Page Link:</label>
 
                     <div class="d-flex">

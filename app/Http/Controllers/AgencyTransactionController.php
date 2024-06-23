@@ -13,7 +13,7 @@ class AgencyTransactionController extends Controller
         $refill = Refill::findOrFail($id);
 
 
-        $refill->update(['sent_to_agency' => 1]);
+        $refill->update(['sent_to_agency' => 1,'assign' => auth()->user()->name]);
         return redirect()->route('refills.index')->with('success', 'Deposit sent to agency successfully.');
     }
 }

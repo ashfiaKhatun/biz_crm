@@ -208,10 +208,10 @@ class RefillController extends Controller
                 ]);
             }
 
-            $refill->update(['status' => $request->status]);
+            $refill->update(['status' => $request->status,'assign' => auth()->user()->name]);
         } else
             $refill = Refill::findOrFail($id);
-        $refill->update(['status' => $request->status]);
+        $refill->update(['status' => $request->status,'assign' => auth()->user()->name]);
 
 
         return redirect()->route('refills.index')->with('success', 'Status updated successfully.');

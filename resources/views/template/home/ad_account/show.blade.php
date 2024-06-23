@@ -43,6 +43,12 @@
                                 <p class="col-8 ">{{ $adAccount->bm_id }}</p>
                             </div>
 
+                            <div class="row">
+                                <b class="col-4">Ad Account ID:</b>
+                                <p class="col-8 ">{{ $adAccount->ad_acc_id }}</p>
+                            </div>
+                            
+
                             @if (isset($adAccount->fb_link1) && $adAccount->fb_link1 !== '')
                                 <div class="row">
                                     <b class="col-4">Facebook Link 1:</b>

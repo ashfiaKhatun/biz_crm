@@ -70,6 +70,7 @@ class AdAccountController extends Controller
                 'client_id' => $request->client_name,
                 'ad_acc_name' => $request->ad_acc_name,
                 'bm_id' => $request->bm_id,
+                'ad_acc_id' => $request->ad_acc_id,
                 'fb_link1' => $request->fb_link1,
                 'fb_link2' => $request->fb_link2,
                 'fb_link3' => $request->fb_link3,
@@ -188,7 +189,10 @@ class AdAccountController extends Controller
         ]);
 
         $adAccount = AdAccount::findOrFail($id);
-        $adAccount->update(['status' => $request->status]);
+        $adAccount->update([
+            'status' => $request->status,
+            'assign' => auth()->user()->name
+        ]);
 
         return redirect()->route('ad-account.index')->with('success', 'Status updated successfully.');
     }

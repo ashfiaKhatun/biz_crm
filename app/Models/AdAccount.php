@@ -25,6 +25,8 @@ class AdAccount extends Model
         'ad_acc_type',
         'dollar_rate',
         'status',
+        'ad_acc_id',
+        'assign',
     ];
 
     public function client()

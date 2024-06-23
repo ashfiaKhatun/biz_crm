@@ -60,6 +60,7 @@
                                 @endif
 
                                 <th>Actions</th>
+                                <th>Responsable</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -165,6 +166,9 @@
 
                                         </span>
                                     </td>
+
+
+                                    <td>{{ $adAccount->assign }}</td>
 
                                 </tr>
                             @endforeach
