@@ -3,11 +3,7 @@
 
 <head>
     @include('template.home.layouts.head')
-    <style>
-        .font-sm {
-            font-size: 12px;
-        }
-    </style>
+    @include('template.home.custom_styles.custom_style')
 </head>
 
 <body>
@@ -62,6 +58,10 @@
                                     <span class="d-flex align-items-center">
                                         <a href="{{ route('adaccount.adaccount', $user->id) }}" data-toggle="tooltip" data-placement="top" title="Add New Ad Account">
                                             <i class="fa fa-plus color-muted m-r-5 ml-2"></i>
+                                        </a>
+
+                                        <a href="{{ route('client.show', $user->id) }}" data-toggle="tooltip" data-placement="top" title="View">
+                                            <i class="fa fa-eye color-muted m-r-5 ml-3"></i>
                                         </a>
 
                                         <a href="{{ route('client.edit', $user->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">

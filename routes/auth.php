@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function () {
 Route::get('clients', [UserController::class, 'indexClients'])->middleware(['auth', 'verified'])->name('user.client');
 Route::get('register', [RegisteredUserController::class, 'createCustomer'])->middleware(['auth', 'verified'])->name('register');
 Route::post('register', [RegisteredUserController::class, 'storeCustomer']);
+Route::get('clients/{id}/details', [UserController::class, 'showClient'])->middleware(['auth', 'verified'])->name('client.show');
 Route::get('clients/{id}/edit', [UserController::class, 'editClient'])->middleware(['auth', 'verified'])->name('client.edit');
 Route::put('clients/{id}', [UserController::class, 'updateClient'])->middleware(['auth', 'verified'])->name('client.update');
 Route::delete('clients/{id}', [UserController::class, 'destroyClient'])->middleware(['auth', 'verified'])->name('client.destroy');

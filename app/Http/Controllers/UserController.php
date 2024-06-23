@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdAccount;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
+ 
     public function indexClients()
     {
         if (auth()->user()->role == 'customer') {
@@ -19,6 +20,13 @@ class UserController extends Controller
         $users = User::where('role', 'customer')->get();
         return view('template.home.users.client.index', compact('users'));
     }
+    public function showClient($id)
+    {
+        $user = User::findOrFail($id);
+        $adAccounts = AdAccount::where('client_id', $id)->get();
+        return view('template.home.users.client.show', compact('user', 'adAccounts'));
+    }
+
     public function editClient($id)
     {
         if (auth()->user()->role !== 'admin') {
