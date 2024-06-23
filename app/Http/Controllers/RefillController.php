@@ -83,6 +83,9 @@ class RefillController extends Controller
 
     public function edit($id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $refill = Refill::findOrFail($id);
         $customers = User::where('role', 'customer')->get();
         $adAccounts = AdAccount::where('client_id', $refill->client_id)->get();
@@ -91,6 +94,9 @@ class RefillController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $request->validate([
             'client_id' => 'required|exists:users,id',
             'ad_account_id' => 'required|exists:ad_accounts,id',
@@ -116,6 +122,9 @@ class RefillController extends Controller
 
     public function destroy($id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $refill = Refill::findOrFail($id);
         $refill->delete();
 
@@ -138,6 +147,9 @@ class RefillController extends Controller
 
     public function updateStatus(Request $request, $id)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
         $request->validate([
             'status' => 'required|string|in:pending,approved,rejected',
         ]);
