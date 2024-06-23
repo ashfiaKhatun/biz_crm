@@ -54,6 +54,7 @@
 
 
                                 <td>
+                                    
                                     <span class="d-flex align-items-center">
                                         <a href="{{ route('employee.edit', $user->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                             <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
@@ -76,6 +77,7 @@
                                             </div>
                                         </div>
                                     </span>
+                                    
                                 </td>
 
                             </tr>

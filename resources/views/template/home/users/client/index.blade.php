@@ -58,6 +58,7 @@
 
 
                                 <td>
+                                    @if (auth()->user()->role == 'admin')
                                     <span class="d-flex align-items-center">
                                         <a href="{{ route('adaccount.adaccount', $user->id) }}" data-toggle="tooltip" data-placement="top" title="Add New Ad Account">
                                             <i class="fa fa-plus color-muted m-r-5 ml-2"></i>
@@ -84,6 +85,7 @@
                                             </div>
                                         </div>
                                     </span>
+                                    @endif
                                 </td>
 
                             </tr>
