@@ -53,14 +53,14 @@
                                 <th>Ad Account Name</th>
                                 <th>Agency</th>
                                 <th>Doller Rate</th>
-
+                                <th>Responsible</th>
                                 <th></th>
                                 @if (auth()->user()->role == 'admin')
                                     <th>Status</th>
                                 @endif
 
                                 <th>Actions</th>
-                                <th>Responsable</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -74,6 +74,7 @@
                                     <td>{{ $adAccount->ad_acc_name }}</td>
                                     <td>{{ $adAccount->agency->agency_name }}</td>
                                     <td>{{ $adAccount->dollar_rate }}৳</td>
+                                    <td>{{ $adAccount->assign }}</td>
 
                                     <td class="text-center">
                                         @if ($adAccount->status == 'pending')
@@ -168,7 +169,7 @@
                                     </td>
 
 
-                                    <td>{{ $adAccount->assign }}</td>
+                                   
 
                                 </tr>
                             @endforeach

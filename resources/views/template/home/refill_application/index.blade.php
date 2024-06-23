@@ -52,12 +52,13 @@
                                 <th>Amount (Dollar)</th>
                                 <th>Amount (Taka)</th>
                                 <th>Method</th>
+                                <th>Responsible</th>
                                 @if (auth()->user()->role == 'admin')
                                     <th></th>
                                 @endif
                                 <th>Status</th>
                                 <th>Actions</th>
-                                <th>Responsable</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -69,6 +70,7 @@
                                     <td>{{ $refill->amount_dollar }}</td>
                                     <td>{{ $refill->amount_taka }}</td>
                                     <td>{{ $refill->payment_method }}</td>
+                                    <td>{{ $refill->assign }}</td>
                                     @if (auth()->user()->role == 'admin')
                                         <td class="text-center">
                                             @if ($refill->sent_to_agency == 0 && $refill->payment_method != 'Transferred')
@@ -156,7 +158,7 @@
                                             @endif
                                         </span>
                                     </td>
-                                    <td>{{ $refill->assign }}</td>
+                                    
                                 </tr>
                             @endforeach
                         </tbody>
