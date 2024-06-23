@@ -76,6 +76,7 @@ Route::get('refill-application', [RefillController::class, 'refill_application']
 // new refill for customer
 Route::get('refill-application/{id}/new', [RefillController::class, 'newRefill'])->middleware(['auth', 'verified'])->name('refills.newRefill');
 // **************
+
 Route::get('ad-accounts/{adAccount}/refill', [RefillController::class, 'refill_application_id'])->middleware(['auth', 'verified'])->name('refill.refill');
 Route::post('refill', [RefillController::class, 'store'])->middleware(['auth', 'verified'])->name('refill.store');
 

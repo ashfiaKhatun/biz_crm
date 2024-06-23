@@ -36,11 +36,11 @@
                 <h4 class="mb-3">Refill Ad Account Balance</h4>
                 <form action="{{ route('refill.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div>
+                    <div class="d-none">
                         <label class="col-form-label">Client Name:</label>
                         <select id="client-select" name="client_id" class="form-control rounded">
-                            <option>Select</option>
-                            @foreach ($customers as $customer)
+                            
+                            @foreach ($customer as $customer)
                             <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                             @endforeach
                         </select>
@@ -50,6 +50,9 @@
                         <label class="col-form-label">Ad Account Name:</label>
                         <select id="ad-account-select" name="ad_account_id" class="form-control rounded">
                             <option>Select</option>
+                            @foreach ($adaccount as $adaccount)
+                                <option value="{{ $adaccount->id }}">{{ $adaccount->ad_acc_name }} </option>
+                            @endforeach
                         </select>
                     </div>
 

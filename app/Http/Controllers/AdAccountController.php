@@ -193,6 +193,7 @@ class AdAccountController extends Controller
         return redirect()->route('ad-account.index')->with('success', 'Status updated successfully.');
     }
 
+    
     public function showPendingAdAccounts()
     {
         if (auth()->user()->role == 'customer') {
