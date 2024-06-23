@@ -61,6 +61,12 @@
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
+                    <div>
+                        <label class="col-form-label">Username:</label>
+                        <input id="username" class="form-control rounded" type="text" name="username" :value="old('username')" placeholder="Username" required autofocus autocomplete="username" />
+                        <x-input-error :messages="$errors->get('username')" class="mt-2" />
+                    </div>
+
                     <div class="">
                         <label class="col-form-label">Admin Email:</label>
                         <input id="email" class="form-control rounded" type="email" name="email" :value="old('email')" placeholder="Admin Email" required autocomplete="username" />
