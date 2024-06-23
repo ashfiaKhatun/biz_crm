@@ -50,7 +50,7 @@
                     <i class="fa-solid fa-fill"></i><span class="nav-text">Refill</span>
                 </a>
                 <ul aria-expanded="false">
-                    @if (auth()->user()->role == 'admin' || auth()->user()->role == 'employee')
+                    @if (auth()->user()->role == 'admin' || auth()->user()->role == 'employee' || auth()->user()->role == 'manager')
                         <li><a href="{{ route('refill-application') }}" aria-expanded="false">
                                 New
                             </a></li>

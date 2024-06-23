@@ -83,7 +83,7 @@ class RefillController extends Controller
 
     public function edit($id)
     {
-        if (auth()->user()->role !== 'admin') {
+        if (auth()->user()->role == 'customer') {
             return redirect('/');
         }
         $refill = Refill::findOrFail($id);
@@ -147,7 +147,7 @@ class RefillController extends Controller
 
     public function updateStatus(Request $request, $id)
     {
-        if (auth()->user()->role !== 'admin') {
+        if (auth()->user()->role == 'customer') {
             return redirect('/');
         }
         $request->validate([

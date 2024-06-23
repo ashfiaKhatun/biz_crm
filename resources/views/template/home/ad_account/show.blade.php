@@ -122,7 +122,7 @@
                                 <strong class="col-4">Total Refill Amount:</strong>
                                 <p class="col-8">${{ $totalAmountUsd }}</p>
                             </div>
-                            @if (auth()->user()->role == 'admin')
+                            @if (auth()->user()->role == 'admin' || auth()->user()->role == 'employee' || auth()->user()->role == 'manager')
                                 <div class="row">
                                     <b class="col-4">Status:</b>
                                     <form action="{{ route('ad-account.updateStatus', $adAccount->id) }}"

@@ -30,7 +30,7 @@
                     <table class="table table-bordered table-striped verticle-middle">
                         <thead>
                             <tr>
-                                @if(auth()->user()->role == 'admin')
+                                @if(auth()->user()->role == 'admin' || auth()->user()->role == 'employee')
                                    <th>Client Name</th> 
                                 @endif
                                 
@@ -44,7 +44,7 @@
                         <tbody>
                             @foreach ($adAccounts as $adAccount)
                                 <tr>
-                                    @if(auth()->user()->role == 'admin')
+                                    @if(auth()->user()->role == 'admin' || auth()->user()->role == 'employee')
                                     <td>{{ $adAccount->client->name }}</td>
                                     @endif
                                     <td>{{ $adAccount->ad_acc_name }}</td>

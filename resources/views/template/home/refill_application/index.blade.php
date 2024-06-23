@@ -53,7 +53,7 @@
                                 <th>Amount (Taka)</th>
                                 <th>Method</th>
                                 <th>Responsible</th>
-                                @if (auth()->user()->role == 'admin')
+                                @if (auth()->user()->role == 'admin' || auth()->user()->role == 'employee')
                                     <th></th>
                                 @endif
                                 <th>Status</th>
@@ -71,7 +71,7 @@
                                     <td>{{ $refill->amount_taka }}</td>
                                     <td>{{ $refill->payment_method }}</td>
                                     <td>{{ $refill->assign }}</td>
-                                    @if (auth()->user()->role == 'admin')
+                                    @if (auth()->user()->role == 'admin' || auth()->user()->role == 'employee')
                                         <td class="text-center">
                                             @if ($refill->sent_to_agency == 0 && $refill->payment_method != 'Transferred')
                                                 <form action="{{ route('refill.sendToAgency', $refill->id) }}"
@@ -90,7 +90,7 @@
 
 
                                     <td>
-                                        @if (auth()->user()->role == 'admin')
+                                        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'employee')
                                             <form action="{{ route('refills.updateStatus', $refill->id) }}"
                                                 method="post">
                                                 @csrf

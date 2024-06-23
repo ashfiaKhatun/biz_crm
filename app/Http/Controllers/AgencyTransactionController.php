@@ -10,6 +10,10 @@ class AgencyTransactionController extends Controller
 {
     public function sendToAgency($id)
     {
+        if (auth()->user()->role == 'customer') {
+            return redirect('/');
+        }
+        
         $refill = Refill::findOrFail($id);
 
 

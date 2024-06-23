@@ -35,7 +35,7 @@ class AdAccountController extends Controller
             ->get();
         return view('template.home.ad_account.myaccount', compact('adAccounts'));
         }
-        elseif(auth()->user()->role == 'admin')
+        elseif(auth()->user()->role == 'admin' || auth()->user()->role == 'employee')
         {
             $adAccounts = AdAccount::where('status', 'approved')
             ->orderBy('created_at', 'desc')
@@ -181,7 +181,7 @@ class AdAccountController extends Controller
 
     public function updateStatus(Request $request, $id)
     {
-        if (auth()->user()->role !== 'admin') {
+        if (auth()->user()->role == 'customer') {
             return redirect('/');
         }
         $request->validate([

@@ -44,8 +44,8 @@
                             </div>
 
                             <div class="row">
-                                <b class="col-4">Ad Account ID:</b>
-                                <p class="col-8 ">{{ $adAccount->ad_acc_id }}</p>
+                                <b class="col-5">Ad Account ID:</b>
+                                <p class="col-7 ">{{ $adAccount->ad_acc_id }}</p>
                             </div>
 
                             <div class="row">

@@ -46,7 +46,7 @@
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                @if (auth()->user()->role == 'admin')
+                                @if (auth()->user()->role == 'admin' || auth()->user()->role == 'employee')
                                     <th>Client Name</th>
                                 @endif
 
@@ -55,7 +55,7 @@
                                 <th>Doller Rate</th>
                                 <th>Responsible</th>
                                 <th></th>
-                                @if (auth()->user()->role == 'admin')
+                                @if (auth()->user()->role == 'admin' || auth()->user()->role == 'employee')
                                     <th>Status</th>
                                 @endif
 
@@ -67,7 +67,7 @@
                             @foreach ($adAccounts as $adAccount)
                                 <tr>
                                     <td>{{ $adAccount->created_at->format('j F Y') }}</td>
-                                    @if (auth()->user()->role == 'admin')
+                                    @if (auth()->user()->role == 'admin' || auth()->user()->role == 'employee')
                                         <td>{{ $adAccount->client->name }}</td>
                                     @endif
 
@@ -98,7 +98,7 @@
                                         @endif
 
                                     </td>
-                                    @if (auth()->user()->role == 'admin')
+                                    @if (auth()->user()->role == 'admin' || auth()->user()->role == 'employee')
                                         <td>
                                             <form action="{{ route('ad-account.updateStatus', $adAccount->id) }}"
                                                 method="post">
