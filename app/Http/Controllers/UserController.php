@@ -102,6 +102,49 @@ class UserController extends Controller
     }
 
 
+    public function indexEmployees()
+    {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
+        $users = User::where('role', 'employee')->get();
+        return view('template.home.users.employee.index', compact('users'));
+    }
+    public function editEmployee($id)
+    {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
+        $employee = User::findOrFail($id);
+        return view('template.home.users.employee.edit', compact('employee'));
+    }
+    public function updateEmployee(Request $request, $id)
+    {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
+
+        $employee = User::findOrFail($id);
+        $employee->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('user.employee')->with('success', 'Employee information updated successfully.');
+    }
+    public function destroyEmployee($id)
+    {
+        if (auth()->user()->role !== 'admin') {
+            return redirect('/');
+        }
+        $employee = User::findOrFail($id);
+        $employee->delete();
+
+        return redirect()->route('user.employee')->with('success', 'Employee deleted successfully.');
+    }
+
+
 
 
     public function indexAdmins()

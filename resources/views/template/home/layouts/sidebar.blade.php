@@ -115,6 +115,21 @@
             </li>
             @endif
 
+            @if (auth()->user()->role == 'admin')
+            <li class="mega-menu mega-menu-sm">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa-regular fa-user"></i><span class="nav-text">Employees</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('register.employee') }}" aria-expanded="false">
+                            New
+                        </a></li>
+                    <li><a href="{{ route('user.employee') }}">All</a></li>
+
+                </ul>
+            </li>
+            @endif
+
 
 
             @if (auth()->user()->role == 'admin')

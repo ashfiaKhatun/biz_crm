@@ -78,6 +78,37 @@ class RegisteredUserController extends Controller
 
         return redirect()->route('user.manager');
     }
+    
+    // Display Manager registration form
+    public function createEmployee()
+    {
+        
+        return view('template.auth.register_employee');
+    }
+
+    // Handle storage of Manager
+    public function storeEmployee(Request $request)
+    {
+        
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'confirmed', 'min:8'],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'employee',
+        ]);
+
+        event(new Registered($user));
+
+        
+
+        return redirect()->route('user.employee');
+    }
 
     // Display Customer registration form
     public function createCustomer()

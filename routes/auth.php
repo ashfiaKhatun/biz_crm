@@ -83,3 +83,11 @@ Route::post('register/manager', [RegisteredUserController::class, 'storeManager'
 Route::get('managers/{id}/edit', [UserController::class, 'editManager'])->middleware(['auth', 'verified'])->name('manager.edit');
 Route::put('managers/{id}', [UserController::class, 'updateManager'])->middleware(['auth', 'verified'])->name('manager.update');
 Route::delete('managers/{id}', [UserController::class, 'destroyManager'])->middleware(['auth', 'verified'])->name('manager.destroy');
+
+// Registration route for Employees
+Route::get('employees', [UserController::class, 'indexEmployees'])->middleware(['auth', 'verified'])->name('user.employee');
+Route::get('register/employee', [RegisteredUserController::class, 'createEmployee'])->middleware(['auth', 'verified'])->name('register.employee');
+Route::post('register/employee', [RegisteredUserController::class, 'storeEmployee']);
+Route::get('employees/{id}/edit', [UserController::class, 'editEmployee'])->middleware(['auth', 'verified'])->name('employee.edit');
+Route::put('employees/{id}', [UserController::class, 'updateEmployee'])->middleware(['auth', 'verified'])->name('employee.update');
+Route::delete('employees/{id}', [UserController::class, 'destroyEmployee'])->middleware(['auth', 'verified'])->name('employee.destroy');
