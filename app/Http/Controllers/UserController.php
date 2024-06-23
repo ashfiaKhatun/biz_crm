@@ -12,7 +12,7 @@ class UserController extends Controller
 
     public function indexClients()
     {
-        if (auth()->user()->role !== 'admin') {
+        if (auth()->user()->role == 'customer') {
             return redirect('/');
         }
 
