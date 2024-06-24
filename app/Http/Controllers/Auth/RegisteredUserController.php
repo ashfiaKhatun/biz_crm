@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Validation\ValidationException; // Import the ValidationException class
-use App\Notifications\AppNotification;
-
+use App\Models\SystemNotification;
 
 
 class RegisteredUserController extends Controller
@@ -22,14 +21,14 @@ class RegisteredUserController extends Controller
     // Display Admin registration form
     public function createAdmin()
     {
-        
+
         return view('template.auth.register_admin');
     }
 
     // Handle storage of Admin
     public function storeAdmin(Request $request)
     {
-        
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
@@ -45,12 +44,14 @@ class RegisteredUserController extends Controller
             'role' => 'admin',
         ]);
 
+        
+
         event(new Registered($user));
 
-        $message = 'A new admin'. $request->name .'Created by'. auth()->user()->name ;
+        SystemNotification::create([
+            'notification' => 'A new admin ' . $request->name . ' Created by ' . auth()->user()->name,
+        ]);
 
-        $user->notify(new AppNotification($message,auth()->user()->id));
-        
 
         return redirect()->route('user.admin');
     }
@@ -58,14 +59,14 @@ class RegisteredUserController extends Controller
     // Display Manager registration form
     public function createManager()
     {
-        
+
         return view('template.auth.register_manager');
     }
 
     // Handle storage of Manager
     public function storeManager(Request $request)
     {
-        
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
@@ -83,25 +84,24 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        $message = 'A new manager '. $request->name .' Created by '. auth()->user()->name ;
-
-        $user->notify(new AppNotification($message,auth()->user()->id));
-        
+        SystemNotification::create([
+            'notification' => 'A new manager ' . $request->name . ' Created by ' . auth()->user()->name,
+        ]);
 
         return redirect()->route('user.manager');
     }
-    
+
     // Display Manager registration form
     public function createEmployee()
     {
-        
+
         return view('template.auth.register_employee');
     }
 
     // Handle storage of Manager
     public function storeEmployee(Request $request)
     {
-        
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
@@ -119,9 +119,9 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        $message = 'A new Employee'. $request->name .' Created by '. auth()->user()->name ;
-
-        $user->notify(new AppNotification($message,auth()->user()->id));
+        SystemNotification::create([
+            'notification' => 'A new employee ' . $request->name . ' Created by ' . auth()->user()->name,
+        ]);
 
         return redirect()->route('user.employee');
     }
@@ -131,7 +131,7 @@ class RegisteredUserController extends Controller
     {
         return view('template.auth.register_customer');
     }
-    
+
     public function clientRegister()
     {
         return view('template.auth.page-register');
@@ -163,9 +163,9 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        $message = 'A new Client'. $request->name .' Created by '. auth()->user()->name ;
-
-        $user->notify(new AppNotification($message,auth()->user()->id));
+        SystemNotification::create([
+            'notification' => 'A new client ' . $request->name . ' Created by ' . auth()->user()->name,
+        ]);
 
         return redirect()->route('user.client');
     }
@@ -194,9 +194,9 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        $message = 'A new Client'. $request->name .' Created by '. auth()->user()->name ;
-
-        $user->notify(new AppNotification($message,auth()->user()->id));
+        SystemNotification::create([
+            'notification' => 'A new client ' . $request->name . ' Created by ' . auth()->user()->name,
+        ]);
 
         return redirect()->route('login');
     }
