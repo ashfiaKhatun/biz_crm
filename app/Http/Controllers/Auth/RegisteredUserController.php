@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Validation\ValidationException; // Import the ValidationException class
+use App\Notifications\AppNotification;
+
 
 
 class RegisteredUserController extends Controller
@@ -45,6 +47,9 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+        $message = 'A new admin'. $request->name .'Created by'. auth()->user()->name ;
+
+        $user->notify(new AppNotification($message,auth()->user()->id));
         
 
         return redirect()->route('user.admin');
@@ -78,6 +83,9 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+        $message = 'A new manager '. $request->name .' Created by '. auth()->user()->name ;
+
+        $user->notify(new AppNotification($message,auth()->user()->id));
         
 
         return redirect()->route('user.manager');
@@ -111,7 +119,9 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        
+        $message = 'A new Employee'. $request->name .' Created by '. auth()->user()->name ;
+
+        $user->notify(new AppNotification($message,auth()->user()->id));
 
         return redirect()->route('user.employee');
     }
@@ -153,6 +163,10 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+        $message = 'A new Client'. $request->name .' Created by '. auth()->user()->name ;
+
+        $user->notify(new AppNotification($message,auth()->user()->id));
+
         return redirect()->route('user.client');
     }
     public function storeClient(Request $request)
@@ -179,6 +193,10 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+
+        $message = 'A new Client'. $request->name .' Created by '. auth()->user()->name ;
+
+        $user->notify(new AppNotification($message,auth()->user()->id));
 
         return redirect()->route('login');
     }
