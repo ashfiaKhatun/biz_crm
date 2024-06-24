@@ -9,6 +9,7 @@ use App\Models\Agencies;
 use App\Models\AdAccount;
 use App\Models\Settings;
 use Illuminate\Support\Facades\Auth;
+use App\Models\SystemNotification;
 
 
 class AdAccountController extends Controller
@@ -102,6 +103,11 @@ class AdAccountController extends Controller
             ]);
         }
 
+        SystemNotification::create([
+            'notification' => "A new ad account {$request->ad_acc_name} request submitted by " . auth()->user()->name,
+            'notifiable_id' => $request->client_name,
+        ]);
+
 
         return redirect()->route('ad-account.index')->with('success', 'Ad Account Application submitted successfully');
     }
@@ -163,6 +169,10 @@ class AdAccountController extends Controller
             'status' => $request->status ?? 'pending',
         ]);
 
+        SystemNotification::create([
+            'notification' => "Ad account {$request->ad_acc_name} edited by " . auth()->user()->name,
+        ]);
+
         return redirect()->route('ad-account.index')->with('success', 'Ad Account Application updated successfully.');
     }
 
@@ -176,6 +186,11 @@ class AdAccountController extends Controller
         $adAccounts = AdAccount::where('status', 'approved')
             ->orderBy('created_at', 'desc')
             ->get();
+
+            SystemNotification::create([
+                'notification' => "Ad account {$request->ad_acc_name} closed by " . auth()->user()->name,
+            ]);
+
         return view('template.home.ad_account.myaccount', compact('adAccounts'));
     }
     
@@ -189,6 +204,10 @@ class AdAccountController extends Controller
         $adAccounts = AdAccount::where('status', 'approved')
             ->orderBy('created_at', 'desc')
             ->get();
+
+            SystemNotification::create([
+                'notification' => "Ad account {$request->ad_acc_name} activited by " . auth()->user()->name,
+            ]);
         return view('template.home.ad_account.myaccount', compact('adAccounts'));
     }
 
@@ -200,6 +219,10 @@ class AdAccountController extends Controller
         $adAccount = AdAccount::findOrFail($id);
         $adAccount->delete();
 
+        SystemNotification::create([
+            'notification' => "Ad account {$adAccount->ad_acc_name} removed by " . auth()->user()->name,
+        ]);
+
         return redirect()->route('ad-account.index')->with('success', 'Ad Account Application deleted successfully.');
     }
 
@@ -210,12 +233,18 @@ class AdAccountController extends Controller
         }
         $request->validate([
             'status' => 'required|string|in:pending,in-review,approved,canceled,rejected',
+            
         ]);
 
         $adAccount = AdAccount::findOrFail($id);
         $adAccount->update([
             'status' => $request->status,
             'assign' => auth()->user()->name
+        ]);
+
+        SystemNotification::create([
+            'notification' => "Ad account {$adAccount->ad_acc_name} status changed to {$request->status} by " . auth()->user()->name,
+            'notifiable_id' => $adAccount->client_id,
         ]);
 
         return redirect()->route('ad-account.index')->with('success', 'Status updated successfully.');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Settings;
 use Illuminate\Http\Request;
+use App\Models\SystemNotification;
 
 class SettingController extends Controller
 {
