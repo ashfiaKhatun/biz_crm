@@ -58,6 +58,12 @@ class DepositController extends Controller
             'status' => 'received',
         ]);
 
+        SystemNotification::create([
+            'notification' => "Deposit of amount {$request->amount_usd} recived form{$request->name}, procesed by " . auth()->user()->name,
+        ]);
+
+
+
         return redirect()->route('deposits.index')->with('success', 'Deposit created successfully.');
     }
 
@@ -99,6 +105,10 @@ class DepositController extends Controller
             'status' => $request->status,
         ]);
 
+        SystemNotification::create([
+            'notification' => "Deposit information edited by " . auth()->user()->name,
+        ]);
+
         return redirect()->route('deposits.index')->with('success', 'Deposit updated successfully.');
     }
 
@@ -111,6 +121,10 @@ class DepositController extends Controller
         $deposit = Deposit::findOrFail($id);
         $deposit->update(['status' => $request->status]);
 
+        SystemNotification::create([
+            'notification' => "Deposit status changed by " . auth()->user()->name,
+        ]);
+
         return redirect()->route('deposits.index')->with('success', 'Status updated successfully.');
     }
 
@@ -118,7 +132,9 @@ class DepositController extends Controller
     {
         $deposit = Deposit::findOrFail($id);
         $deposit->delete();
-
+        SystemNotification::create([
+            'notification' => "Deposit status removed by " . auth()->user()->name,
+        ]);
         return redirect()->route('deposits.index')->with('success', 'Deposit deleted successfully.');
     }
 

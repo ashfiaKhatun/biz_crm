@@ -19,6 +19,12 @@ class AgencyTransactionController extends Controller
 
 
         $refill->update(['sent_to_agency' => 1,'assign' => auth()->user()->name]);
+
+        SystemNotification::create([
+            'notification' => "Refill amount of {$refill->amount_dollar} has been send to agency by " . auth()->user()->name,
+            
+        ]);
+
         return redirect()->route('refills.index')->with('success', 'Deposit sent to agency successfully.');
     }
 }

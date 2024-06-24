@@ -41,6 +41,7 @@ class RefillController extends Controller
         $customer = User::where('id', $id)->get();
         $adaccount = AdAccount::where('client_id', $id)->get();
         $paymentMethods = Settings::where('setting_name', 'Refill Payment Method')->get();
+        
         return view('template.home.refill_application.refill_application_new', compact('customer', 'paymentMethods','adaccount'));
     }
     // *************
@@ -71,6 +72,11 @@ class RefillController extends Controller
         }
 
         Refill::create($data);
+
+        SystemNotification::create([
+            'notification' => "Refill request of amount " . $request->input('amount_dollar') . " for ad account submitted by " . auth()->user()->name
+
+        ]);
 
         return redirect()->route('refills.index')->with('success', 'Refill application submitted successfully.');
     }
@@ -214,6 +220,10 @@ class RefillController extends Controller
             $refill = Refill::findOrFail($id);
         $refill->update(['status' => $request->status,'assign' => auth()->user()->name]);
 
+        SystemNotification::create([
+            'notification' => "Refill request status changed by " . auth()->user()->name
+
+        ]);
 
         return redirect()->route('refills.index')->with('success', 'Status updated successfully.');
     }

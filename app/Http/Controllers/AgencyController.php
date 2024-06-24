@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Agencies;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException; // Import the ValidationException class
+use App\Models\SystemNotification;
 
 class AgencyController extends Controller
 {
@@ -94,6 +95,11 @@ class AgencyController extends Controller
             }
         }
 
+        SystemNotification::create([
+            'notification' => "A new agency {$request['agency_name']} created by " . auth()->user()->name,
+            
+        ]);
+
 
         return redirect()->route('all-agency')->with('success', 'Ad Account Agency added successfully.'); // Redirect after creation
     }
@@ -127,6 +133,11 @@ class AgencyController extends Controller
 
         $agency->save();
 
+        SystemNotification::create([
+            'notification' => "Agency {$request['agency_name']} updated by " . auth()->user()->name,
+            
+        ]);
+
         // Redirect to success page or perform other actions
         return redirect()->route('all-agency')->with('success', 'Ad Account Agency updated successfully.');
     }
@@ -136,6 +147,11 @@ class AgencyController extends Controller
     {
         $agency = Agencies::findOrFail($id);
         $agency->delete();
+
+        SystemNotification::create([
+            'notification' => "Agency {$agency->agency_name} removed by " . auth()->user()->name,
+            
+        ]);
 
         return redirect()->route('all-agency')->with('success', 'Ad Account Agency deleted successfully.');
     }
