@@ -22,6 +22,21 @@
         }
     });
 
+    // payment method details
+
+    document.getElementById('payment_method').addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        var details = selectedOption.getAttribute('data-details');
+        var detailsParagraph = document.getElementById('payment_details');
+        if (details) {
+            detailsParagraph.textContent = details;
+            document.getElementById('details').classList.remove('d-none');
+        } else {
+            detailsParagraph.textContent = '';
+            document.getElementById('details').classList.add('d-none');
+        }
+    });
+
     // Second part: Handling taka to dollar conversion and vice versa
     const takaInput = document.getElementById('taka-input');
     const dollarInput = document.getElementById('dollar-input');

@@ -47,6 +47,7 @@ class SettingController extends Controller
             [
                 'setting_name' => 'Refill Payment Method',
                 'value' => $request->payment_method,
+                'details' => $request->details,
             ]
         ); // Use model for creation
 

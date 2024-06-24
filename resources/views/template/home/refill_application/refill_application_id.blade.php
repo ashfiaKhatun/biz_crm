@@ -73,12 +73,16 @@
 
                     <div>
                         <label class="col-form-label">Payment Method</label>
-                        <select name="payment_method" class="form-control rounded">
+                        <select id="payment_method" name="payment_method" class="form-control rounded">
                             <option>Select</option>
                             @foreach ($paymentMethods as $paymentMethod)
-                            <option value="{{ $paymentMethod->value }}">{{ $paymentMethod->value }}</option>
+                            <option value="{{ $paymentMethod->value }}" data-details="{{ $paymentMethod->details }}">{{ $paymentMethod->value }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div id="details" class="d-none">
+                        <p class="col-form-label font-bold">Payment Method Details: </p>
+                        <p id="payment_details"></p>
                     </div>
 
                     <div>

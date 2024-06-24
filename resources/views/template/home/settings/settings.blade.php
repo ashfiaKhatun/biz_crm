@@ -80,7 +80,12 @@
                                         @foreach ($values as $value)
                                         @if($value->setting_name == 'Refill Payment Method')
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            {{ $value->value }}
+                                            <div>
+                                                <p> {{ $value->value }} </p>
+                                                @if(isset($value->details))
+                                                <p class="font-sm">( {{ $value->details }} )</p>
+                                                @endif
+                                            </div>
                                             <form action="{{ route('setting.destroyPaymentMethod', $value->id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
@@ -97,8 +102,12 @@
                                 <form action="{{ route('setting.storePaymentMethod') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="p-t-15">
-                                        <label class="col-form-label">Add Refill Payment Method:</label>
-                                        <input type="text" name="payment_method" placeholder="Refill Payment Method" class="form-control rounded w-25">
+                                        <b class="col-form-label">Add Refill Payment Method:</b>
+                                        <div class="mt-3">
+                                            <input type="text" name="payment_method" placeholder="Refill Payment Method" class="form-control rounded w-25">
+
+                                            <textarea name="details" class="form-control rounded w-25 mt-3" placeholder="Details" rows="3"></textarea>
+                                        </div>
                                     </div>
                                     <div class="mt-4">
                                         <input type="submit" name="submit" value="Add" class="btn btn-primary">
