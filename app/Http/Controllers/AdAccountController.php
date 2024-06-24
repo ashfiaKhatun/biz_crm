@@ -28,19 +28,17 @@ class AdAccountController extends Controller
     public function account()
     {
         if (auth()->user()->role == 'customer') {
-        $userId = Auth::id(); // Get the ID of the current authenticated user
-        $adAccounts = AdAccount::where('status', 'approved')
-            ->where('client_id', $userId)
-            ->orderBy('created_at', 'desc')
-            ->get();
-        return view('template.home.ad_account.myaccount', compact('adAccounts'));
-        }
-        elseif(auth()->user()->role == 'admin' || auth()->user()->role == 'employee')
-        {
+            $userId = Auth::id(); // Get the ID of the current authenticated user
             $adAccounts = AdAccount::where('status', 'approved')
-            ->orderBy('created_at', 'desc')
-            ->get();
-        return view('template.home.ad_account.myaccount', compact('adAccounts'));
+                ->where('client_id', $userId)
+                ->orderBy('created_at', 'desc')
+                ->get();
+            return view('template.home.ad_account.myaccount', compact('adAccounts'));
+        } elseif (auth()->user()->role == 'admin' || auth()->user()->role == 'employee') {
+            $adAccounts = AdAccount::where('status', 'approved')
+                ->orderBy('created_at', 'desc')
+                ->get();
+            return view('template.home.ad_account.myaccount', compact('adAccounts'));
         }
     }
 
@@ -168,6 +166,32 @@ class AdAccountController extends Controller
         return redirect()->route('ad-account.index')->with('success', 'Ad Account Application updated successfully.');
     }
 
+    public function close(Request $request, $id)
+    {
+        $adAccount = AdAccount::findOrFail($id);
+        $adAccount->update([
+            'isActive' => 0,
+        ]);
+
+        $adAccounts = AdAccount::where('status', 'approved')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return view('template.home.ad_account.myaccount', compact('adAccounts'));
+    }
+    
+    public function active(Request $request, $id)
+    {
+        $adAccount = AdAccount::findOrFail($id);
+        $adAccount->update([
+            'isActive' => 1,
+        ]);
+
+        $adAccounts = AdAccount::where('status', 'approved')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return view('template.home.ad_account.myaccount', compact('adAccounts'));
+    }
+
     public function destroy($id)
     {
         if (auth()->user()->role !== 'admin') {
@@ -197,7 +221,7 @@ class AdAccountController extends Controller
         return redirect()->route('ad-account.index')->with('success', 'Status updated successfully.');
     }
 
-    
+
     public function showPendingAdAccounts()
     {
         if (auth()->user()->role == 'customer') {
@@ -207,7 +231,6 @@ class AdAccountController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get();
             return view('template.home.ad_account.index', compact('adAccounts'));
-
         } else
             $adAccounts = AdAccount::where('status', 'pending')->orderBy('created_at', 'desc')->get();
         return view('template.home.ad_account.index', compact('adAccounts'));
@@ -221,9 +244,8 @@ class AdAccountController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get();
             return view('template.home.ad_account.index', compact('adAccounts'));
-
         } else
-        $adAccounts = AdAccount::where('status', 'approved')->orderBy('created_at', 'desc')->get();
+            $adAccounts = AdAccount::where('status', 'approved')->orderBy('created_at', 'desc')->get();
         return view('template.home.ad_account.index', compact('adAccounts'));
     }
 
@@ -248,8 +270,8 @@ class AdAccountController extends Controller
             [
                 'client_id' => $adAccount->client_id,
                 'ad_account_id' => $adAccount->id,
-                'amount_dollar' => -($request['transfer_amount']),
-                'amount_taka' => -($adAccount->dollar_rate * $request['transfer_amount']),
+                'amount_dollar' => - ($request['transfer_amount']),
+                'amount_taka' => - ($adAccount->dollar_rate * $request['transfer_amount']),
                 'payment_method' => 'Transferred',
                 'status' => 'approved',
                 'sent_to_agency' => '1',

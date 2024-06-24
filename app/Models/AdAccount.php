@@ -27,6 +27,7 @@ class AdAccount extends Model
         'status',
         'ad_acc_id',
         'assign',
+        'isActive',
     ];
 
     public function client()

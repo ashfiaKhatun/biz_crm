@@ -55,6 +55,8 @@ Route::get('ad-account-application/{id}/details', [AdAccountController::class, '
 Route::get('ad-account-application/{id}/edit', [AdAccountController::class, 'edit'])->middleware(['auth', 'verified'])->name('ad-account.edit');
 Route::put('ad-account-application/{id}/edit', [AdAccountController::class, 'update'])->middleware(['auth', 'verified'])->name('ad-account.update');
 Route::delete('ad-account-application/{id}/delete', [AdAccountController::class, 'destroy'])->middleware(['auth', 'verified'])->name('ad-account.destroy');
+Route::put('ad-account-application/{id}/close', [AdAccountController::class, 'close'])->middleware(['auth', 'verified'])->name('ad-account.close');
+Route::put('ad-account-application/{id}/active', [AdAccountController::class, 'active'])->middleware(['auth', 'verified'])->name('ad-account.active');
 Route::patch('ad-account-application/{id}/status', [AdAccountController::class, 'updateStatus'])->middleware(['auth', 'verified'])->name('ad-account.updateStatus');
 
 Route::get('/clients/{user}/ad-account', [AdAccountController::class, 'ad_account_id'])->middleware(['auth', 'verified'])->name('adaccount.adaccount');

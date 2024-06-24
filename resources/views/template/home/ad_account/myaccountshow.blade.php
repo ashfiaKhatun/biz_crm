@@ -17,13 +17,21 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-2">
                         <h4 class="card-title mr-4 mt-2">Details of {{ $adAccount->ad_acc_name }}</h4>
-                        <div>
+                        <div class="d-flex">
                             <a href="{{ route('refill.refill', $adAccount->id) }}">
-                                <button class="btn btn-sm btn-primary">Refill<i class="fa-solid fa-fill m-r-5 ml-2"></i></button>
+                                <button class="btn btn-sm btn-primary">Refill<i class="fa-solid fa-fill m-r-5"></i></button>
                             </a>
                             @if(auth()->user()->role == 'admin')
                             <!-- Transfer Button -->
                             <button class="btn btn-sm btn-secondary text-white ml-2" data-toggle="modal" data-target="#transferModal">Transfer<i class="fa-solid fa-exchange-alt m-r-5 ml-2"></i></button>
+
+                            <div class=" ml-2">
+                                <form action="{{ $adAccount->isActive ? route('ad-account.close', $adAccount->id) : route('ad-account.active', $adAccount->id) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-sm {{ $adAccount->isActive ? 'btn-danger' : 'btn-success text-white' }}" onclick="return confirm('Are you sure you want to change the activation of this Ad Account?')">{{ $adAccount->isActive ? 'Close' : 'Renew' }}</button>
+                                </form>
+                            </div>
                             @endif
                         </div>
                     </div>
@@ -231,7 +239,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Transfer</button>
+                        <button type="submit" class="btn btn-sm btn-primary">Transfer</button>
                     </div>
                 </form>
             </div>
