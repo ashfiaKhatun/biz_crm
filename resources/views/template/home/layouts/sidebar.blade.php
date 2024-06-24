@@ -47,7 +47,7 @@
 
             <li class="mega-menu mega-menu-sm">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="fa-solid fa-fill"></i><span class="nav-text">Refill</span>
+                    <i class="fa-solid fa-bolt"></i><span class="nav-text">Refill</span>
                 </a>
                 <ul aria-expanded="false">
                     @if (auth()->user()->role == 'admin' || auth()->user()->role == 'employee' || auth()->user()->role == 'manager')

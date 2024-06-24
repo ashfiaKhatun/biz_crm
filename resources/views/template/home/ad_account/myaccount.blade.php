@@ -82,7 +82,7 @@
                                         </a>
 
                                         <a href="{{ route('refill.refill', $adAccount->id) }}" data-toggle="tooltip" data-placement="top" title="Refill">
-                                            <i class="fa-solid fa-fill m-r-5 ml-2"></i>
+                                            <i class="fa-solid fa-bolt m-r-5 ml-2"></i>
                                         </a>
 
 

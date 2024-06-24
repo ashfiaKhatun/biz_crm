@@ -19,7 +19,7 @@
                         <h4 class="card-title mr-4 mt-2">Details of {{ $adAccount->ad_acc_name }}</h4>
                         <div class="d-flex">
                             <a href="{{ route('refill.refill', $adAccount->id) }}">
-                                <button class="btn btn-sm btn-primary">Refill<i class="fa-solid fa-fill m-r-5"></i></button>
+                                <button class="btn btn-sm btn-primary">Refill<i class="fa-solid fa-bolt m-r-5 ml-2"></i></button>
                             </a>
                             @if(auth()->user()->role == 'admin')
                             <!-- Transfer Button -->

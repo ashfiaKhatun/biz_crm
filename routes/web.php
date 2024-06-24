@@ -30,6 +30,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
+// notification start
+Route::get('notifications/all', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('notification.index');
+// notification end
+
 // agency related start
 Route::get('add-agency', [AgencyController::class, 'add_agency'])->middleware(['auth', 'verified'])->name('add-agency');
 Route::post('add-agency', [AgencyController::class, 'store'])->middleware(['auth', 'verified'])->name('agency.store');
