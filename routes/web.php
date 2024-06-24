@@ -32,6 +32,7 @@ Route::get('/dashboard', function () {
 
 // notification start
 Route::get('notifications/all', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('notification.index');
+Route::get('notifications/{id}/all', [HomeController::class, 'indexClient'])->middleware(['auth', 'verified'])->name('notification.indexClient');
 // notification end
 
 // agency related start

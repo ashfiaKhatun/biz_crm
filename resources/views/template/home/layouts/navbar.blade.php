@@ -80,9 +80,17 @@
                                 </li>
                             </ul>
 
+                            @if (auth()->user()->role != 'customer')
                             <div class="d-flex justify-content-center">
                                 <a href="{{ route('notification.index') }}">See all</a>
                             </div>
+                            @endif
+                            
+                            @if (auth()->user()->role == 'customer')
+                            <div class="d-flex justify-content-center">
+                                <a href="{{ route('notification.indexClient', auth()->user()->id) }}">See all</a>
+                            </div>
+                            @endif
 
                         </div>
                     </div>

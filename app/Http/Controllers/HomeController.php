@@ -13,4 +13,10 @@ class HomeController extends Controller
         $notifications = SystemNotification::all();
         return view('template.home.notification.index', compact('notifications'));
     }
+
+    public function indexClient($id)
+    {
+        $notifications = SystemNotification::where('notifiable_id', $id)->get();        
+        return view('template.home.notification.indexClient', compact('notifications'));
+    }
 }
