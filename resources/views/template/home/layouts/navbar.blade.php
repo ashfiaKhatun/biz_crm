@@ -1,3 +1,16 @@
+@php
+    use App\Models\SystemNotification;
+    if (auth()->user()->role == 'customer') {
+        $notifications = SystemNotification::where('notifiable_id', auth()->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+    } else {
+        $notifications = SystemNotification::latest()->take(5)->get();
+    }
+
+@endphp
+
 <!--**********************************
             Nav header start
         ***********************************-->
@@ -17,12 +30,12 @@
 
 
 <!--**********************************
-            Nav header end
-        ***********************************-->
+                    Nav header end
+                ***********************************-->
 
 <!--**********************************
-            Header start
-        ***********************************-->
+                    Header start
+                ***********************************-->
 <div class="header">
     <div class="header-content clearfix">
 
@@ -39,32 +52,36 @@
                         <i class="mdi mdi-bell-outline"></i>
                     </a>
                     <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
-                        
+
                         <div class="dropdown-content-body">
                             <ul>
-                                
-                                <li>
-                                    <a href="javascript:void()">
-                                        <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
+                                @foreach ($notifications as $notification)
+                                    <li>
+                                        <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="fa fa-bell"
+                                                aria-hidden="true"></i></span>
                                         <div class="notification-content">
-                                            <h6 class="notification-heading">Events near you</h6>
-                                            <span class="notification-text">Within next 5 days</span>
+                                            <h6 class="notification-heading">{{ $notification->notification }}</h6>
+                                            <span
+                                                class="notification-text">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
                                         </div>
-                                    </a>
-                                </li>
-                                
+                                    </li>
+                                @endforeach
+
+
+
+
                             </ul>
 
                             @if (auth()->user()->role != 'customer')
-                            <div class="d-flex justify-content-center">
-                                <a href="{{ route('notification.index') }}">See all</a>
-                            </div>
+                                <div class="d-flex justify-content-center">
+                                    <a href="{{ route('notification.index') }}">See all</a>
+                                </div>
                             @endif
-                            
+
                             @if (auth()->user()->role == 'customer')
-                            <div class="d-flex justify-content-center">
-                                <a href="{{ route('notification.indexClient', auth()->user()->id) }}">See all</a>
-                            </div>
+                                <div class="d-flex justify-content-center">
+                                    <a href="{{ route('notification.indexClient', auth()->user()->id) }}">See all</a>
+                                </div>
                             @endif
 
                         </div>
@@ -89,8 +106,9 @@
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
 
-                                        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                                        <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
                                             {{ __('Log Out') }}
                                         </x-dropdown-link>
                                     </form>
@@ -104,5 +122,5 @@
     </div>
 </div>
 <!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->
+                    Header end ti-comment-alt
+                ***********************************-->

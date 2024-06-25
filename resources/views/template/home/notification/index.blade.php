@@ -47,9 +47,10 @@
                                 <tbody>
                                     @foreach ($notifications as $notification)
                                     <tr>
-                                        <td>{{ $notification->notification }}</td>
+                                        <td>{{ $notification->notification }}<br><small class="text-muted text-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</small>
 
-                                        
+                                        </td>
+
                                     </tr>
                                     @endforeach
 
