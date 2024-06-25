@@ -4,12 +4,6 @@
 <head>
     @include('template.home.layouts.head')
     @include('template.home.custom_styles.custom_style')
-    <style>
-        .custom-card {
-            height: 170px;
-            border-radius: 20px;
-        }
-    </style>
 </head>
 
 <body>
@@ -58,37 +52,68 @@
                 <div class="row">
                     <div class="col-lg-3 col-sm-6">
                         <div class="d-flex align-items-center custom-card gradient-1">
-                            <div class="p-4">
-                                <h5 class="text-white">Total Application: <span>{{ $allApplication }}</span></h5>
-                                <h5 class="text-white">Pending Application: <span>{{ $pendingApplication }}</span></h5>
-                                <h5 class="text-white">Total Ad Account: <span>{{ $allAdAccount }}</span></h5>
+                            <div class="basic-list-group w-100">
+                                <ul class="list-group">
+                                    <li class="list-group-item bg-transparent border-0 border-bottom">
+                                        <h5 class="text-white">Total Application: <span class="font-lg">{{ $allApplication }}</span></h5>
+                                    </li>
+                                    <li class="list-group-item bg-transparent border-0 border-bottom">
+                                        <h5 class="text-white">Pending Application: <span class="font-lg">{{ $pendingApplication }}</span></h5>
+                                    </li>
+                                    <li class="list-group-item bg-transparent border-0">
+                                        <h5 class="text-white">Total Ad Account: <span class="font-lg">{{ $allAdAccount }}</span></h5>
+                                    </li>
+
+                                </ul>
 
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
                         <div class="d-flex align-items-center custom-card gradient-2">
-                            <div class="p-4">
-                                <h5 class="text-white">Current Month Refill: <span>{{ $thisMonthRefill }}</span></h5>
-                                <h5 class="text-white">Last 7 Days Refill: <span>{{ $lastSevenDaysRefill }}</span></h5>
-                                <h5 class="text-white">Refill Request: <span>{{ $pendingRefillAmount }}
-                                        ({{ $pendingRefillCount }})</span></h5>
+                            <div class="basic-list-group w-100">
+                                <ul class="list-group">
+                                    <li class="list-group-item bg-transparent border-0 border-bottom">
+                                        <h5 class="text-white">Current Month Refill: <span>{{ $thisMonthRefill }}</span></h5>
+                                    </li>
+                                    <li class="list-group-item bg-transparent border-0 border-bottom">
+                                        <h5 class="text-white">Last 7 Days Refill: <span>{{ $lastSevenDaysRefill }}</span></h5>
+                                    </li>
+                                    <li class="list-group-item bg-transparent border-0">
+                                        <h5 class="text-white">Refill Request: <span>{{ $pendingRefillAmount }} ({{ $pendingRefillCount }})</span></h5>
+                                    </li>
+                                </ul>
+
+
+
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
                         <div class="d-flex align-items-center custom-card gradient-3">
-                            <div class="p-4">
-                                <h5 class="text-white">Current Month Deposit: <span>${{ $totalDeposit }}</span></h5>
-                                <h5 class="text-white">Average Rate: <span>৳{{ $averageRate }}</span></h5>
-                                <h5 class="text-white">Balance: <span></span></h5>
+                            <div class="basic-list-group w-100">
+                                <ul class="list-group">
+                                    <li class="list-group-item bg-transparent border-0 border-bottom">
+                                        <h5 class="text-white">Current Month Deposit: <span>${{ $totalDeposit }}</span></h5>
+                                    </li>
+                                    <li class="list-group-item bg-transparent border-0 border-bottom">
+                                        <h5 class="text-white">Average Rate: <span>৳{{ $averageRate }}</span></h5>
+                                    </li>
+                                    <li class="list-group-item bg-transparent border-0
+                                    ">
+                                        <h5 class="text-white">Balance: <span></span></h5>
+                                    </li>
+                                </ul>
+
+
+
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
                         <div class="btn-group-vertical w-100">
-                            <a href="#" class="btn btn-primary text-white mb-1 py-3 rounded" data-toggle="modal" data-target="#refillModal">New Refill</a>
-                            <a href="{{ route('ad-account-application') }}" class="btn btn-secondary text-white mb-1 py-3 rounded">New Application</a>
+                            <a href="#" class="btn btn-primary text-white my-2 py-3 rounded" data-toggle="modal" data-target="#refillModal">New Refill</a>
+                            <a href="{{ route('ad-account-application') }}" class="btn btn-secondary text-white mb-2 py-3 rounded">New Application</a>
                             <a href="#" class="btn btn-success text-white py-3 rounded" data-toggle="modal" data-target="#depositModal">Add Deposit</a>
 
                         </div>
@@ -411,7 +436,7 @@
             type: 'pie',
             data: {
                 datasets: [{
-                    data: [45, 25],
+                    data: [{{ $refilledAdAccount }}, {{ $nonRefilledAdAccount }}],
                     backgroundColor: [
                         "rgba(117, 113, 249,0.9)",
                         "rgba(117, 113, 249,0.7)"
