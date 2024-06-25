@@ -21,15 +21,15 @@ class HomeController extends Controller
         $currentMonth = Carbon::now()->month;
         $thisMonthRefill = Refill::whereMonth('created_at', $currentMonth)
             ->where('status', 'approved')
-            ->get();
+            ->sum('amount_dollar');
 
-        $totalRefill = $thisMonthRefill->sum('amount_dollar');
+
 
         $pendingRefillCount = Refill::where('status', 'pending')->count();
         $pendingRefillAmount = Refill::where('status', 'pending')->sum('amount_dollar');
-        
 
-        return view('template.home.index', compact('allApplication', 'pendingApplication', 'allAdAccount', 'totalRefill', 'pendingRefillCount', 'pendingRefillAmount'));
+
+        return view('template.home.index', compact('allApplication', 'pendingApplication', 'allAdAccount', 'thisMonthRefill', 'pendingRefillCount', 'pendingRefillAmount'));
     }
 
     public function index()
