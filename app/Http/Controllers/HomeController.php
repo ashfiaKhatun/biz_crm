@@ -24,12 +24,17 @@ class HomeController extends Controller
             ->sum('amount_dollar');
 
 
+        $sevenDaysAgo = Carbon::now()->subDays(7);
+
+        $lastSevenDaysRefill = Refill::where('status', 'approved')
+            ->whereBetween('created_at', [$sevenDaysAgo, Carbon::now()])
+            ->sum('amount_dollar');
 
         $pendingRefillCount = Refill::where('status', 'pending')->count();
         $pendingRefillAmount = Refill::where('status', 'pending')->sum('amount_dollar');
 
 
-        return view('template.home.index', compact('allApplication', 'pendingApplication', 'allAdAccount', 'thisMonthRefill', 'pendingRefillCount', 'pendingRefillAmount'));
+        return view('template.home.index', compact('allApplication', 'pendingApplication', 'allAdAccount', 'thisMonthRefill', 'pendingRefillCount', 'pendingRefillAmount','lastSevenDaysRefill'));
     }
 
     public function index()

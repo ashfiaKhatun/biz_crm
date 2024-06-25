@@ -64,7 +64,7 @@
                         <div class="card gradient-2">
                             <div class="card-body">
                                 <h5 class="text-white">Monthly Refill: <span>{{ $thisMonthRefill }}</span></h5>
-                                <h5 class="text-white">Weekly Refill: <span></span></h5>
+                                <h5 class="text-white">Weekly Refill: <span>{{ $lastSevenDaysRefill }}</span></h5>
                                 <h5 class="text-white">Refill Request: <span>{{ $pendingRefillAmount }} ( {{$pendingRefillCount}} )</span></h5>
                             </div>
                         </div>
