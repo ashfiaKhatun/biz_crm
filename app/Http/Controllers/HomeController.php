@@ -27,6 +27,18 @@ class HomeController extends Controller
             ->where('status', 'approved')
             ->sum('amount_dollar');
 
+        $monthlyAllAdAccount = AdAccount::whereMonth('created_at', Carbon::now()->month)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->where('status', 'approved')
+            ->count();
+
+        $refilledAdAccount = Refill::whereMonth('created_at', Carbon::now()->month)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->where('payment_method', '!=', 'Transferred')
+            ->distinct('ad_account_id')
+            ->count('ad_account_id');
+
+        $nonRefilledAdAccount = $monthlyAllAdAccount - $refilledAdAccount;
 
         $sevenDaysAgo = Carbon::now()->subDays(7);
 
@@ -74,7 +86,7 @@ class HomeController extends Controller
         $customers = User::where('role', 'customer')->get();
         $paymentMethods = Settings::where('setting_name', 'Refill Payment Method')->get();
         $vendors = Settings::where('setting_name', 'Vendor')->get();
-        return view('template.home.index', compact('allApplication', 'pendingApplication', 'allAdAccount', 'thisMonthRefill', 'pendingRefillCount', 'pendingRefillAmount', 'lastSevenDaysRefill', 'refills', 'adAccounts', 'totalDeposit','averageRate','customers','paymentMethods','vendors'));
+        return view('template.home.index', compact('allApplication', 'pendingApplication', 'allAdAccount', 'thisMonthRefill', 'pendingRefillCount', 'pendingRefillAmount', 'lastSevenDaysRefill', 'refills', 'adAccounts', 'totalDeposit', 'averageRate', 'customers', 'paymentMethods', 'vendors', 'refilledAdAccount', 'nonRefilledAdAccount'));
     }
 
     public function index()

@@ -55,11 +55,16 @@
 
                 <div>
                     <label class="col-form-label">Payment Method</label>
-                    <select name="payment_method" class="form-control rounded">
-                        <option value="Bank" {{ $refill->payment_method == 'Bank' ? 'selected' : '' }}>Bank</option>
-                        <option value="BKash" {{ $refill->payment_method == 'BKash' ? 'selected' : '' }}>BKash</option>
-                        <option value="Nagad" {{ $refill->payment_method == 'Nagad' ? 'selected' : '' }}>Nagad</option>
+                    <select id="payment_method" name="payment_method" class="form-control rounded">
+                        <option>Select</option>
+                        @foreach ($paymentMethods as $paymentMethod)
+                        <option value="{{ $paymentMethod->value }}" data-details="{{ $paymentMethod->details }}">{{ $paymentMethod->value }}</option>
+                        @endforeach
                     </select>
+                </div>
+                <div id="details" class="d-none">
+                    <p class="col-form-label font-bold">Payment Method Details: </p>
+                    <p id="payment_details"></p>
                 </div>
 
                 <div>
@@ -74,7 +79,7 @@
                         <label class="custom-file-label">Choose file</label>
                     </div>
                     @if($refill->screenshot)
-                    <img src="{{ asset('storage/' . $refill->screenshot) }}" alt="Screenshot" class="img-fluid mt-2">
+                    <img src="{{ asset('storage/' . $refill->screenshot) }}" alt="Screenshot" width="300" class="img-fluid mt-2">
                     @endif
                 </div>
 
@@ -95,9 +100,7 @@
     </div>
 
     @include('template.home.layouts.footer')
-
     @include('template.home.layouts.scripts')
-
     @include('template.home.custom_scripts.refill_application_script')
 </body>
 

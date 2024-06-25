@@ -23,7 +23,7 @@
                                     class="fa fa-plus color-muted m-r-5 ml-2"></i></button>
                         </a>
                     @else
-                        <a href="{{ route('refill-application') }}">
+                        <a href="#" data-toggle="modal" data-target="#refillModal">
                             <button class="btn btn-sm btn-secondary text-white">New Refill<i
                                     class="fa fa-plus color-muted m-r-5 ml-2"></i></button>
                         </a>
@@ -166,10 +166,103 @@
                 </div>
             </div>
         </div>
+
+        <!-- Refill Modal -->
+        <div class="modal fade" id="refillModal" tabindex="-1" role="dialog" aria-labelledby="refillModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="refillModalLabel">New Refill</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('refill.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div>
+                                <label class="col-form-label">Client Name:</label>
+                                <select id="client-select" name="client_id" class="form-control rounded">
+                                    <option>Select</option>
+                                    @foreach ($customers as $customer)
+                                        <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="col-form-label">Ad Account Name:</label>
+                                <select id="ad-account-select" name="ad_account_id" class="form-control rounded">
+                                    <option>Select</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="col-form-label">Dollar Rate:</label>
+                                <input id="dollar-rate-input" type="text" placeholder="Dollar Rate"
+                                    class="form-control rounded" readonly>
+                            </div>
+
+                            <div>
+                                <label class="col-form-label">Amount:</label><br>
+
+                                <div class="d-flex justify-content-between">
+                                    <div class="w-50 mr-2">
+                                        <input id="taka-input" type="text" name="amount_taka" placeholder="Taka"
+                                            class="form-control rounded">
+                                    </div>
+                                    <div class="w-50">
+                                        <input id="dollar-input" type="text" name="amount_dollar"
+                                            placeholder="Dollar" class="form-control rounded">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="col-form-label">Payment Method</label>
+                                <select id="payment_method" name="payment_method" class="form-control rounded">
+                                    <option>Select</option>
+                                    @foreach ($paymentMethods as $paymentMethod)
+                                        <option value="{{ $paymentMethod->value }}"
+                                            data-details="{{ $paymentMethod->details }}">{{ $paymentMethod->value }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div id="details" class="d-none">
+                                <p class="col-form-label font-bold">Payment Method Details: </p>
+                                <p id="payment_details"></p>
+                            </div>
+
+                            <div>
+                                <label class="col-form-label">Transaction Id:</label>
+                                <input type="text" name="transaction_id" placeholder="Transaction Id"
+                                    class="form-control rounded">
+                            </div>
+
+                            <div class="mt-2">
+                                <label class="col-form-label">Screenshot:</label>
+                                <div class="custom-file">
+                                    <input type="file" id="screenshot" name="screenshot"
+                                        class="custom-file-input">
+                                    <label class="custom-file-label">Choose file</label>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-end mt-4">
+                                <input type="submit" name="submit" value="Refill" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     @include('template.home.layouts.footer')
     @include('template.home.layouts.scripts')
+    @include('template.home.custom_scripts.refill_application_script')
     @include('template.home.custom_scripts.search_script')
 
 

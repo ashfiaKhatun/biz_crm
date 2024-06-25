@@ -16,11 +16,13 @@ class RefillController extends Controller
 
     public function index()
     {
+        $customers = User::where('role', 'customer')->get();
+        $paymentMethods = Settings::where('setting_name', 'Refill Payment Method')->get();
         $refills = Refill::with('client', 'adAccount')
             ->where('payment_method', '!=', 'Transferred')
             ->orderBy('created_at', 'desc')
             ->get();
-        return view('template.home.refill_application.index', compact('refills'));
+        return view('template.home.refill_application.index', compact('refills', 'customers','paymentMethods'));
     }
     public function pending()
     {
@@ -94,9 +96,10 @@ class RefillController extends Controller
             return redirect('/');
         }
         $refill = Refill::findOrFail($id);
+        $paymentMethods = Settings::where('setting_name', 'Refill Payment Method')->get();
         $customers = User::where('role', 'customer')->get();
         $adAccounts = AdAccount::where('client_id', $refill->client_id)->get();
-        return view('template.home.refill_application..edit', compact('refill', 'customers', 'adAccounts'));
+        return view('template.home.refill_application..edit', compact('refill', 'customers', 'adAccounts', 'paymentMethods'));
     }
 
     public function update(Request $request, $id)
