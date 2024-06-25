@@ -154,6 +154,7 @@ class AdAccountController extends Controller
         $adAccount->update([
             'client_id' => $request->client_name,
             'ad_acc_name' => $request->ad_acc_name,
+            'ad_acc_id' => $request->ad_acc_id,
             'bm_id' => $request->bm_id,
             'fb_link1' => $request->fb_link1,
             'fb_link2' => $request->fb_link2,

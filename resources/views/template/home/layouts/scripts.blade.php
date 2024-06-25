@@ -21,7 +21,7 @@
 <!-- ChartistJS -->
 <script src="../../template/plugins/chartist/js/chartist.min.js"></script>
 <script src="../../template/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
-
+<script src="./plugins/chart.js/Chart.bundle.min.js"></script>
 
 
 <script src="../../template/js/dashboard/dashboard-1.js"></script>

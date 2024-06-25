@@ -33,8 +33,20 @@ class HomeController extends Controller
         $pendingRefillCount = Refill::where('status', 'pending')->count();
         $pendingRefillAmount = Refill::where('status', 'pending')->sum('amount_dollar');
 
+        $refills = Refill::with('adAccount')
+            ->where('payment_method', '!=', 'Transferred')
+            ->orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
 
-        return view('template.home.index', compact('allApplication', 'pendingApplication', 'allAdAccount', 'thisMonthRefill', 'pendingRefillCount', 'pendingRefillAmount','lastSevenDaysRefill'));
+        $adAccounts = AdAccount::with('client')
+            ->where('status', 'pending')
+            ->orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
+
+
+        return view('template.home.index', compact('allApplication', 'pendingApplication', 'allAdAccount', 'thisMonthRefill', 'pendingRefillCount', 'pendingRefillAmount', 'lastSevenDaysRefill', 'refills', 'adAccounts'));
     }
 
     public function index()
