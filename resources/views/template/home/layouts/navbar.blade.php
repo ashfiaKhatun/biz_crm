@@ -42,6 +42,7 @@
                         
                         <div class="dropdown-content-body">
                             <ul>
+                                
                                 <li>
                                     <a href="javascript:void()">
                                         <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
@@ -51,33 +52,7 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="javascript:void()">
-                                        <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
-                                        <div class="notification-content">
-                                            <h6 class="notification-heading">Event Started</h6>
-                                            <span class="notification-text">One hour ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void()">
-                                        <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
-                                        <div class="notification-content">
-                                            <h6 class="notification-heading">Event Ended Successfully</h6>
-                                            <span class="notification-text">One hour ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void()">
-                                        <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
-                                        <div class="notification-content">
-                                            <h6 class="notification-heading">Events to Join</h6>
-                                            <span class="notification-text">After two days</span>
-                                        </div>
-                                    </a>
-                                </li>
+                                
                             </ul>
 
                             @if (auth()->user()->role != 'customer')

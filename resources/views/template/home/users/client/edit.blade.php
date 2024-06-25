@@ -82,7 +82,7 @@
                             <option {{ $client->business_type == 'retail' ? 'selected' : '' }} value="retail">Retail</option>
                             <option {{ $client->business_type == 'service' ? 'selected' : '' }} value="service">Service</option>
                             <option {{ $client->business_type == 'manufacturing' ? 'selected' : '' }} value="manufacturing">Manufacturing</option>
-                            <option {{ $client->business_type == 'Other' ? 'selected' : '' }} value="other">Other</option>
+                            <option {{ $client->business_type == 'other' ? 'selected' : '' }} value="other">Other</option>
                         </select>
                     </div>
 

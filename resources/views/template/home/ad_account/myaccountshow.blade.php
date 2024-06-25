@@ -29,7 +29,7 @@
                                 <form action="{{ $adAccount->isActive ? route('ad-account.close', $adAccount->id) : route('ad-account.active', $adAccount->id) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-sm {{ $adAccount->isActive ? 'btn-danger' : 'btn-success text-white' }}" onclick="return confirm('Are you sure you want to change the activation of this Ad Account?')">{{ $adAccount->isActive ? 'Close' : 'Renew' }}</button>
+                                    <button type="submit" class="btn btn-sm {{ $adAccount->isActive ? 'btn-danger' : 'btn-success text-white' }}" onclick="return confirm('Are you sure you want to change the activation of this Ad Account?')">{{ $adAccount->isActive ? 'Delete' : 'Renew' }}</button>
                                 </form>
                             </div>
                             @endif
@@ -238,7 +238,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-sm text-white btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-sm btn-primary">Transfer</button>
                     </div>
                 </form>

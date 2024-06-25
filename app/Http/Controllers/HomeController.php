@@ -2,12 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdAccount;
+use App\Models\Refill;
 use App\Models\SystemNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException; // Import the ValidationException class
 
 class HomeController extends Controller
 {
+
+    public function dashboard()
+    {
+        $allApplication = AdAccount::all()->count();
+        $pendingApplication = AdAccount::where('status', 'pending')->count();
+        $allAdAccount = AdAccount::where('status', 'approved')->count();
+
+        $currentMonth = Carbon::now()->month;
+        $thisMonthRefill = Refill::whereMonth('created_at', $currentMonth)
+            ->where('status', 'approved')
+            ->get();
+
+        $totalRefill = $thisMonthRefill->sum('amount_dollar');
+
+        $pendingRefillCount = Refill::where('status', 'pending')->count();
+        $pendingRefillAmount = Refill::where('status', 'pending')->sum('amount_dollar');
+        
+
+        return view('template.home.index', compact('allApplication', 'pendingApplication', 'allAdAccount', 'totalRefill', 'pendingRefillCount', 'pendingRefillAmount'));
+    }
+
     public function index()
     {
         $notifications = SystemNotification::all();
@@ -16,7 +40,7 @@ class HomeController extends Controller
 
     public function indexClient($id)
     {
-        $notifications = SystemNotification::where('notifiable_id', $id)->get();        
+        $notifications = SystemNotification::where('notifiable_id', $id)->get();
         return view('template.home.notification.indexClient', compact('notifications'));
     }
 }

@@ -25,9 +25,7 @@ Route::get('/', function () {
     return view('template.auth.page-login');
 })->middleware(['guest']);
 
-Route::get('/dashboard', function () {
-    return view('template.home.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
 // notification start
