@@ -69,8 +69,8 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="d-flex align-items-center custom-card gradient-2">
                             <div class="p-4">
-                                <h5 class="text-white">Monthly Refill: <span>{{ $thisMonthRefill }}</span></h5>
-                                <h5 class="text-white">Weekly Refill: <span>{{ $lastSevenDaysRefill }}</span></h5>
+                                <h5 class="text-white">Current Month Refill: <span>{{ $thisMonthRefill }}</span></h5>
+                                <h5 class="text-white">Last 7 Days Refill: <span>{{ $lastSevenDaysRefill }}</span></h5>
                                 <h5 class="text-white">Refill Request: <span>{{ $pendingRefillAmount }} ({{$pendingRefillCount}})</span></h5>
                             </div>
                         </div>
@@ -78,25 +78,18 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="d-flex align-items-center custom-card gradient-3">
                             <div class="p-4">
-                                <h3 class="card-title text-white">New Customers</h3>
-                                <div class="d-inline-block">
-                                    <h2 class="text-white">4565</h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
-                                </div>
-                                <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
+                                <h5 class="text-white">Current Month Deposit: <span></span></h5>
+                                <h5 class="text-white">Average Rate: <span></span></h5>
+                                <h5 class="text-white">Balance: <span></span></h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
-                        <div class="d-flex align-items-center custom-card gradient-4">
-                            <div class="p-4">
-                                <h3 class="card-title text-white">Customer Satisfaction</h3>
-                                <div class="d-inline-block">
-                                    <h2 class="text-white">99%</h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
-                                </div>
-                                <span class="float-right display-5 opacity-5"><i class="fa fa-heart"></i></span>
-                            </div>
+                        <div class="btn-group-vertical w-100">
+                            <a class="btn btn-primary text-white mb-1 py-3 rounded">New Refill</a>
+                            <a class="btn btn-secondary text-white mb-1 py-3 rounded">New Account</a>
+                            <a class="btn btn-success text-white py-3 rounded">Add Deposit</a>
+
                         </div>
                     </div>
                 </div>
@@ -105,6 +98,13 @@
                     <div class="col-lg-8">
                         <div class="card">
                             <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h4 class="card-title mr-4 mt-2">Refill History</h4>
+
+                                    <a href="{{ route('refills.index') }}">
+                                        <button class="btn btn-sm btn-secondary text-white">See All</button>
+                                    </a>
+                                </div>
                                 <div class="table-responsive">
                                     <table class="table table-xs mb-0">
                                         <thead>
@@ -163,6 +163,13 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h4 class="card-title mr-4 mt-2">Pending Applications</h4>
+
+                                    <a href="{{ route('pending-ad-account-application') }}">
+                                        <button class="btn btn-sm btn-secondary text-white">See All</button>
+                                    </a>
+                                </div>
                                 <div class="table-responsive">
                                     <table class="table table-xs mb-0">
                                         <thead>
@@ -196,6 +203,13 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h4 class="card-title mr-4 mt-2">Pending Refills</h4>
+
+                                    <a href="{{ route('refills.pending') }}">
+                                        <button class="btn btn-sm btn-secondary text-white">See All</button>
+                                    </a>
+                                </div>
                                 <div class="table-responsive">
                                     <table class="table table-xs mb-0">
                                         <thead>
@@ -227,7 +241,7 @@
 
                 </div>
 
-                
+
             </div>
             <!-- #/ container -->
         </div>
