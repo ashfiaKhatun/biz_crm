@@ -257,12 +257,12 @@
                                                         <form action="{{ route('refill.approve', $refill->id) }}" method="POST" style="display:inline-block;">
                                                             @csrf
                                                             @method('PUT')
-                                                            <button type="submit" class="btn btn-sm bg-transparent"><i class="fa-solid fa-check"></i></button>
+                                                            <button type="submit" class="btn btn-sm bg-transparent" data-toggle="tooltip" data-placement="top" title="Approve"><i class="fa-solid fa-check"></i></button>
                                                         </form>
                                                         <form action="{{ route('refill.reject', $refill->id) }}" method="POST" style="display:inline-block;">
                                                             @csrf
                                                             @method('PUT')
-                                                            <button type="submit" class="btn btn-sm bg-transparent"><i class="fa-solid fa-xmark"></i></button>
+                                                            <button type="submit" class="btn btn-sm bg-transparent" data-toggle="tooltip" data-placement="top" title="Reject"><i class="fa-solid fa-xmark"></i></button>
                                                         </form>
 
                                                     </span>
