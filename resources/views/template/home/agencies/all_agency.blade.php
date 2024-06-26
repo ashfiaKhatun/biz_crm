@@ -47,12 +47,16 @@
                             <input type="text" id="searchInput" class="form-control rounded" placeholder="Search...">
                         </div>
 
-                        <div class="table-responsive">
+                        <div class="table-responsive text-nowrap">
                             <table class="table table-bordered table-striped verticle-middle" id="refillTable">
                                 <thead>
                                     <tr>
                                         <th scope="col">Agency Name</th>
+                                        <th scope="col">Location</th>
+                                        <th scope="col">Commission Type</th>
                                         <th scope="col">Ad Account Type</th>
+                                        <th scope="col">Dollar Rate</th>
+                                        <th scope="col">Percentage</th>
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
@@ -60,17 +64,17 @@
                                     @foreach ($agencies as $agency)
                                     <tr>
                                         <td>{{ $agency->agency_name }}</td>
-
+                                        <td>{{ $agency->location }}</td>
+                                        <td>{{ $agency->commission_type }}</td>
                                         <td>{{ $agency->ad_account_type }}</td>
+                                        <td>{{ $agency->dollar_rate }}</td>
+                                        <td>{{ $agency->percentage_rate }}</td>
 
                                         <td>
                                             <span class="d-flex align-items-center">
-                                                <a href="{{ route('agency.details', $agency->id) }}" data-toggle="tooltip" data-placement="top" title="View">
-                                                    <i class="fa fa-eye color-muted m-r-5"></i>
-                                                </a>
 
                                                 <a href="{{ route('agency.update', $agency->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                    <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
+                                                    <i class="fa fa-pencil color-muted m-r-5"></i>
                                                 </a>
 
                                                 <div class="basic-dropdown ml-2">

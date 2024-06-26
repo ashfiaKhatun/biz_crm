@@ -8,6 +8,7 @@ use App\Http\Controllers\RefillController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\AgencyTransactionController;
+use App\Http\Controllers\DailyCalculationController;
 use App\Http\Controllers\SettingController;
 
 /*
@@ -33,11 +34,20 @@ Route::get('notifications/all', [HomeController::class, 'index'])->middleware(['
 Route::get('notifications/{id}/all', [HomeController::class, 'indexClient'])->middleware(['auth', 'verified'])->name('notification.indexClient');
 // notification end
 
+
+// daily report start
+Route::get('report/daily/all', [DailyCalculationController::class, 'index'])->middleware(['auth', 'verified'])->name('dailyReport.index');
+Route::get('report/daily/new', [DailyCalculationController::class, 'create'])->middleware(['auth', 'verified'])->name('dailyReport.create');
+Route::post('report/daily/new', [DailyCalculationController::class, 'store'])->middleware(['auth', 'verified'])->name('dailyReport.store');
+
+
+// daily report end
+
+
 // agency related start
 Route::get('add-agency', [AgencyController::class, 'add_agency'])->middleware(['auth', 'verified'])->name('add-agency');
 Route::post('add-agency', [AgencyController::class, 'store'])->middleware(['auth', 'verified'])->name('agency.store');
 Route::get('all-agency', [AgencyController::class, 'index'])->middleware(['auth', 'verified'])->name('all-agency');
-Route::get('/agencies/{agency}/details', [AgencyController::class, 'details'])->middleware(['auth', 'verified'])->name('agency.details');
 Route::get('/agencies/{agency}/update', [AgencyController::class, 'update'])->middleware(['auth', 'verified'])->name('agency.update');
 Route::put('/agencies/{agency}/update', [AgencyController::class, 'storeUpdate'])->middleware(['auth', 'verified'])->name('agency.storeUpdate');
 Route::delete('agencies/{id}', [AgencyController::class, 'destroy'])->name('agency.destroy');

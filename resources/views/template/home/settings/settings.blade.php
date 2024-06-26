@@ -68,7 +68,7 @@
                                         <input value="{{ isset($defaultRate) ? $defaultRate->value : '' }}" type="text" name="dollar_rate" placeholder="Default Dollar Rate" class="form-control rounded w-25">
                                     </div>
                                     <div class="mt-4">
-                                        <input type="submit" name="submit" value="{{ isset($defaultRate) ? 'Update' : 'Save' }}" class="btn btn-primary">
+                                        <input type="submit" name="submit" value="{{ isset($defaultRate) ? 'Update' : 'Save' }}" class="btn btn-sm btn-primary">
                                     </div>
                                 </form>
                             </div>
@@ -110,7 +110,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-4">
-                                        <input type="submit" name="submit" value="Add" class="btn btn-primary">
+                                        <input type="submit" name="submit" value="Add" class="btn btn-sm btn-primary">
                                     </div>
                                 </form>
                             </div>
@@ -142,7 +142,7 @@
                                         <input type="text" name="vendor" placeholder="Vendor" class="form-control rounded w-25" required>
                                     </div>
                                     <div class="mt-4">
-                                        <input type="submit" name="submit" value="Add" class="btn btn-primary">
+                                        <input type="submit" name="submit" value="Add" class="btn btn-sm btn-primary">
                                     </div>
                                 </form>
                             </div>

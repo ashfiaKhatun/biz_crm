@@ -51,16 +51,16 @@
             <div class="container-fluid mt-3">
                 <div class="row">
                     <div class="col-lg-3 col-sm-6">
-                        <div class="d-flex align-items-center custom-card gradient-1">
-                            <div class="basic-list-group w-100">
-                                <ul class="list-group">
-                                    <li class="list-group-item bg-transparent border-0 border-bottom">
+                        <div class="d-flex align-items-center custom-card">
+                            <div class="w-100 p-3">
+                                <ul>
+                                    <li>
                                         <h5 class="text-white">Total Application: <span class="font-lg">{{ $allApplication }}</span></h5>
                                     </li>
-                                    <li class="list-group-item bg-transparent border-0 border-bottom">
+                                    <li class="bg-transparent border-0">
                                         <h5 class="text-white">Pending Application: <span class="font-lg">{{ $pendingApplication }}</span></h5>
                                     </li>
-                                    <li class="list-group-item bg-transparent border-0">
+                                    <li class="bg-transparent border-0">
                                         <h5 class="text-white">Total Ad Account: <span class="font-lg">{{ $allAdAccount }}</span></h5>
                                     </li>
 
@@ -69,52 +69,48 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="d-flex align-items-center custom-card gradient-2">
-                            <div class="basic-list-group w-100">
-                                <ul class="list-group">
-                                    <li class="list-group-item bg-transparent border-0 border-bottom">
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="d-flex align-items-center custom-card">
+                            <div class=" w-100 p-3">
+                                <ul>
+                                    <li>
                                         <h5 class="text-white">Current Month Refill: <span>{{ $thisMonthRefill }}</span></h5>
                                     </li>
-                                    <li class="list-group-item bg-transparent border-0 border-bottom">
+                                    <li>
                                         <h5 class="text-white">Last 7 Days Refill: <span>{{ $lastSevenDaysRefill }}</span></h5>
                                     </li>
-                                    <li class="list-group-item bg-transparent border-0">
+                                    <li>
                                         <h5 class="text-white">Refill Request: <span>{{ $pendingRefillAmount }} ({{ $pendingRefillCount }})</span></h5>
                                     </li>
                                 </ul>
-
-
 
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
-                        <div class="d-flex align-items-center custom-card gradient-3">
-                            <div class="basic-list-group w-100">
-                                <ul class="list-group">
-                                    <li class="list-group-item bg-transparent border-0 border-bottom">
+                        <div class="d-flex align-items-center custom-card">
+                            <div class=" w-100 p-3">
+                                <ul>
+                                    <li>
                                         <h5 class="text-white">Current Month Deposit: <span>${{ $totalDeposit }}</span></h5>
                                     </li>
-                                    <li class="list-group-item bg-transparent border-0 border-bottom">
+                                    <li>
                                         <h5 class="text-white">Average Rate: <span>৳{{ $averageRate }}</span></h5>
                                     </li>
-                                    <li class="list-group-item bg-transparent border-0
+                                    <li class="     
                                     ">
                                         <h5 class="text-white">Balance: <span></span></h5>
                                     </li>
                                 </ul>
 
-
-
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
+                    <div class="col-lg-2 col-sm-6">
                         <div class="btn-group-vertical w-100">
-                            <a href="#" class="btn btn-primary text-white my-2 py-3 rounded" data-toggle="modal" data-target="#refillModal">New Refill</a>
-                            <a href="{{ route('ad-account-application') }}" class="btn btn-secondary text-white mb-2 py-3 rounded">New Application</a>
-                            <a href="#" class="btn btn-success text-white py-3 rounded" data-toggle="modal" data-target="#depositModal">Add Deposit</a>
+                            <a href="#" class="btn btn-primary text-white my-2 py-2 rounded" data-toggle="modal" data-target="#refillModal">New Refill</a>
+                            <a href="#" class="btn btn-success text-white mb-2 py-2 rounded" data-toggle="modal" data-target="#depositModal">Add Deposit</a>
+                            <a href="{{ route('ad-account-application') }}" class="btn btn-secondary text-white py-2 rounded">New Application</a>
 
                         </div>
                     </div>
@@ -179,8 +175,6 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Pie chart</h4>
-                                {{$refilledAdAccount}}
-                                {{$nonRefilledAdAccount}}
                                 <canvas id="pieChart" width="500" height="250"></canvas>
                             </div>
                         </div>
@@ -202,9 +196,9 @@
                                     <table class="table table-xs mb-0">
                                         <thead>
                                             <tr>
-                                                <th>Application Date</th>
-                                                <th>Client Name</th>
-                                                <th>Ad Account Name</th>
+                                                <th>Date</th>
+                                                <th>Client</th>
+                                                <th>Ad Acc.</th>
                                                 <th>BM Id</th>
                                             </tr>
                                         </thead>
@@ -242,10 +236,10 @@
                                     <table class="table table-xs mb-0">
                                         <thead>
                                             <tr>
-                                                <th>Refill Date</th>
-                                                <th>Ad Account Name</th>
-                                                <th>Refill Amount ($)</th>
-                                                <th>Payment Method</th>
+                                                <th>Date</th>
+                                                <th>Ad Acc.</th>
+                                                <th>Amount ($)</th>
+                                                <th>Method</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -439,17 +433,13 @@
                     data: [{{ $refilledAdAccount }}, {{ $nonRefilledAdAccount }}],
                     backgroundColor: [
                         "rgba(117, 113, 249,0.9)",
-                        "rgba(117, 113, 249,0.7)"
-                    ],
-                    hoverBackgroundColor: [
-                        "rgba(117, 113, 249,0.9)",
-                        "rgba(117, 113, 249,0.7)"
+                        "rgba(255, 82, 82, 1)"
                     ]
 
                 }],
                 labels: [
-                    "Ad Accounts",
-                    "Refills",
+                    "Refilled",
+                    "Non-refilled",
                 ]
             },
             options: {

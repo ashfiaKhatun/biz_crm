@@ -41,8 +41,9 @@
     }
 
     .custom-card {
-        height: 190px;
+        height: 150px;
         border-radius: 20px;
+        background-color: lightslategray;
     }
 
     .font-lg {

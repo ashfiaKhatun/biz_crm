@@ -2,25 +2,10 @@
 <html lang="en">
 
 <head>
-@include('template.home.layouts.head')
+    @include('template.home.layouts.head')
 </head>
 
 <body>
-
-    <!--*******************
-        Preloader start
-    ********************-->
-    <div id="preloader">
-        <div class="loader">
-            <svg class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
-            </svg>
-        </div>
-    </div>
-    <!--*******************
-        Preloader end
-    ********************-->
-
 
     <!--**********************************
         Main wrapper start
@@ -41,33 +26,35 @@
         ***********************************-->
 
 
-
         <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body">
 
             <div class="w-75 mx-auto my-5 p-5 border rounded bg-white shadow-lg">
-                <h4 class="mb-3">Update Admin Information</h4>
-
-                <form method="POST" action="{{ route('admin.update', $admin->id) }}" class="my-3 login-input">
-
-
+                <h4 class="mb-3">Add New Daily Calculation</h4>
+                <form method="post" action="{{ route('dailyReport.store') }}" class="space-y-2">
                     @csrf
-                    @method('PUT')
 
-                    <div class="">
-                        <label class="col-form-label">Admin Name:</label>
-                        <input value="{{ $admin->name }}" class="form-control rounded" type="text" name="name" placeholder="Admin Name" required />
-                    </div>
+                    @foreach($adAccounts as $adAccount)
+                    <div class="row d-flex align-items-center mb-3">
+                        <div class="col-4">
+                            <b>{{ $adAccount->ad_acc_name }}</b><br>
+                            <span>ID: {{ $adAccount->ad_acc_id }}</span>
+                        </div>
 
-                    <div class="">
-                        <label class="col-form-label">Admin Email:</label>
-                        <input value="{{ $admin->email }}" id="email" class="form-control rounded" type="email" name="email" placeholder="Admin Email" required />
+                        <div class="col-4">
+                            <input name="running_balance[]" type="number" placeholder="Running Balance" class="form-control rounded">
+                        </div>
+    
+                        <div class="col-4">
+                            <input name="remaining_balance[]" type="number" placeholder="Remaining Balance" class="form-control rounded">
+                        </div>
                     </div>
+                    @endforeach
 
                     <div class="d-flex justify-content-end mt-4">
-                        <input type="submit" name="submit" value="Update Admin" class="btn btn-sm btn-primary">
+                        <input type="submit" name="submit" value="Save" class="btn btn-sm btn-primary">
                     </div>
                 </form>
             </div>
@@ -86,6 +73,7 @@
             Footer end
         ***********************************-->
     </div>
+
     <!--**********************************
         Main wrapper end
     ***********************************-->
@@ -94,7 +82,6 @@
         Scripts
     ***********************************-->
     @include('template.home.layouts.scripts')
-
 </body>
 
 </html>

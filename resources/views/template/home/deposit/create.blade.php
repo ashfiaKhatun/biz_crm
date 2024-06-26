@@ -44,7 +44,7 @@
 
 
                 <div class="d-flex justify-content-end mt-4">
-                    <input type="submit" name="submit" value="Create Deposit" class="btn btn-primary">
+                    <input type="submit" name="submit" value="Create Deposit" class="btn btn-sm btn-primary">
                 </div>
             </form>
         </div>

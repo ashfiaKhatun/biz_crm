@@ -178,7 +178,7 @@
                                 Monthly Report
                             </a>
                         </li>
-
+                        <li><a href="{{ route('dailyReport.index') }}">Daily Report</a></li>
                     </ul>
                 </li>
             @endif

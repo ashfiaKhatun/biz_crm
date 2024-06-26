@@ -39,7 +39,7 @@
                 </div>
                 @endif
 
-                <div class="table-responsive">
+                <div class="table-responsive text-nowrap">
                     <table class="table table-bordered table-striped verticle-middle" id="refillTable">
                         <thead>
                             <tr>
