@@ -136,6 +136,27 @@ class RefillController extends Controller
         return redirect()->route('refills.index')->with('success', 'Refill application updated successfully.');
     }
 
+    public function approve(Request $request, $id)
+    {
+
+        $refill = Refill::findOrFail($id);
+        $refill->update([
+            'status' => 'approved',
+        ]);
+
+        return redirect()->route('dashboard');
+    }
+    public function reject(Request $request, $id)
+    {
+
+        $refill = Refill::findOrFail($id);
+        $refill->update([
+            'status' => 'rejected',
+        ]);
+
+        return redirect()->route('dashboard');
+    }
+
     public function destroy($id)
     {
         if (auth()->user()->role !== 'admin') {

@@ -87,12 +87,12 @@
                                                 @endif
                                             </div>
                                             <form action="{{ route('setting.destroyPaymentMethod', $value->id) }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm bg-transparent" onclick="return confirm('Are you sure you want to delete this Payment Method?')"><i class="fa-solid fa-xmark"></i></button>
-                                        </form>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm bg-transparent" onclick="return confirm('Are you sure you want to delete this Payment Method?')"><i class="fa-solid fa-xmark"></i></button>
+                                            </form>
                                         </li>
-                                        
+
                                         @endif
                                         @endforeach
 
@@ -120,18 +120,18 @@
                                 <div class="basic-list-group">
                                     <ul class="list-group w-25 my-3">
                                         @foreach ($values as $value)
-                                            @if($value->setting_name == 'Vendor')
-                                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                    {{ $value->value }}
-                                                    <form action="{{ route('setting.destroyVendor', $value->id) }}" method="POST" style="display:inline-block;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm bg-transparent" onclick="return confirm('Are you sure you want to delete this Vendor?')">
-                                                            <i class="fa-solid fa-xmark"></i>
-                                                        </button>
-                                                    </form>
-                                                </li>
-                                            @endif
+                                        @if($value->setting_name == 'Vendor')
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            {{ $value->value }}
+                                            <form action="{{ route('setting.destroyVendor', $value->id) }}" method="POST" style="display:inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm bg-transparent" onclick="return confirm('Are you sure you want to delete this Vendor?')">
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </button>
+                                            </form>
+                                        </li>
+                                        @endif
                                         @endforeach
                                     </ul>
                                 </div>
@@ -146,7 +146,7 @@
                                     </div>
                                 </form>
                             </div>
-                            
+
 
                         </div>
                     </div>

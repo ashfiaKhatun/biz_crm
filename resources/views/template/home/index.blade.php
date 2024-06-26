@@ -95,7 +95,7 @@
                                         <h5 class="text-white">Current Month Deposit: <span>${{ $totalDeposit }}</span></h5>
                                     </li>
                                     <li>
-                                        <h5 class="text-white">Average Rate: <span>৳{{ $averageRate }}</span></h5>
+                                        <h5 class="text-white">Current Month Average Rate: <span>৳{{ $averageRate }}</span></h5>
                                     </li>
                                     <li class="     
                                     ">
@@ -182,7 +182,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
@@ -193,10 +193,9 @@
                                     </a>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table table-xs mb-0">
+                                    <table class="table table-xs mb-0 font-sm">
                                         <thead>
                                             <tr>
-                                                <th>Date</th>
                                                 <th>Client</th>
                                                 <th>Ad Acc.</th>
                                                 <th>BM Id</th>
@@ -205,7 +204,6 @@
                                         <tbody>
                                             @foreach ($adAccounts as $adAccount)
                                             <tr>
-                                                <td>{{ $adAccount->created_at->format('j F Y') }}</td>
                                                 <td>{{ $adAccount->client->name }}</td>
                                                 <td>
                                                     <span>{{ $adAccount->ad_acc_name }}</span><br>
@@ -222,7 +220,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-7">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
@@ -233,13 +231,14 @@
                                     </a>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table table-xs mb-0">
+                                    <table class="table table-xs mb-0 font-sm">
                                         <thead>
                                             <tr>
                                                 <th>Date</th>
                                                 <th>Ad Acc.</th>
                                                 <th>Amount ($)</th>
                                                 <th>Method</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -247,9 +246,27 @@
                                             @if ($refill->status == 'pending')
                                             <tr>
                                                 <td>{{ $refill->created_at->format('j F Y') }}</td>
-                                                <td>{{ $refill->adAccount->ad_acc_name }}</td>
+                                                <td>
+                                                    <span>{{ $refill->adAccount->ad_acc_name }}</span><br>
+                                                    <span class="font-sm mt-1">{{ $refill->adAccount->ad_acc_id }}</span>
+                                                </td>
                                                 <td>{{ $refill->amount_dollar }}</td>
                                                 <td>{{ $refill->payment_method }}</td>
+                                                <td>
+                                                    <span>
+                                                        <form action="{{ route('refill.approve', $refill->id) }}" method="POST" style="display:inline-block;">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit" class="btn btn-sm bg-transparent"><i class="fa-solid fa-check"></i></button>
+                                                        </form>
+                                                        <form action="{{ route('refill.reject', $refill->id) }}" method="POST" style="display:inline-block;">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit" class="btn btn-sm bg-transparent"><i class="fa-solid fa-xmark"></i></button>
+                                                        </form>
+
+                                                    </span>
+                                                </td>
 
                                             </tr>
                                             @endif
@@ -430,7 +447,7 @@
             type: 'pie',
             data: {
                 datasets: [{
-                    data: [{{ $refilledAdAccount }}, {{ $nonRefilledAdAccount }}],
+                    data: [{{ $refilledAdAccount}}, {{$nonRefilledAdAccount}}],
                     backgroundColor: [
                         "rgba(117, 113, 249,0.9)",
                         "rgba(255, 82, 82, 1)"

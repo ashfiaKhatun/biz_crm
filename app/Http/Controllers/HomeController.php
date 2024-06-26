@@ -35,6 +35,7 @@ class HomeController extends Controller
         $refilledAdAccount = Refill::whereMonth('created_at', Carbon::now()->month)
             ->whereYear('created_at', Carbon::now()->year)
             ->where('payment_method', '!=', 'Transferred')
+            ->where('status', 'approved')
             ->distinct('ad_account_id')
             ->count('ad_account_id');
 

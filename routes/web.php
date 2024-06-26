@@ -103,6 +103,9 @@ Route::put('refills/{id}', [RefillController::class, 'update'])->middleware(['au
 Route::delete('refills/{id}', [RefillController::class, 'destroy'])->middleware(['auth', 'verified'])->name('refills.destroy');
 Route::patch('refills/{id}/status', [RefillController::class, 'updateStatus'])->name('refills.updateStatus');
 
+Route::put('refills/{id}/approve', [RefillController::class, 'approve'])->middleware(['auth', 'verified'])->name('refill.approve');
+Route::put('refills/{id}/reject', [RefillController::class, 'reject'])->middleware(['auth', 'verified'])->name('refill.reject');
+
 Route::get('/refills/refills-name/update', [RefillController::class, 'update'])->middleware(['auth', 'verified']);
 Route::post('refill/{id}/send-to-agency', [AgencyTransactionController::class, 'sendToAgency'])->middleware(['auth', 'verified'])->name('refill.sendToAgency');
 
