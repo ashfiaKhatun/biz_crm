@@ -144,6 +144,10 @@ class RefillController extends Controller
             'status' => 'approved',
         ]);
 
+        SystemNotification::create([
+            'notification' => "Refill request status changed by " . auth()->user()->name
+        ]);
+
         return redirect()->route('dashboard');
     }
     public function reject(Request $request, $id)
@@ -152,6 +156,10 @@ class RefillController extends Controller
         $refill = Refill::findOrFail($id);
         $refill->update([
             'status' => 'rejected',
+        ]);
+
+        SystemNotification::create([
+            'notification' => "Refill request status changed by " . auth()->user()->name
         ]);
 
         return redirect()->route('dashboard');
@@ -257,5 +265,4 @@ class RefillController extends Controller
 
         return redirect()->route('refills.index')->with('success', 'Status updated successfully.');
     }
-
 }
