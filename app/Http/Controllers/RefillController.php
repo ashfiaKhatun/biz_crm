@@ -14,16 +14,22 @@ use App\Models\SystemNotification;
 class RefillController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         $customers = User::where('role', 'customer')->get();
         $paymentMethods = Settings::where('setting_name', 'Refill Payment Method')->get();
         $refills = Refill::with('client', 'adAccount')
             ->where('payment_method', '!=', 'Transferred')
             ->orderBy('created_at', 'desc')
-            ->get();
-        return view('template.home.refill_application.index', compact('refills', 'customers','paymentMethods'));
+            ->paginate(5); // Adjust the number of items per page as needed
+
+        if ($request->ajax()) {
+            return view('template.home.refill_application.load_more_data', compact('refills'))->render();
+        }
+
+        return view('template.home.refill_application.index', compact('refills', 'customers', 'paymentMethods'));
     }
+
     public function pending()
     {
         $refills = Refill::where('status', 'pending')->orderBy('created_at', 'desc')->get();
@@ -35,19 +41,19 @@ class RefillController extends Controller
         $paymentMethods = Settings::where('setting_name', 'Refill Payment Method')->get();
         return view('template.home.refill_application.refill_application', compact('customers', 'paymentMethods'));
     }
-    
+
 
     // new refill for customer
-    public function newRefill($id )
+    public function newRefill($id)
     {
         $customer = User::where('id', $id)->get();
         $adaccount = AdAccount::where('client_id', $id)->get();
         $paymentMethods = Settings::where('setting_name', 'Refill Payment Method')->get();
-        
-        return view('template.home.refill_application.refill_application_new', compact('customer', 'paymentMethods','adaccount'));
+
+        return view('template.home.refill_application.refill_application_new', compact('customer', 'paymentMethods', 'adaccount'));
     }
     // *************
-    
+
     public function refill_application_id(AdAccount $adAccount)
     {
         $paymentMethods = Settings::where('setting_name', 'Refill Payment Method')->get();
@@ -218,10 +224,10 @@ class RefillController extends Controller
                 ]);
             }
 
-            $refill->update(['status' => $request->status,'assign' => auth()->user()->name]);
+            $refill->update(['status' => $request->status, 'assign' => auth()->user()->name]);
         } else
             $refill = Refill::findOrFail($id);
-        $refill->update(['status' => $request->status,'assign' => auth()->user()->name]);
+        $refill->update(['status' => $request->status, 'assign' => auth()->user()->name]);
 
         SystemNotification::create([
             'notification' => "Refill request status changed by " . auth()->user()->name
