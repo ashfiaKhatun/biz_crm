@@ -41,12 +41,12 @@
     }
 
     .custom-card {
-        height: 150px;
+        height: 140px;
         border-radius: 20px;
         background-color: lightslategray;
     }
 
     .font-lg {
-        font-size: 20px;
+        font-size: 16px;
     }
 </style>

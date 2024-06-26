@@ -55,13 +55,13 @@
                             <div class="w-100 p-3">
                                 <ul>
                                     <li>
-                                        <h5 class="text-white">Total Application: <span class="font-lg">{{ $allApplication }}</span></h5>
+                                        <h6 class="text-white">Total Application: <span class="font-lg">{{ $allApplication }}</span></h6>
                                     </li>
                                     <li class="bg-transparent border-0">
-                                        <h5 class="text-white">Pending Application: <span class="font-lg">{{ $pendingApplication }}</span></h5>
+                                        <h6 class="text-white">Pending Application: <span class="font-lg">{{ $pendingApplication }}</span></h6>
                                     </li>
                                     <li class="bg-transparent border-0">
-                                        <h5 class="text-white">Total Ad Account: <span class="font-lg">{{ $allAdAccount }}</span></h5>
+                                        <h6 class="text-white">Total Ad Account: <span class="font-lg">{{ $allAdAccount }}</span></h6>
                                     </li>
 
                                 </ul>
@@ -74,13 +74,13 @@
                             <div class=" w-100 p-3">
                                 <ul>
                                     <li>
-                                        <h5 class="text-white">Current Month Refill: <span>{{ $thisMonthRefill }}</span></h5>
+                                        <h6 class="text-white">Current Month Refill: <span class="font-lg">${{ $thisMonthRefill }}</span></h6>
                                     </li>
                                     <li>
-                                        <h5 class="text-white">Last 7 Days Refill: <span>{{ $lastSevenDaysRefill }}</span></h5>
+                                        <h6 class="text-white">Last 7 Days Refill: <span class="font-lg">${{ $lastSevenDaysRefill }}</span></h6>
                                     </li>
                                     <li>
-                                        <h5 class="text-white">Refill Request: <span>{{ $pendingRefillAmount }} ({{ $pendingRefillCount }})</span></h5>
+                                        <h6 class="text-white">Refill Request: <span class="font-lg">${{ $pendingRefillAmount }} ({{ $pendingRefillCount }})</span></h6>
                                     </li>
                                 </ul>
 
@@ -92,14 +92,14 @@
                             <div class=" w-100 p-3">
                                 <ul>
                                     <li>
-                                        <h5 class="text-white">Current Month Deposit: <span>${{ $totalDeposit }}</span></h5>
+                                        <h6 class="text-white">Current Month Deposit: <span class="font-lg">${{ $totalDeposit }}</span></h6>
                                     </li>
                                     <li>
-                                        <h5 class="text-white">Current Month Average Rate: <span>৳{{ $averageRate }}</span></h5>
+                                        <h6 class="text-white">Current Month Average Rate: <span class="font-lg">৳{{ $averageRate }}</span></h6>
                                     </li>
                                     <li class="     
                                     ">
-                                        <h5 class="text-white">Balance: <span></span></h5>
+                                        <h6 class="text-white">Balance: <span class="font-lg"></span></h6>
                                     </li>
                                 </ul>
 
