@@ -36,28 +36,6 @@
                 <div class="card">
                     <div class="card-body">
                         <div>
-                            <h4 class="card-title mr-4 mt-2">Agency Report</h4>
-    
-                            <div class="table-responsive text-nowrap">
-                                <table class="table table-bordered table-striped verticle-middle" id="refillTable">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Agency</th>
-                                            <th scope="col">Total Refill (tk)</th>
-                                            <th scope="col">Dollar Refilled</th>
-                                            <th scope="col">Income</th>
-                                            <th scope="col">Margin</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-    
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                        
-                        <div>
                             <h4 class="card-title mr-4 mt-2">Ad Account Report</h4>
     
                             <div class="table-responsive text-nowrap">
@@ -73,6 +51,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($refills as $refill)
+                                        @if(isset($refill->refill_act_taka))
                                         <tr>
                                             <td>
                                                 <span>{{ $refill->adAccount->ad_acc_name }}</span><br>
@@ -83,6 +62,7 @@
                                             <td>{{ $refill->refill_taka - $refill->refill_act_taka }}</td>
                                             <td>{{ $refill->adAccount->dollar_rate }}</td>
                                         </tr>
+                                        @endif
                                         @endforeach
     
                                     </tbody>

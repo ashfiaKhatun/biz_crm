@@ -48,8 +48,8 @@
                                 <td>{{ $adAccount->client->name }}</td>
                                 @endif
                                 <td>
-                                    <span>{{ $adAccount->ad_acc_name }}</span>
-                                    <p class="font-sm mt-1">{{ $adAccount->ad_acc_id }}</p>
+                                    <span>{{ $adAccount->ad_acc_name }}</span><br>
+                                    <span class="font-sm mt-1">ID: {{ $adAccount->ad_acc_id }}</span>
                                 </td>
                                 <td>{{ $adAccount->agency->agency_name }}</td>
                                 <td>{{ $adAccount->dollar_rate }}৳</td>
