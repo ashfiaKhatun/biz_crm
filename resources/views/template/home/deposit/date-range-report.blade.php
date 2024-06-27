@@ -56,7 +56,7 @@
                                     <table class="table table-bordered table-striped verticle-middle" id="depositsTable">
                                         <thead>
                                             <tr>
-                                                <th>Date</th>
+                                                <th>Date, Time</th>
                                                 <th>Name</th>
                                                 <th>Amount (USD)</th>
                                                 <th>Rate (BDT)</th>
@@ -67,7 +67,7 @@
                                         <tbody>
                                             @foreach ($deposits as $deposit)
                                                 <tr>
-                                                    <td>{{ \Carbon\Carbon::parse($deposit->created_at)->format('d F Y') }}</td>
+                                                    <td>{{ \Carbon\Carbon::parse($deposit->created_at)->format('d F Y, h:i A') }}</td>
                                                     <td>{{ $deposit->name }}</td>
                                                     <td>{{ $deposit->amount_usd }}</td>
                                                     <td>{{ $deposit->rate_bdt }}</td>
