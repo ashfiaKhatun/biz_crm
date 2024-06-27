@@ -44,10 +44,38 @@ class ReportController extends Controller
         return view('template.home.deposit.monthly_report_detail', compact('year', 'month', 'averageRate', 'deposits'));
     }
 
-   
+
 
     public function downloadExcel($year, $month)
     {
         return Excel::download(new DepositsExport($year, $month), "monthly_report_{$year}_{$month}.xlsx");
+    }
+
+
+    public function showDateRangeReportDeposit()
+    {
+        return view('template.home.deposit.date-range-report');
+    }
+
+    public function generateReportDeposit(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        $report = Deposit::whereBetween('created_at', [$startDate, $endDate])
+            ->where('status', 'received')
+            ->selectRaw('SUM(amount_bdt) / SUM(amount_usd) as average_rate')
+            ->first();
+
+        $deposits = Deposit::whereBetween('created_at', [$startDate, $endDate])
+            ->where('status', 'received')
+            ->get();
+
+        return view('template.home.deposit.date-range-report', [
+            'report' => $report,
+            'deposits' => $deposits,
+            'startDate' => $startDate,
+            'endDate' => $endDate
+        ]);
     }
 }
