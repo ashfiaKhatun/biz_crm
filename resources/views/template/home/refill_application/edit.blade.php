@@ -56,7 +56,7 @@
                 <div>
                     <label class="col-form-label">Payment Method</label>
                     <select id="payment_method" name="payment_method" class="form-control rounded">
-                        <option>Select</option>
+                        <option>{{ $refill->payment_method }}</option>
                         @foreach ($paymentMethods as $paymentMethod)
                         <option value="{{ $paymentMethod->value }}" data-details="{{ $paymentMethod->details }}">{{ $paymentMethod->value }}</option>
                         @endforeach
@@ -70,6 +70,11 @@
                 <div>
                     <label class="col-form-label">Transaction Id:</label>
                     <input type="text" name="transaction_id" placeholder="Transaction Id" class="form-control rounded" value="{{ $refill->transaction_id }}">
+                </div>
+
+                <div>
+                    <label class="col-form-label">Date</label>
+                    <input type="date" name="new_date" class="form-control rounded w-25">
                 </div>
 
                 <div class="mt-2">

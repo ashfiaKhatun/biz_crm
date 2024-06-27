@@ -10,6 +10,7 @@ use App\Models\Refill;
 use App\Models\AgencyTransaction;
 use App\Models\Settings;
 use App\Models\SystemNotification;
+use Carbon\Carbon;
 
 class RefillController extends Controller
 {
@@ -132,6 +133,7 @@ class RefillController extends Controller
             'amount_dollar' => 'nullable|numeric',
             'payment_method' => 'required|string|max:255',
             'transaction_id' => 'required|string|max:255',
+            'new_date' => 'nullable|date',
             'screenshot' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status' => 'required|string|max:255',
         ]);
@@ -141,6 +143,13 @@ class RefillController extends Controller
 
         if ($request->hasFile('screenshot')) {
             $data['screenshot'] = $request->file('screenshot')->store('screenshots', 'public');
+        }
+
+        if ($request->has('new_date')) {
+            $newDate = Carbon::parse($request->new_date);
+            // Preserve original time from existing 'created_at'
+            $newDateTime = $newDate->format('Y-m-d') . ' ' . $refill->created_at->format('H:i:s');
+            $refill->created_at = $newDateTime;
         }
 
         $refill->update($data);
