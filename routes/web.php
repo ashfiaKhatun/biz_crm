@@ -146,6 +146,9 @@ Route::get('/deposits/monthly-report/{year}/{month}', [ReportController::class, 
 Route::get('/deposits/monthly-report/{year}/{month}/pdf', [ReportController::class, 'downloadPdf'])->name('deposits.downloadPdf');
 Route::get('/deposits/monthly-report/{year}/{month}/excel', [ReportController::class, 'downloadExcel'])->name('deposits.downloadExcel');
 
+Route::get('/deposits/date-range-report', [ReportController::class, 'showDateRangeReportDeposit'])->middleware(['auth', 'verified'])->name('deposits.report.dateRange');
+Route::post('/deposits/generate-report', [ReportController::class, 'generateReportDeposit'])->middleware(['auth', 'verified'])->name('deposits.report.generate');
+
 
 
 // daily report start
