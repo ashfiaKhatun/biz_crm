@@ -213,77 +213,66 @@ class RefillController extends Controller
 
     public function updateStatus(Request $request, $id)
     {
+        // Redirect customer role to home page
         if (auth()->user()->role == 'customer') {
             return redirect('/');
         }
+
+        // Validate the request
         $request->validate([
             'status' => 'required|string|in:pending,approved,rejected',
         ]);
 
+        $refill = Refill::findOrFail($id);
 
+        // Check if the status is changing from 'approved' to something else
+        if ($refill->status == 'approved' && $request->status != 'approved') {
+            AgencyTransaction::where('refills_id', $refill->id)->delete();
+        }
 
+        // Process only if status is approved
         if ($request->status == 'approved') {
-            $refill = Refill::findOrFail($id);
+            $agency = $refill->adAccount->agency;
+            $agencyTransactionData = [
+                'refills_id' => $refill->id,
+                'cl_rate' => $refill->adAccount->dollar_rate,
+                'refill_usd' => $refill->amount_dollar,
+                'refill_tk' => $refill->amount_taka,
+                'agency_charge_type' => $agency->commission_type,
+            ];
 
-            if ($refill->adAccount->agency->commission_type == 'Percentage') {
-                $agencyRate = $refill->adAccount->agency->percentage_rate;
+            if ($agency->commission_type == 'Percentage') {
+                $agencyRate = $agency->percentage_rate;
                 $refill_act_usd = (($agencyRate / 100) * $refill->amount_dollar) + $refill->amount_dollar;
+                $agencyTransactionData['refill_act_usd'] = $refill_act_usd;
+                $agencyTransactionData['agency_charge'] = ($agencyRate / 100) * $refill->amount_dollar;
+                $agencyTransactionData['agency_rate'] = $agencyRate;
 
-                AgencyTransaction::create([
-                    'refills_id' => $refill->id,
-                    'cl_rate' => $refill->adAccount->dollar_rate,
-                    'refill_usd' => $refill->amount_dollar,
-                    'refill_tk' => $refill->amount_taka,
-                    'refill_act_usd' => $refill_act_usd, // or some logic to calculate actual values
-                    'refill_act_tk' => null,  // or some logic to calculate actual values
-                    'agency_charge_type' => $refill->adAccount->agency->commission_type,
-                    'agency_charge' => (($agencyRate / 100) * $refill->amount_dollar),
-                    'agency_rate' => $refill->adAccount->agency->percentage_rate
-                ]);
-            } elseif ($refill->adAccount->agency->commission_type == 'Dollar Rate') {
+            } elseif ($agency->commission_type == 'Dollar Rate') {
+                $refill_act_tk = $agency->dollar_rate * $refill->amount_dollar;
+                $agencyTransactionData['refill_act_tk'] = $refill_act_tk;
+                $agencyTransactionData['agency_rate'] = $agency->dollar_rate;
 
-
-                $refill_act_tk = $refill->adAccount->agency->dollar_rate * $refill->amount_dollar;
-
-
-                AgencyTransaction::create([
-                    'refills_id' => $refill->id,
-                    'cl_rate' => $refill->adAccount->dollar_rate,
-                    'refill_usd' => $refill->amount_dollar,
-                    'refill_tk' => $refill->amount_taka,
-
-                    'refill_act_tk' => $refill_act_tk,
-                    'agency_charge_type' => $refill->adAccount->agency->commission_type,
-                    'agency_rate' => $refill->adAccount->agency->dollar_rate
-                ]);
-            } elseif ($refill->adAccount->agency->commission_type == 'Own Account') {
-
-
-
-
-
-                AgencyTransaction::create([
-                    'refills_id' => $refill->id,
-                    'cl_rate' => $refill->adAccount->dollar_rate,
-                    'refill_usd' => $refill->amount_dollar,
-                    'refill_tk' => $refill->amount_taka,
-
-
-                    'agency_charge_type' => $refill->adAccount->agency->commission_type,
-
-                ]);
+            } elseif ($agency->commission_type == 'Own Account') {
+                // No additional fields needed for 'Own Account'
             }
 
-            $refill->update(['status' => $request->status, 'assign' => auth()->user()->name]);
-        } else
-            $refill = Refill::findOrFail($id);
-        $refill->update(['status' => $request->status, 'assign' => auth()->user()->name]);
+            AgencyTransaction::create($agencyTransactionData);
+        }
 
-        SystemNotification::create([
-            'notification' => "Refill request status changed by " . auth()->user()->name
-
+        // Update refill status and assign user
+        $refill->update([
+            'status' => $request->status,
+            'assign' => auth()->user()->name
         ]);
 
+        // Create a system notification
+        SystemNotification::create([
+            'notification' => "Refill request status changed by " . auth()->user()->name
+        ]);
+
+        // Redirect back with success message
         return redirect()->route('refills.index')->with('success', 'Status updated successfully.');
     }
+
 }
