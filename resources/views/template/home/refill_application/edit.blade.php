@@ -74,7 +74,7 @@
 
                 <div>
                     <label class="col-form-label">Date</label>
-                    <input type="date" name="new_date" class="form-control rounded w-25">
+                    <input type="date" name="new_date" value="{{ (isset($refill->created_at)) ? $refill->created_at->format('Y-m-d') : '' }}" class="form-control rounded w-25">
                 </div>
 
                 <div class="mt-2">

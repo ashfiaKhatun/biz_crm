@@ -45,10 +45,8 @@
 
                 <div>
                     <label class="col-form-label">Date</label>
-                    <input type="date" name="new_date" class="form-control rounded w-25">
+                    <input type="date" name="new_date"  value="{{ (isset($deposit->created_at)) ? $deposit->created_at->format('Y-m-d') : '' }}" class="form-control rounded w-25">
                 </div>
-
-
 
                 <div>
                     <label class="col-form-label">Status:</label>
