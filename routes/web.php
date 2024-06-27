@@ -87,6 +87,8 @@ Route::post('ad_account/{id}/transfer', [AdAccountController::class, 'transfer']
 Route::get('ad-account/{client_id}/accounts', [RefillController::class, 'getClientAdAccounts'])->name('ad-account.client.accounts');
 Route::get('ad-account/{id}/details', [RefillController::class, 'getAdAccountDetails'])->name('ad-account.details');
 Route::get('refill-application', [RefillController::class, 'refill_application'])->middleware(['auth', 'verified'])->name('refill-application');
+Route::get('/refills/filter', [RefillController::class, 'index'])->middleware(['auth', 'verified'])->name('refills.filter');
+
 
 // new refill for customer
 Route::get('refill-application/{id}/new', [RefillController::class, 'newRefill'])->middleware(['auth', 'verified'])->name('refills.newRefill');
@@ -123,6 +125,9 @@ Route::put('deposit/{id}', [DepositController::class, 'update'])->middleware(['a
 Route::delete('deposit/{id}', [DepositController::class, 'destroy'])->middleware(['auth', 'verified'])->name('deposit.destroy');
 Route::patch('deposit/{id}/status', [DepositController::class, 'updateStatus'])->middleware(['auth', 'verified'])->name('deposit.updateStatus');
 Route::get('average-usd-rate', [DepositController::class, 'averageUsdRate'])->middleware(['auth', 'verified'])->name('averageUsdRate');
+
+Route::get('/deposits/monthly-report', [DepositController::class, 'monthlyReport'])->middleware(['auth', 'verified'])->name('deposits.monthlyReport');
+Route::get('/deposits/monthly-report/{year}/{month}', [DepositController::class, 'monthlyReportDetail'])->middleware(['auth', 'verified'])->name('deposits.monthlyReportDetail');
 
 
 //deposit end

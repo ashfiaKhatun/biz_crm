@@ -18,17 +18,29 @@ class RefillController extends Controller
     {
         $customers = User::where('role', 'customer')->get();
         $paymentMethods = Settings::where('setting_name', 'Refill Payment Method')->get();
-        $refills = Refill::with('client', 'adAccount')
+
+        $query = Refill::with('client', 'adAccount')
             ->where('payment_method', '!=', 'Transferred')
-            ->orderBy('created_at', 'desc')
-            ->paginate(5); // Adjust the number of items per page as needed
+            ->orderBy('created_at', 'desc');
+
+        if ($request->has('start_date') && $request->has('end_date')) {
+            $startDate = $request->input('start_date');
+            $endDate = $request->input('end_date');
+
+            // Ensure the query works even if start date and end date are the same
+            $query->whereBetween('created_at', [$startDate, $endDate . ' 23:59:59']);
+        }
+
+        $refills = $query->paginate(5); // Adjust the number of items per page as needed
 
         if ($request->ajax()) {
-            return view('template.home.refill_application.load_more_data', compact('refills'))->render();
+            return view('template.home.refill_application.filtered_data', compact('refills'))->render();
         }
 
         return view('template.home.refill_application.index', compact('refills', 'customers', 'paymentMethods'));
     }
+
+
 
     public function pending()
     {
