@@ -52,7 +52,7 @@
                     <table class="table table-bordered table-striped verticle-middle" id="refillTable">
                         <thead>
                             <tr>
-                                <th>Date || Time</th>
+                                <th>Date  Time</th>
                                 <th>Ad Account Name</th>
                                 <th>Dollar Rate</th>
                                 <th>Amount (Dollar)</th>

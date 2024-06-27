@@ -51,7 +51,7 @@
                             <table class="table table-bordered table-striped verticle-middle" id="refillTable">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Date</th>
+                                        <th scope="col">Date  Time</th>
                                         <th scope="col">Running Balance</th>
                                         <th scope="col">Remaining Balance</th>
                                         <th scope="col">Total</th>
@@ -60,7 +60,7 @@
                                 <tbody>
                                     @foreach ($dailyReports as $dailyReport)
                                     <tr>
-                                        <td>{{ $dailyReport->created_at->format('j F Y') }}</td>
+                                        <td>{{ $dailyReport->created_at->format('j F Y  g:i a') }}</td>
                                         <td>{{ $dailyReport->running_balance }}</td>
                                         <td>{{ $dailyReport->remaining_balance }}</td>
                                         <td>{{ $dailyReport->total_balance }}</td>

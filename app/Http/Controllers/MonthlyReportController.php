@@ -28,6 +28,8 @@ class MonthlyReportController extends Controller
             ->groupBy('refills.ad_account_id')
             ->orderBy('refills.created_at', 'desc') // Specify the table name here
             ->get();
+
+        
         return view('template.home.monthly_report.index', compact('refills'));
     }
 }
