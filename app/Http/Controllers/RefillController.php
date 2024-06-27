@@ -46,7 +46,7 @@ class RefillController extends Controller
     public function pending()
     {
         $refills = Refill::where('status', 'pending')->orderBy('created_at', 'desc')->get();
-        return view('template.home.refill_application.index', compact('refills'));
+        return view('template.home.refill_application.pending', compact('refills'));
     }
     public function refill_application()
     {
