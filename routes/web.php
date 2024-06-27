@@ -151,6 +151,9 @@ Route::delete('settings/destroyVendor/{id}', [SettingController::class, 'destroy
 Route::get('/deposits/monthly-report', [ReportController::class, 'monthlyReportDeposit'])->middleware(['auth', 'verified'])->name('deposits.monthlyReport');
 Route::get('/deposits/monthly-report/{year}/{month}', [ReportController::class, 'monthlyReportDepositDetail'])->middleware(['auth', 'verified'])->name('deposits.monthlyReportDetail');
 
+Route::get('/deposits/monthly-report/{year}/{month}/pdf', [ReportController::class, 'downloadPdf'])->name('deposits.downloadPdf');
+Route::get('/deposits/monthly-report/{year}/{month}/excel', [ReportController::class, 'downloadExcel'])->name('deposits.downloadExcel');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

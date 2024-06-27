@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Deposit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DepositsExport;
 
 class ReportController extends Controller
 {
@@ -39,5 +42,12 @@ class ReportController extends Controller
             ->get();
 
         return view('template.home.deposit.monthly_report_detail', compact('year', 'month', 'averageRate', 'deposits'));
+    }
+
+   
+
+    public function downloadExcel($year, $month)
+    {
+        return Excel::download(new DepositsExport($year, $month), "monthly_report_{$year}_{$month}.xlsx");
     }
 }
