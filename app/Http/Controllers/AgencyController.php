@@ -86,7 +86,7 @@ class AgencyController extends Controller
                     [
                         'agency_name' => $request['agency_name'],
                         'location' => $request['location'],
-                        'commission_type' => $request['own_commission_type'],
+                        'commission_type' => $request['commission_type'],
                         'dollar_rate' => $request['dollar_rate'],
                         'percentage_rate' => $request['percentage_rate'],
                         'ad_account_type' => $request['ad_account_type'],

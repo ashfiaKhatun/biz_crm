@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\AgencyTransactionController;
 use App\Http\Controllers\DailyCalculationController;
+use App\Http\Controllers\MonthlyReportController;
 use App\Http\Controllers\SettingController;
 
 /*
@@ -34,15 +35,6 @@ Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['aut
 Route::get('notifications/all', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('notification.index');
 Route::get('notifications/{id}/all', [HomeController::class, 'indexClient'])->middleware(['auth', 'verified'])->name('notification.indexClient');
 // notification end
-
-
-// daily report start
-Route::get('report/daily/all', [DailyCalculationController::class, 'index'])->middleware(['auth', 'verified'])->name('dailyReport.index');
-Route::get('report/daily/new', [DailyCalculationController::class, 'create'])->middleware(['auth', 'verified'])->name('dailyReport.create');
-Route::post('report/daily/new', [DailyCalculationController::class, 'store'])->middleware(['auth', 'verified'])->name('dailyReport.store');
-
-
-// daily report end
 
 
 // agency related start
@@ -153,6 +145,22 @@ Route::get('/deposits/monthly-report/{year}/{month}', [ReportController::class, 
 
 Route::get('/deposits/monthly-report/{year}/{month}/pdf', [ReportController::class, 'downloadPdf'])->name('deposits.downloadPdf');
 Route::get('/deposits/monthly-report/{year}/{month}/excel', [ReportController::class, 'downloadExcel'])->name('deposits.downloadExcel');
+
+
+
+// daily report start
+Route::get('report/daily/all', [DailyCalculationController::class, 'index'])->middleware(['auth', 'verified'])->name('dailyReport.index');
+Route::get('report/daily/new', [DailyCalculationController::class, 'create'])->middleware(['auth', 'verified'])->name('dailyReport.create');
+Route::post('report/daily/new', [DailyCalculationController::class, 'store'])->middleware(['auth', 'verified'])->name('dailyReport.store');
+
+// daily report end
+
+// monthly report start
+
+Route::get('report/monthly/all', [MonthlyReportController::class, 'index'])->middleware(['auth', 'verified'])->name('monthlyReport.index');
+
+
+// monthly report end
 
 
 Route::middleware('auth')->group(function () {

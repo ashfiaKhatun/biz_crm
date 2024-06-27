@@ -175,7 +175,7 @@
                         <i class="fa-solid fa-chart-simple"></i><span class="nav-text">Report</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a aria-expanded="false">
+                        <li><a href="{{ route('monthlyReport.index') }}" aria-expanded="false">
                                 Monthly Report
                             </a>
                         </li>
