@@ -5,6 +5,7 @@ use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RefillController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\AgencyTransactionController;
@@ -126,8 +127,7 @@ Route::delete('deposit/{id}', [DepositController::class, 'destroy'])->middleware
 Route::patch('deposit/{id}/status', [DepositController::class, 'updateStatus'])->middleware(['auth', 'verified'])->name('deposit.updateStatus');
 Route::get('average-usd-rate', [DepositController::class, 'averageUsdRate'])->middleware(['auth', 'verified'])->name('averageUsdRate');
 
-Route::get('/deposits/monthly-report', [DepositController::class, 'monthlyReport'])->middleware(['auth', 'verified'])->name('deposits.monthlyReport');
-Route::get('/deposits/monthly-report/{year}/{month}', [DepositController::class, 'monthlyReportDetail'])->middleware(['auth', 'verified'])->name('deposits.monthlyReportDetail');
+
 
 
 //deposit end
@@ -146,6 +146,10 @@ Route::delete('settings/destroyVendor/{id}', [SettingController::class, 'destroy
 
 // settings end
 
+//report
+
+Route::get('/deposits/monthly-report', [ReportController::class, 'monthlyReportDeposit'])->middleware(['auth', 'verified'])->name('deposits.monthlyReport');
+Route::get('/deposits/monthly-report/{year}/{month}', [ReportController::class, 'monthlyReportDepositDetail'])->middleware(['auth', 'verified'])->name('deposits.monthlyReportDetail');
 
 
 Route::middleware('auth')->group(function () {
