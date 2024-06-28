@@ -177,7 +177,7 @@
                     </a>
                     <ul aria-expanded="false">
                         <li><a href="{{ route('monthlyReport.index') }}" aria-expanded="false">
-                                Monthly Report
+                                Ad Account Report
                             </a>
                         </li>
                         <li><a href="{{ route('dailyReport.index') }}">Daily Calculation</a></li>

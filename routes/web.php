@@ -158,12 +158,13 @@ Route::post('report/daily/new', [DailyCalculationController::class, 'store'])->m
 
 // daily report end
 
-// monthly report start
+// monthly ad account report start
 
-Route::get('report/monthly/all', [MonthlyReportController::class, 'index'])->middleware(['auth', 'verified'])->name('monthlyReport.index');
+Route::get('report/ad-account/all', [ReportController::class, 'monthlyReportAdAccount'])->middleware(['auth', 'verified'])->name('monthlyReport.index');
+Route::get('/ad-accounts-monthly-report/{year}/{month}', [ReportController::class, 'monthlyReportAdAccountDetail'])->middleware(['auth', 'verified'])->name('monthlyReport.monthlyReportDetail');
 
 
-// monthly report end
+// monthly ad account report end
 
 
 Route::middleware('auth')->group(function () {

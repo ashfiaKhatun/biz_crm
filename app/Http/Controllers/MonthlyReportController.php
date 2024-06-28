@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AdAccount;
+use App\Models\AgencyTransaction;
 use App\Models\Deposit;
 use App\Models\Refill;
 use Carbon\Carbon;
@@ -11,10 +11,33 @@ use Illuminate\Support\Facades\DB;
 
 class MonthlyReportController extends Controller
 {
-    public function index()
+
+    public function monthlyReportAdAccount()
     {
-        $currentMonth = Carbon::now()->month;
-        $refills = Refill::whereMonth('refills.created_at', $currentMonth)
+        $monthsWithData = AgencyTransaction::select(
+            DB::raw('YEAR(created_at) as year'),
+            DB::raw('MONTH(created_at) as month')
+        )
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
+            ->get();
+
+        return view('template.home.ad_account_report.index', compact('monthsWithData'));
+    }
+
+    public function monthlyReportAdAccountDetail($year, $month)
+    {
+        $averageRate = Deposit::select(
+            DB::raw('SUM(amount_bdt) / SUM(amount_usd) as average_rate')
+        )
+            ->where('status', 'received')
+            ->whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
+            ->first();
+
+        $refills = Refill::whereYear('refills.created_at', $year)
+            ->whereMonth('refills.created_at', $month)
             ->select('refills.ad_account_id')
             ->selectRaw('SUM(refills.amount_taka) as total_refill_taka')
             ->selectRaw('SUM(refills.amount_dollar) as total_refill_dollar')
@@ -28,11 +51,7 @@ class MonthlyReportController extends Controller
             ->orderBy('refills.created_at', 'desc') // Specify the table name here
             ->get();
 
-        $averageRates = Deposit::select(
-            DB::raw('SUM(amount_bdt) / SUM(amount_usd) as average_rate')
-        );
 
-
-        return view('template.home.monthly_report.index', compact('refills', 'averageRates'));
+        return view('template.home.ad_account_report.show', compact('refills'));
     }
 }

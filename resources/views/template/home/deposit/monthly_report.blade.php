@@ -30,7 +30,7 @@
                                 <td>{{ $month->year }}</td>
                                 <td>{{ \Carbon\Carbon::create()->month($month->month)->translatedFormat('F') }}</td>
                                 <td>
-                                    <a href="{{ route('deposits.monthlyReportDetail', ['year' => $month->year, 'month' => $month->month]) }}" class="btn btn-primary" target="_blank">View Report</a>
+                                    <a href="{{ route('deposits.monthlyReportDetail', ['year' => $month->year, 'month' => $month->month]) }}" class="btn btn-sm btn-primary" target="_blank">View Report</a>
                                 </td>
                             </tr>
                         @endforeach
