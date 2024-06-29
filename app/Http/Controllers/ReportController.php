@@ -120,6 +120,16 @@ class ReportController extends Controller
             ->orderBy('refills.created_at', 'desc') // Specify the table name here
             ->get();
 
+        foreach ($refills as $refill) {
+            if (isset($refill->refill_act_taka)) {
+                $refill->income_tk = $refill->refill_taka - $refill->refill_act_taka;
+            } elseif (isset($refill->refill_act_usd)) {
+                $refill->income_tk = $refill->refill_taka - $refill->refill_act_usd * $report->average_rate;
+            } else {
+                $refill->income_tk = $refill->refill_taka - $refill->refill_usd * $report->average_rate;
+            }
+        }
+
         $monthsWithData = AgencyTransaction::select(
             DB::raw('YEAR(created_at) as year'),
             DB::raw('MONTH(created_at) as month')

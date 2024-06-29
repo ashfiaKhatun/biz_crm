@@ -92,6 +92,8 @@
                             @isset($report)
                             <div class="mt-5">
                                 <h5>Report from {{ \Carbon\Carbon::parse($startDate)->format('d F Y') }} to {{ \Carbon\Carbon::parse($endDate)->format('d F Y') }}</h5>
+
+                                <h5>Total Income: ৳ {{ $refills->sum('income_tk') }}</h5>
                             </div>
 
                             <div class="table-responsive text-nowrap mt-3">
