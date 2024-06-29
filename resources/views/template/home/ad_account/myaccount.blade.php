@@ -20,6 +20,11 @@
                 <h2 class="card-title">My Ad Accounts</h2>
                 @endif
 
+                <!-- Search Field -->
+                <div class="mb-3 w-25">
+                    <input type="text" id="searchInput" class="form-control rounded" placeholder="Search...">
+                </div>
+
                 @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -27,7 +32,7 @@
                 @endif
 
                 <div class="table-responsive text-nowrap">
-                    <table class="table table-bordered table-striped verticle-middle">
+                    <table class="table table-bordered table-striped verticle-middle" id="refillTable">
                         <thead>
                             <tr>
                                 @if(auth()->user()->role == 'admin' || auth()->user()->role == 'employee')
@@ -104,6 +109,8 @@
     @include('template.home.layouts.footer')
 
     @include('template.home.layouts.scripts')
+
+    @include('template.home.custom_scripts.search_script')
 
 </body>
 

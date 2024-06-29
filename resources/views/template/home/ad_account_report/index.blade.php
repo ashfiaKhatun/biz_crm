@@ -101,7 +101,7 @@
                                         <tr>
                                             <th scope="col">Ad Account</th>
                                             <th scope="col">Total Refill (tk)</th>
-                                            <th scope="col">Dollar Refilled</th>
+                                            <th scope="col">Total Refill (usd)</th>
                                             <th scope="col">Income (tk)</th>
                                             <th scope="col">Dollar Rate</th>
                                         </tr>
@@ -114,10 +114,10 @@
                                                 <span>{{ $refill->adAccount->ad_acc_name }}</span><br>
                                                 <span class="font-sm mt-1">ID: {{ $refill->adAccount->ad_acc_id }}</span>
                                             </td>
-                                            <td>{{ $refill->total_refill_taka }}</td>
-                                            <td>{{ $refill->total_refill_dollar }}</td>
-                                            <td>{{ $refill->refill_taka - $refill->refill_act_taka }}</td>
-                                            <td>{{ $refill->adAccount->dollar_rate }}</td>
+                                            <td>৳ {{ $refill->total_refill_taka }}</td>
+                                            <td>$ {{ $refill->total_refill_dollar }}</td>
+                                            <td>৳ {{ $refill->refill_taka - $refill->refill_act_taka }}</td>
+                                            <td>$ {{ $refill->adAccount->dollar_rate }}</td>
                                         </tr>
                                         @endif
                                         @if(isset($refill->refill_act_usd))
@@ -126,10 +126,10 @@
                                                 <span>{{ $refill->adAccount->ad_acc_name }}</span><br>
                                                 <span class="font-sm mt-1">ID: {{ $refill->adAccount->ad_acc_id }}</span>
                                             </td>
-                                            <td>{{ $refill->total_refill_taka }}</td>
-                                            <td>{{ $refill->total_refill_dollar }}</td>
-                                            <td>{{ $refill->refill_taka - $refill->refill_act_usd * $report->average_rate }}</td>
-                                            <td>{{ $refill->adAccount->dollar_rate }}</td>
+                                            <td>৳ {{ $refill->total_refill_taka }}</td>
+                                            <td>$ {{ $refill->total_refill_dollar }}</td>
+                                            <td>৳ {{ $refill->refill_taka - $refill->refill_act_usd * $report->average_rate }}</td>
+                                            <td>$ {{ $refill->adAccount->dollar_rate }}</td>
                                         </tr>
                                         @endif
                                         @if(!isset($refill->refill_act_taka) && !isset($refill->refill_act_usd))
@@ -138,10 +138,10 @@
                                                 <span>{{ $refill->adAccount->ad_acc_name }}</span><br>
                                                 <span class="font-sm mt-1">ID: {{ $refill->adAccount->ad_acc_id }}</span>
                                             </td>
-                                            <td>{{ $refill->total_refill_taka }}</td>
-                                            <td>{{ $refill->total_refill_dollar }}</td>
-                                            <td>{{ $refill->refill_taka - $refill->refill_usd * $averageRate }}</td>
-                                            <td>{{ $refill->adAccount->dollar_rate }}</td>
+                                            <td>৳ {{ $refill->total_refill_taka }}</td>
+                                            <td>$ {{ $refill->total_refill_dollar }}</td>
+                                            <td>৳ {{ $refill->refill_taka - $refill->refill_usd * $report->average_rate }}</td>
+                                            <td>$ {{ $refill->adAccount->dollar_rate }}</td>
                                         </tr>
                                         @endif
                                         @endforeach

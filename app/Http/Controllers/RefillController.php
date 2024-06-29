@@ -126,18 +126,7 @@ class RefillController extends Controller
         if (auth()->user()->role !== 'admin') {
             return redirect('/');
         }
-        $request->validate([
-            'client_id' => 'required|exists:users,id',
-            'ad_account_id' => 'required|exists:ad_accounts,id',
-            'amount_taka' => 'nullable|numeric',
-            'amount_dollar' => 'nullable|numeric',
-            'payment_method' => 'required|string|max:255',
-            'transaction_id' => 'required|string|max:255',
-            'new_date' => 'nullable|date',
-            'screenshot' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required|string|max:255',
-        ]);
-
+        
         $refill = Refill::findOrFail($id);
         $data = $request->all();
 

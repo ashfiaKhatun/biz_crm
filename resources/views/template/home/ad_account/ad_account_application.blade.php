@@ -57,7 +57,7 @@
 
                     <div>
                         <label class="col-form-label">Ad Account Id:</label>
-                        <input type="text" name="ad_acc_id" placeholder="Business Manager Id" class="form-control rounded">
+                        <input type="text" name="ad_acc_id" placeholder="Ad Account Id" class="form-control rounded">
                     </div>
 
 

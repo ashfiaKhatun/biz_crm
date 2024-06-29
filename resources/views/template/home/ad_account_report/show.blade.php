@@ -38,7 +38,7 @@
                         <div>
                             <h4 class="card-title mr-4 mt-2">Monthly Report of Ad Account Report for {{ \Carbon\Carbon::create()->month($month)->translatedFormat('F') }} {{ $year }}</h4>
                             
-                            <h5>Average USD Rate: {{ $averageRate }}</h5>
+                            <h5>Total Income: ৳ </h5>
 
                             <div class="table-responsive text-nowrap mt-3">
 
@@ -47,7 +47,7 @@
                                         <tr>
                                             <th scope="col">Ad Account</th>
                                             <th scope="col">Total Refill (tk)</th>
-                                            <th scope="col">Dollar Refilled</th>
+                                            <th scope="col">Total Refill (usd)</th>
                                             <th scope="col">Income (tk)</th>
                                             <th scope="col">Dollar Rate</th>
                                         </tr>
@@ -60,9 +60,9 @@
                                                 <span>{{ $refill->adAccount->ad_acc_name }}</span><br>
                                                 <span class="font-sm mt-1">ID: {{ $refill->adAccount->ad_acc_id }}</span>
                                             </td>
-                                            <td>{{ $refill->total_refill_taka }}</td>
-                                            <td>{{ $refill->total_refill_dollar }}</td>
-                                            <td>{{ $refill->refill_taka - $refill->refill_act_taka }}</td>
+                                            <td>৳ {{ $refill->total_refill_taka }}</td>
+                                            <td>$ {{ $refill->total_refill_dollar }}</td>
+                                            <td>৳ {{ $refill->refill_taka - $refill->refill_act_taka }}</td>
                                             <td>{{ $refill->adAccount->dollar_rate }}</td>
                                         </tr>
                                         @endif
@@ -72,9 +72,9 @@
                                                 <span>{{ $refill->adAccount->ad_acc_name }}</span><br>
                                                 <span class="font-sm mt-1">ID: {{ $refill->adAccount->ad_acc_id }}</span>
                                             </td>
-                                            <td>{{ $refill->total_refill_taka }}</td>
-                                            <td>{{ $refill->total_refill_dollar }}</td>
-                                            <td>{{ $refill->refill_taka - $refill->refill_act_usd * $averageRate }}</td>
+                                            <td>৳ {{ $refill->total_refill_taka }}</td>
+                                            <td>$ {{ $refill->total_refill_dollar }}</td>
+                                            <td>৳ {{ $refill->refill_taka - $refill->refill_act_usd * $averageRate }}</td>
                                             <td>{{ $refill->adAccount->dollar_rate }}</td>
                                         </tr>
                                         @endif

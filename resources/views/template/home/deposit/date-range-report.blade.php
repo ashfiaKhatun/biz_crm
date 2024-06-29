@@ -49,7 +49,8 @@
                             @isset($report)
                                 <div class="mt-5">
                                     <h5>Report from {{ \Carbon\Carbon::parse($startDate)->format('d F Y') }} to  {{ \Carbon\Carbon::parse($endDate)->format('d F Y') }}</h5>
-                                    <p>Average USD Rate: {{ $report->average_rate }}</p>
+                                    <p>Average USD Rate: $ {{ $report->average_rate }}</p>
+                                    <p>Total Deposit: $ {{ $deposits->sum('amount_usd') }}</p>
                                 </div>
 
                                 <div class="table-responsive text-nowrap mt-4">
