@@ -32,7 +32,7 @@ class RefillController extends Controller
             $query->whereBetween('created_at', [$startDate, $endDate . ' 23:59:59']);
         }
 
-        $refills = $query->paginate(5); // Adjust the number of items per page as needed
+        $refills = $query->paginate(50); // Adjust the number of items per page as needed
 
         if ($request->ajax()) {
             return view('template.home.refill_application.filtered_data', compact('refills'))->render();

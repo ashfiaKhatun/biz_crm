@@ -35,7 +35,7 @@
                                 <table class="table table-bordered table-striped verticle-middle" id="refillTable">
                                     <thead>
                                         <tr>
-
+                                            <th>Date</th>
                                             <th>Name</th>
                                             <th>Amount (USD)</th>
                                             <th>Rate (BDT)</th>
@@ -47,7 +47,7 @@
                                     <tbody>
                                         @foreach ($deposits as $deposit)
                                         <tr>
-
+                                            <td>{{ $deposit->created_at->format('j F Y') }}</td>
                                             <td>{{ $deposit->name }}</td>
                                             <td>{{ $deposit->amount_usd }}</td>
                                             <td>{{ $deposit->rate_bdt }}</td>

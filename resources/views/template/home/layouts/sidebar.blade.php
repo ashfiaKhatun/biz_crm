@@ -81,6 +81,7 @@
                                 New
                             </a></li>
                         <li><a href="{{ route('all-agency') }}">All</a></li>
+                        <li><a href="{{ route('agency.showAvailableMonths') }}">Monthly Report</a></li>
 
                     </ul>
                 </li>

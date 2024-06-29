@@ -149,6 +149,9 @@ Route::get('/deposits/monthly-report/{year}/{month}/excel', [ReportController::c
 Route::get('/deposits/date-range-report', [ReportController::class, 'showDateRangeReportDeposit'])->middleware(['auth', 'verified'])->name('deposits.report.dateRange');
 Route::post('/deposits/generate-report', [ReportController::class, 'generateReportDeposit'])->middleware(['auth', 'verified'])->name('deposits.report.generate');
 
+Route::get('agency/available-months', [ReportController::class, 'showAvailableMonths'])->middleware(['auth', 'verified'])->name('agency.showAvailableMonths');
+Route::get('agency-monthly-report/{year}/{month}', [ReportController::class, 'monthlyReport'])->middleware(['auth', 'verified'])->name('agency.monthlyReport');
+
 
 
 // daily report start

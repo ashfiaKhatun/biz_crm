@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agencies;
 use App\Models\Deposit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -190,4 +191,32 @@ class ReportController extends Controller
 
         return view('template.home.ad_account_report.show', compact('year', 'month', 'refills', 'averageRate'));
     }
+
+
+
+
+
+    public function showAvailableMonths()
+    {
+        $monthsWithData = DB::table('refills')
+            ->select(DB::raw('YEAR(created_at) as year'), DB::raw('MONTH(created_at) as month'))
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
+            ->get();
+
+        return view('template.home.agencies.available_months', compact('monthsWithData'));
+    }
+
+    public function monthlyReport($year, $month)
+    {
+        $reportData = Agencies::with(['adAccounts.refills' => function ($query) use ($year, $month) {
+            $query->whereYear('created_at', $year)
+                ->whereMonth('created_at', $month)
+                ->where('status', 'approved');
+        }])->get();
+
+        return view('template.home.agencies.monthly_report', compact('reportData', 'year', 'month'));
+    }
+
 }
