@@ -162,6 +162,7 @@ Route::post('report/daily/new', [DailyCalculationController::class, 'store'])->m
 
 Route::get('report/ad-account/all', [ReportController::class, 'monthlyReportAdAccount'])->middleware(['auth', 'verified'])->name('monthlyReport.index');
 Route::get('/ad-accounts-monthly-report/{year}/{month}', [ReportController::class, 'monthlyReportAdAccountDetail'])->middleware(['auth', 'verified'])->name('monthlyReport.monthlyReportDetail');
+Route::post('/adAccounts/generate-report', [ReportController::class, 'generateReportAdAccount'])->middleware(['auth', 'verified'])->name('adAccounts.report.generate');
 
 
 // monthly ad account report end

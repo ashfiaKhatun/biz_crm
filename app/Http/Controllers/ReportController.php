@@ -95,6 +95,50 @@ class ReportController extends Controller
         return view('template.home.ad_account_report.index', compact('monthsWithData'));
     }
 
+    public function generateReportAdAccount(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        $report = Deposit::whereBetween('created_at', [$startDate, $endDate])
+            ->where('status', 'received')
+            ->selectRaw('SUM(amount_bdt) / SUM(amount_usd) as average_rate')
+            ->first();
+
+        $refills = Refill::whereBetween('refills.created_at', [$startDate, $endDate])
+            ->select('refills.ad_account_id')
+            ->selectRaw('SUM(refills.amount_taka) as total_refill_taka')
+            ->selectRaw('SUM(refills.amount_dollar) as total_refill_dollar')
+            ->selectRaw('SUM(agency_transactions.refill_tk) as refill_taka')
+            ->selectRaw('SUM(agency_transactions.refill_usd) as refill_usd')
+            ->selectRaw('SUM(agency_transactions.refill_act_tk) as refill_act_taka')
+            ->selectRaw('SUM(agency_transactions.refill_act_usd) as refill_act_usd')
+            ->leftJoin('agency_transactions', 'refills.id', '=', 'agency_transactions.refills_id')
+            ->where('refills.payment_method', '!=', 'Transferred')
+            ->where('refills.status', 'approved')
+            ->groupBy('refills.ad_account_id')
+            ->orderBy('refills.created_at', 'desc') // Specify the table name here
+            ->get();
+
+        $monthsWithData = AgencyTransaction::select(
+            DB::raw('YEAR(created_at) as year'),
+            DB::raw('MONTH(created_at) as month')
+        )
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
+            ->get();
+
+
+        return view('template.home.ad_account_report.index', [
+            'report' => $report,
+            'refills' => $refills,
+            'startDate' => $startDate,
+            'endDate' => $endDate,
+            'monthsWithData' => $monthsWithData
+        ]);
+    }
+
     public function monthlyReportAdAccountDetail($year, $month)
     {
         $averageRateQuery = Deposit::select(
