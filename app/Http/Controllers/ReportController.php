@@ -167,6 +167,16 @@ class ReportController extends Controller
             ->orderBy('refills.created_at', 'desc') // Specify the table name here
             ->get();
 
+        $refills->each(function ($refill) use ($averageRate) {
+            if (isset($refill->refill_act_taka)) {
+                $refill->income_tk = $refill->refill_taka - $refill->refill_act_taka;
+            } elseif (isset($refill->refill_act_usd)) {
+                $refill->income_tk = $refill->refill_taka - $refill->refill_act_usd * $averageRate;
+            } else {
+                $refill->income_tk = $refill->refill_taka - $refill->refill_usd * $averageRate;
+            }
+        });
+
 
         return view('template.home.ad_account_report.show', compact('year', 'month', 'refills', 'averageRate'));
     }

@@ -38,7 +38,7 @@
                         <div>
                             <h4 class="card-title mr-4 mt-2">Monthly Report of Ad Account Report for {{ \Carbon\Carbon::create()->month($month)->translatedFormat('F') }} {{ $year }}</h4>
                             
-                            <h5>Total Income: ৳ </h5>
+                            <h5>Total Income: ৳ {{$refills->sum('income_tk')}}</h5>
 
                             <div class="table-responsive text-nowrap mt-3">
 
