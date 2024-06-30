@@ -151,6 +151,8 @@ Route::post('/deposits/generate-report', [ReportController::class, 'generateRepo
 
 Route::get('agency/available-months', [ReportController::class, 'showAvailableMonths'])->middleware(['auth', 'verified'])->name('agency.showAvailableMonths');
 Route::get('agency-monthly-report/{year}/{month}', [ReportController::class, 'monthlyReport'])->middleware(['auth', 'verified'])->name('agency.monthlyReport');
+Route::get('/monthly-report/{year}/{month}/pdf', [ReportController::class,'downloadMonthlyReportPdf'])->name('monthlyReport.pdf');
+
 
 
 

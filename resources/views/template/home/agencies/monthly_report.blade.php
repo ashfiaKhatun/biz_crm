@@ -41,6 +41,7 @@
                             </h4>
 
                             <h5>Total Income: ৳ {{ number_format($refills->sum('income_tk'), 2) }}</h5>
+                            <a href="{{ route('monthlyReport.pdf', ['year' => $year, 'month' => $month]) }}" class="btn btn-primary mb-3">Download PDF</a>
 
                             <div class="table-responsive text-nowrap mt-3">
 

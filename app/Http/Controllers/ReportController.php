@@ -6,11 +6,12 @@ use App\Models\Agencies;
 use App\Models\Deposit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Barryvdh\DomPDF\Facade as PDF;
+use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\DepositsExport;
 use App\Models\AgencyTransaction;
 use App\Models\Refill;
+
 
 class ReportController extends Controller
 {
@@ -210,7 +211,7 @@ class ReportController extends Controller
 
     public function monthlyReport($year, $month)
     {
-       
+
         $averageRateQuery = Deposit::select(
             DB::raw('SUM(amount_bdt) / SUM(amount_usd) as average_rate')
         )
@@ -221,7 +222,7 @@ class ReportController extends Controller
 
         $averageRate = $averageRateQuery ? $averageRateQuery->average_rate : 0;
 
-       
+
         $refills = Refill::with('adAccount.agency')
             ->whereYear('refills.created_at', $year)
             ->whereMonth('refills.created_at', $month)
@@ -239,7 +240,7 @@ class ReportController extends Controller
             ->orderBy('refills.created_at', 'desc')
             ->get();
 
-        
+
         $refills->each(function ($refill) use ($averageRate) {
             if (isset($refill->refill_act_taka)) {
                 $refill->income_tk = $refill->refill_taka - $refill->refill_act_taka;
@@ -252,6 +253,52 @@ class ReportController extends Controller
         });
 
         return view('template.home.agencies.monthly_report', compact('refills', 'averageRate', 'year', 'month'));
+    }
+
+    public function downloadMonthlyReportPdf($year, $month)
+    {
+        // Use the same logic as above to fetch the data
+        $averageRateQuery = Deposit::select(
+            DB::raw('SUM(amount_bdt) / SUM(amount_usd) as average_rate')
+        )
+            ->where('status', 'received')
+            ->whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
+            ->first();
+
+        $averageRate = $averageRateQuery ? $averageRateQuery->average_rate : 0;
+
+        $refills = Refill::with('adAccount.agency')
+            ->whereYear('refills.created_at', $year)
+            ->whereMonth('refills.created_at', $month)
+            ->select('refills.ad_account_id')
+            ->selectRaw('SUM(refills.amount_taka) as total_refill_taka')
+            ->selectRaw('SUM(refills.amount_dollar) as total_refill_dollar')
+            ->selectRaw('SUM(agency_transactions.refill_tk) as refill_taka')
+            ->selectRaw('SUM(agency_transactions.refill_usd) as refill_usd')
+            ->selectRaw('SUM(agency_transactions.refill_act_tk) as refill_act_taka')
+            ->selectRaw('SUM(agency_transactions.refill_act_usd) as refill_act_usd')
+            ->leftJoin('agency_transactions', 'refills.id', '=', 'agency_transactions.refills_id')
+            ->where('refills.payment_method', '!=', 'Transferred')
+            ->where('refills.status', 'approved')
+            ->groupBy('refills.ad_account_id')
+            ->orderBy('refills.created_at', 'desc')
+            ->get();
+
+        $refills->each(function ($refill) use ($averageRate) {
+            if (isset($refill->refill_act_taka)) {
+                $refill->income_tk = $refill->refill_taka - $refill->refill_act_taka;
+            } elseif (isset($refill->refill_act_usd)) {
+                $refill->income_tk = $refill->refill_taka - $refill->refill_act_usd * $averageRate;
+            } else {
+                $refill->income_tk = $refill->refill_taka - $refill->refill_usd * $averageRate;
+            }
+            $refill->margin = ($refill->income_tk / $refill->total_refill_taka) * 100;
+        });
+
+        // Generate the PDF
+        $pdf = PDF::loadView('template.home.agencies.monthly_report_pdf', compact('refills', 'averageRate', 'year', 'month'));
+        return $pdf->download('monthly_report_' . $year . '_' . $month . '.pdf');
     }
 
 
