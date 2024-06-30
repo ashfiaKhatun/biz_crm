@@ -52,7 +52,7 @@
                                             <th scope="col">Total Refill (tk)</th>
                                             <th scope="col">Total Refill (usd)</th>
                                             <th scope="col">Income (tk)</th>
-                                            <th scope="col">Margin (%)</th>
+                                            <th scope="col">Margin (Per USD)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,7 +62,7 @@
                                                 <td>৳ {{ number_format($agency->total_refill_taka, 2) }}</td>
                                                 <td>$ {{ number_format($agency->total_refill_dollar, 2) }}</td>
                                                 <td>৳ {{ number_format($agency->total_income_tk, 2) }}</td>
-                                                <td>{{ number_format($agency->margin, 2) }}</td>
+                                                <td>{{ number_format($agency->total_income_tk/$agency->total_refill_dollar, 2) }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
