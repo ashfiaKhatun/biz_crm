@@ -140,7 +140,6 @@ Route::delete('settings/destroyVendor/{id}', [SettingController::class, 'destroy
 
 //report
 
-Route::get('/deposits/monthly-report', [ReportController::class, 'monthlyReportDeposit'])->middleware(['auth', 'verified'])->name('deposits.monthlyReport');
 Route::get('/deposits/monthly-report/{year}/{month}', [ReportController::class, 'monthlyReportDepositDetail'])->middleware(['auth', 'verified'])->name('deposits.monthlyReportDetail');
 
 Route::get('/deposits/monthly-report/{year}/{month}/pdf', [ReportController::class, 'downloadPdf'])->name('deposits.downloadPdf');

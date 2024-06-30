@@ -31,20 +31,15 @@
             Content body start
         ***********************************-->
         <div class="content-body">
-            
+
             <div class="p-4">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h2 class="card-title">Date Wise Ad Account Report</h2>
-                            <!-- Button to trigger modal -->
-                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#monthlyReportModal">
-                                Monthly Report
-                            </button>
-                        </div>
+                        <h2 class="card-title">Date Wise Ad Account Report</h2>
+
                         <div>
-                            
-                            
+
+
                             <form action="{{ route('adAccounts.report.generate') }}" method="POST">
                                 @csrf
                                 <div class="row mb-3">
@@ -136,9 +131,14 @@
 
 
 
-                            
+
 
                         </div>
+
+                        <!-- Button to trigger modal -->
+                        <button type="button" class="btn btn-sm text-white btn-secondary" data-toggle="modal" data-target="#monthlyReportModal">
+                            Monthly Report
+                        </button>
 
                     </div>
                 </div>

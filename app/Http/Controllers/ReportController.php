@@ -15,20 +15,7 @@ use App\Models\Refill;
 
 class ReportController extends Controller
 {
-    public function monthlyReportDeposit()
-    {
-        $monthsWithData = Deposit::select(
-            DB::raw('YEAR(created_at) as year'),
-            DB::raw('MONTH(created_at) as month')
-        )
-            ->where('status', 'received')
-            ->groupBy('year', 'month')
-            ->orderBy('year', 'desc')
-            ->orderBy('month', 'desc')
-            ->get();
 
-        return view('template.home.deposit.monthly_report', compact('monthsWithData'));
-    }
 
     public function monthlyReportDepositDetail($year, $month)
     {
@@ -58,7 +45,17 @@ class ReportController extends Controller
 
     public function showDateRangeReportDeposit()
     {
-        return view('template.home.deposit.date-range-report');
+        $monthsWithData = Deposit::select(
+            DB::raw('YEAR(created_at) as year'),
+            DB::raw('MONTH(created_at) as month')
+        )
+            ->where('status', 'received')
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
+            ->get();
+
+        return view('template.home.deposit.date-range-report', compact('monthsWithData'));
     }
 
     public function generateReportDeposit(Request $request)
@@ -75,11 +72,22 @@ class ReportController extends Controller
             ->where('status', 'received')
             ->get();
 
+        $monthsWithData = Deposit::select(
+            DB::raw('YEAR(created_at) as year'),
+            DB::raw('MONTH(created_at) as month')
+        )
+            ->where('status', 'received')
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
+            ->get();
+
         return view('template.home.deposit.date-range-report', [
             'report' => $report,
             'deposits' => $deposits,
             'startDate' => $startDate,
-            'endDate' => $endDate
+            'endDate' => $endDate,
+            'monthsWithData' => $monthsWithData,
         ]);
     }
 
@@ -234,7 +242,6 @@ class ReportController extends Controller
         // Generate the PDF
         $pdf = PDF::loadView('template.home.ad_account_report.pdf', compact('year', 'month', 'refills', 'averageRate'));
         return $pdf->download('ad_accounts_monthly_report_' . $year . '_' . $month . '.pdf');
-
     }
 
 
@@ -376,9 +383,4 @@ class ReportController extends Controller
         $pdf = PDF::loadView('template.home.agencies.monthly_report_pdf', ['agencies' => $agencies, 'year' => $year, 'month' => $month]);
         return $pdf->download('agencies_monthly_report_' . $year . '_' . $month . '.pdf');
     }
-
-
-
-
-
 }
