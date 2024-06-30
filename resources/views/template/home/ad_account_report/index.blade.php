@@ -31,12 +31,20 @@
             Content body start
         ***********************************-->
         <div class="content-body">
-
+            
             <div class="p-4">
                 <div class="card">
                     <div class="card-body">
-                        <div>
+                        <div class="d-flex justify-content-between align-items-center">
                             <h2 class="card-title">Date Wise Ad Account Report</h2>
+                            <!-- Button to trigger modal -->
+                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#monthlyReportModal">
+                                Monthly Report
+                            </button>
+                        </div>
+                        <div>
+                            
+                            
                             <form action="{{ route('adAccounts.report.generate') }}" method="POST">
                                 @csrf
                                 <div class="row mb-3">
@@ -128,10 +136,28 @@
 
 
 
-                            <h4 class="card-title mr-4 mt-2">Month Wise Ad Account Report</h4>
+                            
 
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="monthlyReportModal" tabindex="-1" role="dialog" aria-labelledby="monthlyReportModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="monthlyReportModalLabel">Month Wise Ad Account Report</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
                             <div class="table-responsive text-nowrap">
-
                                 <table class="table table-bordered table-striped verticle-middle">
                                     <thead>
                                         <tr>
@@ -153,9 +179,10 @@
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
-
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
