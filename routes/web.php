@@ -151,7 +151,7 @@ Route::post('/deposits/generate-report', [ReportController::class, 'generateRepo
 
 Route::get('agency/available-months', [ReportController::class, 'showAvailableMonths'])->middleware(['auth', 'verified'])->name('agency.showAvailableMonths');
 Route::get('agency-monthly-report/{year}/{month}', [ReportController::class, 'monthlyReport'])->middleware(['auth', 'verified'])->name('agency.monthlyReport');
-Route::get('/agencies-monthly-report/{year}/{month}/pdf', [ReportController::class,'downloadMonthlyReportPdf'])->name('monthlyReport.pdf');
+Route::get('/monthly-report/{year}/{month}/pdf', [ReportController::class,'downloadMonthlyReportPdf'])->name('monthlyReport.pdf');
 
 
 
@@ -169,7 +169,6 @@ Route::get('report/ad-account/all', [ReportController::class, 'monthlyReportAdAc
 Route::get('/ad-accounts-monthly-report/{year}/{month}', [ReportController::class, 'monthlyReportAdAccountDetail'])->middleware(['auth', 'verified'])->name('monthlyReport.monthlyReportDetail');
 Route::post('/adAccounts/generate-report', [ReportController::class, 'generateReportAdAccount'])->middleware(['auth', 'verified'])->name('adAccounts.report.generate');
 
-Route::get('/monthly-report/{year}/{month}/pdf', [ReportController::class,'downloadAdAccountMonthlyReportPdf'])->name('adAccounts.report.pdf');
 
 // monthly ad account report end
 

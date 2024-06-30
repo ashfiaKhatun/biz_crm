@@ -14,7 +14,7 @@ class UserController extends Controller
  
     public function indexClients()
     {
-        if (auth()->user()->role == 'customer') {
+        if (auth()->user()->role !== 'admin' || auth()->user()->role !== 'manager') {
             return redirect('/');
         }
 
@@ -113,7 +113,7 @@ class UserController extends Controller
 
     public function indexEmployees()
     {
-        if (auth()->user()->role !== 'admin') {
+        if (auth()->user()->role !== 'admin' || auth()->user()->role !== 'manager') {
             return redirect('/');
         }
         $users = User::where('role', 'employee')->get();

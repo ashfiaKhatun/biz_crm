@@ -42,7 +42,7 @@
                                 {{ number_format(array_sum(array_column($agencies, 'total_income_tk')), 2) }}</h5>
 
                             <a href="{{ route('monthlyReport.pdf', ['year' => $year, 'month' => $month]) }}"
-                                class="btn btn-primary mb-3">Download PDF</a>
+                                class="btn btn-sm btn-primary mb-3">Download PDF</a>
 
                             <div class="table-responsive text-nowrap mt-3">
                                 <table class="table table-bordered table-striped verticle-middle" id="refillTable">

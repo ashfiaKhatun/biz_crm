@@ -36,34 +36,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div>
-
-                            <h4 class="card-title mr-4 mt-2">Monthwise Ad Account Report</h4>
-
-                            <div class="table-responsive text-nowrap">
-
-                                <table class="table table-bordered table-striped verticle-middle">
-                                    <thead>
-                                        <tr>
-                                            <th>Year</th>
-                                            <th>Month</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($monthsWithData as $month)
-                                        <tr>
-                                            <td>{{ $month->year }}</td>
-                                            <td>{{ \Carbon\Carbon::create()->month($month->month)->translatedFormat('F') }}</td>
-                                            <td>
-                                                <a href="{{ route('monthlyReport.monthlyReportDetail', ['year' => $month->year, 'month' => $month->month]) }}" class="btn btn-sm btn-primary">View Report</a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <h2 class="card-title">Date Range Report</h2>
+                            <h2 class="card-title">Date Wise Ad Account Report</h2>
                             <form action="{{ route('adAccounts.report.generate') }}" method="POST">
                                 @csrf
                                 <div class="row mb-3">
@@ -153,6 +126,33 @@
                             </div>
                             @endisset
 
+
+
+                            <h4 class="card-title mr-4 mt-2">Month Wise Ad Account Report</h4>
+
+                            <div class="table-responsive text-nowrap">
+
+                                <table class="table table-bordered table-striped verticle-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Year</th>
+                                            <th>Month</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($monthsWithData as $month)
+                                        <tr>
+                                            <td>{{ $month->year }}</td>
+                                            <td>{{ \Carbon\Carbon::create()->month($month->month)->translatedFormat('F') }}</td>
+                                            <td>
+                                                <a href="{{ route('monthlyReport.monthlyReportDetail', ['year' => $month->year, 'month' => $month->month]) }}" class="btn btn-sm btn-primary">View Report</a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
 
                         </div>
 

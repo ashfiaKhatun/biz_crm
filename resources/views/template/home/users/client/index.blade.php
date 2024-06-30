@@ -63,11 +63,13 @@
                                         <a href="{{ route('client.show', $user->id) }}" data-toggle="tooltip" data-placement="top" title="View">
                                             <i class="fa fa-eye color-muted m-r-5 ml-3"></i>
                                         </a>
-                                        @if (auth()->user()->role == 'admin')
+                                        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'manager')
                                         <a href="{{ route('client.edit', $user->id) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                             <i class="fa fa-pencil color-muted m-r-5 ml-3"></i>
                                         </a>
+                                        @endif
 
+                                        @if (auth()->user()->role == 'admin')
                                         <div class="basic-dropdown ml-2">
                                             <div class="dropdown">
                                                 <i class="fa-solid fa-ellipsis btn btn-sm" data-toggle="dropdown"></i>

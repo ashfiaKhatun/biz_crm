@@ -35,7 +35,7 @@ class AdAccountController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get();
             return view('template.home.ad_account.myaccount', compact('adAccounts'));
-        } elseif (auth()->user()->role == 'admin' || auth()->user()->role == 'employee') {
+        } elseif (auth()->user()->role == 'admin' || auth()->user()->role == 'manager' || auth()->user()->role == 'employee') {
             $adAccounts = AdAccount::where('status', 'approved')
                 ->orderBy('created_at', 'desc')
                 ->get();
