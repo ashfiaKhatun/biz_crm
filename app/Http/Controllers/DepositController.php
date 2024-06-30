@@ -23,7 +23,8 @@ class DepositController extends Controller
         $averageRates = Deposit::select(
             DB::raw('YEAR(created_at) as year'),
             DB::raw('MONTH(created_at) as month'),
-            DB::raw('SUM(amount_bdt) / SUM(amount_usd) as average_rate')
+            DB::raw('SUM(amount_bdt) / SUM(amount_usd) as average_rate'),
+            DB::raw('SUM(amount_usd) as total_usd')
         )
             ->where('status', 'received')
             ->where('created_at', '>=', $threeMonthsAgo)

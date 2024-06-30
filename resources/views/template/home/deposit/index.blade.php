@@ -109,12 +109,12 @@
                 <div class="col-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="mb-3">Last three months average USD rate</h5>
+                            <h5 class="mb-3">Last three months total deposit and average USD rate</h5>
                             @foreach ($averageRates as $rate)
                             <div class="row">
                                 <b class="col-5">{{ \Carbon\Carbon::create()->month($rate->month)->format('F') }}
                                     ({{ $rate->year }})</b>
-                                <p class="col-7"> {{ $rate->average_rate }}</p>
+                                <p class="col-7">{{ $rate->total_usd }} ({{ number_format($rate->average_rate, 2) }})</p>
 
                             </div>
                             @endforeach
