@@ -169,6 +169,7 @@ Route::get('report/ad-account/all', [ReportController::class, 'monthlyReportAdAc
 Route::get('/ad-accounts-monthly-report/{year}/{month}', [ReportController::class, 'monthlyReportAdAccountDetail'])->middleware(['auth', 'verified'])->name('monthlyReport.monthlyReportDetail');
 Route::post('/adAccounts/generate-report', [ReportController::class, 'generateReportAdAccount'])->middleware(['auth', 'verified'])->name('adAccounts.report.generate');
 
+Route::get('/monthly-report/{year}/{month}/pdf', [ReportController::class,'downloadAdAccountMonthlyReportPdf'])->name('adAccounts.report.pdf');
 
 // monthly ad account report end
 
