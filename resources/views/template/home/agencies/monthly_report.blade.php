@@ -8,7 +8,6 @@
 
 <body>
 
-
     <!--**********************************
         Main wrapper start
     ***********************************-->
@@ -16,7 +15,6 @@
 
         <!-- navbar start -->
         @include('template.home.layouts.navbar')
-
         <!-- navbar end -->
 
         <!--**********************************
@@ -40,11 +38,13 @@
                                 {{ \Carbon\Carbon::create()->month($month)->translatedFormat('F') }} {{ $year }}
                             </h4>
 
-                            <h5>Total Income: ৳ {{ number_format($refills->sum('income_tk'), 2) }}</h5>
-                            <a href="{{ route('monthlyReport.pdf', ['year' => $year, 'month' => $month]) }}" class="btn btn-sm btn-primary mb-3">Download PDF</a>
+                            <h5>Total Income: ৳
+                                {{ number_format(array_sum(array_column($agencies, 'total_income_tk')), 2) }}</h5>
+
+                            <a href="{{ route('monthlyReport.pdf', ['year' => $year, 'month' => $month]) }}"
+                                class="btn btn-primary mb-3">Download PDF</a>
 
                             <div class="table-responsive text-nowrap mt-3">
-
                                 <table class="table table-bordered table-striped verticle-middle" id="refillTable">
                                     <thead>
                                         <tr>
@@ -56,40 +56,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($refills as $refill)
-                                            @php
-                                                $income = $refill->income_tk;
-                                                $margin = $refill->margin;
-                                            @endphp
+                                        @foreach ($agencies as $agency)
                                             <tr>
-                                                <td>
-                                                    <span>{{ $refill->adAccount->agency->agency_name }}</span><br>
-                                                    <span class="font-sm mt-1">ID:
-                                                        {{ $refill->adAccount->ad_acc_id }}</span>
-                                                </td>
-                                                <td>৳ {{ number_format($refill->total_refill_taka, 2) }}</td>
-                                                <td>$ {{ number_format($refill->total_refill_dollar, 2) }}</td>
-                                                <td>৳ {{ number_format($income, 2) }}</td>
-                                                <td>{{ number_format($margin, 2) }}</td>
+                                                <td>{{ $agency->agency_name }}</td>
+                                                <td>৳ {{ number_format($agency->total_refill_taka, 2) }}</td>
+                                                <td>$ {{ number_format($agency->total_refill_dollar, 2) }}</td>
+                                                <td>৳ {{ number_format($agency->total_income_tk, 2) }}</td>
+                                                <td>{{ number_format($agency->margin, 2) }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
-
 
             <!-- #/ container -->
         </div>
         <!--**********************************
             Content body end
         ***********************************-->
-
 
         <!--**********************************
             Footer start
@@ -99,7 +87,6 @@
             Footer end
         ***********************************-->
     </div>
-
 
     <!--**********************************
         Main wrapper end

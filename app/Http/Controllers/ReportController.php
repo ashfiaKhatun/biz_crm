@@ -192,7 +192,7 @@ class ReportController extends Controller
 
         return view('template.home.ad_account_report.show', compact('year', 'month', 'refills', 'averageRate'));
     }
-    
+
     public function downloadAdAccountMonthlyReportPdf($year, $month)
     {
         $averageRateQuery = Deposit::select(
@@ -233,7 +233,7 @@ class ReportController extends Controller
 
         // Generate the PDF
         $pdf = PDF::loadView('template.home.ad_account_report.pdf', compact('year', 'month', 'refills', 'averageRate'));
-        return $pdf->download('monthly_report_' . $year . '_' . $month . '.pdf');
+        return $pdf->download('ad_accounts_monthly_report_' . $year . '_' . $month . '.pdf');
 
     }
 
@@ -255,7 +255,7 @@ class ReportController extends Controller
 
     public function monthlyReport($year, $month)
     {
-
+        // Step 1: Calculate the average rate
         $averageRateQuery = Deposit::select(
             DB::raw('SUM(amount_bdt) / SUM(amount_usd) as average_rate')
         )
@@ -266,13 +266,11 @@ class ReportController extends Controller
 
         $averageRate = $averageRateQuery ? $averageRateQuery->average_rate : 0;
 
-
+        // Step 2: Fetch refills data with necessary calculations
         $refills = Refill::with('adAccount.agency')
             ->whereYear('refills.created_at', $year)
             ->whereMonth('refills.created_at', $month)
-            ->select('refills.ad_account_id')
-            ->selectRaw('SUM(refills.amount_taka) as total_refill_taka')
-            ->selectRaw('SUM(refills.amount_dollar) as total_refill_dollar')
+            ->select('refills.ad_account_id', 'refills.amount_taka', 'refills.amount_dollar')
             ->selectRaw('SUM(agency_transactions.refill_tk) as refill_taka')
             ->selectRaw('SUM(agency_transactions.refill_usd) as refill_usd')
             ->selectRaw('SUM(agency_transactions.refill_act_tk) as refill_act_taka')
@@ -280,12 +278,13 @@ class ReportController extends Controller
             ->leftJoin('agency_transactions', 'refills.id', '=', 'agency_transactions.refills_id')
             ->where('refills.payment_method', '!=', 'Transferred')
             ->where('refills.status', 'approved')
-            ->groupBy('refills.ad_account_id')
+            ->groupBy('refills.ad_account_id', 'refills.amount_taka', 'refills.amount_dollar')
             ->orderBy('refills.created_at', 'desc')
             ->get();
 
-
-        $refills->each(function ($refill) use ($averageRate) {
+        // Calculate income for each refill and group by agencies
+        $agencies = [];
+        $refills->each(function ($refill) use ($averageRate, &$agencies) {
             if (isset($refill->refill_act_taka)) {
                 $refill->income_tk = $refill->refill_taka - $refill->refill_act_taka;
             } elseif (isset($refill->refill_act_usd)) {
@@ -293,10 +292,27 @@ class ReportController extends Controller
             } else {
                 $refill->income_tk = $refill->refill_taka - $refill->refill_usd * $averageRate;
             }
-            $refill->margin = ($refill->income_tk / $refill->total_refill_taka) * 100;
+
+            $agency = $refill->adAccount->agency;
+            if (!isset($agencies[$agency->id])) {
+                $agencies[$agency->id] = (object) [
+                    'agency_name' => $agency->agency_name,
+                    'total_refill_taka' => 0,
+                    'total_refill_dollar' => 0,
+                    'total_income_tk' => 0,
+                ];
+            }
+
+            $agencies[$agency->id]->total_refill_taka += $refill->amount_taka;
+            $agencies[$agency->id]->total_refill_dollar += $refill->amount_dollar;
+            $agencies[$agency->id]->total_income_tk += $refill->income_tk;
         });
 
-        return view('template.home.agencies.monthly_report', compact('refills', 'averageRate', 'year', 'month'));
+        foreach ($agencies as $agency) {
+            $agency->margin = $agency->total_refill_taka ? ($agency->total_income_tk / $agency->total_refill_taka) * 100 : 0;
+        }
+
+        return view('template.home.agencies.monthly_report', ['agencies' => $agencies, 'year' => $year, 'month' => $month]);
     }
 
     public function downloadMonthlyReportPdf($year, $month)
@@ -315,9 +331,7 @@ class ReportController extends Controller
         $refills = Refill::with('adAccount.agency')
             ->whereYear('refills.created_at', $year)
             ->whereMonth('refills.created_at', $month)
-            ->select('refills.ad_account_id')
-            ->selectRaw('SUM(refills.amount_taka) as total_refill_taka')
-            ->selectRaw('SUM(refills.amount_dollar) as total_refill_dollar')
+            ->select('refills.ad_account_id', 'refills.amount_taka', 'refills.amount_dollar')
             ->selectRaw('SUM(agency_transactions.refill_tk) as refill_taka')
             ->selectRaw('SUM(agency_transactions.refill_usd) as refill_usd')
             ->selectRaw('SUM(agency_transactions.refill_act_tk) as refill_act_taka')
@@ -325,11 +339,12 @@ class ReportController extends Controller
             ->leftJoin('agency_transactions', 'refills.id', '=', 'agency_transactions.refills_id')
             ->where('refills.payment_method', '!=', 'Transferred')
             ->where('refills.status', 'approved')
-            ->groupBy('refills.ad_account_id')
+            ->groupBy('refills.ad_account_id', 'refills.amount_taka', 'refills.amount_dollar')
             ->orderBy('refills.created_at', 'desc')
             ->get();
 
-        $refills->each(function ($refill) use ($averageRate) {
+        $agencies = [];
+        $refills->each(function ($refill) use ($averageRate, &$agencies) {
             if (isset($refill->refill_act_taka)) {
                 $refill->income_tk = $refill->refill_taka - $refill->refill_act_taka;
             } elseif (isset($refill->refill_act_usd)) {
@@ -337,13 +352,31 @@ class ReportController extends Controller
             } else {
                 $refill->income_tk = $refill->refill_taka - $refill->refill_usd * $averageRate;
             }
-            $refill->margin = ($refill->income_tk / $refill->total_refill_taka) * 100;
+
+            $agency = $refill->adAccount->agency;
+            if (!isset($agencies[$agency->id])) {
+                $agencies[$agency->id] = (object) [
+                    'agency_name' => $agency->agency_name,
+                    'total_refill_taka' => 0,
+                    'total_refill_dollar' => 0,
+                    'total_income_tk' => 0,
+                ];
+            }
+
+            $agencies[$agency->id]->total_refill_taka += $refill->amount_taka;
+            $agencies[$agency->id]->total_refill_dollar += $refill->amount_dollar;
+            $agencies[$agency->id]->total_income_tk += $refill->income_tk;
         });
 
+        foreach ($agencies as $agency) {
+            $agency->margin = $agency->total_refill_taka ? ($agency->total_income_tk / $agency->total_refill_taka) * 100 : 0;
+        }
+
         // Generate the PDF
-        $pdf = PDF::loadView('template.home.agencies.monthly_report_pdf', compact('refills', 'averageRate', 'year', 'month'));
-        return $pdf->download('monthly_report_' . $year . '_' . $month . '.pdf');
+        $pdf = PDF::loadView('template.home.agencies.monthly_report_pdf', ['agencies' => $agencies, 'year' => $year, 'month' => $month]);
+        return $pdf->download('agencies_monthly_report_' . $year . '_' . $month . '.pdf');
     }
+
 
 
 

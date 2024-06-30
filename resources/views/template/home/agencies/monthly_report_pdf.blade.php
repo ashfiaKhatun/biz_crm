@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <style>
         body {
             font-family: 'DejaVu Sans', sans-serif;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
         }
-        table, th, td {
+
+        table,
+        th,
+        td {
             border: 1px solid black;
         }
-        th, td {
+
+        th,
+        td {
             padding: 8px;
             text-align: left;
         }
     </style>
 </head>
+
 <body>
-    <h2>Monthly Report of Agencies for {{ \Carbon\Carbon::create()->month($month)->translatedFormat('F') }} {{ $year }}</h2>
-    <h4>Total Income: ৳ {{ number_format($refills->sum('income_tk'), 2) }}</h4>
+    <h2>Monthly Report of Ad Account Report for {{ \Carbon\Carbon::create()->month($month)->translatedFormat('F') }}
+        {{ $year }}</h2>
+    <h4>Total Income: ৳ {{ number_format(array_sum(array_column($agencies, 'total_income_tk')), 2) }}</h4>
     <table>
         <thead>
             <tr>
@@ -32,20 +41,17 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($refills as $refill)
-                @php
-                    $income = $refill->income_tk;
-                    $margin = $refill->margin;
-                @endphp
+            @foreach ($agencies as $agency)
                 <tr>
-                    <td>{{ $refill->adAccount->agency->agency_name }}<br>ID: {{ $refill->adAccount->ad_acc_id }}</td>
-                    <td>৳ {{ number_format($refill->total_refill_taka, 2) }}</td>
-                    <td>$ {{ number_format($refill->total_refill_dollar, 2) }}</td>
-                    <td>৳ {{ number_format($income, 2) }}</td>
-                    <td>{{ number_format($margin, 2) }}</td>
+                    <td>{{ $agency->agency_name }}</td>
+                    <td>৳ {{ number_format($agency->total_refill_taka, 2) }}</td>
+                    <td>$ {{ number_format($agency->total_refill_dollar, 2) }}</td>
+                    <td>৳ {{ number_format($agency->total_income_tk, 2) }}</td>
+                    <td>{{ number_format($agency->margin, 2) }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 </body>
+
 </html>
