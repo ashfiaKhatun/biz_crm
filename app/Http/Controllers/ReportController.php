@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Agencies;
 use App\Models\Deposit;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
@@ -60,8 +61,8 @@ class ReportController extends Controller
 
     public function generateReportDeposit(Request $request)
     {
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
+        $startDate = Carbon::parse($request->input('start_date'))->startOfDay();
+        $endDate = Carbon::parse($request->input('end_date'))->endOfDay();
 
         $report = Deposit::whereBetween('created_at', [$startDate, $endDate])
             ->where('status', 'received')
@@ -201,6 +202,13 @@ class ReportController extends Controller
         return view('template.home.ad_account_report.show', compact('year', 'month', 'refills', 'averageRate'));
     }
 
+
+
+
+
+
+
+
     public function downloadAdAccountMonthlyReportPdf($year, $month)
     {
         $averageRateQuery = Deposit::select(
@@ -322,9 +330,85 @@ class ReportController extends Controller
         return view('template.home.agencies.monthly_report', ['agencies' => $agencies, 'year' => $year, 'month' => $month]);
     }
 
+
+    public function agencyReportGenerate(Request $request)
+    {
+        $startDate = Carbon::parse($request->input('start_date'))->startOfDay();
+        $endDate = Carbon::parse($request->input('end_date'))->endOfDay();
+
+
+        $averageRateQuery = Deposit::select(
+            DB::raw('SUM(amount_bdt) / SUM(amount_usd) as average_rate')
+        )
+            ->where('status', 'received')
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->first();
+
+        $averageRate = $averageRateQuery ? $averageRateQuery->average_rate : 0;
+
+
+        $refills = Refill::with('adAccount.agency')
+            ->whereBetween('refills.created_at', [$startDate, $endDate])
+            ->select('refills.ad_account_id', 'refills.amount_taka', 'refills.amount_dollar')
+            ->selectRaw('SUM(agency_transactions.refill_tk) as refill_taka')
+            ->selectRaw('SUM(agency_transactions.refill_usd) as refill_usd')
+            ->selectRaw('SUM(agency_transactions.refill_act_tk) as refill_act_taka')
+            ->selectRaw('SUM(agency_transactions.refill_act_usd) as refill_act_usd')
+            ->leftJoin('agency_transactions', 'refills.id', '=', 'agency_transactions.refills_id')
+            ->where('refills.payment_method', '!=', 'Transferred')
+            ->where('refills.status', 'approved')
+            ->groupBy('refills.ad_account_id', 'refills.amount_taka', 'refills.amount_dollar')
+            ->orderBy('refills.created_at', 'desc')
+            ->get();
+
+
+        $agencies = [];
+        $refills->each(function ($refill) use ($averageRate, &$agencies) {
+            if (isset($refill->refill_act_taka)) {
+                $refill->income_tk = $refill->refill_taka - $refill->refill_act_taka;
+            } elseif (isset($refill->refill_act_usd)) {
+                $refill->income_tk = $refill->refill_taka - $refill->refill_act_usd * $averageRate;
+            } else {
+                $refill->income_tk = $refill->refill_taka - $refill->refill_usd * $averageRate;
+            }
+
+            $agency = $refill->adAccount->agency;
+            if (!isset($agencies[$agency->id])) {
+                $agencies[$agency->id] = (object) [
+                    'agency_name' => $agency->agency_name,
+                    'total_refill_taka' => 0,
+                    'total_refill_dollar' => 0,
+                    'total_income_tk' => 0,
+                ];
+            }
+
+            $agencies[$agency->id]->total_refill_taka += $refill->amount_taka;
+            $agencies[$agency->id]->total_refill_dollar += $refill->amount_dollar;
+            $agencies[$agency->id]->total_income_tk += $refill->income_tk;
+        });
+
+        foreach ($agencies as $agency) {
+            $agency->margin = $agency->total_refill_taka ? ($agency->total_income_tk / $agency->total_refill_taka) * 100 : 0;
+        }
+
+
+        $monthsWithData = Refill::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month')
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
+            ->get();
+
+        return view('template.home.agencies.available_months', [
+            'agencies' => $agencies,
+            'startDate' => $startDate,
+            'endDate' => $endDate,
+            'monthsWithData' => $monthsWithData,
+        ]);
+    }
+
     public function downloadMonthlyReportPdf($year, $month)
     {
-        // Use the same logic as above to fetch the data
+
         $averageRateQuery = Deposit::select(
             DB::raw('SUM(amount_bdt) / SUM(amount_usd) as average_rate')
         )
