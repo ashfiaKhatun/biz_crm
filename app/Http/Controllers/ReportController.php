@@ -108,8 +108,8 @@ class ReportController extends Controller
 
     public function generateReportAdAccount(Request $request)
     {
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
+        $startDate = Carbon::parse($request->input('start_date'))->startOfDay();
+        $endDate = Carbon::parse($request->input('end_date'))->endOfDay();
 
         $report = Deposit::whereBetween('created_at', [$startDate, $endDate])
             ->where('status', 'received')
@@ -406,7 +406,7 @@ class ReportController extends Controller
         ]);
     }
 
-    public function downloadMonthlyReportPdf($year, $month)
+    public function downloadAgencyMonthlyReportPdf($year, $month)
     {
 
         $averageRateQuery = Deposit::select(

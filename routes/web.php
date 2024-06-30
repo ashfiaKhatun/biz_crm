@@ -172,6 +172,8 @@ Route::post('/adAccounts/generate-report', [ReportController::class, 'generateRe
 
 Route::get('/monthly-report/{year}/{month}/pdf', [ReportController::class,'downloadAdAccountMonthlyReportPdf'])->name('adAccounts.report.pdf');
 
+Route::get('/agency-monthly-report/{year}/{month}/pdf', [ReportController::class,'downloadAgencyMonthlyReportPdf'])->name('monthlyReport.pdf');
+
 // monthly ad account report end
 
 
