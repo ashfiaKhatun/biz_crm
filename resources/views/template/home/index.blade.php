@@ -242,16 +242,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($refills as $refill)
-                                            @if ($refill->status == 'pending')
+                                            @foreach ($pendingRefills as $pendingRefill)
                                             <tr>
-                                                <td>{{ $refill->created_at->format('j F Y') }}</td>
+                                                <td>{{ $pendingRefill->created_at->format('j F Y') }}</td>
                                                 <td>
-                                                    <span>{{ $refill->adAccount->ad_acc_name }}</span><br>
-                                                    <span class="font-sm mt-1">{{ $refill->adAccount->ad_acc_id }}</span>
+                                                    <span>{{ $pendingRefill->adAccount->ad_acc_name }}</span><br>
+                                                    <span class="font-sm mt-1">{{ $pendingRefill->adAccount->ad_acc_id }}</span>
                                                 </td>
-                                                <td>{{ $refill->amount_dollar }}</td>
-                                                <td>{{ $refill->payment_method }}</td>
+                                                <td>{{ $pendingRefill->amount_dollar }}</td>
+                                                <td>{{ $pendingRefill->payment_method }}</td>
                                                 <td>
                                                     <span>
                                                         <form action="{{ route('refill.approve', $refill->id) }}" method="POST" style="display:inline-block;">
@@ -269,7 +268,6 @@
                                                 </td>
 
                                             </tr>
-                                            @endif
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -447,7 +445,7 @@
             type: 'pie',
             data: {
                 datasets: [{
-                    data: [{{ $refilledAdAccount}}, {{$nonRefilledAdAccount}}],
+                    data: [{{$refilledAdAccount}}, {{$nonRefilledAdAccount}}],
                     backgroundColor: [
                         "rgba(117, 113, 249,0.9)",
                         "rgba(255, 82, 82, 1)"
