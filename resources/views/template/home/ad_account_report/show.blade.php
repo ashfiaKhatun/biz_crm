@@ -86,10 +86,10 @@
                                                 <span>{{ $refill->adAccount->ad_acc_name }}</span><br>
                                                 <span class="font-sm mt-1">ID: {{ $refill->adAccount->ad_acc_id }}</span>
                                             </td>
-                                            <td>{{ $refill->total_refill_taka }}</td>
-                                            <td>{{ $refill->total_refill_dollar }}</td>
-                                            <td>{{ $refill->refill_taka - $refill->refill_usd * $averageRate }}</td>
-                                            <td>{{ $refill->adAccount->dollar_rate }}</td>
+                                            <td>৳ {{ $refill->total_refill_taka }}</td>
+                                            <td>$ {{ $refill->total_refill_dollar }}</td>
+                                            <td>৳ {{ $refill->refill_taka - $refill->refill_usd * $averageRate }}</td>
+                                            <td>$ {{ $refill->adAccount->dollar_rate }}</td>
                                         </tr>
                                         @endif
                                         @endforeach

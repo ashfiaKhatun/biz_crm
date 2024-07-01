@@ -126,7 +126,7 @@ class RefillController extends Controller
         if (auth()->user()->role !== 'admin') {
             return redirect('/');
         }
-        
+
         $refill = Refill::findOrFail($id);
         $data = $request->all();
 
@@ -150,8 +150,35 @@ class RefillController extends Controller
     {
 
         $refill = Refill::findOrFail($id);
+
+        $agency = $refill->adAccount->agency;
+        $agencyTransactionData = [
+            'refills_id' => $refill->id,
+            'cl_rate' => $refill->adAccount->dollar_rate,
+            'refill_usd' => $refill->amount_dollar,
+            'refill_tk' => $refill->amount_taka,
+            'agency_charge_type' => $agency->commission_type,
+        ];
+
+        if ($agency->commission_type == 'Percentage') {
+            $agencyRate = $agency->percentage_rate;
+            $refill_act_usd = (($agencyRate / 100) * $refill->amount_dollar) + $refill->amount_dollar;
+            $agencyTransactionData['refill_act_usd'] = $refill_act_usd;
+            $agencyTransactionData['agency_charge'] = ($agencyRate / 100) * $refill->amount_dollar;
+            $agencyTransactionData['agency_rate'] = $agencyRate;
+        } elseif ($agency->commission_type == 'Dollar Rate') {
+            $refill_act_tk = $agency->dollar_rate * $refill->amount_dollar;
+            $agencyTransactionData['refill_act_tk'] = $refill_act_tk;
+            $agencyTransactionData['agency_rate'] = $agency->dollar_rate;
+        } elseif ($agency->commission_type == 'Own Account') {
+            // No additional fields needed for 'Own Account'
+        }
+
+        AgencyTransaction::create($agencyTransactionData);
+
         $refill->update([
             'status' => 'approved',
+            'assign' => auth()->user()->name
         ]);
 
         SystemNotification::create([
@@ -160,12 +187,14 @@ class RefillController extends Controller
 
         return redirect()->route('dashboard');
     }
+    
     public function reject(Request $request, $id)
     {
 
         $refill = Refill::findOrFail($id);
         $refill->update([
             'status' => 'rejected',
+            'assign' => auth()->user()->name
         ]);
 
         SystemNotification::create([
@@ -236,12 +265,10 @@ class RefillController extends Controller
                 $agencyTransactionData['refill_act_usd'] = $refill_act_usd;
                 $agencyTransactionData['agency_charge'] = ($agencyRate / 100) * $refill->amount_dollar;
                 $agencyTransactionData['agency_rate'] = $agencyRate;
-
             } elseif ($agency->commission_type == 'Dollar Rate') {
                 $refill_act_tk = $agency->dollar_rate * $refill->amount_dollar;
                 $agencyTransactionData['refill_act_tk'] = $refill_act_tk;
                 $agencyTransactionData['agency_rate'] = $agency->dollar_rate;
-
             } elseif ($agency->commission_type == 'Own Account') {
                 // No additional fields needed for 'Own Account'
             }
@@ -263,5 +290,4 @@ class RefillController extends Controller
         // Redirect back with success message
         return redirect()->route('refills.index')->with('success', 'Status updated successfully.');
     }
-
 }
